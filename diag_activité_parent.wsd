@@ -1,0 +1,74 @@
+@startuml "EduZouZou - parent - connexion"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+repeat;
+:se rend sur la page "Se connecter";
+:Rentre ses identifiants;
+|s|
+:Transmet les informations à la base de données;
+|ser|
+:Compare les informations récupérées
+à celles déjà existantes;
+|s|
+backward:redirige vers la page login et 
+affiche un message d'erreur;
+|ser|
+repeatwhile(Les informations sont conformes) is(non) not(oui)
+|s|
+:affiche 'connexion réussie' et
+débloque les éléments disponibles;
+
+
+|u|
+:peut naviguer sur le site en utlisant les
+fonctionnalités associées au rôle de son compte;
+
+end
+
+@enduml
+
+
+@startuml "EduZouZou - parent - inscription"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+repeat;
+:se rend sur la page "créer un compte";
+repeat;
+:Rempli les champs de saisie;
+|s|
+repeat while(Vérifie que les données sont conformes aux validators) is(non) not(oui)
+:Transmet les informations à la base de données;
+|ser|
+:Vérifie que les données sont conformes;
+|s|
+backward:redirige vers la page "Se connecter" et 
+affiche un message d'erreur;
+|ser|
+repeatwhile(Les informations sont conformes) is(non) not(oui)
+|s|
+:affiche 'inscription réussie' et
+débloque les éléments disponibles;
+
+
+|u|
+:peut naviguer sur le site en utlisant les
+fonctionnalités associées au rôle de son compte;
+
+end
+
+@enduml
+
+
+
