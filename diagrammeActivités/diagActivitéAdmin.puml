@@ -1,0 +1,119 @@
+@startuml Accueil
+title "Diagramme d'activité"
+|#98FB98|Utilisateur|
+|#85DC85|Parent|
+|#72BC72|Enseignant|
+|#5F9D5F|Administrateur|
+|#4C7D4C|Super Administrateur|
+|#395E39|Serveur|
+
+rectangle Naviguer {
+    |Administrateur|
+    start
+    :Page d'accueil;
+    end
+}
+rectangle se connecter{
+    :se connecter;
+repeat
+fork
+:entrer mail;
+fork again
+:entrer mot de passe;
+end fork
+:valider connexion;
+ |Serveur|
+ :vérifie base de donnée;
+|Administrateur|
+backward: réessayer mot de passe;
+repeatwhile (mot de passe correct) is (non) not (oui)
+|Serveur|
+ :connexion au site;
+ :affiche page d'accueil;
+ |Administrateur|
+ :connecté;
+ end
+
+
+}
+
+title "Diagramme d'activité"
+rectangle gestion de compte{
+    |Administrateur|
+    start
+    :Clique sur le bouton de gestion de compte;
+     |Serveur|
+    :affiche fenêtre;
+    |Administrateur|
+    :choisit;
+    fork
+     :ajouter compte;
+     fork again
+    :supprimer compte;
+    end fork
+     :valider;
+    |Serveur|
+     :affiche fenêtre;
+    |Administrateur|
+    :choisit;
+    fork
+     :compte Enseignant;
+     fork again
+    :compte Parent;
+     fork again
+    :compte Enfant;
+    end fork
+    :valide;
+    |Serveur|
+     :demande mot de passe;
+    
+    |Administrateur|
+    repeat
+    :saisit mot de passe;
+    :valide;
+    |Serveur|
+    :vérifie base de donnée;
+    |Administrateur|
+backward: réessayer mot de passe;
+repeatwhile (mot de passe correct) is (non) not (oui)
+
+    |Serveur|
+     :enregistre et envoie notification;
+    
+    |Administrateur|
+    :Message de succès;
+    end
+}
+
+title "Diagramme d'activité"
+rectangle stats et rapports{
+
+    |Administrateur|
+    start
+    :Clique sur le bouton statistiques;
+     |Serveur|
+    :affiche fenêtre;
+    |Administrateur|
+    :choisit;
+    fork
+     :analyse données utilisateur;
+     fork again
+    :analyse performances élèves;
+     fork again
+    :analyse participation aux activités;
+    end fork
+     :valider;
+    |Serveur|
+     :affiche fenêtre correspondante;
+    
+    
+    |Administrateur|
+    :accède aux datas;
+    end
+
+}
+
+
+
+
+@enduml 
