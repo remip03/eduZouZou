@@ -1,20 +1,16 @@
-@startuml Accueil
-title "Diagramme d'activité"
-|#98FB98|Utilisateur|
-|#85DC85|Parent|
-|#72BC72|Enseignant|
-|#5F9D5F|Administrateur|
-|#4C7D4C|Super Administrateur|
-|#395E39|Serveur|
+@startuml connexion
+title "Diagramme d'activité se connecter"
+|#LightBlue|Super Administrateur|
+|#SkyBlue|s| Site
+|#RoyalBlue|Serveur|
 
-rectangle Naviguer {
-    |Administrateur|
-    start
-    :Page d'accueil;
-    end
-}
-rectangle se connecter{
-    :se connecter;
+   
+|Super Administrateur|
+start
+:se connecter;
+|s|
+:affiche fenetre connexion;
+|Super Administrateur|
 repeat
 fork
 :entrer mail ou pseudo;
@@ -24,79 +20,204 @@ end fork
 :valider connexion;
  |Serveur|
  :vérifie base de donnée;
-|Administrateur|
+|Super Administrateur|
 backward: réessayer mot de passe;
 repeatwhile (mot de passe correct) is (non) not (oui)
 |Serveur|
  :connexion au site;
- :affiche page d'accueil;
- |Administrateur|
+ |s|
+ :affiche page d'accueil et dashboard super admin;
+ |Super Administrateur|
  :connecté;
+
  end
 
 
-}
 
-title "Diagramme d'activité"
-rectangle gestion de compte{
-    |Administrateur|
+
+
+@enduml
+
+
+
+@startuml ajout compte
+
+title "Diagramme d'activité ajout compte "
+|#4C7D4C| Administrateur|
+|#Palegreen|s| Site
+|#395E39|Serveur|
+
+
+
+      | Administrateur|
     start
-    :Clique sur le bouton de gestion de compte;
-    |Serveur|
-     :demande mot de passe;
-    
-    |Administrateur|
-    repeat
-    :saisit mot de passe;
-    :valide;
-    |Serveur|
-    :vérifie base de donnée;
-    |Administrateur|
-backward: réessayer mot de passe;
-repeatwhile (mot de passe correct) is (non) not (oui)
+    :se connecte;
      |Serveur|
-    :affiche fenêtre;
-    |Administrateur|
-    :choisit;
-    fork
-     :ajouter compte;
-     fork again
-    :supprimer compte;
-     fork again
-    :modifier compte;
-     fork again
-    :consulter compte;
-    end fork
-     :valider;
-    |Serveur|
-     :affiche fenêtre;
-    |Administrateur|
-    :choisit;
-    fork
-     :compte Enseignant;
-     fork again
-    :compte Parent;
-     fork again
-    :compte Enfant;
-    end fork
-    :valide;
-   
-    |Serveur|
-     :enregistre et envoie notification;
+    :interroge database;
+    |s|
+ :affiche page d'accueil et dashboard  admin;
+  | Administrateur|
+
+  
+    :Clique sur le bouton de gestion de compte ;
+    |s|
+    :affiche fenêtre gestion de compte;  
     
-    |Administrateur|
+   
+    | Administrateur|
+    :choisit  compte; 
+    fork
+    :enseignant;
+    fork again
+    :parent; 
+   
+    end fork 
+
+    :selectionne ajouter;
+   
+   
+    |s|
+    :affiche formulaire d'ajout;
+    | Administrateur|
+    repeat
+    :remplit formulaire;  
+    backward: corriger erreurs;
+repeatwhile (formulaire conforme) is (non) not (oui)  
+    :valide; 
+    |Serveur|
+    :enregistre et envoie notification;
+    
+    | Administrateur|
     :Message de succès;
     end
-}
 
-title "Diagramme d'activité"
-rectangle stats et rapports{
+
+@enduml
+
+@startuml modification compte
+
+title "Diagramme d'activité mofification compte "
+|#4C7D4C| Administrateur|
+|#Palegreen|s| Site
+|#395E39|Serveur|
+
+
+
+    | Administrateur|
+    start
+    :se connecte;
+     |Serveur|
+    :interroge database;
+    |s|
+ :affiche page d'accueil et dashboard admin;
+  | Administrateur|
+
+  
+    :Clique sur le bouton de gestion de compte ;
+    |s|
+    :affiche fenêtre gestion de compte;  
+    
+   | Administrateur|
+    :choisit  compte; 
+    fork
+    :enseignant;
+    fork again
+    :parent; 
+ 
+    end fork 
+
+    :selectionne modifier;
+  
+   
+    |Serveur|
+    :recupère data;
+    |s|
+    :affiche formulaire modification pré remplit;
+    | Administrateur|
+    repeat
+    :remplit formulaire;  
+    backward: corriger erreurs;
+repeatwhile (formulaire conforme) is (non) not (oui)  
+    :valide; 
+    |Serveur|
+    :enregistre et envoie notification;
+    
+    | Administrateur|
+    :Message de succès;
+    end
+
+
+@enduml
+
+@startuml supprimer compte
+
+title "Diagramme d'activité suppression compte "
+|#4C7D4C| Administrateur|
+|#Palegreen|s| Site
+|#395E39|Serveur|
+
+
+
+      | Administrateur|
+    start
+    :se connecte;
+     |Serveur|
+    :interroge database;
+    |s|
+ :affiche page d'accueil et dashboard  admin;
+  | Administrateur|
+
+  
+    :Clique sur le bouton de gestion de compte ;
+    |s|
+    :affiche fenêtre gestion de compte;  
+    
+   
+    | Administrateur|
+    :choisit  compte; 
+    fork
+    :enseignant;
+    fork again
+    :parent; 
+   
+    end fork 
+
+    :selectionne supprimer; 
+   
+   
+    |s|
+    :affiche formulaire de suppression;
+    | Administrateur|
+    repeat
+    :remplit formulaire;  
+    backward: corriger erreurs;
+repeatwhile (formulaire conforme) is (non) not (oui)  
+    :valide; 
+    |Serveur|
+    :enregistre et envoie notification;
+    
+    | Administrateur|
+    :Message de succès;
+    end
+
+
+@enduml
+
+@startuml stats
+
+title "Diagramme d'activité statiques et rapports"
+
+|#Orange|Administrateur|
+|#OrangeRed|s| Site
+|#DarkRed|Serveur|
+
 
     |Administrateur|
     start
     :Clique sur le bouton statistiques;
-     |Serveur|
-    :affiche fenêtre;
+     |s|
+    :affiche fenêtre statiques;
+
     |Administrateur|
     :choisit;
     fork
@@ -108,6 +229,8 @@ rectangle stats et rapports{
     end fork
      :valider;
     |Serveur|
+    :charge les données;
+    |s|
      :affiche fenêtre correspondante;
     
     
@@ -115,7 +238,7 @@ rectangle stats et rapports{
     :accède aux datas;
     end
 
-}
+
 
 
 

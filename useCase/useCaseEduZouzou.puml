@@ -22,10 +22,12 @@ actor superAdmin as sa #red
         useCase "supprimer une école" as delSchool #red
         useCase "gestion des admins" as gesAd #Green;text:Black
         useCase "ajouter admin" as addAdm #lightGreen
+        useCase "modifier admin" as upAdm #lightGreen
         useCase "supprimer admin" as delAdm #lightGreen
 
 sa-->packsa #line:red;line.dashed;text:red
 gesAd -->addAdm :extend
+gesAd -->upAdm :extend
 gesAd -->delAdm :extend
 
     }
@@ -38,11 +40,13 @@ gesAd -->delAdm :extend
         useCase "analyser participation Activités" as aParta #LightPink
         useCase "gestion des comptes" as gestCompte #LightCoral
         useCase "ajouter compte" as addCompte #Coral
+        useCase "modifier compte" as upCompte #Coral
         useCase "supprimer compte" as delCompte #Coral
 
 a-up->packa #blue;line.dashed;text:blue
 
 gestCompte --> addCompte : extend
+gestCompte --> upCompte : extend
 gestCompte --> delCompte : extend
 
 stats --> aDataUse :extend
