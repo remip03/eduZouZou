@@ -20,7 +20,7 @@ actor superAdmin as sa #red
         useCase "modifier une école" as upSchool #red
         useCase "supprimer une école" as delSchool #red
         useCase "gestion des admins" as gesAd #Green
-        useCase "ajouter admin" as addAdm #lightGreen;
+        useCase "ajouter admin" as addAdm #lightGreen
         useCase "supprimer admin" as delAdm #lightGreen
 
 sa-->packsa #line:red;line.dashed;text:red
@@ -91,7 +91,7 @@ tchat-->mess :extend
  usecase "compétences" as comp #LightSeaGreen
 
 
-e-->packel #pink;line.dashed;text:pink
+e-->packel #DarkMagenta;line.dashed;
 
  }
 
