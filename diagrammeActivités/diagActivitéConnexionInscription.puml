@@ -1,4 +1,4 @@
-@startuml
+@startuml connexion inscription
 
 title inscription connexion
 
@@ -60,7 +60,7 @@ end
 
 @enduml
 
-@startuml 
+@startuml photo
 
 title Admin ajouter ou supprimer photo 
 
@@ -114,7 +114,7 @@ end
 
 @enduml 
 
-@startuml 
+@startuml page
 
 title Admin ajouter ou supprimer page 
 
@@ -168,7 +168,7 @@ end
 
 @enduml 
 
-@startuml 
+@startuml  contact
 
 title user contacter
 
