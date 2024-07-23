@@ -1,0 +1,190 @@
+@startuml Accueil
+title "Diagramme d'activité se connecter"
+|#4C7D4C|Super Administrateur|
+|#Palegreen|s| Site
+|#395E39|Serveur|
+
+' |#98FB98|Utilisateur|
+' |#85DC85|Parent|
+' |#72BC72|Enseignant|
+' |#5F9D5F|Administrateur|
+
+
+   
+|Super Administrateur|
+start
+:se connecter;
+|s|
+:affiche fenetre connexion;
+|Super Administrateur|
+repeat
+fork
+:entrer mail ou pseudo;
+fork again
+:entrer mot de passe;
+end fork
+:valider connexion;
+ |Serveur|
+ :vérifie base de donnée;
+|Super Administrateur|
+backward: réessayer mot de passe;
+repeatwhile (mot de passe correct) is (non) not (oui)
+|Serveur|
+ :connexion au site;
+ |s|
+ :affiche page d'accueil et dashboard super admin;
+ |Super Administrateur|
+ :connecté;
+
+ end
+
+
+
+
+
+@enduml
+
+@startuml ajout compte
+
+title "Diagramme d'activité ajout compte admin"
+|#4C7D4C|Super Administrateur|
+|#Palegreen|s| Site
+|#395E39|Serveur|
+
+
+
+    |Super Administrateur|
+    start
+    :se connecte;
+    |Serveur|
+    :interroge database;
+    |s|
+ :affiche page d'accueil et dashboard super admin;
+  |Super Administrateur|
+  
+    :Clique sur le bouton de gestion de compte admin;
+    |s|
+    :affiche fenêtre gestion de compte;  
+    
+   
+    |Super Administrateur|
+    :choisit;    
+    :ajouter compte;   
+    :valider;
+    |Serveur|
+    :affiche formulaire création;
+    |Super Administrateur|
+    repeat
+    :remplit formulaire;  
+    :valide; 
+    backward: corriger erreurs;
+repeatwhile (formulaire conforme) is (non) not (oui)  
+    |Serveur|
+    :enregistre et envoie notification;
+    
+    |Super Administrateur|
+    :Message de succès;
+    end
+
+
+@enduml
+
+@startuml modification compte
+
+title "Diagramme d'activité mofification compte admin"
+|#4C7D4C|Super Administrateur|
+|#Palegreen|s| Site
+|#395E39|Serveur|
+
+
+
+    |Super Administrateur|
+    start
+    :se connecte;
+     |Serveur|
+    :interroge database;
+    |s|
+ :affiche page d'accueil et dashboard super admin;
+  |Super Administrateur|
+
+  
+    :Clique sur le bouton de gestion de compte admin;
+    |s|
+    :affiche fenêtre gestion de compte;  
+    
+   
+    |Super Administrateur|
+    :choisit modifier compte;   
+   
+    |Serveur|
+    :recupère data;
+    |s|
+    :affiche formulaire modification pré remplit;
+    |Super Administrateur|
+    repeat
+    :remplit formulaire;  
+    :valide; 
+    backward: corriger erreurs;
+repeatwhile (formulaire conforme) is (non) not (oui)  
+    |Serveur|
+    :enregistre et envoie notification;
+    
+    |Super Administrateur|
+    :Message de succès;
+    end
+
+
+@enduml
+
+@startuml école
+
+title "Diagramme d'activité"
+|#4C7D4C|Super Administrateur|
+|#395E39|Serveur|
+
+title "Diagramme d'activité"
+rectangle ajouter modifier supprimer école{
+     |Super Administrateur|
+    start
+    :Clique sur le bouton de gestion de compte admin;
+    |Serveur|
+     :demande mot de passe;
+    
+    |Super Administrateur|
+    repeat
+    :saisit mot de passe;
+    :valide;
+    |Serveur|
+    :vérifie base de donnée;
+    |Super Administrateur|
+backward: réessayer mot de passe;
+repeatwhile (mot de passe correct) is (non) not (oui)
+     |Serveur|
+    :affiche fenêtre;
+    |Super Administrateur|
+    :choisit;
+    fork
+     :ajouter école;
+     fork again
+    :supprimer école;
+     fork again
+    :modifier école;    
+    end fork
+     :valider;
+    |Serveur|
+     :affiche fenêtre;
+    |Super Administrateur|
+    :choisit;
+    :nom école;
+    :valide;
+   
+    |Serveur|
+     :enregistre et envoie notification;
+    
+    |Super Administrateur|
+    :Message de succès;
+    end
+   
+}
+@enduml
+
