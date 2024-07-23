@@ -26,9 +26,22 @@ sa --> packsa #line:red;line.dashed;text:red
 
     package admin as packa {
         useCase "statistiques et rapports" as stats #LightPink
-        useCase "gestion des comptes" #LightCoral
+        useCase "analyser données utilisation" as aDataUse #LightPink
+        useCase "analyser performances élèves" as aPerfEl #LightPink
+        useCase "analyser participation Activités" as aParta #LightPink
+        useCase "gestion des comptes" as gestCompte #LightCoral
+        useCase "ajouter compte" as addCompte #Coral
+        useCase "supprimer compte" as delCompte #Coral
 
 a -->packa #blue;line.dashed;text:blue
+
+gestCompte --> addCompte : extend
+gestCompte --> delCompte : extend
+
+stats --> aDataUse :extend
+stats --> aPerfEl :extend
+stats --> aParta :extend
+
 
     }
 

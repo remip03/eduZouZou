@@ -1,0 +1,18 @@
+@startuml Accueil
+title "Diagramme d'activité"
+|#98FB98|Utilisateur|
+|#85DC85|Parent|
+|#72BC72|Enseignant|
+|#5F9D5F|Administrateur|
+|#4C7D4C|Super Administrateur|
+|#395E39|Serveur|
+
+rectangle Naviguer {
+    |Administrateur|
+    start
+    :Page d'accueil;
+    end
+}
+
+
+@enduml 

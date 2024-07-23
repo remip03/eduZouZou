@@ -1,0 +1,203 @@
+@startuml
+
+title inscription connexion
+
+|#orange|user|
+start
+fork
+:s'inscrire;
+fork again 
+:se connecter;
+end fork
+
+|#lightGreen|serveur|
+:affiche page connexion;
+|user|
+repeat
+if (se connecter ou s'inscrire) then (se connecter) 
+
+:se connecter;
+repeat
+fork
+:entrer mail;
+fork again
+:entrer mot de passe;
+end fork
+:valider connexion;
+backward: réessayer mot de passe;
+repeatwhile (mot de passe correct) is (non) not (oui)
+
+
+else (s'incrire) 
+|serveur|
+:affiche cadre inscription;
+
+|user|
+
+:s'incrire;
+fork
+:entrer nom;
+fork again
+:entrer prénom;
+fork again
+:entrer mail;
+fork again
+:entrer mot de passe;
+:confirmer mot de passe;
+end fork
+:valider inscription;
+endif
+backward :retour se connecter;
+repeat while (incription ok)
+
+:valider;
+:connexion;
+|serveur|
+:affiche page d'accueil;
+
+end
+
+
+@enduml
+
+@startuml 
+
+title Admin ajouter ou supprimer photo 
+
+|#yellow|admin|
+start
+:s'authentifier;
+|#LightSeaGreen|serveur|
+:ouvre page se connecter;
+|admin|
+repeat
+:se connecter;
+fork
+:entrer identifiant;
+fork again
+:entrer mot de passe;
+end fork
+:valider;
+backward: 3tentatives;
+
+repeatwhile (mot de passe et identifiant correct) is (non) not (oui)
+
+
+:connexion;
+|serveur|
+:ouvre page d'accueil;
+|admin|
+fork
+:choisit page;
+fork again
+:choisit emplacement;
+end fork
+:ajoute ou supprime photo;
+
+
+|#lightpink|base de données|
+:enregistre modification;
+
+fork
+:envoie serveur modification;
+|serveur|
+:s'actualise;
+fork again
+
+|base de données|
+:envoie notification admin;
+end fork
+|admin|
+:recoit notification;
+
+end
+
+@enduml 
+
+@startuml 
+
+title Admin ajouter ou supprimer page 
+
+|#LightCoral|admin|
+start
+:s'authentifier;
+|#orange|serveur|
+:ouvre page se connecter;
+|admin|
+repeat
+:se connecter;
+fork
+:entrer identifiant;
+fork again
+:entrer mot de passe;
+end fork
+:valider;
+backward: 3tentatives;
+
+repeatwhile (mot de passe et identifiant correct) is (non) not (oui)
+
+
+:connexion;
+|serveur|
+:ouvre page d'accueil;
+|admin|
+fork
+:choisit page;
+fork again
+:choisit emplacement;
+end fork
+:ajoute ou supprime page;
+
+
+|#LightSkyBlue|base de données|
+:enregistre modification;
+
+fork
+:envoie serveur modification;
+|serveur|
+:s'actualise;
+fork again
+
+|base de données|
+:envoie notification admin;
+end fork
+|admin|
+:recoit notification;
+
+end
+
+@enduml 
+
+@startuml 
+
+title user contacter
+
+|#lightGray|user|
+start
+:click page contact;
+|#LimeGreen|serveur|
+:ouvre page contact;
+|user|
+:remplit le formulaire;
+fork
+:entrer nom;
+fork again
+:entrer prénom;
+fork again
+:entrer mail;
+fork again
+:entrer téléphone;
+fork again
+:entrer message;
+end fork
+
+:valider;
+|#Yellow|base de données|
+:enregistre formulaire;
+:envoie notification;
+|user|
+:reçoit notification;
+end
+
+@enduml 
+
