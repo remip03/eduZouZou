@@ -19,7 +19,7 @@ actor superAdmin as sa #red
         useCase "supprimer une école" as delSchool #red
         useCase "gestion des admins" as gesAd #Green
 
-sa --> packsa #line:red;line.dashed;text:red
+sa-->packsa #line:red;line.dashed;text:red
 
     }
 
@@ -33,7 +33,7 @@ sa --> packsa #line:red;line.dashed;text:red
         useCase "ajouter compte" as addCompte #Coral
         useCase "supprimer compte" as delCompte #Coral
 
-a -->packa #blue;line.dashed;text:blue
+a-up->packa #blue;line.dashed;text:blue
 
 gestCompte --> addCompte : extend
 gestCompte --> delCompte : extend
@@ -60,19 +60,20 @@ addcours --> doc :extends
 addcours --> video :extends
 addcours --> ressource :extends
 
-ens --> packens  #green;line.dashed;text:green 
+ens-->packens  #green;line.dashed;text:green 
 
 }
 
 
 
 package "parents" as packp{
-usecase "messages" as mess #yellow
-usecase "messagerie" as tchat #yellow
+usecase "messages" as mess #orange
+usecase "messagerie" as tchat #orange
     usecase inscription as ins #LightGray 
     usecase "gestion du Profil" as gesProf #LightGray 
 
-p -> packp #coral;line.dashed;text:coral
+p->packp #coral;line.dashed;text:coral
+tchat-->mess :extend
 
 }
 
@@ -84,7 +85,7 @@ p -> packp #coral;line.dashed;text:coral
  usecase "compétences" as comp #LightSeaGreen
 
 
-e -up-> packel #pink;line.dashed;text:pink
+e-->packel #pink;line.dashed;text:pink
 
  }
 
@@ -97,10 +98,10 @@ e -up-> packel #pink;line.dashed;text:pink
 
 
 
-a <|--sa  #line:lightgray;line.bold;text:lightgray
-ens <|--a  #line:lightgray;line.bold;text:lightgray
-p<|--ens  #line:lightgray;line.bold;text:lightgray
-e<|--p  #line:lightgray;line.bold;text:lightgray
+a <|---sa  #line:lightgray;line.bold;text:lightgray
+ens <|---a  #line:lightgray;line.bold;text:lightgray
+p<|---ens  #line:lightgray;line.bold;text:lightgray
+e<|---p  #line:lightgray;line.bold;text:lightgray
 
 
 
