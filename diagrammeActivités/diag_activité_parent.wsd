@@ -18,7 +18,7 @@ repeat;
 |s|
 backward:redirige vers la page login et 
 affiche un message d'erreur;
-|ser|
+|u|
 repeatwhile(Les informations sont conformes) is(non) not(oui)
 |s|
 :affiche 'connexion réussie' et
