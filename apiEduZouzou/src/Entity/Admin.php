@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AdminRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AdminRepository::class)]
@@ -30,10 +32,6 @@ class Admin
 
     #[ORM\Column(length: 50)]
     private ?string $adresseA = null;
-
-    #[ORM\ManyToOne(inversedBy: 'admins')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Ecole $ecole = null;
 
     public function getId(): ?int
     {
@@ -108,18 +106,6 @@ class Admin
     public function setAdresseA(string $adresseA): static
     {
         $this->adresseA = $adresseA;
-
-        return $this;
-    }
-
-    public function getEcole(): ?Ecole
-    {
-        return $this->ecole;
-    }
-
-    public function setEcole(?Ecole $ecole): static
-    {
-        $this->ecole = $ecole;
 
         return $this;
     }
