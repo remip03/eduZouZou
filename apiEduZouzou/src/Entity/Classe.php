@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ClasseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,6 +22,10 @@ class Classe
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeImmutable $anneeCl = null;
+
+    #[ORM\ManyToOne(inversedBy: 'classes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Ecole $ecole = null;
 
     public function getId(): ?int
     {
@@ -62,6 +64,18 @@ class Classe
     public function setAnneeCl(\DateTimeImmutable $anneeCl): static
     {
         $this->anneeCl = $anneeCl;
+
+        return $this;
+    }
+
+    public function getEcole(): ?Ecole
+    {
+        return $this->ecole;
+    }
+
+    public function setEcole(?Ecole $ecole): static
+    {
+        $this->ecole = $ecole;
 
         return $this;
     }

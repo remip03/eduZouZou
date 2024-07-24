@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\EnseignantRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EnseignantRepository::class)]
@@ -32,6 +30,10 @@ class Enseignant
 
     #[ORM\Column(length: 50)]
     private ?string $adresseT = null;
+
+    #[ORM\ManyToOne(inversedBy: 'enseignants')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Ecole $ecole = null;
 
     public function getId(): ?int
     {
@@ -106,6 +108,18 @@ class Enseignant
     public function setAdresseT(string $adresseT): static
     {
         $this->adresseT = $adresseT;
+
+        return $this;
+    }
+
+    public function getEcole(): ?Ecole
+    {
+        return $this->ecole;
+    }
+
+    public function setEcole(?Ecole $ecole): static
+    {
+        $this->ecole = $ecole;
 
         return $this;
     }
