@@ -1,5 +1,6 @@
 @startuml usecase
 
+!theme silver
 
 title = "useCase eduZouzou"
 
@@ -19,12 +20,14 @@ actor superAdmin as sa #red
         useCase "ajouter une école" as addSchool #red
         useCase "modifier une école" as upSchool #red
         useCase "supprimer une école" as delSchool #red
-        useCase "gestion des admins" as gesAd #Green
+        useCase "gestion des admins" as gesAd #Green;text:Black
         useCase "ajouter admin" as addAdm #lightGreen
+        useCase "modifier admin" as upAdm #lightGreen
         useCase "supprimer admin" as delAdm #lightGreen
 
 sa-->packsa #line:red;line.dashed;text:red
 gesAd -->addAdm :extend
+gesAd -->upAdm :extend
 gesAd -->delAdm :extend
 
     }
@@ -37,11 +40,13 @@ gesAd -->delAdm :extend
         useCase "analyser participation Activités" as aParta #LightPink
         useCase "gestion des comptes" as gestCompte #LightCoral
         useCase "ajouter compte" as addCompte #Coral
+        useCase "modifier compte" as upCompte #Coral
         useCase "supprimer compte" as delCompte #Coral
 
 a-up->packa #blue;line.dashed;text:blue
 
 gestCompte --> addCompte : extend
+gestCompte --> upCompte : extend
 gestCompte --> delCompte : extend
 
 stats --> aDataUse :extend
@@ -56,10 +61,10 @@ package enseignant  as packens{
         useCase "modifier une classe" as upClass #LightBlue
         useCase "supprimer une classe" as delClass #LightBlue
         useCase "ajouter un cours" as addcours #LightGreen
-        useCase "ajouter descriptions" as descr #Green
-        useCase "ajouter documents" as doc #Green
-        useCase "ajouter videos" as video #Green
-        useCase "ajouter ressources supplémentaires" as ressource #Green
+        useCase "ajouter descriptions" as descr #Green;text:Black
+        useCase "ajouter documents" as doc #Green;text:Black
+        useCase "ajouter videos" as video #Green;text:Black
+        useCase "ajouter ressources supplémentaires" as ressource #Green;text:Black
 
 addcours --> descr :extends
 addcours --> doc :extends
@@ -106,11 +111,10 @@ e<|---p  #line:lightgray;line.bold;text:lightgray
 
 
 
-ins <..connect :includes
-packsa ..> connect : includes 
-packa ..> connect : includes 
-packens ..> connect : includes 
-packel ..> connect : includes 
+ins <..connect #line:black;line.dashed;text:lightgray :includes 
+packa ..> connect #line:black;line.dashed;text:lightgray : includes 
+packens ..> connect #line:black;line.dashed;text:lightgray : includes 
+packel ..> connect #line:black;line.dashed;text:lightgray : includes 
 
 
 @enduml
