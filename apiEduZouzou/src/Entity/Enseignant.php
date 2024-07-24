@@ -43,6 +43,9 @@ class Enseignant
     #[ORM\ManyToMany(targetEntity: Ressource::class, inversedBy: 'enseignants')]
     private Collection $ressources;
 
+    #[ORM\ManyToOne(inversedBy: 'enseignants')]
+    private ?Ecole $ecole = null;
+
     public function __construct()
     {
         $this->ressources = new ArrayCollection();
@@ -157,6 +160,18 @@ class Enseignant
     public function removeRessource(Ressource $ressource): static
     {
         $this->ressources->removeElement($ressource);
+
+        return $this;
+    }
+
+    public function getEcole(): ?Ecole
+    {
+        return $this->ecole;
+    }
+
+    public function setEcole(?Ecole $ecole): static
+    {
+        $this->ecole = $ecole;
 
         return $this;
     }

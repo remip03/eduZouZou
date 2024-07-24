@@ -39,6 +39,10 @@ class Admin
     #[ORM\OneToMany(targetEntity: Classe::class, mappedBy: 'adminclasse', orphanRemoval: true)]
     private Collection $classes;
 
+    #[ORM\ManyToOne(inversedBy: 'admins')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Ecole $ecole = null;
+
     public function __construct()
     {
         $this->classes = new ArrayCollection();
@@ -147,6 +151,18 @@ class Admin
                 $class->setAdminclasse(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEcole(): ?Ecole
+    {
+        return $this->ecole;
+    }
+
+    public function setEcole(?Ecole $ecole): static
+    {
+        $this->ecole = $ecole;
 
         return $this;
     }

@@ -41,6 +41,10 @@ class Classe
     #[ORM\JoinColumn(nullable: false)]
     private ?Admin $adminclasse = null;
 
+    #[ORM\ManyToOne(inversedBy: 'classes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Ecole $ecole = null;
+
     public function __construct()
     {
         $this->enseignants = new ArrayCollection();
@@ -157,6 +161,18 @@ class Classe
     public function setAdminclasse(?Admin $adminclasse): static
     {
         $this->adminclasse = $adminclasse;
+
+        return $this;
+    }
+
+    public function getEcole(): ?Ecole
+    {
+        return $this->ecole;
+    }
+
+    public function setEcole(?Ecole $ecole): static
+    {
+        $this->ecole = $ecole;
 
         return $this;
     }

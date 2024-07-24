@@ -31,6 +31,10 @@ class Parents
     #[ORM\Column(length: 50)]
     private ?string $adresseP = null;
 
+    #[ORM\ManyToOne(inversedBy: 'parents')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Messagerie $messagerie = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +108,18 @@ class Parents
     public function setAdresseP(string $adresseP): static
     {
         $this->adresseP = $adresseP;
+
+        return $this;
+    }
+
+    public function getMessagerie(): ?Messagerie
+    {
+        return $this->messagerie;
+    }
+
+    public function setMessagerie(?Messagerie $messagerie): static
+    {
+        $this->messagerie = $messagerie;
 
         return $this;
     }
