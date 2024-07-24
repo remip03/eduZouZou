@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ActiviteRepository::class)]
-class Activite
+class Activite extends Ressource
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

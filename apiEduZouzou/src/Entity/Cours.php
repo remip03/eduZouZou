@@ -6,7 +6,7 @@ use App\Repository\CoursRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
-class Cours
+class Cours extends Ressource
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
