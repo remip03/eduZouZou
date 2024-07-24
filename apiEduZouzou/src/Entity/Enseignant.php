@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EnseignantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EnseignantRepository::class)]
@@ -30,6 +32,21 @@ class Enseignant
 
     #[ORM\Column(length: 50)]
     private ?string $adresseT = null;
+
+    #[ORM\ManyToOne(inversedBy: 'enseignants')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Classe $classe = null;
+
+    /**
+     * @var Collection<int, Ressource>
+     */
+    #[ORM\ManyToMany(targetEntity: Ressource::class, inversedBy: 'enseignants')]
+    private Collection $ressources;
+
+    public function __construct()
+    {
+        $this->ressources = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +121,42 @@ class Enseignant
     public function setAdresseT(string $adresseT): static
     {
         $this->adresseT = $adresseT;
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): static
+    {
+        $this->classe = $classe;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ressource>
+     */
+    public function getRessources(): Collection
+    {
+        return $this->ressources;
+    }
+
+    public function addRessource(Ressource $ressource): static
+    {
+        if (!$this->ressources->contains($ressource)) {
+            $this->ressources->add($ressource);
+        }
+
+        return $this;
+    }
+
+    public function removeRessource(Ressource $ressource): static
+    {
+        $this->ressources->removeElement($ressource);
 
         return $this;
     }

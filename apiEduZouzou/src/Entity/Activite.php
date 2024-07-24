@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ActiviteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ActiviteRepository::class)]
@@ -21,6 +23,17 @@ class Activite
 
     #[ORM\Column(length: 50)]
     private ?string $matiereAct = null;
+
+    /**
+     * @var Collection<int, Enfant>
+     */
+    #[ORM\ManyToMany(targetEntity: Enfant::class, mappedBy: 'activites')]
+    private Collection $enfants;
+
+    public function __construct()
+    {
+        $this->enfants = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +72,33 @@ class Activite
     public function setMatiereAct(string $matiereAct): static
     {
         $this->matiereAct = $matiereAct;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Enfant>
+     */
+    public function getEnfants(): Collection
+    {
+        return $this->enfants;
+    }
+
+    public function addEnfant(Enfant $enfant): static
+    {
+        if (!$this->enfants->contains($enfant)) {
+            $this->enfants->add($enfant);
+            $enfant->addActivite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnfant(Enfant $enfant): static
+    {
+        if ($this->enfants->removeElement($enfant)) {
+            $enfant->removeActivite($this);
+        }
 
         return $this;
     }

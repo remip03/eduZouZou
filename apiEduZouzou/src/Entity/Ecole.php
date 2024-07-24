@@ -25,6 +25,10 @@ class Ecole
     #[ORM\Column(length: 50)]
     private ?string $mailEc = null;
 
+    #[ORM\ManyToOne(inversedBy: 'ecoles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?SuperAdmin $superAdmin = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +78,18 @@ class Ecole
     public function setMailEc(string $mailEc): static
     {
         $this->mailEc = $mailEc;
+
+        return $this;
+    }
+
+    public function getSuperAdmin(): ?SuperAdmin
+    {
+        return $this->superAdmin;
+    }
+
+    public function setSuperAdmin(?SuperAdmin $superAdmin): static
+    {
+        $this->superAdmin = $superAdmin;
 
         return $this;
     }
