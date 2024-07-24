@@ -22,6 +22,9 @@ class Message
     #[ORM\Column(length: 50)]
     private ?string $expediteur = null;
 
+    #[ORM\ManyToOne(inversedBy: 'messagess')]
+    private ?Messagerie $messagerie = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Message
     public function setExpediteur(string $expediteur): static
     {
         $this->expediteur = $expediteur;
+
+        return $this;
+    }
+
+    public function getMessagerie(): ?Messagerie
+    {
+        return $this->messagerie;
+    }
+
+    public function setMessagerie(?Messagerie $messagerie): static
+    {
+        $this->messagerie = $messagerie;
 
         return $this;
     }
