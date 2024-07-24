@@ -31,6 +31,10 @@ class Enseignant
     #[ORM\Column(length: 50)]
     private ?string $adresseT = null;
 
+    #[ORM\ManyToOne(inversedBy: 'enseignants')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Ecole $ecole = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +108,18 @@ class Enseignant
     public function setAdresseT(string $adresseT): static
     {
         $this->adresseT = $adresseT;
+
+        return $this;
+    }
+
+    public function getEcole(): ?Ecole
+    {
+        return $this->ecole;
+    }
+
+    public function setEcole(?Ecole $ecole): static
+    {
+        $this->ecole = $ecole;
 
         return $this;
     }
