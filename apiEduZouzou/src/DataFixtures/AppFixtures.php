@@ -31,6 +31,9 @@ class AppFixtures extends Fixture
             $ecole->setAdresseEc('adresse école ' . $i);
             $ecole->setTelephoneEc('tel école ' . $i);
             $ecole->setMailEc('mail école ' . $i);
+
+            $ecole->setSuperAdmin($superAdmin);
+
            
             $manager->persist($ecole);
             $listEcoles[] = $ecole;

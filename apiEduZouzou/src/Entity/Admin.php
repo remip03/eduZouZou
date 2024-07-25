@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AdminRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AdminRepository::class)]
 class Admin
@@ -11,24 +12,31 @@ class Admin
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["getSA"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getSA"])]
     private ?string $lastNameA = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getSA"])]
     private ?string $firstNameA = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getSA"])]
     private ?string $mailA = null;
 
     #[ORM\Column(length: 60)]
+    #[Groups(["getSA"])]
     private ?string $passA = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups(["getSA"])]
     private ?string $telephoneA = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getSA"])]
     private ?string $adresseA = null;
 
     #[ORM\ManyToOne(inversedBy: 'admins')]

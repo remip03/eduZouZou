@@ -6,6 +6,7 @@ use App\Repository\EcoleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: EcoleRepository::class)]
 class Ecole
@@ -13,19 +14,40 @@ class Ecole
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["getEcoles"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getEcoles"])]
     private ?string $nameEc = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(["getEcoles"])]
     private ?string $adresseEc = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups(["getEcoles"])]
     private ?string $telephoneEc = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getEcoles"])]
     private ?string $mailEc = null;
+
+    #[ORM\ManyToOne(inversedBy: 'ecoles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?SuperAdmin $superAdmin = null;
+
+    public function getSuperAdmin(): ?SuperAdmin
+    {
+        return $this->superAdmin;
+    }
+
+    public function setSuperAdmin(?SuperAdmin $superAdmin): static
+    {
+        $this->superAdmin = $superAdmin;
+
+        return $this;
+    }
 
     /**
      * @var Collection<int, Admin>
