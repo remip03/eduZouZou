@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\EnseignantRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EnseignantRepository::class)]
@@ -35,6 +33,7 @@ class Enseignant
 
     #[ORM\ManyToOne(inversedBy: 'enseignants')]
     #[ORM\JoinColumn(nullable: false)]
+<<<<<<< HEAD
     private ?Classe $classe = null;
 
     /**
@@ -50,6 +49,9 @@ class Enseignant
     {
         $this->ressources = new ArrayCollection();
     }
+=======
+    private ?Ecole $ecole = null;
+>>>>>>> origin/backJeremy
 
     public function getId(): ?int
     {
@@ -128,38 +130,14 @@ class Enseignant
         return $this;
     }
 
-    public function getClasse(): ?Classe
+    public function getEcole(): ?Ecole
     {
-        return $this->classe;
+        return $this->ecole;
     }
 
-    public function setClasse(?Classe $classe): static
+    public function setEcole(?Ecole $ecole): static
     {
-        $this->classe = $classe;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Ressource>
-     */
-    public function getRessources(): Collection
-    {
-        return $this->ressources;
-    }
-
-    public function addRessource(Ressource $ressource): static
-    {
-        if (!$this->ressources->contains($ressource)) {
-            $this->ressources->add($ressource);
-        }
-
-        return $this;
-    }
-
-    public function removeRessource(Ressource $ressource): static
-    {
-        $this->ressources->removeElement($ressource);
+        $this->ecole = $ecole;
 
         return $this;
     }

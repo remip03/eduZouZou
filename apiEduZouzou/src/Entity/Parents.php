@@ -32,7 +32,10 @@ class Parents
     private ?string $adresseP = null;
 
     #[ORM\ManyToOne(inversedBy: 'parents')]
+<<<<<<< HEAD
     #[ORM\JoinColumn(nullable: false)]
+=======
+>>>>>>> origin/backJeremy
     private ?Messagerie $messagerie = null;
 
     public function getId(): ?int

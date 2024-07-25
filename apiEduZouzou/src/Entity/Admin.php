@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\AdminRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AdminRepository::class)]
@@ -33,6 +31,7 @@ class Admin
     #[ORM\Column(length: 50)]
     private ?string $adresseA = null;
 
+<<<<<<< HEAD
     /**
      * @var Collection<int, Classe>
      */
@@ -47,6 +46,11 @@ class Admin
     {
         $this->classes = new ArrayCollection();
     }
+=======
+    #[ORM\ManyToOne(inversedBy: 'admins')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Ecole $ecole = null;
+>>>>>>> origin/backJeremy
 
     public function getId(): ?int
     {
@@ -125,32 +129,14 @@ class Admin
         return $this;
     }
 
-    /**
-     * @return Collection<int, Classe>
-     */
-    public function getClasses(): Collection
+    public function getEcole(): ?Ecole
     {
-        return $this->classes;
+        return $this->ecole;
     }
 
-    public function addClass(Classe $class): static
+    public function setEcole(?Ecole $ecole): static
     {
-        if (!$this->classes->contains($class)) {
-            $this->classes->add($class);
-            $class->setAdminclasse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClass(Classe $class): static
-    {
-        if ($this->classes->removeElement($class)) {
-            // set the owning side to null (unless already changed)
-            if ($class->getAdminclasse() === $this) {
-                $class->setAdminclasse(null);
-            }
-        }
+        $this->ecole = $ecole;
 
         return $this;
     }

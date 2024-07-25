@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ClasseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,20 +23,9 @@ class Classe
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeImmutable $anneeCl = null;
 
-    /**
-     * @var Collection<int, Enseignant>
-     */
-    #[ORM\OneToMany(targetEntity: Enseignant::class, mappedBy: 'classe')]
-    private Collection $enseignants;
-
-    /**
-     * @var Collection<int, Enfant>
-     */
-    #[ORM\OneToMany(targetEntity: Enfant::class, mappedBy: 'classe')]
-    private Collection $enfants;
-
     #[ORM\ManyToOne(inversedBy: 'classes')]
     #[ORM\JoinColumn(nullable: false)]
+<<<<<<< HEAD
     private ?Admin $adminclasse = null;
 
     #[ORM\ManyToOne(inversedBy: 'classes')]
@@ -51,6 +38,9 @@ class Classe
         $this->enfants = new ArrayCollection();
     }
 
+=======
+    private ?Ecole $ecole = null;
+>>>>>>> origin/backJeremy
 
     public function getId(): ?int
     {
@@ -93,23 +83,18 @@ class Classe
         return $this;
     }
 
-    /**
-     * @return Collection<int, Enseignant>
-     */
-    public function getEnseignants(): Collection
+    public function getEcole(): ?Ecole
     {
-        return $this->enseignants;
+        return $this->ecole;
     }
 
-    public function addEnseignant(Enseignant $enseignant): static
+    public function setEcole(?Ecole $ecole): static
     {
-        if (!$this->enseignants->contains($enseignant)) {
-            $this->enseignants->add($enseignant);
-            $enseignant->setClasse($this);
-        }
+        $this->ecole = $ecole;
 
         return $this;
     }
+<<<<<<< HEAD
 
     public function removeEnseignant(Enseignant $enseignant): static
     {
@@ -177,4 +162,6 @@ class Classe
         return $this;
     }
 
+=======
+>>>>>>> origin/backJeremy
 }
