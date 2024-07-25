@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "doctrine": "^3.0.0"
+  }
+}
