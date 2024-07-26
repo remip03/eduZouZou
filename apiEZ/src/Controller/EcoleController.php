@@ -111,8 +111,10 @@ class EcoleController extends AbstractController
     #[Route("/api/ecoles/{id}", name:"updateEcole", methods: ["PUT"])]
     // #[IsGranted('ROLE_ADMIN', message: 'Vous n\'avez pas les droits suffisants pour modifier un livre')]
 
-    public function updateEcole(Request $request, SerializerInterface $serializer, Ecole $currentEcole, EntityManagerInterface $em, EcoleRepository $EcoleRepository, ValidatorInterface $validator): JsonResponse
+    public function updateEcole(Request $request, SerializerInterface $serializer, Ecole $currentEcole, EntityManagerInterface $em, EcoleRepository $EcoleRepository, ValidatorInterface $validator,TagAwareCacheInterface $cachePool): JsonResponse
     {
+
+        $cachePool->invalidateTags(["ecolesCache"]);
   
         $updateEcole = $serializer->deserialize($request->getContent(), Ecole::class,'json');
         $currentEcole->setNameEc($updateEcole->getNameEc());
