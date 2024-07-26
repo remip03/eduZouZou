@@ -60,7 +60,9 @@ repeatwhile(vérifie que les données sont conformes) is(non) not(oui)
 :affiche la page login;
 
 
+
 end
+
 
 @enduml
 
@@ -200,6 +202,67 @@ repeat while(les informations sont conformes) is(non) not(oui)
 |s|
 :Affiche 'Profil modifié avec succès';
 
+
+end
+
+@enduml
+
+
+
+@startuml "EduZouZou - parent - messagerie"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+:clique sur messagerie;
+|s|
+:transmet au serveur;
+|ser|
+:envoie les données liées au profil;
+|s|
+:récupère les données et affiche les messages reçus;
+
+end
+
+@enduml
+
+
+@startuml "EduZouZou - parent - message"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+:se trouve dans dans la messagerie;
+if(nouveau message ?) then (oui)
+:clique sur 'nouveau message';
+else(non)
+:sélectionne un message reçu;
+|s|
+:affiche le message;
+|u|
+:clique sur 'répondre';
+endif
+|s|
+:Affiche la page de rédaction d'un message;
+|u|
+repeat
+:choisit le destinataire et rempli le message;
+|s|
+Repeat while(Toutes les informations sont valides) is(non) not(oui)
+|ser|
+:enregistre le message lié aux ids (rédacteurs et destinataire);
+|s|
+:Affiche 'message envoyé';
+
+
 end
 
 @enduml
@@ -262,6 +325,3 @@ Repeat while(Toutes les informations sont valides) is(non) not(oui)
 end
 
 @enduml
-
-
-
