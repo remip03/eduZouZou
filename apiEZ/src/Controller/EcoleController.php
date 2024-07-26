@@ -22,6 +22,7 @@ use Symfony\Contracts\Cache\TagAwareCacheInterface;
 class EcoleController extends AbstractController
 {
     #[Route('/api/ecoles', name: 'ecolesList', methods: ['GET'])]
+<<<<<<< HEAD
     public function getEcolesList(EcoleRepository $ecoleRepository, SerializerInterface $serializer,TagAwareCacheInterface $cache): JsonResponse
     { 
 
@@ -40,37 +41,44 @@ class EcoleController extends AbstractController
         return $serializer->serialize($ecoleList, 'json', $context);
 });
 
+=======
+    public function getEcolesList(EcoleRepository $ecoleRepository, SerializerInterface $serializer, TagAwareCacheInterface $cache): JsonResponse
+    {
+        $ecoleList = $ecoleRepository->findAll();
+        $jsonecoleList = $serializer->serialize($ecoleList, 'json', ['groups' => 'getEcoles']);
+>>>>>>> backDylan
 
         return new JsonResponse($jsonecoleList, Response::HTTP_OK, [], true);
     }
 
-   
-    #[Route('/api/ecoles/{id}', name:'detailEcole', methods: ['GET'])]
-    public function getDetailEcole( SerializerInterface $serializer, Ecole $ecole): JsonResponse
+
+    #[Route('/api/ecoles/{id}', name: 'detailEcole', methods: ['GET'])]
+    public function getDetailEcole(SerializerInterface $serializer, Ecole $ecole): JsonResponse
     {
-       
-        $jsonEcole = $serializer->serialize($ecole ,'json');
-        return new JsonResponse($jsonEcole, Response::HTTP_OK,[], true);
-    
-        $jsonEcole = $serializer->serialize($ecole ,'json',['groups' => 'getEcoles'] );
-        return new JsonResponse($jsonEcole, Response::HTTP_OK,['accept' => 'json'], true);
+
+        $jsonEcole = $serializer->serialize($ecole, 'json');
+        return new JsonResponse($jsonEcole, Response::HTTP_OK, [], true);
+
+        $jsonEcole = $serializer->serialize($ecole, 'json', ['groups' => 'getEcoles']);
+        return new JsonResponse($jsonEcole, Response::HTTP_OK, ['accept' => 'json'], true);
     }
 
-    #[Route ('/api/ecoles/{id}', name: 'deleteEcole', methods: ['DELETE'])]
+    #[Route('/api/ecoles/{id}', name: 'deleteEcole', methods: ['DELETE'])]
     // #[IsGranted('ROLE_ADMIN', message: 'Vous n\'avez pas les droits suffisants pour supprimer une école')]
-        public function deleteBook(Ecole $ecole, EntityManagerInterface $em): JsonResponse
+    public function deleteBook(Ecole $ecole, EntityManagerInterface $em): JsonResponse
     {
-      
+
         $em->remove($ecole);
         $em->flush();
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 
-    #[Route('/api/ecoles', name:'createEcole', methods: ['POST'])]
+    #[Route('/api/ecoles', name: 'createEcole', methods: ['POST'])]
     // #[IsGranted('ROLE_ADMIN', message:'Vous n\'avez pas les droits suffisants pour créer une école')]
     public function createBook(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, UserRepository $userRepository, ValidatorInterface $validator,TagAwareCacheInterface $cachePool): JsonResponse
     {
+<<<<<<< HEAD
       
         $cachePool->invalidateTags(["ecolesCache"]);
 
@@ -94,6 +102,11 @@ class EcoleController extends AbstractController
             return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
         }
 
+=======
+        // Désérialisation du contenu de la requête pour créer une instance de Ecole.
+        $ecole = $serializer->deserialize($request->getContent(), Ecole::class, 'json');
+
+>>>>>>> backDylan
         // Persistance de l'école dans la base de données.
         $em->persist($ecole);
         $em->flush();
@@ -108,15 +121,19 @@ class EcoleController extends AbstractController
         return new JsonResponse($jsonEcole, Response::HTTP_CREATED, ['Location' => $location], true);
     }
 
-    #[Route("/api/ecoles/{id}", name:"updateEcole", methods: ["PUT"])]
+    #[Route("/api/ecoles/{id}", name: "updateEcole", methods: ["PUT"])]
     // #[IsGranted('ROLE_ADMIN', message: 'Vous n\'avez pas les droits suffisants pour modifier un livre')]
 
     public function updateEcole(Request $request, SerializerInterface $serializer, Ecole $currentEcole, EntityManagerInterface $em, EcoleRepository $EcoleRepository, ValidatorInterface $validator,TagAwareCacheInterface $cachePool): JsonResponse
     {
 
+<<<<<<< HEAD
         $cachePool->invalidateTags(["ecolesCache"]);
   
         $updateEcole = $serializer->deserialize($request->getContent(), Ecole::class,'json');
+=======
+        $updateEcole = $serializer->deserialize($request->getContent(), Ecole::class, 'json');
+>>>>>>> backDylan
         $currentEcole->setNameEc($updateEcole->getNameEc());
         $currentEcole->setAdresseEc($updateEcole->getAdresseEc());
         $currentEcole->setTelEc($updateEcole->getTelEc());
@@ -132,10 +149,5 @@ class EcoleController extends AbstractController
 
         $jsonEcole = $serializer->serialize($currentEcole, 'json', ['groups' => 'getEcoles']);
         return new JsonResponse($jsonEcole, Response::HTTP_OK, [], true);
-
-       
-      
     }
-
 }
-

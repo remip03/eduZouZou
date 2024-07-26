@@ -141,26 +141,4 @@ class Ecole
     {
         return $this->classes;
     }
-
-    public function addClass(Classe $class): static
-    {
-        if (!$this->classes->contains($class)) {
-            $this->classes->add($class);
-            $class->setEcole($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClass(Classe $class): static
-    {
-        if ($this->classes->removeElement($class)) {
-            // set the owning side to null (unless already changed)
-            if ($class->getEcole() === $this) {
-                $class->setEcole(null);
-            }
-        }
-
-        return $this;
-    }
 }

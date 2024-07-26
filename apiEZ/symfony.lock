@@ -54,10 +54,13 @@
             "branch": "main",
             "version": "4.0",
             "ref": "cc04e10cf7171525b50c18b36004edf64cb478be"
-        }
+        },
+        "files": [
+            "./config/packages/jms_serializer.yaml"
+        ]
     },
     "lexik/jwt-authentication-bundle": {
-        "version": "3.1",
+        "version": "2.18",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -69,7 +72,7 @@
         ]
     },
     "nelmio/api-doc-bundle": {
-        "version": "4.29",
+        "version": "4.28",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
@@ -159,6 +162,19 @@
             "./config/routes/security.yaml"
         ]
     },
+    "symfony/twig-bundle": {
+        "version": "6.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "6.4",
+            "ref": "cab5fd2a13a45c266d45a7d9337e28dee6272877"
+        },
+        "files": [
+            "./config/packages/twig.yaml",
+            "./templates/base.html.twig"
+        ]
+    },
     "symfony/validator": {
         "version": "6.4",
         "recipe": {
@@ -171,6 +187,9 @@
             "./config/packages/validator.yaml"
         ]
     },
+    "twig/extra-bundle": {
+        "version": "v3.10.0"
+    },
     "willdurand/hateoas-bundle": {
         "version": "2.6",
         "recipe": {
@@ -178,6 +197,9 @@
             "branch": "main",
             "version": "2.0",
             "ref": "34df072c6edaa61ae19afb2f3a239f272fecab87"
-        }
+        },
+        "files": [
+            "./config/packages/bazinga_hateoas.yaml"
+        ]
     }
 }
