@@ -16,15 +16,34 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Cache\ItemInterface;
+use Symfony\Contracts\Cache\TagAwareCacheInterface;
 
 class EcoleController extends AbstractController
 {
     #[Route('/api/ecoles', name: 'ecolesList', methods: ['GET'])]
-    public function getEcolesList(EcoleRepository $ecoleRepository, SerializerInterface $serializer): JsonResponse
+    public function getEcolesList(EcoleRepository $ecoleRepository, SerializerInterface $serializer,TagAwareCacheInterface $cache): JsonResponse
     {
         $ecoleList = $ecoleRepository->findAll();
-     
+      
         $jsonecoleList = $serializer->serialize($ecoleList, 'json',['groups' => 'getEcoles']);
+
+//   $idCache = "getEcolesList";
+
+//   $jsonecoleList = $cache->get($idCache, function (ItemInterface $item) use ($ecoleRepository, $serializer){
+//     $item->tag("ecolesCache");
+  
+    
+//     $ecoleList = $ecoleRepository->findAll();
+     
+    
+//         $context [] = SerializationContext::create()->setGroups(['getEcoles']);
+
+//         return $serializer->serialize($ecoleList, 'json', $context);
+// });
+
+
+
 
         return new JsonResponse($jsonecoleList, Response::HTTP_OK, [], true);
     }
