@@ -6,25 +6,31 @@ use App\Repository\EcoleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: EcoleRepository::class)]
 class Ecole
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups(["getEcoles"])]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getEcoles"])]
     private ?string $nameEc = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(["getEcoles"])]
     private ?string $adresseEc = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups(["getEcoles"])]
     private ?string $telEc = null;
 
     #[ORM\Column(length: 60)]
+    #[Groups(["getEcoles"])]
     private ?string $mailEc = null;
 
     /**
