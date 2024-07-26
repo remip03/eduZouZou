@@ -5,6 +5,7 @@ namespace Symfony\Config\Security;
 require_once __DIR__.\DIRECTORY_SEPARATOR.'ProviderConfig'.\DIRECTORY_SEPARATOR.'ChainConfig.php';
 require_once __DIR__.\DIRECTORY_SEPARATOR.'ProviderConfig'.\DIRECTORY_SEPARATOR.'MemoryConfig.php';
 require_once __DIR__.\DIRECTORY_SEPARATOR.'ProviderConfig'.\DIRECTORY_SEPARATOR.'LdapConfig.php';
+require_once __DIR__.\DIRECTORY_SEPARATOR.'ProviderConfig'.\DIRECTORY_SEPARATOR.'EntityConfig.php';
 
 use Symfony\Component\Config\Loader\ParamConfigurator;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
@@ -18,6 +19,7 @@ class ProviderConfig
     private $chain;
     private $memory;
     private $ldap;
+    private $entity;
     private $_usedProperties = [];
 
     /**
@@ -69,6 +71,18 @@ class ProviderConfig
         return $this->ldap;
     }
 
+    public function entity(array $value = []): \Symfony\Config\Security\ProviderConfig\EntityConfig
+    {
+        if (null === $this->entity) {
+            $this->_usedProperties['entity'] = true;
+            $this->entity = new \Symfony\Config\Security\ProviderConfig\EntityConfig($value);
+        } elseif (0 < \func_num_args()) {
+            throw new InvalidConfigurationException('The node created by "entity()" has already been initialized. You cannot pass values the second time you call entity().');
+        }
+
+        return $this->entity;
+    }
+
     public function __construct(array $value = [])
     {
         if (array_key_exists('id', $value)) {
@@ -95,6 +109,12 @@ class ProviderConfig
             unset($value['ldap']);
         }
 
+        if (array_key_exists('entity', $value)) {
+            $this->_usedProperties['entity'] = true;
+            $this->entity = new \Symfony\Config\Security\ProviderConfig\EntityConfig($value['entity']);
+            unset($value['entity']);
+        }
+
         if ([] !== $value) {
             throw new InvalidConfigurationException(sprintf('The following keys are not supported by "%s": ', __CLASS__).implode(', ', array_keys($value)));
         }
@@ -114,6 +134,9 @@ class ProviderConfig
         }
         if (isset($this->_usedProperties['ldap'])) {
             $output['ldap'] = $this->ldap->toArray();
+        }
+        if (isset($this->_usedProperties['entity'])) {
+            $output['entity'] = $this->entity->toArray();
         }
 
         return $output;
