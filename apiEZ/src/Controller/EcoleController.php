@@ -16,15 +16,30 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Cache\ItemInterface;
+use Symfony\Contracts\Cache\TagAwareCacheInterface;
 
 class EcoleController extends AbstractController
 {
     #[Route('/api/ecoles', name: 'ecolesList', methods: ['GET'])]
-    public function getEcolesList(EcoleRepository $ecoleRepository, SerializerInterface $serializer): JsonResponse
-    {
-        $ecoleList = $ecoleRepository->findAll();
-     
-        $jsonecoleList = $serializer->serialize($ecoleList, 'json',['groups' => 'getEcoles']);
+    public function getEcolesList(EcoleRepository $ecoleRepository, SerializerInterface $serializer,TagAwareCacheInterface $cache): JsonResponse
+    { 
+
+  $idCache = "getEcolesList";
+
+  $jsonecoleList = $cache->get($idCache, function (ItemInterface $item) use ($ecoleRepository, $serializer){
+    $item->tag("ecolesCache");
+
+    return $serializer->serialize($ecoleRepository->findAll(), 'json',['groups' => 'getEcoles']);  
+  
+      
+    $ecoleList = $ecoleRepository->findAll();     
+    
+        $context [] = SerializationContext::create()->setGroups(['getEcoles']);
+
+        return $serializer->serialize($ecoleList, 'json', $context);
+});
+
 
         return new JsonResponse($jsonecoleList, Response::HTTP_OK, [], true);
     }
@@ -54,16 +69,17 @@ class EcoleController extends AbstractController
 
     #[Route('/api/ecoles', name:'createEcole', methods: ['POST'])]
     // #[IsGranted('ROLE_ADMIN', message:'Vous n\'avez pas les droits suffisants pour créer une école')]
-    public function createBook(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, UserRepository $userRepository, ValidatorInterface $validator): JsonResponse
+    public function createBook(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, UserRepository $userRepository, ValidatorInterface $validator,TagAwareCacheInterface $cachePool): JsonResponse
     {
       
+        $cachePool->invalidateTags(["ecolesCache"]);
 
         // Désérialisation du contenu de la requête pour créer une instance de Ecole.
         $ecole = $serializer->deserialize($request->getContent(), Ecole::class, 'json');
 
-        // // Récupération des données envoyées avec la requête.
-        // $content = $request->toArray();
-        // // Récupération de l'ID de l'admin, avec une valeur par défaut si non spécifié.
+        // Récupération des données envoyées avec la requête.
+        $content = $request->toArray();
+        // Récupération de l'ID de l'admin, avec une valeur par défaut si non spécifié.
         // $idAdmin = $content['idAdmin'] ?? -1;
         // // Association de l'admin à 'école.
         // $user = $userRepository->find($idAdmin);
@@ -72,11 +88,11 @@ class EcoleController extends AbstractController
         // }
         // $ecole->setUser($user);
 
-        // // Vérification des erreurs
-        // $errors = $validator->validate($ecole);
-        // if ($errors->count() > 0) {
-        //     return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
-        // }
+        // Vérification des erreurs
+        $errors = $validator->validate($ecole);
+        if ($errors->count() > 0) {
+            return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
+        }
 
         // Persistance de l'école dans la base de données.
         $em->persist($ecole);
@@ -95,8 +111,10 @@ class EcoleController extends AbstractController
     #[Route("/api/ecoles/{id}", name:"updateEcole", methods: ["PUT"])]
     // #[IsGranted('ROLE_ADMIN', message: 'Vous n\'avez pas les droits suffisants pour modifier un livre')]
 
-    public function updateEcole(Request $request, SerializerInterface $serializer, Ecole $currentEcole, EntityManagerInterface $em, EcoleRepository $EcoleRepository, ValidatorInterface $validator): JsonResponse
+    public function updateEcole(Request $request, SerializerInterface $serializer, Ecole $currentEcole, EntityManagerInterface $em, EcoleRepository $EcoleRepository, ValidatorInterface $validator,TagAwareCacheInterface $cachePool): JsonResponse
     {
+
+        $cachePool->invalidateTags(["ecolesCache"]);
   
         $updateEcole = $serializer->deserialize($request->getContent(), Ecole::class,'json');
         $currentEcole->setNameEc($updateEcole->getNameEc());
