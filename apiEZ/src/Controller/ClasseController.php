@@ -38,7 +38,10 @@ class ClasseController extends AbstractController
     #[OA\Tag(name: "Classes")]
     public function getAllClasses(ClasseRepository $classeRepository, SerializerInterface $serializer, TagAwareCacheInterface $cache): JsonResponse
     {
+        // Identifiant de cache pour cette requête
         $idCache = "getAllClasses";
+
+        // Récupération des données depuis le cache ou exécution de la requête si le cache est vide
         $jsonClasseList = $cache->get($idCache, function (ItemInterface $item) use ($classeRepository, $serializer) {
             $item->tag("classesCache");
             $classeList = $classeRepository->findAll();
@@ -46,6 +49,7 @@ class ClasseController extends AbstractController
             return $serializer->serialize($classeList, 'json', $context);
         });
 
+        // Retourne la liste des classes en JSON
         return new JsonResponse($jsonClasseList, Response::HTTP_OK, [], true);
     }
 
@@ -57,10 +61,13 @@ class ClasseController extends AbstractController
     #[OA\Tag(name: "Classes")]
     public function getClasseDetail(Classe $classe, SerializerInterface $serializer): JsonResponse
     {
+        // Contexte de sérialisation pour le groupe 'getClasses'
         $context = SerializationContext::create()->setGroups(['getClasses']);
-        // Sérialisation de classe en JSON.
+
+        // Sérialisation de la classe en JSON
         $jsonClasse = $serializer->serialize($classe, 'json', $context);
-        // Retour d'une réponse JSON contenant les détails d'une classe.
+
+        // Retourne les détails de la classe en JSON
         return new JsonResponse($jsonClasse, Response::HTTP_OK, [], true);
     }
 
@@ -72,11 +79,14 @@ class ClasseController extends AbstractController
     #[OA\Tag(name: "Classes")]
     public function deleteClasse(Classe $classe, EntityManagerInterface $em, TagAwareCacheInterface $cachePool): JsonResponse
     {
+        // Invalide le cache associé aux classes
         $cachePool->invalidateTags(["classesCache"]);
-        // Suppression d'une classe de la base de données.
+
+        // Suppression de la classe de la base de données
         $em->remove($classe);
         $em->flush();
-        // Retour d'une réponse JSON indiquant que le contenu n'existe plus.
+
+        // Retourne une réponse indiquant que le contenu n'existe plus
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 
@@ -106,7 +116,7 @@ class ClasseController extends AbstractController
                         new OA\Property(property: "id", type: "integer"),
                         new OA\Property(property: "nameCl", type: "string"),
                         new OA\Property(property: "niveauCl", type: "string"),
-                        new OA\Property(property: "anneeCl", type: "date"),
+                        new OA\Property(property: "anneeCl", type: "string", format: "date"),
                     ]
                 )
             ),
@@ -119,40 +129,41 @@ class ClasseController extends AbstractController
     #[OA\Tag(name: "Classes")]
     public function createClasse(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse
     {
+        // Invalide le cache associé aux classes
         $cachePool->invalidateTags(["classesCache"]);
 
-        // Désérialisation du contenu de la requête pour créer une instance de Classe.
-        $classe = $serializer->deserialize($request->getContent(), Classe::class, 'json');
+        // Désérialisation du contenu de la requête pour créer une instance de Classe
+        $data = json_decode($request->getContent(), true);
 
-        // Récupération des données envoyées avec la requête.
-        $content = $request->toArray();
-        // // Récupération de l'ID de l'ecole, avec une valeur par défaut si non spécifié.
-        // $idEcole = $content['idEcole'] ?? -1;
-        // // Association de l'ecole à la classe.
-        // $ecole = $ecoleRepository->find($idEcole);
-        // if (!$ecole) {
-        //     return new JsonResponse(['error' => 'Ecole not found'], JsonResponse::HTTP_BAD_REQUEST);
-        // }
-        // $classe->setEcole($ecole);
+        // Conversion de la date au format ISO 8601 si nécessaire
+        if (isset($data['anneeCl'])) {
+            $date = \DateTime::createFromFormat('Y-m-d', $data['anneeCl']);
+            if ($date) {
+                $data['anneeCl'] = $date->format(\DateTime::ATOM);
+            }
+        }
 
-        // Vérification des erreurs
+        // Désérialisation des données en objet Classe
+        $classe = $serializer->deserialize(json_encode($data), Classe::class, 'json');
+
+        // Validation des données
         $errors = $validator->validate($classe);
         if ($errors->count() > 0) {
             return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
         }
 
-        // Persistance de la classe dans la base de données.
+        // Persistance de la nouvelle classe en base de données
         $em->persist($classe);
         $em->flush();
 
-        // Sérialisation de la classe créé en JSON.
+        // Sérialisation de la classe créée pour la réponse
         $context = SerializationContext::create()->setGroups(['getClasses']);
         $jsonClasse = $serializer->serialize($classe, 'json', $context);
 
-        // Génération de l'URL vers les détails de la classe créé.
+        // Génération de l'URL de la nouvelle ressource
         $location = $urlGenerator->generate('detailClasse', ['id' => $classe->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
 
-        // Retour d'une réponse JSON avec l'URL de la classe créé.
+        // Retourne la classe créée avec l'URL de la nouvelle ressource
         return new JsonResponse($jsonClasse, Response::HTTP_CREATED, ['Location' => $location], true);
     }
 
@@ -191,7 +202,7 @@ class ClasseController extends AbstractController
                         new OA\Property(property: "id", type: "integer"),
                         new OA\Property(property: "nameCl", type: "string"),
                         new OA\Property(property: "niveauCl", type: "string"),
-                        new OA\Property(property: "anneeCl", type: "date"),
+                        new OA\Property(property: "anneeCl", type: "string", format: "date"),
                     ]
                 )
             ),
@@ -206,30 +217,41 @@ class ClasseController extends AbstractController
         ]
     )]
     #[OA\Tag(name: "Classes")]
-    public function updateClasse(Request $request, SerializerInterface $serializer, Classe $currentClasse, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cache): JsonResponse
+    public function updateClasse(Request $request, SerializerInterface $serializer, Classe $currentClasse, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse
     {
-        $newClasse = $serializer->deserialize($request->getContent(), Classe::class, 'json');
+        // Désérialisation du contenu de la requête pour créer une instance de Classe
+        $data = json_decode($request->getContent(), true);
+
+        // Conversion de la date au format ISO 8601 si nécessaire
+        if (isset($data['anneeCl'])) {
+            $date = \DateTime::createFromFormat('Y-m-d', $data['anneeCl']);
+            if ($date) {
+                $data['anneeCl'] = $date->format(\DateTime::ATOM);
+            }
+        }
+
+        // Désérialisation des nouvelles données en objet Classe
+        $newClasse = $serializer->deserialize(json_encode($data), Classe::class, 'json');
+
+        // Mise à jour des propriétés de l'objet Classe existant
         $currentClasse->setNameCl($newClasse->getNameCl());
         $currentClasse->setNiveauCl($newClasse->getNiveauCl());
         $currentClasse->setAnneeCl($newClasse->getAnneeCl());
 
-        // On vérifie les erreurs
+        // Validation des données mises à jour
         $errors = $validator->validate($currentClasse);
         if ($errors->count() > 0) {
             return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
         }
 
-        $content = $request->toArray();
-        // $idEcole = $content['idEcole'] ?? -1;
-
-        // $currentClasse->setEcole($ecoleRepository->find($idEcole));
-
+        // Persistance des modifications en base de données
         $em->persist($currentClasse);
         $em->flush();
 
-        // On vide le cache
-        $cache->invalidateTags(["classesCache"]);
+        // Invalide le cache associé aux classes
+        $cachePool->invalidateTags(["classesCache"]);
 
+        // Retourne une réponse indiquant que la mise à jour a été effectuée avec succès
         return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
     }
 }
