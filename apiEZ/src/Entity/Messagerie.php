@@ -12,23 +12,30 @@ class Messagerie
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column( nullable: true)]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $messages = null;
+   
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messagerie', orphanRemoval: true)]
+    private Collection $users;
+
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    private ?message $messages = null;
 
    
-    /**
-     * @var Collection<int, Message>
-     */
-    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'messagerie')]
-    private Collection $messagess;
+
+ 
 
     public function __construct()
     {
       
-        $this->messagess = new ArrayCollection();
+        $this->users = new ArrayCollection();
+     
+      
     }
 
     public function getId(): ?int
@@ -36,12 +43,44 @@ class Messagerie
         return $this->id;
     }
 
-    public function getMessages(): ?string
+   
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->setMessagerie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getMessagerie() === $this) {
+                $user->setMessagerie(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getMessages(): ?message
     {
         return $this->messages;
     }
 
-    public function setMessages(?string $messages): static
+    public function setMessages(?message $messages): static
     {
         $this->messages = $messages;
 
@@ -50,33 +89,5 @@ class Messagerie
 
    
 
-    /**
-     * @return Collection<int, Message>
-     */
-    public function getMessagess(): Collection
-    {
-        return $this->messagess;
-    }
-
-    public function addMessagess(Message $messagess): static
-    {
-        if (!$this->messagess->contains($messagess)) {
-            $this->messagess->add($messagess);
-            $messagess->setMessagerie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessagess(Message $messagess): static
-    {
-        if ($this->messagess->removeElement($messagess)) {
-            // set the owning side to null (unless already changed)
-            if ($messagess->getMessagerie() === $this) {
-                $messagess->setMessagerie(null);
-            }
-        }
-
-        return $this;
-    }
+   
 }

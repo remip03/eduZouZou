@@ -29,7 +29,7 @@ class Ecole
     #[Groups(["getEcoles"])]
     private ?string $telEc = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 60)]
     #[Groups(["getEcoles"])]
     private ?string $mailEc = null;
 
@@ -37,11 +37,18 @@ class Ecole
      * @var Collection<int, User>
      */
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'ecole', orphanRemoval: true)]
-    private Collection $Users;
+    private Collection $users;
+
+    /**
+     * @var Collection<int, Classe>
+     */
+    #[ORM\OneToMany(targetEntity: Classe::class, mappedBy: 'ecole', orphanRemoval: true)]
+    private Collection $classes;
 
     public function __construct()
     {
-        $this->Users = new ArrayCollection();
+        $this->users = new ArrayCollection();
+        $this->classes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -102,13 +109,13 @@ class Ecole
      */
     public function getUsers(): Collection
     {
-        return $this->Users;
+        return $this->users;
     }
 
     public function addUser(User $user): static
     {
-        if (!$this->Users->contains($user)) {
-            $this->Users->add($user);
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
             $user->setEcole($this);
         }
 
@@ -117,7 +124,7 @@ class Ecole
 
     public function removeUser(User $user): static
     {
-        if ($this->Users->removeElement($user)) {
+        if ($this->users->removeElement($user)) {
             // set the owning side to null (unless already changed)
             if ($user->getEcole() === $this) {
                 $user->setEcole(null);
@@ -127,5 +134,11 @@ class Ecole
         return $this;
     }
 
-
+    /**
+     * @return Collection<int, Classe>
+     */
+    public function getClasses(): Collection
+    {
+        return $this->classes;
+    }
 }
