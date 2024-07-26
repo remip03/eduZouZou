@@ -65,6 +65,7 @@ class AppFixtures extends Fixture
      $user->setLastName('dupont');
      $user->setTel('0123456789');
      $user->setAdresse('adresse user');
+     $user->setMessagerie($listMessagerie[array_rand($listMessagerie)]);
      
     
      $manager->persist($user);      
@@ -85,7 +86,7 @@ class AppFixtures extends Fixture
        
 
         $manager->flush();
-    }
+     }
 
 }
 
