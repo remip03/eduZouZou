@@ -15,7 +15,7 @@ class Messagerie
     #[ORM\Column( nullable: true)]
     private ?int $id = null;
 
-   
+
 
     /**
      * @var Collection<int, User>
@@ -24,18 +24,18 @@ class Messagerie
     private Collection $users;
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
-    private ?message $messages = null;
+    private ?Message $messages = null;
 
-   
 
- 
+
+
 
     public function __construct()
     {
-      
+
         $this->users = new ArrayCollection();
-     
-      
+
+
     }
 
     public function getId(): ?int
@@ -43,7 +43,7 @@ class Messagerie
         return $this->id;
     }
 
-   
+
 
     /**
      * @return Collection<int, User>
@@ -75,19 +75,19 @@ class Messagerie
         return $this;
     }
 
-    public function getMessages(): ?message
+    public function getMessages(): ?Message
     {
         return $this->messages;
     }
 
-    public function setMessages(?message $messages): static
+    public function setMessages(?Message $messages): static
     {
         $this->messages = $messages;
 
         return $this;
     }
 
-   
 
-   
+
+
 }

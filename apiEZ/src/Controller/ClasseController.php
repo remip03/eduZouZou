@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Classe;
 use App\Repository\ClasseRepository;
+use App\Repository\EcoleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Cache\TagAwareCacheInterface;
@@ -114,6 +114,7 @@ class ClasseController extends AbstractController
                     type: "object",
                     properties: [
                         new OA\Property(property: "id", type: "integer"),
+                        new OA\Property(property: "ecoleId", type: "integer"),
                         new OA\Property(property: "nameCl", type: "string"),
                         new OA\Property(property: "niveauCl", type: "string"),
                         new OA\Property(property: "anneeCl", type: "string", format: "date"),
@@ -127,7 +128,7 @@ class ClasseController extends AbstractController
         ]
     )]
     #[OA\Tag(name: "Classes")]
-    public function createClasse(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse
+    public function createClasse(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator, TagAwareCacheInterface $cachePool, EcoleRepository $ecoleRepository): JsonResponse
     {
         // Invalide le cache associé aux classes
         $cachePool->invalidateTags(["classesCache"]);
@@ -146,7 +147,18 @@ class ClasseController extends AbstractController
         // Désérialisation des données en objet Classe
         $classe = $serializer->deserialize(json_encode($data), Classe::class, 'json');
 
-        // Validation des données
+        // Récupération des données envoyées avec la requête
+        $content = $request->toArray();
+        // Récupération de l'ID de l'école avec une valeur par défaut si non spécifié
+        $ecoleId = $content['ecoleId'] ?? -1;
+        // Association de l'école à la classe
+        $ecole = $ecoleRepository->find($ecoleId);
+        if (!$ecole) {
+            return new JsonResponse(['error' => 'Ecole not found'], Response::HTTP_BAD_REQUEST);
+        }
+        $classe->setEcole($ecole);
+
+        // Vérification des erreurs
         $errors = $validator->validate($classe);
         if ($errors->count() > 0) {
             return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
@@ -200,6 +212,7 @@ class ClasseController extends AbstractController
                     type: "object",
                     properties: [
                         new OA\Property(property: "id", type: "integer"),
+                        new OA\Property(property: "ecoleId", type: "integer"),
                         new OA\Property(property: "nameCl", type: "string"),
                         new OA\Property(property: "niveauCl", type: "string"),
                         new OA\Property(property: "anneeCl", type: "string", format: "date"),
@@ -217,7 +230,7 @@ class ClasseController extends AbstractController
         ]
     )]
     #[OA\Tag(name: "Classes")]
-    public function updateClasse(Request $request, SerializerInterface $serializer, Classe $currentClasse, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse
+    public function updateClasse(Request $request, SerializerInterface $serializer, Classe $currentClasse, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cachePool, EcoleRepository $ecoleRepository): JsonResponse
     {
         // Désérialisation du contenu de la requête pour créer une instance de Classe
         $data = json_decode($request->getContent(), true);
@@ -238,11 +251,16 @@ class ClasseController extends AbstractController
         $currentClasse->setNiveauCl($newClasse->getNiveauCl());
         $currentClasse->setAnneeCl($newClasse->getAnneeCl());
 
-        // Validation des données mises à jour
+        // On vérifie les erreurs
         $errors = $validator->validate($currentClasse);
         if ($errors->count() > 0) {
             return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
         }
+
+        $content = $request->toArray();
+        $ecoleId = $content['ecoleId'] ?? -1;
+
+        $currentClasse->setEcole($ecoleRepository->find($ecoleId));
 
         // Persistance des modifications en base de données
         $em->persist($currentClasse);

@@ -60,11 +60,23 @@ class Classe
 
     #[ORM\Column(length: 50)]
     #[Groups(['getClasses'])]
+    #[Assert\NotBlank(message: 'Le niveau de la classe est obligatoire')]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "Le niveau de la classe doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le niveau de la classe ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $niveauCl = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     #[Groups(['getClasses'])]
+    #[Assert\NotBlank(message: 'L\'année de la classe est obligatoire')]
     private ?\DateTimeImmutable $anneeCl = null;
+
+    #[ORM\ManyToOne(inversedBy: "Classes")]
+    #[Groups(['getClasses'])]
+    private? Ecole $ecole = null;
 
     public function getId(): ?int
     {
@@ -103,15 +115,15 @@ class Classe
         $this->anneeCl = $anneeCl;
         return $this;
     }
-    
-    // public function getEcole(): ?Ecole
-    // {
-    //     return $this->ecole;
-    // }
 
-    // public function setEcole(?Ecole $ecole): static
-    // {
-    //     $this->ecole = $ecole;
-    //     return $this;
-    // }
+    public function getEcole(): ?Ecole
+    {
+        return $this->ecole;
+    }
+
+    public function setEcole(?Ecole $ecole): static
+    {
+        $this->ecole = $ecole;
+        return $this;
+    }
 }

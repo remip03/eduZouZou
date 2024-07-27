@@ -6,7 +6,7 @@ use App\Entity\Classe;
 use App\Entity\Ecole;
 use App\Entity\Message;
 use App\Entity\Messagerie;
-use App\Entity\user;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -23,7 +23,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         //creation user admin
-        $user = new user();
+        $user = new User();
         $listUser[] = $user;
         $ecole = new Ecole();
         $listEcoles[] = $ecole;
@@ -35,9 +35,9 @@ class AppFixtures extends Fixture
         $listMessages = [];
 
         $message = new Message;
-        $message->setContent('contenu message ');
-        $message->setDestinataire('ecole');
-        $message->setExpediteur('user');
+        $message->setContent('hello world');
+        $message->setDestinataire('john doe');
+        $message->setExpediteur('bob marley');
 
         $manager->persist($message);
 
@@ -63,25 +63,28 @@ class AppFixtures extends Fixture
 
         $manager->persist($user);
 
-        $listEcoles = [];
+
+        // Créations des écoles
+        $listEcole = [];
         for ($i = 0; $i < 5; $i++) {
             $ecole = new Ecole();
             $ecole->setNameEc('Ecole ' . $i);
             $ecole->setAdresseEc('Adresse école ' . $i);
             $ecole->setTelEc('Tel école ' . $i);
             $ecole->setMailEc('Mail école ' . $i);
-
             $ecole->addUser($listUser[array_rand($listUser)]);
-
             $manager->persist($ecole);
+
+            $listEcole[] = $ecole;
         }
-        
+
         // Créations des classes
         for ($i = 0; $i < 20; $i++) {
             $classe = new Classe();
             $classe->setNameCl('Classe ' . $i);
             $classe->setNiveauCl('Niveau ' . $i);
             $classe->setAnneeCl(new \DateTimeImmutable());
+            $classe->setEcole($listEcole[array_rand($listEcole)]);
             $manager->persist($classe);
         }
 
