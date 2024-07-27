@@ -6,7 +6,7 @@ use App\Entity\Classe;
 use App\Entity\Ecole;
 use App\Entity\Message;
 use App\Entity\Messagerie;
-use App\Entity\user;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -23,7 +23,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         //creation user admin
-        $user = new user();
+        $user = new User();
         $listUser[] = $user;
         $ecole = new Ecole();
         $listEcoles[] = $ecole;
@@ -35,9 +35,9 @@ class AppFixtures extends Fixture
         $listMessages = [];
 
         $message = new Message;
-        $message->setContent('contenu message ');
-        $message->setDestinataire('ecole');
-        $message->setExpediteur('user');
+        $message->setContent('hello world');
+        $message->setDestinataire('john doe');
+        $message->setExpediteur('bob marley');
 
         $manager->persist($message);
 
@@ -75,7 +75,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($ecole);
         }
-        
+
         // Créations des classes
         for ($i = 0; $i < 20; $i++) {
             $classe = new Classe();

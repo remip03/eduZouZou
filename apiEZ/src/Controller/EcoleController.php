@@ -139,23 +139,24 @@ class EcoleController extends AbstractController
 
         $updateEcole = $serializer->deserialize($request->getContent(), Ecole::class, 'json');
 
-        // modification des données verification des erreurs
+        // modification des données
         $currentEcole->setNameEc($updateEcole->getNameEc());
         $currentEcole->setAdresseEc($updateEcole->getAdresseEc());
         $currentEcole->setTelEc($updateEcole->getTelEc());
         $currentEcole->setMailEc($updateEcole->getMailEc());
 
-
+        //verification des erreurs
         $errors = $validator->validate($currentEcole);
-
         if ($errors->count() > 0) {
             return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
         }
+        // Persistance des modifications dans la base de données.
+                $em->persist($currentEcole);
+                $em->flush();
 
-        $em->persist($currentEcole);
-        $em->flush();
-
+        // Sérialisation pour le groupe 'getEcoles'
         $jsonEcole = $serializer->serialize($currentEcole, 'json', ['groups' => 'getEcoles']);
+        // Retour des détails de l'école en JSON
         return new JsonResponse($jsonEcole, Response::HTTP_OK, [], true);
     }
 }
