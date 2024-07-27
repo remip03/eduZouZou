@@ -96,7 +96,7 @@ class Ecole
     /**
      * @var Collection<int, Classe>
      */
-    #[ORM\OneToMany(targetEntity: Classe::class, mappedBy: 'ecole')]
+    #[ORM\OneToMany(targetEntity: Classe::class, mappedBy: 'ecole', cascade: ['remove'])]
     private Collection $Classes;
 
     public function __construct()

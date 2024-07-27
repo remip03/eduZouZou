@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClasseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -78,6 +80,13 @@ class Classe
     #[Groups(['getClasses'])]
     private? Ecole $ecole = null;
 
+    #[ORM\OneToMany(targetEntity: Enfant::class, mappedBy: "classe", cascade:['remove'])]
+    private Collection $Enfants;
+
+    public function __construct(){
+        $this->Enfants = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,6 +133,31 @@ class Classe
     public function setEcole(?Ecole $ecole): static
     {
         $this->ecole = $ecole;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Enfant>
+     */
+    public function getEnfants(): Collection {
+        return $this->Enfants;
+    }
+
+    public function addEnfant(Enfant $enfant): static {
+        if (!$this->Enfants->contains($enfant)) {
+            $this->Enfants[] = $enfant;
+            $enfant->setClasse($this);
+        }
+        return $this;
+    }
+
+    public function removeEnfant(Enfant $enfant): static {
+        if ($this->Enfants->removeElement($enfant)) {
+            // set the owning side to null (unless already changed)
+            if ($enfant->getClasse() === $this) {
+                $enfant->setClasse(null);
+            }
+        }
         return $this;
     }
 }
