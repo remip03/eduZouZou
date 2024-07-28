@@ -12,15 +12,19 @@ class Message
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups(['getMessages'])]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(['getMessages'])]
     #[ORM\Column(length: 500)]
     private ?string $content = null;
 
+    #[Groups(['getMessages'])]
     #[ORM\Column(length: 50)]
     private ?string $destinataire = null;
 
+    #[Groups(['getMessages'])]
     #[ORM\Column(length: 50)]
     private ?string $expediteur = null;
 
@@ -35,11 +39,11 @@ class Message
         $this->messages = new ArrayCollection();
     }
 
-    
 
- 
 
-   
+
+
+
 
     public function getId(): ?int
     {
