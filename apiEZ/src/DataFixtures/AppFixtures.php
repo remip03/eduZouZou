@@ -2,7 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Activite;
 use App\Entity\Classe;
+use App\Entity\Cours;
 use App\Entity\Ecole;
 use App\Entity\Message;
 use App\Entity\Messagerie;
@@ -31,6 +33,10 @@ class AppFixtures extends Fixture
         $listMessages[] = $message;
         $messagerie = new Messagerie();
         $listMessagerie[] = $message;
+        $activite = new Activite();
+        $listActivite[] = $activite;
+        $cours = new Cours();
+        $listCours[] = $cours;
 
         $listMessages = [];
 
@@ -83,6 +89,30 @@ class AppFixtures extends Fixture
             $classe->setNiveauCl('Niveau ' . $i);
             $classe->setAnneeCl(new \DateTimeImmutable());
             $manager->persist($classe);
+        }
+
+        // Création des activités.
+        for ($i = 0 ; $i < 10 ; $i++) {
+            $activite = new Activite();
+            $activite -> setTypeR('type ' . $i);
+            $activite -> setNameR('activite n°' . $i);
+            $activite -> setDescriptionR('Voici l\'activite n°' . $i);
+            $activite -> setMatiereR('Mathématiques' . $i);
+            $activite -> setTypeAct('quizz n°' . $i);
+            $manager -> persist($activite);
+        }
+
+        // Création des cours.
+        for ($i = 0 ; $i < 10 ; $i++) {
+            $cours = new Cours();
+            $cours -> setTypeR('type ' . $i);
+            $cours -> setNameR('cours n° ' . $i);
+            $cours -> setDescriptionR('Voici le cours n° ' . $i);
+            $cours -> setMatiereR('Mathématiques ' . $i);
+            $cours -> setDocC('doc n° ' . $i);
+            $cours -> setVideoC('video n° ' . $i);
+            $cours -> setRessourceSupC('ressource supplémentaire n° ' . $i);
+            $manager -> persist($cours);
         }
 
         $manager->flush();

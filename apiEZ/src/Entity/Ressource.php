@@ -6,7 +6,40 @@ use App\Repository\RessourceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Hateoas\Configuration\Annotation as Hateoas;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use JMS\Serializer\Annotation\Groups;
+
+/**
+ * @Hateoas\Relation(
+ *     "self",
+ *     href = @Hateoas\Route(
+ *         "detailRessource",
+ *         parameters = { "id" = "expr(object.getId())" },
+ *     ),
+ *     exclusion = @Hateoas\Exclusion(groups = "getRessources"),
+ * )
+ * 
+ * @Hateoas\Relation(
+ *    "delete",
+ *   href = @Hateoas\Route(
+ *      "deleteRessource",
+ *     parameters = { "id" = "expr(object.getId())" },
+ *     ),
+ *     exclusion = @Hateoas\Exclusion(groups = "getRessources", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
+ * )
+ * 
+ * @Hateoas\Relation(
+ *    "update",
+ *   href = @Hateoas\Route(
+ *      "updateRessource",
+ *     parameters = { "id" = "expr(object.getId())" },
+ *     ),
+ *     exclusion = @Hateoas\Exclusion(groups = "getRessources", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
+ * )
+ * 
+ */
 
 #[ORM\Entity(repositoryClass: RessourceRepository::class)]
 #[ORM\InheritanceType("SINGLE_TABLE")]
@@ -20,24 +53,48 @@ class Ressource
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['getCours'])]
+    #[Groups(['getActivite'])]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?bool $typeR = null;
+    #[ORM\Column(length: 50)]
+    #[Groups(['getCours'])]
+    #[Groups(['getActivites'])]
+    #[Assert\NotBlank(message: 'Veuillez choisir entre "Cours" et "Activité".')]
+    private ?string $typeR = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['getCours'])]
+    #[Groups(['getActivites'])]
+    #[Assert\NotBlank(message: 'Le nom du cours ou de l\'activité est obligatoire')]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le nom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     private ?string $nameR = null;
 
     #[ORM\Column(length: 500, nullable: true)]
+    #[Groups(['getCours'])]
+    #[Groups(['getActivites'])]
+    #[Assert\length(
+        max: 500,
+        maxMessage: "La description ne peut pas contenir plus de {{ limit }} caractères"
+    )]
     private ?string $descriptionR = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['getCours'])]
+    #[Groups(['getActivites'])]
     private ?string $matiereR = null;
 
     /**
      * @var Collection<int, User>
      */
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'ressources')]
+    #[Groups(['getCours'])]
+    #[Groups(['getActivites'])]
     private Collection $users;
 
     public function __construct()
