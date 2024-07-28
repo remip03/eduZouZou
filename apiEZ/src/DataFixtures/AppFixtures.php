@@ -30,7 +30,7 @@ class AppFixtures extends Fixture
         $message = new Message;
         $listMessages[] = $message;
         $messagerie = new Messagerie();
-        $listMessagerie[] = $message;
+        $listMessagerie[] = $messagerie;
 
         $listMessages = [];
 
@@ -71,7 +71,7 @@ class AppFixtures extends Fixture
             $ecole->setTelEc('Tel école ' . $i);
             $ecole->setMailEc('Mail école ' . $i);
 
-            $ecole->addUser($listUser[array_rand($listUser)]);
+
 
             $manager->persist($ecole);
         }
@@ -83,6 +83,15 @@ class AppFixtures extends Fixture
             $classe->setNiveauCl('Niveau ' . $i);
             $classe->setAnneeCl(new \DateTimeImmutable());
             $manager->persist($classe);
+        }
+
+        for ($i = 0; $i < 5; $i++) {
+            $message = new Message;
+            $message->setContent('hello world'.$i);
+            $message->setDestinataire('john doe'.$i);
+            $message->setExpediteur('bob marley'.$i);
+            $manager->persist($message);
+
         }
 
         $manager->flush();

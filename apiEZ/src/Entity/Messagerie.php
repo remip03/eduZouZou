@@ -21,10 +21,10 @@ class Messagerie
     /**
      * @var Collection<int, User>
      */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messagerie', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messagerie')]
     private Collection $users;
 
-    #[ORM\ManyToOne(inversedBy: 'messages')]
+    #[ORM\ManyToOne(inversedBy: 'messages',cascade:['remove'])]
     private ?Message $messages = null;
 
 
