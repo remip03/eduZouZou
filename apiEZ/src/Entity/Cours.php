@@ -4,18 +4,23 @@ namespace App\Entity;
 
 use App\Repository\CoursRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
 class Cours extends Ressource
 {
     #[ORM\Column(length: 50, nullable: true)]
+    #[Groups(['getCours'])]
     private ?string $docC = null;
 
     #[ORM\Column(length: 100, nullable: true)]
+    #[Groups(['getCours'])]
     private ?string $videoC = null;
 
     #[ORM\Column(length: 50, nullable: true)]
+    #[Groups(['getCours'])]
     private ?string $ressourceSupC = null;
+
 
     public function getDocC(): ?string
     {
@@ -46,9 +51,9 @@ class Cours extends Ressource
         return $this->ressourceSupC;
     }
 
-    public function setRessourceSupC(?string $ressourceSupC): static
+    public function setRessourceSupC(?string $resourceSupC): static
     {
-        $this->ressourceSupC = $ressourceSupC;
+        $this->ressourceSupC = $resourceSupC;
 
         return $this;
     }

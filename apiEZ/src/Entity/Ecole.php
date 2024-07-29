@@ -6,25 +6,31 @@ use App\Repository\EcoleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: EcoleRepository::class)]
 class Ecole
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups(["getEcoles"])]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(["getEcoles"])]
     private ?string $nameEc = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(["getEcoles"])]
     private ?string $adresseEc = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups(["getEcoles"])]
     private ?string $telEc = null;
 
     #[ORM\Column(length: 60)]
+    #[Groups(["getEcoles"])]
     private ?string $mailEc = null;
 
     /**
@@ -134,27 +140,5 @@ class Ecole
     public function getClasses(): Collection
     {
         return $this->classes;
-    }
-
-    public function addClass(Classe $class): static
-    {
-        if (!$this->classes->contains($class)) {
-            $this->classes->add($class);
-            $class->setEcole($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClass(Classe $class): static
-    {
-        if ($this->classes->removeElement($class)) {
-            // set the owning side to null (unless already changed)
-            if ($class->getEcole() === $this) {
-                $class->setEcole(null);
-            }
-        }
-
-        return $this;
     }
 }
