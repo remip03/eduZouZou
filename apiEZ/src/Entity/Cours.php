@@ -6,15 +6,9 @@ use App\Repository\CoursRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
-class Cours
+class Cours extends Ressource
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
 
-    #[ORM\Column(length: 500, nullable: true)]
-    private ?string $descriptionC = null;
 
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $docC = null;
@@ -23,24 +17,9 @@ class Cours
     private ?string $videoC = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    private ?string $resourceSupC = null;
+    private ?string $ressourceSupC = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getDescriptionC(): ?string
-    {
-        return $this->descriptionC;
-    }
-
-    public function setDescriptionC(?string $descriptionC): static
-    {
-        $this->descriptionC = $descriptionC;
-
-        return $this;
-    }
+   
 
     public function getDocC(): ?string
     {
@@ -66,14 +45,14 @@ class Cours
         return $this;
     }
 
-    public function getResourceSupC(): ?string
+    public function getRessourceSupC(): ?string
     {
-        return $this->resourceSupC;
+        return $this->ressourceSupC;
     }
 
-    public function setResourceSupC(?string $resourceSupC): static
+    public function setRessourceSupC(?string $ressourceSupC): static
     {
-        $this->resourceSupC = $resourceSupC;
+        $this->ressourceSupC = $ressourceSupC;
 
         return $this;
     }
