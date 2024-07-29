@@ -120,14 +120,14 @@ class AppFixtures extends Fixture
         $listCours[] = $cours;
 
         $listMessages = [];
-
+        for ($i = 0; $i <10; $i++) {
         $message = new Message;
-        $message->setContent('hello world');
-        $message->setDestinataire('john doe');
-        $message->setExpediteur('bob marley');
+        $message->setContent('hello world'.$i);
+        $message->setDestinataire('john doe'.$i);
+        $message->setExpediteur('bob marley'.$i);
 
         $manager->persist($message);
-
+        }
         $listMessages[] = $message;
 
         $listMessagerie = [];
