@@ -1,0 +1,327 @@
+@startuml "EduZouZou - parent - connexion"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+repeat;
+:se rend sur la page "Se connecter";
+:Rentre ses identifiants;
+|s|
+:Transmet les informations à la base de données;
+|ser|
+:Compare les informations récupérées
+à celles déjà existantes;
+|s|
+backward:redirige vers la page login et 
+affiche un message d'erreur;
+|s|
+repeatwhile(Les informations sont conformes) is(non) not(oui)
+|s|
+:affiche 'connexion réussie' et
+débloque les éléments disponibles;
+
+
+|u|
+:peut naviguer sur le site en utlisant les
+fonctionnalités associées au rôle de son compte;
+
+end
+
+@enduml
+
+
+@startuml "EduZouZou - parent - inscription"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+repeat;
+:se rend sur la page "créer un compte";
+repeat;
+:Rempli les champs de saisie;
+|s|
+repeat while(Vérifie que les données sont conformes aux validators) is(non) not(oui)
+:Transmet les données à la base de données;
+|s|
+backward:redirige vers la page "Se connecter" et 
+affiche un message d'erreur;
+|ser|
+repeatwhile(vérifie que les données sont conformes) is(non) not(oui)
+|s|
+:affiche 'inscription réussie';
+:affiche la page login;
+
+
+
+end
+
+
+@enduml
+
+
+
+@startuml "EduZouZou - parent - activité"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+:se rend sur le site pour trouver une activité;
+|s|
+:transmet la demande;
+|ser|
+:envoie la liste des activités;
+|s|
+:affiche la liste de toutes les activités;
+|u|
+:remplit les filtres pour affiner les choix;
+|s|
+:enlève les activités ne correspondant pas aux filtres;
+|u|
+:choisit son activité;
+
+end
+
+@enduml
+
+
+@startuml "EduZouZou - parent - cours"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+:se rend sur le site pour trouver un cours;
+|s|
+:transmet la demande;
+|ser|
+:envoie la liste des cours;
+|s|
+:affiche la liste de toutes les cours;
+|u|
+:remplit les filtres pour affiner les choix;
+|s|
+:enlève les cours ne correspondant pas aux filtres;
+|u|
+:choisit son cours;
+
+end
+
+@enduml
+
+
+
+@startuml "EduZouZou - parent - résultats"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+:clique sur 'mon Profil';
+:choisit l'enfant (si plusieurs enfants inscrits);
+:clique sur l'onglet résultats;
+|s|
+:transmet les informations;
+|ser|
+:envoie les données liées à l'élève;
+|s|
+:Affiche les résultats de l'élève;
+
+end
+
+@enduml
+
+
+
+@startuml "EduZouZou - parent - compétences"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+:clique sur 'mon Profil';
+:choisit l'enfant (si plusieurs enfants inscrits);
+:clique sur l'onglet compétences;
+|s|
+:transmet les informations;
+|ser|
+:envoie les données liées à l'élève;
+|s|
+:Affiche les compétences validées (ou non) par l'élève;
+
+end
+
+@enduml
+
+
+
+@startuml "EduZouZou - parent - modification du profil"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+:clique sur 'mon Profil';
+:clique sur 'Modifier mon Profil';
+|s|
+:transmet la demande au serveur;
+|ser|
+:envoie les données liées aux comptes;
+|s|
+:Affiche un formulaire pré-remplit (sans le mdp);
+|u|
+repeat;
+:modifie les informations;
+|s|
+repeat while(les informations sont conformes) is(non) not(oui)
+|ser|
+:enregistre les nouvelles informations;
+|s|
+:Affiche 'Profil modifié avec succès';
+
+
+end
+
+@enduml
+
+
+
+@startuml "EduZouZou - parent - messagerie"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+:clique sur messagerie;
+|s|
+:transmet au serveur;
+|ser|
+:envoie les données liées au profil;
+|s|
+:récupère les données et affiche les messages reçus;
+
+end
+
+@enduml
+
+
+@startuml "EduZouZou - parent - message"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+:se trouve dans dans la messagerie;
+if(nouveau message ?) then (oui)
+:clique sur 'nouveau message';
+else(non)
+:sélectionne un message reçu;
+|s|
+:affiche le message;
+|u|
+:clique sur 'répondre';
+endif
+|s|
+:Affiche la page de rédaction d'un message;
+|u|
+repeat
+:choisit le destinataire et rempli le message;
+|s|
+Repeat while(Toutes les informations sont valides) is(non) not(oui)
+|ser|
+:enregistre le message lié aux ids (rédacteurs et destinataire);
+|s|
+:Affiche 'message envoyé';
+
+
+end
+
+@enduml
+
+
+
+@startuml "EduZouZou - parent - messagerie"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+:clique sur messagerie;
+|s|
+:transmet au serveur;
+|ser|
+:envoie les données liées au profil;
+|s|
+:récupère les données et affiche les messages reçus;
+
+end
+
+@enduml
+
+
+@startuml "EduZouZou - parent - message"
+!theme bluegray
+
+|#LightBlue|u| Utilisateur
+start
+|#Palegreen|s| Site
+|#YellowGreen|ser| Serveur
+
+|u|
+:se trouve dans dans la messagerie;
+if(nouveau message ?) then (oui)
+:clique sur 'nouveau message';
+else(non)
+:sélectionne un message reçu;
+|s|
+:affiche le message;
+|u|
+:clique sur 'répondre';
+endif
+|s|
+:Affiche la page de rédaction d'un message;
+|u|
+repeat
+:choisit le destinataire et rempli le message;
+|s|
+Repeat while(Toutes les informations sont valides) is(non) not(oui)
+|ser|
+:enregistre le message lié aux ids (rédacteurs et destinataire);
+|s|
+:Affiche 'message envoyé';
+
+end
+
+@enduml

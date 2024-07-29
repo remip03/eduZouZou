@@ -19,29 +19,31 @@ export const routes: Routes = [
   {path: '', redirectTo: 'Accueil', pathMatch: 'full'},
   {path: 'Accueil', component: AccueilComponent},
 
-  {path: 'Classe', component: ClasseComponent},
+  {path: 'classes', component: ClasseComponent},
 
-  {path: 'Activite', component: ActivitesComponent},
+  {path: 'activites', component: ActivitesComponent},
 
-  {path: 'Cours', component: CoursComponent},
+  {path: 'cours', component: CoursComponent},
 
-  {path: 'Ecole', component: EcoleComponent},
+  {path: 'ecoles', component: EcoleComponent},
 
-  {path: 'Forum', component: ForumComponent},
+  { path: 'ecoles/:id', component: EcoleComponent },
 
-  {path: 'Login', component: LoginComponent},
+  {path: 'forum', component: ForumComponent},
 
-  {path: 'Register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent},
 
-  {path: 'Profil', component: ProfilComponent},
+  {path: 'register', component: RegisterComponent},
 
-  {path: 'Competences', component: CompetencesComponent},
+  {path: 'profil', component: ProfilComponent},
 
-  {path: 'Messagerie', component: MessagerieComponent},
+  {path: 'competences', component: CompetencesComponent},
 
-  {path: 'Modifier-Profil', component: ModifierProfilComponent},
+  {path: 'messagerie', component: MessagerieComponent},
 
-  {path: 'Resultats', component: ResultatsComponent},
+  {path: 'modifierProfil', component: ModifierProfilComponent},
+
+  {path: 'resultats', component: ResultatsComponent},
 
   {path: '**', component: NotFoundComponent}
 

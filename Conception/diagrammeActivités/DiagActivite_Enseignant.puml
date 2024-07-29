@@ -1,0 +1,183 @@
+@startuml Accueil
+title "Diagramme d'activité"
+|#98FB98|Utilisateur|
+|#85DC85|Parent|
+|#72BC72|Enseignant|
+|#5F9D5F|Administrateur|
+|#4C7D4C|Super Administrateur|
+|#395E39|Serveur|
+
+rectangle Naviguer {
+    |Utilisateur|
+    start
+    :Page d'accueil;
+    end
+}
+
+title "Diagramme d'activité"
+rectangle Inscription{
+    |Utilisateur|
+    start
+    :Clique sur le bouton de création de compte;
+    :Rempli le formulaire;
+    |Serveur|
+    :Enregistre les informations;
+    |Utilisateur|
+    :Message de succès;
+    end
+}
+
+title "Diagramme d'activité"
+rectangle Ajoute des classes{
+    |Enseignant|
+    start
+    :Rempli le formulaire d'ajout de classe;
+    |Serveur|
+    repeat
+        |Enseignant|
+        backward: Réessayer;
+        |Serveur|
+        repeatwhile (données conformes) is (non) not (oui)
+        :Classe ajoutée;
+        |Enseignant|
+        :Message de succès;
+        end
+    }
+
+    title "Diagramme d'activité"
+    rectangle Modifier des classes {
+        |Enseignant|
+        start
+        :Rempli le formulaire de modification de classe;
+        |Serveur|
+        repeat
+            |Enseignant|
+            backward: Réessayer;
+            |Serveur|
+            repeatwhile (données conformes) is (non) not (oui)
+            :Classe modifiée;
+            |Enseignant|
+            :Message de succès;
+            end
+        }
+
+        title "Diagramme d'activité"
+        rectangle Supprimer des classes {
+            |Enseignant|
+            start
+            :Rempli le formulaire de Suppression de classe;
+            |Serveur|
+            repeat
+                |Enseignant|
+                backward: Réessayer;
+                |Serveur|
+                repeatwhile (données conformes) is (non) not (oui)
+                :Classe supprimée;
+                |Enseignant|
+                :Message de succès;
+                end
+            }
+
+            title "Diagramme d'activité"
+            rectangle Ajouter des devoirs {
+                |Enseignant|
+                start
+                :Rempli le formulaire d'ajout de devoir;
+                |Serveur|
+                repeat
+                    |Enseignant|
+                    backward: Réessayer;
+                    |Serveur|
+                    repeatwhile (données conformes) is (non) not (oui)
+                    :Devoir ajouté;
+                    |Enseignant|
+                    :Message de succès;
+                    end
+                }
+
+                title "Diagramme d'activité"
+                rectangle Modifier des devoirs {
+                    |Enseignant|
+                    start
+                    :Rempli le formulaire de modification de devoir;
+                    |Serveur|
+                    repeat
+                        |Enseignant|
+                        backward: Réessayer;
+                        |Serveur|
+                        repeatwhile (données conformes) is (non) not (oui)
+                        :Devoir modifié;
+                        |Enseignant|
+                        :Message de succès;
+                        end
+                    }
+
+                    title "Diagramme d'activité"
+                    rectangle Supprimer des devoirs {
+                        |Enseignant|
+                        start
+                        :Rempli le formulaire de suppression d'élève;
+                        |Serveur|
+                        repeat
+                            |Enseignant|
+                            backward: Réessayer;
+                            |Serveur|
+                            repeatwhile (données conformes) is (non) not (oui)
+                            :Elève supprimé;
+                            |Enseignant|
+                            :Message de succès;
+                            end
+                        }
+
+                        rectangle Ajouter des activitées {
+                            |Enseignant|
+                            start
+                            :Rempli le formulaire d'ajout d'activité;
+                            |Serveur|
+                            repeat
+                                |Enseignant|
+                                backward: Réessayer;
+                                |Serveur|
+                                repeatwhile (données conformes) is (non) not (oui)
+                                :Devoir ajouté;
+                                |Enseignant|
+                                :Message de succès;
+                                end
+                            }
+
+
+                            title "Diagramme d'activité"
+                            rectangle Modifier des activitées {
+                                |Enseignant|
+                                start
+                                :Rempli le formulaire de modification d'activité;
+                                |Serveur|
+                                repeat
+                                    |Enseignant|
+                                    backward: Réessayer;
+                                    |Serveur|
+                                    repeatwhile (données conformes) is (non) not (oui)
+                                    :Devoir modifié;
+                                    |Enseignant|
+                                    :Message de succès;
+                                    end
+                                }
+
+
+                                title "Diagramme d'activité"
+                                rectangle Supprimer des activitées {
+                                    |Enseignant|
+                                    start
+                                    :Rempli le formulaire de suppression d'activité;
+                                    |Serveur|
+                                    repeat
+                                        |Enseignant|
+                                        backward: Réessayer;
+                                        |Serveur|
+                                        repeatwhile (données conformes) is (non) not (oui)
+                                        :Elève supprimé;
+                                        |Enseignant|
+                                        :Message de succès;
+                                        end
+                                    }
+                                    @enduml

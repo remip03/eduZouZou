@@ -1,35 +1,41 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import Ecole from '../models/ecole.models';
+import Ecole from '../models/ecole.modelt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EcoleService {
 
-  private ezURL = 'http://localhost:8000/api'
+  // URL de base de l'API
+  private apiUrl = 'http://127.0.0.1:8000/api';
 
+  // Injection du service HttpClient
   constructor(private httpClient: HttpClient) { }
 
-  getEcoles() : Observable<Ecole[]>{
-    return this.httpClient.get<Ecole[]>(`${this.ezURL}/ecole`)
+  // Récupération de la liste des écoles
+  getEcoles(): Observable<Ecole[]> {
+    return this.httpClient.get<Ecole[]>(`${this.apiUrl}/ecoles`);
   }
 
-  getEcole(id: number) : Observable<Ecole>{
-    return this.httpClient.get<Ecole>(`${this.ezURL}/ecole/${id}`)
+  // Récupérer un auteur par son ID
+  getEcole(id: number): Observable<Ecole> {
+    return this.httpClient.get<Ecole>(`${this.apiUrl}/ecoles/${id}`);
   }
 
-  addEcole(ecole: Ecole): Observable<Ecole>{
-    return this.httpClient.post<Ecole>(`${this.ezURL}/ecole`, ecole)
+  // Créer un nouvel auteur
+  createEcole(ecole: Ecole): Observable<Ecole> {
+    return this.httpClient.post<Ecole>(`${this.apiUrl}/ecoles`, ecole);
   }
 
-  updateEcole(ecole: Ecole): Observable<Ecole>{
-    return this.httpClient.put<Ecole>(`${this.ezURL}/ecole/${ecole.id}`, ecole)
+  // Mettre à jour un auteur existant
+  updateEcole(ecole: Ecole): Observable<Ecole> {
+    return this.httpClient.put<Ecole>(`${this.apiUrl}/ecoles/${ecole.id}`, ecole);
   }
 
-  deleteEcole (id: number): Observable<Ecole>{
-    return this.httpClient.delete<Ecole>(`${this.ezURL}/ecole/${id}`)
+  // Supprimer un auteur par son ID
+  deleteEcole(id: number): Observable<Ecole> {
+    return this.httpClient.delete<Ecole>(`${this.apiUrl}/ecoles/${id}`);
   }
-
 }

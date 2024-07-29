@@ -6,31 +6,32 @@ use App\Repository\MessagerieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MessagerieRepository::class)]
 class Messagerie
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[Groups(['getMessageries'])]
+    #[ORM\Column( nullable: true)]
     private ?int $id = null;
-
-    /**
-     * @var Collection<int, Message>
-     */
-    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'messagerie', orphanRemoval: true)]
-    private Collection $messages;
 
     /**
      * @var Collection<int, User>
      */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messagerie', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messagerie')]
     private Collection $users;
+
+    #[ORM\ManyToOne(inversedBy: 'messages',cascade:['remove'])]
+    private ?Message $messages = null;
 
     public function __construct()
     {
-        $this->messages = new ArrayCollection();
+
         $this->users = new ArrayCollection();
+
+
     }
 
     public function getId(): ?int
@@ -38,35 +39,7 @@ class Messagerie
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Message>
-     */
-    public function getMessages(): Collection
-    {
-        return $this->messages;
-    }
 
-    public function addMessage(Message $message): static
-    {
-        if (!$this->messages->contains($message)) {
-            $this->messages->add($message);
-            $message->setMessagerie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessage(Message $message): static
-    {
-        if ($this->messages->removeElement($message)) {
-            // set the owning side to null (unless already changed)
-            if ($message->getMessagerie() === $this) {
-                $message->setMessagerie(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, User>
@@ -97,4 +70,20 @@ class Messagerie
 
         return $this;
     }
+
+    public function getMessages(): ?Message
+    {
+        return $this->messages;
+    }
+
+    public function setMessages(?Message $messages): static
+    {
+        $this->messages = $messages;
+
+        return $this;
+    }
+
+
+
+
 }
