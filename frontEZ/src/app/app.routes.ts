@@ -16,6 +16,7 @@ import { AddEcoleComponent } from './pages/ecoles/add-ecole/add-ecole.component'
 import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
 import { MessageComponent } from './pages/message/message.component';
+import { AddMessageComponent } from './pages/message/add-message/add-message.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -46,6 +47,8 @@ export const routes: Routes = [
   { path: 'messagerie', component: MessagerieComponent },
 
   { path: 'messages', component: MessageComponent },
+
+  { path: 'messagesCreate', component: AddMessageComponent },
 
   { path: 'modifierProfil', component: ModifierProfilComponent },
 

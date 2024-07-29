@@ -57,16 +57,7 @@ export class MessageComponent implements OnInit {
 
   //methode pour creer un message
   createMessage(): void {
-    // Crée un nouveau message avec les données du formulaire
-    const newMessage: Message = {
-      id: 0, // id généré automatiquement par le serveur
-      content: this.createMsg.value.content,
-      destinataire: this.createMsg.value.destinataire,
-      expediteur: this.createMsg.value.expediteur,
-      msgDate: this.createMsg.value.msgDate,
-    };
-    // Ajoute le message au serveur
-    this.messageService.addMessage(newMessage).subscribe(() => {
+    this.messageService.addMessage(this.createMsg.value).subscribe(() => {
       // Réinitialise le formulaire
       this.createMsg.reset();
       // Actualise la liste des messages

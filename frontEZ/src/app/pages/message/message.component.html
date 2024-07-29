@@ -1,15 +1,14 @@
 <h2>Messages</h2>
 
+<button routerLink="/messagesCreate">creer</button>
+
 @for (item of messages; track $index) {
 <div class="card text-center">
-  <div class="card-header">
-    Messages
-  </div>
+  <div class="card-header">Messages</div>
   <div class="card-body">
-    <h5 class="card-title">expéditeur : {{item.expediteur}}</h5>
-    <p class="card-text">message : {{item.content}}</p>
+    <h5 class="card-title">expéditeur : {{ item.expediteur }}</h5>
+    <p class="card-text">message : {{ item.content }}</p>
     <a href="#" class="btn btn-primary">répondre</a>
   </div>
-
 </div>
 }
