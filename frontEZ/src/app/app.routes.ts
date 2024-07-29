@@ -15,40 +15,41 @@ import { ResultatsComponent } from './pages/profil/resultats/resultats.component
 import { AddEcoleComponent } from './pages/ecoles/add-ecole/add-ecole.component';
 import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
+import { MessageComponent } from './pages/message/message.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
+  { path: 'Accueil', component: AccueilComponent },
 
-  {path: '', redirectTo: 'Accueil', pathMatch: 'full'},
-  {path: 'Accueil', component: AccueilComponent},
+  { path: 'classes', component: ClasseComponent },
 
-  {path: 'classes', component: ClasseComponent},
+  { path: 'activites', component: ActivitesComponent },
 
-  {path: 'activites', component: ActivitesComponent},
+  { path: 'cours', component: CoursComponent },
 
-  {path: 'cours', component: CoursComponent},
-
-  {path: 'ecoles', component: EcolesComponent},
+  { path: 'ecoles', component: EcolesComponent },
 
   { path: 'ecoles/:id', component: EcoleComponent },
 
   { path: 'newEcole', component: AddEcoleComponent },
 
-  {path: 'forum', component: ForumComponent},
+  { path: 'forum', component: ForumComponent },
 
-  {path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
 
-  {path: 'register', component: RegisterComponent},
+  { path: 'register', component: RegisterComponent },
 
-  {path: 'profil', component: ProfilComponent},
+  { path: 'profil', component: ProfilComponent },
 
-  {path: 'competences', component: CompetencesComponent},
+  { path: 'competences', component: CompetencesComponent },
 
-  {path: 'messagerie', component: MessagerieComponent},
+  { path: 'messagerie', component: MessagerieComponent },
 
-  {path: 'modifierProfil', component: ModifierProfilComponent},
+  { path: 'messages', component: MessageComponent },
 
-  {path: 'resultats', component: ResultatsComponent},
+  { path: 'modifierProfil', component: ModifierProfilComponent },
 
-  {path: '**', component: NotFoundComponent}
+  { path: 'resultats', component: ResultatsComponent },
 
+  { path: '**', component: NotFoundComponent },
 ];

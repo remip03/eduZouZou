@@ -28,12 +28,17 @@ class Message
     #[Groups(['getMessages'])]
     #[ORM\Column(length: 50)]
     private ?string $expediteur = null;
+    
+    #[Groups(['getMessages'])]
+    #[ORM\Column]
+    private ?\DateTimeImmutable $msgDate = null;
 
     /**
      * @var Collection<int, Messagerie>
      */
     #[ORM\OneToMany(targetEntity: Messagerie::class, mappedBy: 'messages')]
     private Collection $messages;
+
 
     public function __construct()
     {
@@ -113,6 +118,18 @@ class Message
                 $message->setMessages(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMsgDate(): ?\DateTimeImmutable
+    {
+        return $this->msgDate;
+    }
+
+    public function setMsgDate(\DateTimeImmutable $msgDate): static
+    {
+        $this->msgDate = $msgDate;
 
         return $this;
     }

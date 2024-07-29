@@ -11,26 +11,26 @@ export class MessageService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getMessages(): Observable<Message[]> {
-    return this.httpClient.get<Message[]>(`${this.ezURL}/message`);
+  getAllMessages(): Observable<Message[]> {
+    return this.httpClient.get<Message[]>(`${this.ezURL}/messages`);
   }
 
   getMessage(id: number): Observable<Message> {
-    return this.httpClient.get<Message>(`${this.ezURL}/message/${id}`);
+    return this.httpClient.get<Message>(`${this.ezURL}/messages/${id}`);
   }
 
   addMessage(message: Message): Observable<Message> {
-    return this.httpClient.post<Message>(`${this.ezURL}/message`, message);
+    return this.httpClient.post<Message>(`${this.ezURL}/messages`, message);
   }
 
   updateMessage(message: Message): Observable<Message> {
     return this.httpClient.put<Message>(
-      `${this.ezURL}/message/${message.id}`,
+      `${this.ezURL}/messages/${message.id}`,
       message
     );
   }
 
   deleteMessage(id: number): Observable<Message> {
-    return this.httpClient.delete<Message>(`${this.ezURL}/message/${id}`);
+    return this.httpClient.delete<Message>(`${this.ezURL}/messages/${id}`);
   }
 }

@@ -3,4 +3,5 @@ export interface Message {
   content: string;
   destinataire: string;
   expediteur: string;
+  msgDate: Date;
 }

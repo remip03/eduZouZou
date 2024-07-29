@@ -119,6 +119,7 @@ class MessageController extends AbstractController
                         new OA\Property(property: "content", type: "string"),
                         new OA\Property(property: "destinataire", type: "string"),
                         new OA\Property(property: "expediteur", type: "string"),
+                        new OA\Property(property: "msgDate", type: "string", format: "date"),
 
                     ]
                 )
@@ -204,6 +205,7 @@ class MessageController extends AbstractController
                         new OA\Property(property: "content", type: "string"),
                         new OA\Property(property: "destinataire", type: "string"),
                         new OA\Property(property: "expediteur", type: "string"),
+                        new OA\Property(property: "msgDate", type: "string", format: "date"),
                     ]
                 )
             ),
@@ -232,6 +234,7 @@ class MessageController extends AbstractController
         $currentMessage->setContent($newMessage->getContent());
         $currentMessage->setDestinataire($newMessage->getDestinataire());
         $currentMessage->setExpediteur($newMessage->getExpediteur());
+        $currentMessage->setMsgDate($newMessage->getMsgDate());
 
         // On vérifie les erreurs
         $errors = $validator->validate($currentMessage);
