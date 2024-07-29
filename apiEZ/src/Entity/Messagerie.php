@@ -6,29 +6,25 @@ use App\Repository\MessagerieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MessagerieRepository::class)]
 class Messagerie
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups(['getMessageries'])]
     #[ORM\Column( nullable: true)]
     private ?int $id = null;
-
-
 
     /**
      * @var Collection<int, User>
      */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messagerie', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messagerie')]
     private Collection $users;
 
-    #[ORM\ManyToOne(inversedBy: 'messages')]
+    #[ORM\ManyToOne(inversedBy: 'messages',cascade:['remove'])]
     private ?Message $messages = null;
-
-
-
-
 
     public function __construct()
     {

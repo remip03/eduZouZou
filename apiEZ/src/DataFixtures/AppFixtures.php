@@ -21,8 +21,48 @@ class AppFixtures extends Fixture
     {
         $this->userPasswordHasher = $userPasswordHasher;
     }
+
     public function load(ObjectManager $manager): void
     {
+
+        //creation user admin
+        $user = new User();
+        $listUser[] = $user;
+        $message = new Message;
+        $listMessages[] = $message;
+        $messagerie = new Messagerie();
+        $listMessagerie[] = $messagerie;
+        $listMessages = [];
+
+        $message = new Message;
+        $message->setContent('hello world');
+        $message->setDestinataire('john doe');
+        $message->setExpediteur('bob marley');
+
+        $manager->persist($message);
+
+        $listMessages[] = $message;
+
+        $listMessagerie = [];
+
+        $messagerie = new Messagerie();
+        $messagerie->setMessages(($listMessages[array_rand($listMessages)]));
+
+        $manager->persist($messagerie);
+        $listMessagerie[] = $messagerie;
+
+        $user->setEmail('user@api.com');
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setPassword($this->userPasswordHasher->hashPassword($user, 'password'));
+        $user->setFirstName('jean');
+        $user->setLastName('dupont');
+        $user->setTel('0123456789');
+        $user->setAdresse('adresse user');
+        $user->setMessagerie($listMessagerie[array_rand($listMessagerie)]);
+
+
+        $manager->persist($user);
+
         // Créations des écoles
         $listEcole = [];
         for ($i = 0; $i < 5; $i++) {
