@@ -20,7 +20,7 @@ use JMS\Serializer\Annotation\Groups;
  *     ),
  *     exclusion = @Hateoas\Exclusion(groups = "getClasses"),
  * )
- * 
+ *
  * @Hateoas\Relation(
  *    "delete",
  *   href = @Hateoas\Route(
@@ -29,7 +29,7 @@ use JMS\Serializer\Annotation\Groups;
  *     ),
  *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
  * )
- * 
+ *
  * @Hateoas\Relation(
  *    "update",
  *   href = @Hateoas\Route(
@@ -38,7 +38,7 @@ use JMS\Serializer\Annotation\Groups;
  *     ),
  *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
  * )
- * 
+ *
  */
 #[ORM\Entity(repositoryClass: ClasseRepository::class)]
 class Classe

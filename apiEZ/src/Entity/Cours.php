@@ -4,43 +4,23 @@ namespace App\Entity;
 
 use App\Repository\CoursRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
-class Cours
+class Cours extends Ressource
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(length: 500, nullable: true)]
-    private ?string $descriptionC = null;
-
     #[ORM\Column(length: 50, nullable: true)]
+    #[Groups(['getRessources'])]
     private ?string $docC = null;
 
     #[ORM\Column(length: 100, nullable: true)]
+    #[Groups(['getRessources'])]
     private ?string $videoC = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    private ?string $resourceSupC = null;
+    #[Groups(['getRessources'])]
+    private ?string $ressourceSupC = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getDescriptionC(): ?string
-    {
-        return $this->descriptionC;
-    }
-
-    public function setDescriptionC(?string $descriptionC): static
-    {
-        $this->descriptionC = $descriptionC;
-
-        return $this;
-    }
 
     public function getDocC(): ?string
     {
@@ -66,14 +46,14 @@ class Cours
         return $this;
     }
 
-    public function getResourceSupC(): ?string
+    public function getRessourceSupC(): ?string
     {
-        return $this->resourceSupC;
+        return $this->ressourceSupC;
     }
 
-    public function setResourceSupC(?string $resourceSupC): static
+    public function setRessourceSupC(?string $resourceSupC): static
     {
-        $this->resourceSupC = $resourceSupC;
+        $this->ressourceSupC = $resourceSupC;
 
         return $this;
     }
