@@ -46,7 +46,7 @@ class EcoleController extends AbstractController
         $jsonEcoleList = $cache->get($idCache, function (ItemInterface $item) use ($ecoleRepository, $serializer) {
             $item->tag("ecolesCache");
             $ecoleList = $ecoleRepository->findAll();
-            $context = SerializationContext::create()->setGroups(['getEcoles']);
+            $context = SerializationContext::create()->setGroups(['getClasses']);
             return $serializer->serialize($ecoleList, 'json', $context);
         });
 

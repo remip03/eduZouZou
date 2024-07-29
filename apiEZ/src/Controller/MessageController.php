@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Repository\MessageRepository;
-use App\Repository\EcoleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,7 +31,7 @@ class MessageController extends AbstractController
         description: "Retourne la liste des messages",
         content: new OA\JsonContent(
             type: "array",
-            items: new OA\Items(ref: new Model(type: Message::class, groups: ["getmessages"]))
+            items: new OA\Items(ref: new Model(type: Message::class, groups: ["getMessages"]))
         )
     )]
     #[OA\Tag(name: "messages")]
@@ -44,7 +43,7 @@ class MessageController extends AbstractController
         // Récupération des données depuis le cache ou exécution de la requête si le cache est vide
         $jsonMessageList = $cache->get($idCache, function (ItemInterface $item) use ($messageRepository, $serializer) {
             $item->tag("messagesCache");
-            $messageList = $messageRepository->findAll();
+            $messageList = $messageRepository->findAll();         
             $context = SerializationContext::create()->setGroups(['getMessages']);
 
             return $serializer->serialize($messageList, 'json', $context);
@@ -218,7 +217,7 @@ class MessageController extends AbstractController
         ]
     )]
     #[OA\Tag(name: "messages")]
-    public function updateMessage(Request $request, SerializerInterface $serializer, Message $currentmessage, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse
+    public function updateMessage(Request $request, SerializerInterface $serializer, Message $currentMessage, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse
     {
         // Désérialisation du contenu de la requête pour créer une instance de message
         $data = json_decode($request->getContent(), true);
@@ -226,7 +225,7 @@ class MessageController extends AbstractController
 
 
         // Désérialisation des nouvelles données en objet message
-        $newMessage = $serializer->deserialize(json_encode($data), message::class, 'json');
+        $newMessage = $serializer->deserialize(json_encode($data), Message::class, 'json');
 
         // Mise à jour des propriétés de l'objet message existant
         $currentMessage->setContent($newMessage->getContent());
@@ -234,7 +233,7 @@ class MessageController extends AbstractController
         $currentMessage->setExpediteur($newMessage->getExpediteur());
 
         // On vérifie les erreurs
-        $errors = $validator->validate($currentmessage);
+        $errors = $validator->validate($currentMessage);
         if ($errors->count() > 0) {
             return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
         }
@@ -244,7 +243,7 @@ class MessageController extends AbstractController
 
 
         // Persistance des modifications en base de données
-        $em->persist($currentmessage);
+        $em->persist($currentMessage);
         $em->flush();
 
         // Invalide le cache associé aux messages

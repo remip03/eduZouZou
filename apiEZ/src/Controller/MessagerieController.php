@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Messagerie;
 use App\Repository\ClasseRepository;
+use App\Repository\MessageRepository;
 use App\Repository\MessagerieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -80,7 +81,7 @@ class MessagerieController extends AbstractController
     {
         $cachePool->invalidateTags(["messageriesCache"]);
         // Récupération des messages de la messagerie
-        $message = $messageRepository->findBy(['messagerie' => $messagerie]);
+        $messages = $messageRepository->findBy(['messagerie' => $messagerie]);
         // Suppression des messages de la messagerie
         foreach ($messages as $message) {
             $entityManager->remove($message);
