@@ -1,0 +1,10 @@
+<p><span class="fw-bold">Id :</span> {{ detail.id }}</p>
+<p><span class="fw-bold">Nom :</span> {{ detail.nameCl }}</p>
+<p><span class="fw-bold">Niveau :</span> {{ detail.niveauCl }}</p>
+<p><span class="fw-bold">Année :</span> {{ detail.anneeCl }}</p>
+<p><span class="fw-bold">Ecole :</span> {{ detail.ecole.nameEc }}</p>
+
+<button class="btn btn-danger" (click)="confirmDelete()">
+  Supprimer la classe
+</button>
+<a routerLink="/ecoles" class="btn btn-secondary">Retour</a>
