@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+
+import { MessageComponent } from '../../pages/message/message.component';
+
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
-
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+
+  imports: [RouterLink, MessageComponent],
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.css'
+  styleUrl: './nav-bar.component.css',
 })
 export class NavBarComponent {
   // isLoggedIn$: Observable<boolean>; // Observable pour suivre l'état de connexion de l'utilisateur
@@ -20,7 +23,7 @@ export class NavBarComponent {
   // }
 
   // Méthode appelée lors de l'initialisation du composant
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   // // Méthode pour déconnecter l'utilisateur
   // logout(): void {
