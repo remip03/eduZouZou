@@ -125,6 +125,7 @@ class AppFixtures extends Fixture
         $message->setContent('hello world'.$i);
         $message->setDestinataire('john doe'.$i);
         $message->setExpediteur('bob marley'.$i);
+        $message->setMsgDate(new \DateTimeImmutable());
 
         $manager->persist($message);
         }

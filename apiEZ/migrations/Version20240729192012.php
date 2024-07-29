@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240729103729 extends AbstractMigration
+final class Version20240729192012 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -23,7 +23,7 @@ final class Version20240729103729 extends AbstractMigration
         $this->addSql('CREATE TABLE classe (id INT AUTO_INCREMENT NOT NULL, ecole_id INT DEFAULT NULL, name_cl VARCHAR(50) NOT NULL, niveau_cl VARCHAR(50) NOT NULL, annee_cl DATE NOT NULL COMMENT \'(DC2Type:date_immutable)\', INDEX IDX_8F87BF9677EF1B1E (ecole_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ecole (id INT AUTO_INCREMENT NOT NULL, name_ec VARCHAR(50) NOT NULL, adresse_ec VARCHAR(100) NOT NULL, tel_ec VARCHAR(20) NOT NULL, mail_ec VARCHAR(60) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE enfant (id INT AUTO_INCREMENT NOT NULL, classe_id INT DEFAULT NULL, last_name_e VARCHAR(50) NOT NULL, first_name_e VARCHAR(50) NOT NULL, birth_date_e DATE NOT NULL COMMENT \'(DC2Type:date_immutable)\', INDEX IDX_34B70CA28F5EA509 (classe_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE message (id INT AUTO_INCREMENT NOT NULL, content VARCHAR(500) NOT NULL, destinataire VARCHAR(50) NOT NULL, expediteur VARCHAR(50) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE message (id INT AUTO_INCREMENT NOT NULL, content VARCHAR(500) NOT NULL, destinataire VARCHAR(50) NOT NULL, expediteur VARCHAR(50) NOT NULL, msg_date DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE messagerie (id INT AUTO_INCREMENT NOT NULL, messages_id INT DEFAULT NULL, INDEX IDX_14E8F60CA5905F5A (messages_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ressource (id INT AUTO_INCREMENT NOT NULL, type_r VARCHAR(50) NOT NULL, name_r VARCHAR(50) NOT NULL, description_r VARCHAR(500) DEFAULT NULL, matiere_r VARCHAR(50) NOT NULL, dtype VARCHAR(255) NOT NULL, type_act VARCHAR(50) DEFAULT NULL, doc_c VARCHAR(50) DEFAULT NULL, video_c VARCHAR(100) DEFAULT NULL, ressource_sup_c VARCHAR(50) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ressource_user (ressource_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_7D2CD6C0FC6CD52A (ressource_id), INDEX IDX_7D2CD6C0A76ED395 (user_id), PRIMARY KEY(ressource_id, user_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
