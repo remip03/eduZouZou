@@ -31,7 +31,7 @@ class CoursController extends AbstractController
         description: "Retourne la liste des cours",
         content: new OA\JsonContent(
             type: "array",
-            items: new OA\Items(ref: new Model(type: Cours::class, groups: ["getCours"]))
+            items: new OA\Items(ref: new Model(type: Cours::class, groups: ["getRessources"]))
         )
     )]
     #[OA\Tag(name: "Cours")]
@@ -43,7 +43,7 @@ class CoursController extends AbstractController
         $jsonCoursList = $cache->get($idCache, function(ItemInterface $item) use ($coursRepository, $serializer){
             $item->tag("coursCache");
             $coursList = $coursRepository->findAll();
-            $context = SerializationContext::create()->setGroups(['getCours']);
+            $context = SerializationContext::create()->setGroups(['getRessources']);
             return $serializer->serialize($coursList, 'json', $context);
         });
 
@@ -60,7 +60,7 @@ class CoursController extends AbstractController
     #[OA\Tag(name: "Cours")]
     public function getCourDetail(Cours $cour, SerializerInterface $serializer): JsonResponse{
         // Contexte de sérialisation pour le groupe 'Cours'
-        $context = SerializationContext::create()->setGroups(['getCour']);
+        $context = SerializationContext::create()->setGroups(['getRessources']);
 
         // Sérialisation du cours en JSON
         $jsonCour = $serializer->serialize($cour, 'json', $context);
@@ -151,7 +151,7 @@ class CoursController extends AbstractController
         $em->flush();
 
         // Sérialisation du cours créé pour la réponse
-        $context = SerializationContext::create()->setGroups(['getCours']);
+        $context = SerializationContext::create()->setGroups(['getRessources']);
         $jsonCours = $serializer->serialize($cours, 'json', $context);
 
         // Génération de l'URL du nouveau cours

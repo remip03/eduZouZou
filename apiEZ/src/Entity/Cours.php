@@ -10,15 +10,15 @@ use JMS\Serializer\Annotation\Groups;
 class Cours extends Ressource
 {
     #[ORM\Column(length: 50, nullable: true)]
-    #[Groups(['getCours'])]
+    #[Groups(['getRessources'])]
     private ?string $docC = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    #[Groups(['getCours'])]
+    #[Groups(['getRessources'])]
     private ?string $videoC = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    #[Groups(['getCours'])]
+    #[Groups(['getRessources'])]
     private ?string $ressourceSupC = null;
 
 

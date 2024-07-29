@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Groups;
 class Activite extends Ressource
 {
     #[ORM\Column(length: 50, nullable: true)]
-    #[Groups(['getActivites'])]
+    #[Groups(['getRessources'])]
     private ?string $typeAct = null;
 
 

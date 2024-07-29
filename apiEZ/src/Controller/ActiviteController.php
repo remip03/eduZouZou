@@ -31,7 +31,7 @@ class ActiviteController extends AbstractController
         description: "Retourne la liste des activites",
         content: new OA\JsonContent(
             type: "array",
-            items: new OA\Items(ref: new Model(type: Activite::class, groups: ["getActivites"]))
+            items: new OA\Items(ref: new Model(type: Activite::class, groups: ["getRessources"]))
         )
     )]
     #[OA\Tag(name: "Activites")]
@@ -43,7 +43,7 @@ class ActiviteController extends AbstractController
         $jsonActiviteList = $cache->get($idCache, function(ItemInterface $item) use ($activiteRepository, $serializer){
             $item->tag("activitesCache");
             $activiteList = $activiteRepository->findAll();
-            $context = SerializationContext::create()->setGroups(['getActivites']);
+            $context = SerializationContext::create()->setGroups(['getRessources']);
             return $serializer->serialize($activiteList, 'json', $context);
         });
 
@@ -60,7 +60,7 @@ class ActiviteController extends AbstractController
     #[OA\Tag(name: "Activites")]
     public function getActiviteDetail(Activite $activite, SerializerInterface $serializer): JsonResponse{
         // Contexte de sérialisation pour le groupe 'getActivites'
-        $context = SerializationContext::create()->setGroups(['getActivite']);
+        $context = SerializationContext::create()->setGroups(['getRessources']);
 
         // Sérialisation de la activite en JSON
         $jsonActivite = $serializer->serialize($activite, 'json', $context);
@@ -149,7 +149,7 @@ class ActiviteController extends AbstractController
         $em->flush();
 
         // Sérialisation de la activite créée pour la réponse
-        $context = SerializationContext::create()->setGroups(['getActivites']);
+        $context = SerializationContext::create()->setGroups(['getRessources']);
         $jsonActivite = $serializer->serialize($activite, 'json', $context);
 
         // Génération de l'URL de la nouvelle activite

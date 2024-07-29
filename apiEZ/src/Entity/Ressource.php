@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Hateoas\Configuration\Annotation as Hateoas;
-use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use JMS\Serializer\Annotation\Groups;
 
 /**
@@ -48,24 +47,21 @@ use JMS\Serializer\Annotation\Groups;
     "activite" => Activite::class,
     "cours" => Cours::class
 ])]
-class Ressource
+abstract class Ressource
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['getCours'])]
-    #[Groups(['getActivite'])]
+    #[Groups(['getRessources'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['getCours'])]
-    #[Groups(['getActivites'])]
+    #[Groups(['getRessources'])]
     #[Assert\NotBlank(message: 'Veuillez choisir entre "Cours" et "Activité".')]
     private ?string $typeR = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['getCours'])]
-    #[Groups(['getActivites'])]
+    #[Groups(['getRessources'])]
     #[Assert\NotBlank(message: 'Le nom du cours ou de l\'activité est obligatoire')]
     #[Assert\Length(
         min: 2,
@@ -76,8 +72,7 @@ class Ressource
     private ?string $nameR = null;
 
     #[ORM\Column(length: 500, nullable: true)]
-    #[Groups(['getCours'])]
-    #[Groups(['getActivites'])]
+    #[Groups(['getRessources'])]
     #[Assert\length(
         max: 500,
         maxMessage: "La description ne peut pas contenir plus de {{ limit }} caractères"
@@ -85,16 +80,14 @@ class Ressource
     private ?string $descriptionR = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['getCours'])]
-    #[Groups(['getActivites'])]
+    #[Groups(['getRessources'])]
     private ?string $matiereR = null;
 
     /**
      * @var Collection<int, User>
      */
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'ressources')]
-    #[Groups(['getCours'])]
-    #[Groups(['getActivites'])]
+    #[Groups(['getRessources'])]
     private Collection $users;
 
     public function __construct()
@@ -107,12 +100,12 @@ class Ressource
         return $this->id;
     }
 
-    public function isTypeR(): ?bool
+    public function getTypeR(): ?string
     {
         return $this->typeR;
     }
 
-    public function setTypeR(bool $typeR): static
+    public function setTypeR(string $typeR): static
     {
         $this->typeR = $typeR;
 
