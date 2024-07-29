@@ -215,3 +215,7 @@ class MessagerieController extends AbstractController
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> backJeremy

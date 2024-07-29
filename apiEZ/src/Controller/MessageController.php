@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Repository\MessageRepository;
-use App\Repository\EcoleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,7 +31,7 @@ class MessageController extends AbstractController
         description: "Retourne la liste des messages",
         content: new OA\JsonContent(
             type: "array",
-            items: new OA\Items(ref: new Model(type: Message::class, groups: ["getmessages"]))
+            items: new OA\Items(ref: new Model(type: Message::class, groups: ["getMessages"]))
         )
     )]
     #[OA\Tag(name: "messages")]
@@ -44,7 +43,7 @@ class MessageController extends AbstractController
         // Récupération des données depuis le cache ou exécution de la requête si le cache est vide
         $jsonMessageList = $cache->get($idCache, function (ItemInterface $item) use ($messageRepository, $serializer) {
             $item->tag("messagesCache");
-            $messageList = $messageRepository->findAll();
+            $messageList = $messageRepository->findAll();         
             $context = SerializationContext::create()->setGroups(['getMessages']);
 
             return $serializer->serialize($messageList, 'json', $context);
@@ -226,7 +225,7 @@ class MessageController extends AbstractController
 
 
         // Désérialisation des nouvelles données en objet message
-        $newMessage = $serializer->deserialize(json_encode($data), message::class, 'json');
+        $newMessage = $serializer->deserialize(json_encode($data), Message::class, 'json');
 
         // Mise à jour des propriétés de l'objet message existant
         $currentMessage->setContent($newMessage->getContent());
@@ -254,3 +253,4 @@ class MessageController extends AbstractController
         return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
     }
 }
+

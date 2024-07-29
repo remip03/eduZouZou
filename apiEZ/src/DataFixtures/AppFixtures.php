@@ -6,7 +6,7 @@ use App\Entity\Classe;
 use App\Entity\Ecole;
 use App\Entity\Message;
 use App\Entity\Messagerie;
-use App\Entity\user;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -23,21 +23,21 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         //creation user admin
-        $user = new user();
+        $user = new User();
         $listUser[] = $user;
         $ecole = new Ecole();
         $listEcoles[] = $ecole;
         $message = new Message;
         $listMessages[] = $message;
         $messagerie = new Messagerie();
-        $listMessagerie[] = $message;
+        $listMessagerie[] = $messagerie;
 
         $listMessages = [];
 
         $message = new Message;
-        $message->setContent('contenu message ');
-        $message->setDestinataire('ecole');
-        $message->setExpediteur('user');
+        $message->setContent('hello world');
+        $message->setDestinataire('john doe');
+        $message->setExpediteur('bob marley');
 
         $manager->persist($message);
 
@@ -71,11 +71,11 @@ class AppFixtures extends Fixture
             $ecole->setTelEc('Tel école ' . $i);
             $ecole->setMailEc('Mail école ' . $i);
 
-            $ecole->addUser($listUser[array_rand($listUser)]);
+
 
             $manager->persist($ecole);
         }
-        
+
         // Créations des classes
         for ($i = 0; $i < 20; $i++) {
             $classe = new Classe();
@@ -83,6 +83,15 @@ class AppFixtures extends Fixture
             $classe->setNiveauCl('Niveau ' . $i);
             $classe->setAnneeCl(new \DateTimeImmutable());
             $manager->persist($classe);
+        }
+
+        for ($i = 0; $i < 5; $i++) {
+            $message = new Message;
+            $message->setContent('hello world'.$i);
+            $message->setDestinataire('john doe'.$i);
+            $message->setExpediteur('bob marley'.$i);
+            $manager->persist($message);
+
         }
 
         $manager->flush();
