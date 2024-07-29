@@ -1,1 +1,34 @@
-<p>enfants works!</p>
+<a routerLink="/newEnfant" class="btn btn-warning">Ajouter un nouvel enfant</a>
+<div class="row g-1">
+  <div
+    class="col-md-4 d-flex justify-content-center"
+    *ngFor="let item of enfants; let i = index"
+  >
+    <div class="card">
+      <div class="card-body">
+        <h2>Enfant n°{{ item.id }}</h2>
+        <p class="card-text">
+          <span class="bold">Id de la classe : </span>{{ item.classe.id }}
+        </p>
+        <p class="card-text">
+          <span class="bold">Nom de la classe : </span>{{ item.classe.nameCl }}
+        </p>
+        <p class="card-text">
+          <span class="bold">Nom : </span>{{ item.lastNameE }}
+        </p>
+        <p class="card-text">
+          <span class="bold">Prénom : </span>{{ item.firstNameE }}
+        </p>
+        <p class="card-text">
+          <span class="bold">Date de naissance : </span>{{ item.birthDateE }}
+        </p>
+        <a routerLink="/enfants/{{ item.id }}" class="btn btn-primary"
+          >Voir l'enfant</a
+        >
+        <a routerLink="/enfants/{{ item.id }}/edit" class="btn btn-success"
+          >Modifier</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

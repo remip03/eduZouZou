@@ -1,0 +1,42 @@
+<form [formGroup]="enfant" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="lastNameE">Nom </label>
+    <input
+      type="text"
+      class="form-control"
+      id="lastNameE"
+      formControlName="lastNameE"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="firstNameE">Prénom</label>
+    <input
+      type="text"
+      class="form-control"
+      id="firstNameE"
+      formControlName="firstNameE"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="birthDateE">Date de naissance</label>
+    <input
+      type="date"
+      class="form-control"
+      id="birthDateE"
+      formControlName="birthDateE"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="classeId">Classe</label>
+    <select class="form-control" id="classeId" formControlName="classeId">
+      <option *ngFor="let classe of classes" [value]="classe.id">
+        {{ classe.nameCl }}
+      </option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Ajouter</button>
+  <a routerLink="/enfants" class="btn btn-secondary">Retour</a>
+</form>

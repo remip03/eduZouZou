@@ -1,10 +1,11 @@
-import { EcoleService } from './../../../../services/ecole.service';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { ClasseService } from '../../../../services/classe.service';
-import Ecole from '../../../../models/ecole.modelt';
+import Ecole from '../../../models/ecole.modelt';
+import { ClasseService } from '../../../services/classe.service';
+import { EcoleService } from '../../../services/ecole.service';
+
 
 @Component({
   selector: 'app-add-classe',

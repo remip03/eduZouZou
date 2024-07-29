@@ -17,8 +17,12 @@ import { UpdateEcoleComponent } from './pages/ecoles/update-ecole/update-ecole.c
 import { CoursComponent } from './pages/cours/cours.component';
 import { ClassesComponent } from './pages/classes/classes.component';
 import { ClasseComponent } from './pages/classes/classe/classe.component';
-import { UpdateClasseComponent } from './pages/classes/classe/update-classe/update-classe.component';
-import { AddClasseComponent } from './pages/classes/classe/add-classe/add-classe.component';
+import { EnfantsComponent } from './pages/enfants/enfants.component';
+import { EnfantComponent } from './pages/enfants/enfant/enfant.component';
+import { UpdateEnfantComponent } from './pages/enfants/update-enfant/update-enfant.component';
+import { AddEnfantComponent } from './pages/enfants/add-enfant/add-enfant.component';
+import { UpdateClasseComponent } from './pages/classes/update-classe/update-classe.component';
+import { AddClasseComponent } from './pages/classes/add-classe/add-classe.component';
 
 export const routes: Routes = [
 
@@ -43,6 +47,16 @@ export const routes: Routes = [
   { path: 'classes/:id/edit', component: UpdateClasseComponent },
 
   { path: 'newClasse', component: AddClasseComponent },
+
+  // Chemin pour les enfants
+  { path: 'enfants', component: EnfantsComponent },
+
+  { path: 'enfants/:id', component: EnfantComponent },
+
+  { path: 'enfants/:id/edit', component: UpdateEnfantComponent },
+
+  { path: 'newEnfant', component: AddEnfantComponent },
+
 
   { path: 'activites', component: ActivitesComponent },
 
