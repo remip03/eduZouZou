@@ -15,6 +15,8 @@ import { ResultatsComponent } from './pages/profil/resultats/resultats.component
 import { AddEcoleComponent } from './pages/ecoles/add-ecole/add-ecole.component';
 import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
+import { CreateActiviteComponent } from './pages/classe/activites/create-activite/create-activite.component';
+import { UpdateActiviteComponent } from './pages/classe/activites/update-activite/update-activite.component';
 
 export const routes: Routes = [
 
@@ -24,11 +26,12 @@ export const routes: Routes = [
   {path: 'classes', component: ClasseComponent},
 
   {path: 'activites', component: ActivitesComponent},
+  {path: 'creerActivites', component: CreateActiviteComponent},
+  {path: 'activites/:id', component: UpdateActiviteComponent},
 
   {path: 'cours', component: CoursComponent},
 
   {path: 'ecoles', component: EcolesComponent},
-
   { path: 'ecoles/:id', component: EcoleComponent },
 
   { path: 'newEcole', component: AddEcoleComponent },

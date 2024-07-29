@@ -13,23 +13,23 @@ export class RessourceService {
   constructor(private httpClient: HttpClient) { }
 
   getRessources() : Observable<Ressource[]>{
-    return this.httpClient.get<Ressource[]>(`${this.ezURL}/Ressource`)
+    return this.httpClient.get<Ressource[]>(`${this.ezURL}/Ressources`)
   }
 
   getRessource(id: number) : Observable<Ressource>{
-    return this.httpClient.get<Ressource>(`${this.ezURL}/Ressource/${id}`)
+    return this.httpClient.get<Ressource>(`${this.ezURL}/Ressources/${id}`)
   }
 
   addRessource(ressource: Ressource): Observable<Ressource>{
-    return this.httpClient.post<Ressource>(`${this.ezURL}/Ressource`, ressource)
+    return this.httpClient.post<Ressource>(`${this.ezURL}/Ressources`, ressource)
   }
 
   updateRessource(ressource: Ressource): Observable<Ressource>{
-    return this.httpClient.put<Ressource>(`${this.ezURL}/Ressource/${ressource.id}`, ressource)
+    return this.httpClient.put<Ressource>(`${this.ezURL}/Ressources/${ressource.id}`, ressource)
   }
 
   deleteRessource (id: number): Observable<Ressource>{
-    return this.httpClient.delete<Ressource>(`${this.ezURL}/Ressource/${id}`)
+    return this.httpClient.delete<Ressource>(`${this.ezURL}/Ressources/${id}`)
   }
 
 }
