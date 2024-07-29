@@ -1,8 +1,8 @@
 nelmio_api_doc:
     documentation:
         info:
-            title: Books
-            description: Une APi d'opérations CRUD sur les livres
+            title: EduZouzou
+            description: Une APi d'opérations CRUD sur une école
             version: 2.0.0
         paths:
             /api/login_check:

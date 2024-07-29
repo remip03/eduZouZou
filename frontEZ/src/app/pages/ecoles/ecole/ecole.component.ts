@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EcoleService } from '../../../services/ecole.service';
 import Ecole from '../../../models/ecole.modelt';
-import { EcoleDetailsComponent } from './ecole-details/ecole-details.component';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-ecole',
   standalone: true,
-  imports: [EcoleDetailsComponent],
+  imports: [RouterLink, CommonModule],
   templateUrl: './ecole.component.html',
   styleUrl: './ecole.component.css'
 })
 export class EcoleComponent implements OnInit {
   detail!: Ecole; // Propriété pour stocker les détails de l'école
+  role: string | null = null; // Propriété pour stocker le rôle de l'utilisateur
 
-  // Constructeur du composant, injecte Router, ActivatedRoute et EcoleService
+  // Constructeur du composant, injecte Router, ActivatedRoute, EcoleService et AuthService
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private ecoleService: EcoleService
+    private ecoleService: EcoleService,
+    private authService: AuthService
   ) { }
 
 
@@ -41,6 +44,28 @@ export class EcoleComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id') // Récupère l'id de l'ecole depuis les paramètres de la route
     this.setSubscribe(id); // Appel la méthode setSubscribe avec l'id récupéré
+    this.role = this.authService.getRole(); // Récupère le rôle de l'utilisateur depuis le AuthService
+  }
+
+  // Méthode pour confirmer la suppression de l'école
+  confirmDelete(): void {
+    // Affiche une boîte de dialogue de confirmation
+    if (confirm('Êtes vous sûr de vouloir supprimer l\'école ??')) {
+      // Si l'utilisateur confirme, appelle la méthode deleteEcole
+      this.deleteEcole();
+    }
+  }
+
+  // Méthode pour supprimer l'école
+  deleteEcole(): void {
+    // Vérifie si l'école est défini
+    if (this.detail) {
+      // Appelle le service pour supprimer l'école et s'abonne à la réponse
+      this.ecoleService.deleteEcole(this.detail.id).subscribe(() => {
+        // Redirige vers la liste des ecoles après la suppression
+        this.router.navigate(['/ecoles']);
+      });
+    }
   }
 
 }
