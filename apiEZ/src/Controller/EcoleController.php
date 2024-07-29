@@ -44,7 +44,7 @@ class EcoleController extends AbstractController
 
         // Récupération des données depuis le cache ou exécution de la requête si le cache est vide
         $jsonEcoleList = $cache->get($idCache, function (ItemInterface $item) use ($ecoleRepository, $serializer) {
-            $item->tag("ecolesCache");
+            $item->tag("classesCache");
             $ecoleList = $ecoleRepository->findAll();
             $context = SerializationContext::create()->setGroups(['getClasses']);
             return $serializer->serialize($ecoleList, 'json', $context);
@@ -111,7 +111,7 @@ class EcoleController extends AbstractController
         responses: [
             new OA\Response(
                 response: 201,
-                description: "École créée avec succès",
+                description: "Éecole créée avec succès",
                 content: new OA\JsonContent(
                     type: "object",
                     properties: [

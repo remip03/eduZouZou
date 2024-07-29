@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Classe;
 use App\Entity\Ecole;
+use App\Entity\Enfant;
 use App\Entity\Message;
 use App\Entity\Messagerie;
 use App\Entity\User;
@@ -20,18 +21,17 @@ class AppFixtures extends Fixture
     {
         $this->userPasswordHasher = $userPasswordHasher;
     }
+
     public function load(ObjectManager $manager): void
     {
+
         //creation user admin
         $user = new User();
         $listUser[] = $user;
-        $ecole = new Ecole();
-        $listEcoles[] = $ecole;
         $message = new Message;
         $listMessages[] = $message;
         $messagerie = new Messagerie();
         $listMessagerie[] = $messagerie;
-
         $listMessages = [];
 
         $message = new Message;
@@ -63,17 +63,17 @@ class AppFixtures extends Fixture
 
         $manager->persist($user);
 
-        $listEcoles = [];
+        // Créations des écoles
+        $listEcole = [];
         for ($i = 0; $i < 5; $i++) {
             $ecole = new Ecole();
             $ecole->setNameEc('Ecole ' . $i);
             $ecole->setAdresseEc('Adresse école ' . $i);
             $ecole->setTelEc('Tel école ' . $i);
             $ecole->setMailEc('Mail école ' . $i);
-
-
-
             $manager->persist($ecole);
+
+            $listEcole[] = $ecole;
         }
 
         // Créations des classes
@@ -82,16 +82,20 @@ class AppFixtures extends Fixture
             $classe->setNameCl('Classe ' . $i);
             $classe->setNiveauCl('Niveau ' . $i);
             $classe->setAnneeCl(new \DateTimeImmutable());
+            $classe->setEcole($listEcole[array_rand($listEcole)]);
             $manager->persist($classe);
+
+            $listClasse[] = $classe;
         }
 
-        for ($i = 0; $i < 5; $i++) {
-            $message = new Message;
-            $message->setContent('hello world'.$i);
-            $message->setDestinataire('john doe'.$i);
-            $message->setExpediteur('bob marley'.$i);
-            $manager->persist($message);
-
+        // Créations des enfants
+        for ($i = 0; $i < 100; $i++) {
+            $enfant = new Enfant();
+            $enfant->setLastNameE('Enfant ' . $i);
+            $enfant->setFirstNameE('Prénom ' . $i);
+            $enfant->setBirthDateE(new \DateTimeImmutable());
+            $enfant->setClasse($listClasse[array_rand($listClasse)]);
+            $manager->persist($enfant);
         }
 
         $manager->flush();

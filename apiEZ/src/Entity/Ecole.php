@@ -19,7 +19,7 @@ use Hateoas\Configuration\Annotation as Hateoas;
  *     ),
  *     exclusion = @Hateoas\Exclusion(groups = "getClasses"),
  * )
- *
+ * 
  * @Hateoas\Relation(
  *    "delete",
  *   href = @Hateoas\Route(
@@ -28,7 +28,7 @@ use Hateoas\Configuration\Annotation as Hateoas;
  *     ),
  *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
  * )
- *
+ * 
  * @Hateoas\Relation(
  *    "update",
  *   href = @Hateoas\Route(
@@ -37,7 +37,7 @@ use Hateoas\Configuration\Annotation as Hateoas;
  *     ),
  *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
  * )
- *
+ * 
  */
 
 #[ORM\Entity(repositoryClass: EcoleRepository::class)]

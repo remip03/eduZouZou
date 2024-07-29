@@ -4,7 +4,6 @@ title "Diagramme d'activité se connecter"
 |#SkyBlue|s| Site
 |#RoyalBlue|Serveur|
 
-   
 |Super Administrateur|
 start
 :se connecter;
@@ -12,303 +11,303 @@ start
 :affiche fenetre connexion;
 |Super Administrateur|
 repeat
-fork
-:entrer mail ou pseudo;
-fork again
-:entrer mot de passe;
-end fork
-:valider connexion;
- |Serveur|
- :vérifie base de donnée;
-|Super Administrateur|
-backward: réessayer mot de passe;
-repeatwhile (mot de passe correct) is (non) not (oui)
-|Serveur|
- :connexion au site;
- |s|
- :affiche page d'accueil et dashboard super admin;
- |Super Administrateur|
- :connecté;
+    fork
+        :entrer mail ou pseudo;
+    fork again
+        :entrer mot de passe;
+    end fork
+    :valider connexion;
+    |Serveur|
+    :vérifie base de donnée;
+    |Super Administrateur|
+    backward: réessayer mot de passe;
+    repeatwhile (mot de passe correct) is (non) not (oui)
+    |Serveur|
+    :connexion au site;
+    |s|
+    :affiche page d'accueil et dashboard super admin;
+    |Super Administrateur|
+    :connecté;
 
- end
-
-
+    end
 
 
 
-@enduml
-
-@startuml ajout compte
-
-title "Diagramme d'activité ajout compte admin"
-|#4C7D4C|Super Administrateur|
-|#Palegreen|s| Site
-|#395E39|Serveur|
 
 
+    @enduml
 
-      |Super Administrateur|
+    @startuml ajout compte
+
+    title "Diagramme d'activité ajout compte admin"
+    |#4C7D4C|Super Administrateur|
+    |#Palegreen|s| Site
+    |#395E39|Serveur|
+
+
+
+    |Super Administrateur|
     start
     :se connecte;
-     |Serveur|
+    |Serveur|
     :interroge database;
     |s|
- :affiche page d'accueil et dashboard super admin;
-  |Super Administrateur|
+    :affiche page d'accueil et dashboard super admin;
+    |Super Administrateur|
 
-  
+
     :Clique sur le bouton de gestion de compte admin;
     |s|
-    :affiche fenêtre gestion de compte;  
-    
-   
+    :affiche fenêtre gestion de compte;
+
+
     |Super Administrateur|
-    :choisit ajouter compte;   
-   
-   
+    :choisit ajouter compte;
+
+
     |s|
     :affiche formulaire d'ajout;
     |Super Administrateur|
     repeat
-    :remplit formulaire;  
-    backward: corriger erreurs;
-repeatwhile (formulaire conforme) is (non) not (oui)  
-    :valide; 
-    |Serveur|
-    :enregistre et envoie notification;
-    
-    |Super Administrateur|
-    :Message de succès;
-    end
+        :remplit formulaire;
+        backward: corriger erreurs;
+        repeatwhile (formulaire conforme) is (non) not (oui)
+        :valide;
+        |Serveur|
+        :enregistre et envoie notification;
+
+        |Super Administrateur|
+        :Message de succès;
+        end
 
 
-@enduml
+        @enduml
 
-@startuml modification compte
+        @startuml modification compte
 
-title "Diagramme d'activité mofification compte admin"
-|#4C7D4C|Super Administrateur|
-|#Palegreen|s| Site
-|#395E39|Serveur|
-
-
-
-    |Super Administrateur|
-    start
-    :se connecte;
-     |Serveur|
-    :interroge database;
-    |s|
- :affiche page d'accueil et dashboard super admin;
-  |Super Administrateur|
-
-  
-    :Clique sur le bouton de gestion de compte admin;
-    |s|
-    :affiche fenêtre gestion de compte;  
-    
-   
-    |Super Administrateur|
-    :choisit modifier compte;   
-   
-    |Serveur|
-    :recupère data;
-    |s|
-    :affiche formulaire modification pré remplit;
-    |Super Administrateur|
-    repeat
-    :remplit formulaire;  
-    backward: corriger erreurs;
-repeatwhile (formulaire conforme) is (non) not (oui)  
-    :valide; 
-    |Serveur|
-    :enregistre et envoie notification;
-    
-    |Super Administrateur|
-    :Message de succès;
-    end
-
-
-@enduml
-
-@startuml supprimer compte
-
-title "Diagramme d'activité suppression compte admin"
-|#4C7D4C|Super Administrateur|
-|#Palegreen|s| Site
-|#395E39|Serveur|
+        title "Diagramme d'activité mofification compte admin"
+        |#4C7D4C|Super Administrateur|
+        |#Palegreen|s| Site
+        |#395E39|Serveur|
 
 
 
-      |Super Administrateur|
-    start
-    :se connecte;
-     |Serveur|
-    :interroge database;
-    |s|
- :affiche page d'accueil et dashboard super admin;
-  |Super Administrateur|
-
-  
-    :Clique sur le bouton de gestion de compte admin;
-    |s|
-    :affiche fenêtre gestion de compte;  
-    
-   
-    |Super Administrateur|
-    :choisit supprimer compte;   
-   
-   
-    |s|
-    :affiche formulaire de suppression;
-    |Super Administrateur|
-    repeat
-    :remplit formulaire;  
-    backward: corriger erreurs;
-repeatwhile (formulaire conforme) is (non) not (oui)  
-    :valide; 
-    |Serveur|
-    :enregistre et envoie notification;
-    
-    |Super Administrateur|
-    :Message de succès;
-    end
+        |Super Administrateur|
+        start
+        :se connecte;
+        |Serveur|
+        :interroge database;
+        |s|
+        :affiche page d'accueil et dashboard super admin;
+        |Super Administrateur|
 
 
-@enduml
+        :Clique sur le bouton de gestion de compte admin;
+        |s|
+        :affiche fenêtre gestion de compte;
 
-@startuml ajout école
 
-title "Diagramme d'activité ajout école"
-|#Orange|Super Administrateur|
-|#OrangeRed|s| Site
-|#DarkRed|Serveur|
+        |Super Administrateur|
+        :choisit modifier compte;
 
- |Super Administrateur|
-    start
-    :se connecte;
-     |Serveur|
-    :interroge database;
-    |s|
- :affiche page d'accueil et dashboard super admin;
-  |Super Administrateur|
+        |Serveur|
+        :recupère data;
+        |s|
+        :affiche formulaire modification pré remplit;
+        |Super Administrateur|
+        repeat
+            :remplit formulaire;
+            backward: corriger erreurs;
+            repeatwhile (formulaire conforme) is (non) not (oui)
+            :valide;
+            |Serveur|
+            :enregistre et envoie notification;
 
-  
-    :Clique sur le bouton de gestion des écoles;
-    |s|
-    :affiche fenêtre gestion école;  
-    
-   
-    |Super Administrateur|
-    :choisit ajouter école;   
-   
-   
-    |s|
-    :affiche formulaire d'ajout;
-    |Super Administrateur|
-    repeat
-    :remplit formulaire;  
-    backward: corriger erreurs;
-repeatwhile (formulaire conforme) is (non) not (oui)  
-    :valide; 
-    |Serveur|
-    :enregistre et envoie notification;
-    
-    |Super Administrateur|
-    :Message de succès;
-    end
-@enduml
+            |Super Administrateur|
+            :Message de succès;
+            end
 
-@startuml modification école
 
-title "Diagramme d'activité mofification école adin"
-|#Orange|Super Administrateur|
-|#OrangeRed|s| Site
-|#DarkRed|Serveur|
+            @enduml
+
+            @startuml supprimer compte
+
+            title "Diagramme d'activité suppression compte admin"
+            |#4C7D4C|Super Administrateur|
+            |#Palegreen|s| Site
+            |#395E39|Serveur|
 
 
 
-    |Super Administrateur|
-    start
-    :se connecte;
-     |Serveur|
-    :interroge database;
-    |s|
- :affiche page d'accueil et dashboard super admin;
-  |Super Administrateur|
-
-  
-    :Clique sur le bouton de gestion  école ;
-    |s|
-    :affiche fenêtre gestion de école;  
-    
-   
-    |Super Administrateur|
-    :choisit modifier école;   
-   
-    |Serveur|
-    :recupère data;
-    |s|
-    :affiche formulaire modification pré remplit;
-    |Super Administrateur|
-    repeat
-    :remplit formulaire;  
-    backward: corriger erreurs;
-repeatwhile (formulaire conforme) is (non) not (oui)  
-    :valide; 
-    |Serveur|
-    :enregistre et envoie notification;
-    
-    |Super Administrateur|
-    :Message de succès;
-    end
+            |Super Administrateur|
+            start
+            :se connecte;
+            |Serveur|
+            :interroge database;
+            |s|
+            :affiche page d'accueil et dashboard super admin;
+            |Super Administrateur|
 
 
-@enduml
-
-@startuml supprimer école
-
-title "Diagramme d'activité suppression école"
-|#Orange|Super Administrateur|
-|#OrangeRed|s| Site
-|#DarkRed|Serveur|
+            :Clique sur le bouton de gestion de compte admin;
+            |s|
+            :affiche fenêtre gestion de compte;
 
 
-
-      |Super Administrateur|
-    start
-    :se connecte;
-     |Serveur|
-    :interroge database;
-    |s|
- :affiche page d'accueil et dashboard super admin;
-  |Super Administrateur|
-
-  
-    :Clique sur le bouton de gestion école;
-    |s|
-    :affiche fenêtre gestion école;  
-    
-   
-    |Super Administrateur|
-    :choisit supprimer école;   
-   
-   
-    |s|
-    :affiche formulaire de suppression;
-    |Super Administrateur|
-    repeat
-    :remplit formulaire;  
-    backward: corriger erreurs;
-repeatwhile (formulaire conforme) is (non) not (oui)  
-    :valide; 
-    |Serveur|
-    :enregistre et envoie notification;
-    
-    |Super Administrateur|
-    :Message de succès;
-    end
+            |Super Administrateur|
+            :choisit supprimer compte;
 
 
-@enduml
+            |s|
+            :affiche formulaire de suppression;
+            |Super Administrateur|
+            repeat
+                :remplit formulaire;
+                backward: corriger erreurs;
+                repeatwhile (formulaire conforme) is (non) not (oui)
+                :valide;
+                |Serveur|
+                :enregistre et envoie notification;
+
+                |Super Administrateur|
+                :Message de succès;
+                end
+
+
+                @enduml
+
+                @startuml ajout école
+
+                title "Diagramme d'activité ajout école"
+                |#Orange|Super Administrateur|
+                |#OrangeRed|s| Site
+                |#DarkRed|Serveur|
+
+                |Super Administrateur|
+                start
+                :se connecte;
+                |Serveur|
+                :interroge database;
+                |s|
+                :affiche page d'accueil et dashboard super admin;
+                |Super Administrateur|
+
+
+                :Clique sur le bouton de gestion des écoles;
+                |s|
+                :affiche fenêtre gestion école;
+
+
+                |Super Administrateur|
+                :choisit ajouter école;
+
+
+                |s|
+                :affiche formulaire d'ajout;
+                |Super Administrateur|
+                repeat
+                    :remplit formulaire;
+                    backward: corriger erreurs;
+                    repeatwhile (formulaire conforme) is (non) not (oui)
+                    :valide;
+                    |Serveur|
+                    :enregistre et envoie notification;
+
+                    |Super Administrateur|
+                    :Message de succès;
+                    end
+                    @enduml
+
+                    @startuml modification école
+
+                    title "Diagramme d'activité mofification école adin"
+                    |#Orange|Super Administrateur|
+                    |#OrangeRed|s| Site
+                    |#DarkRed|Serveur|
+
+
+
+                    |Super Administrateur|
+                    start
+                    :se connecte;
+                    |Serveur|
+                    :interroge database;
+                    |s|
+                    :affiche page d'accueil et dashboard super admin;
+                    |Super Administrateur|
+
+
+                    :Clique sur le bouton de gestion  école ;
+                    |s|
+                    :affiche fenêtre gestion de école;
+
+
+                    |Super Administrateur|
+                    :choisit modifier école;
+
+                    |Serveur|
+                    :recupère data;
+                    |s|
+                    :affiche formulaire modification pré remplit;
+                    |Super Administrateur|
+                    repeat
+                        :remplit formulaire;
+                        backward: corriger erreurs;
+                        repeatwhile (formulaire conforme) is (non) not (oui)
+                        :valide;
+                        |Serveur|
+                        :enregistre et envoie notification;
+
+                        |Super Administrateur|
+                        :Message de succès;
+                        end
+
+
+                        @enduml
+
+                        @startuml supprimer école
+
+                        title "Diagramme d'activité suppression école"
+                        |#Orange|Super Administrateur|
+                        |#OrangeRed|s| Site
+                        |#DarkRed|Serveur|
+
+
+
+                        |Super Administrateur|
+                        start
+                        :se connecte;
+                        |Serveur|
+                        :interroge database;
+                        |s|
+                        :affiche page d'accueil et dashboard super admin;
+                        |Super Administrateur|
+
+
+                        :Clique sur le bouton de gestion école;
+                        |s|
+                        :affiche fenêtre gestion école;
+
+
+                        |Super Administrateur|
+                        :choisit supprimer école;
+
+
+                        |s|
+                        :affiche formulaire de suppression;
+                        |Super Administrateur|
+                        repeat
+                            :remplit formulaire;
+                            backward: corriger erreurs;
+                            repeatwhile (formulaire conforme) is (non) not (oui)
+                            :valide;
+                            |Serveur|
+                            :enregistre et envoie notification;
+
+                            |Super Administrateur|
+                            :Message de succès;
+                            end
+
+
+                            @enduml
 

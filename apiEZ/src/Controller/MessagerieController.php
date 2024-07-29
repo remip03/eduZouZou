@@ -81,9 +81,9 @@ class MessagerieController extends AbstractController
     {
         $cachePool->invalidateTags(["messageriesCache"]);
         // Récupération des messages de la messagerie
-        $messages = $messageRepository->findBy(['messagerie' => $messagerie]);
+        $message = $messageRepository->findBy(['messagerie' => $messagerie]);
         // Suppression des messages de la messagerie
-        foreach ($messages as $message) {
+        foreach ($message as $message) {
             $entityManager->remove($message);
         }
         // Suppression de la messagerie
@@ -215,7 +215,3 @@ class MessagerieController extends AbstractController
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> backJeremy

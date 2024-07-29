@@ -17,8 +17,6 @@ class Messagerie
     #[ORM\Column( nullable: true)]
     private ?int $id = null;
 
-
-
     /**
      * @var Collection<int, User>
      */
@@ -27,10 +25,6 @@ class Messagerie
 
     #[ORM\ManyToOne(inversedBy: 'messages',cascade:['remove'])]
     private ?Message $messages = null;
-
-
-
-
 
     public function __construct()
     {
