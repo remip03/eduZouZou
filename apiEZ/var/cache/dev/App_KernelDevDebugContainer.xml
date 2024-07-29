@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
   <parameters>
+<<<<<<< HEAD
     <parameter key="kernel.project_dir">C:\Users\Admin\Desktop\eduZouZou\apiEZ</parameter>
+=======
+    <parameter key="kernel.project_dir">C:\Users\admin\Desktop\eduZouZou\apiEZ</parameter>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     <parameter key="kernel.environment">dev</parameter>
     <parameter key="kernel.runtime_environment">%env(default:kernel.environment:APP_RUNTIME_ENV)%</parameter>
     <parameter key="kernel.runtime_mode">%env(query_string:default:container.runtime_mode:APP_RUNTIME_MODE)%</parameter>
@@ -9,9 +13,15 @@
     <parameter key="kernel.runtime_mode.cli">%env(not:default:kernel.runtime_mode.web:)%</parameter>
     <parameter key="kernel.runtime_mode.worker">%env(bool:default::key:worker:default:kernel.runtime_mode:)%</parameter>
     <parameter key="kernel.debug">true</parameter>
+<<<<<<< HEAD
     <parameter key="kernel.build_dir">C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev</parameter>
     <parameter key="kernel.cache_dir">C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev</parameter>
     <parameter key="kernel.logs_dir">C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\log</parameter>
+=======
+    <parameter key="kernel.build_dir">C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev</parameter>
+    <parameter key="kernel.cache_dir">C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev</parameter>
+    <parameter key="kernel.logs_dir">C:\Users\admin\Desktop\eduZouZou\apiEZ\var\log</parameter>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
@@ -30,6 +40,7 @@
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
+<<<<<<< HEAD
         <parameter key="path">C:\Users\Admin\Desktop\eduZouZou\apiEZ\vendor\symfony\framework-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\FrameworkBundle</parameter>
       </parameter>
@@ -83,6 +94,61 @@
       </parameter>
       <parameter key="SensioFrameworkExtraBundle" type="collection">
         <parameter key="path">C:\Users\Admin\Desktop\eduZouZou\apiEZ\vendor\sensio\framework-extra-bundle\src</parameter>
+=======
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\symfony\framework-bundle</parameter>
+        <parameter key="namespace">Symfony\Bundle\FrameworkBundle</parameter>
+      </parameter>
+      <parameter key="MakerBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\symfony\maker-bundle\src</parameter>
+        <parameter key="namespace">Symfony\Bundle\MakerBundle</parameter>
+      </parameter>
+      <parameter key="DoctrineBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\doctrine\doctrine-bundle</parameter>
+        <parameter key="namespace">Doctrine\Bundle\DoctrineBundle</parameter>
+      </parameter>
+      <parameter key="DoctrineMigrationsBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\doctrine\doctrine-migrations-bundle</parameter>
+        <parameter key="namespace">Doctrine\Bundle\MigrationsBundle</parameter>
+      </parameter>
+      <parameter key="DoctrineFixturesBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\doctrine\doctrine-fixtures-bundle</parameter>
+        <parameter key="namespace">Doctrine\Bundle\FixturesBundle</parameter>
+      </parameter>
+      <parameter key="SecurityBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\symfony\security-bundle</parameter>
+        <parameter key="namespace">Symfony\Bundle\SecurityBundle</parameter>
+      </parameter>
+      <parameter key="LexikJWTAuthenticationBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\lexik\jwt-authentication-bundle</parameter>
+        <parameter key="namespace">Lexik\Bundle\JWTAuthenticationBundle</parameter>
+      </parameter>
+      <parameter key="JMSSerializerBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\jms\serializer-bundle</parameter>
+        <parameter key="namespace">JMS\SerializerBundle</parameter>
+      </parameter>
+      <parameter key="BazingaHateoasBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\willdurand\hateoas-bundle</parameter>
+        <parameter key="namespace">Bazinga\Bundle\HateoasBundle</parameter>
+      </parameter>
+      <parameter key="NelmioApiDocBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\nelmio\api-doc-bundle</parameter>
+        <parameter key="namespace">Nelmio\ApiDocBundle</parameter>
+      </parameter>
+      <parameter key="TwigBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\symfony\twig-bundle</parameter>
+        <parameter key="namespace">Symfony\Bundle\TwigBundle</parameter>
+      </parameter>
+      <parameter key="TwigExtraBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\twig\extra-bundle</parameter>
+        <parameter key="namespace">Twig\Extra\TwigExtraBundle</parameter>
+      </parameter>
+      <parameter key="NelmioCorsBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\nelmio\cors-bundle</parameter>
+        <parameter key="namespace">Nelmio\CorsBundle</parameter>
+      </parameter>
+      <parameter key="SensioFrameworkExtraBundle" type="collection">
+        <parameter key="path">C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\sensio\framework-extra-bundle\src</parameter>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
         <parameter key="namespace">Sensio\Bundle\FrameworkExtraBundle</parameter>
       </parameter>
     </parameter>
@@ -119,16 +185,28 @@
     <parameter key="asset.request_context.base_path">null</parameter>
     <parameter key="asset.request_context.secure">null</parameter>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
+<<<<<<< HEAD
     <parameter key="debug.container.dump">C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/App_KernelDevDebugContainer.xml</parameter>
+=======
+    <parameter key="debug.container.dump">C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/App_KernelDevDebugContainer.xml</parameter>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     <parameter key="router.request_context.host">localhost</parameter>
     <parameter key="router.request_context.scheme">http</parameter>
     <parameter key="router.request_context.base_url"></parameter>
     <parameter key="router.resource">kernel::loadRoutes</parameter>
+<<<<<<< HEAD
     <parameter key="router.cache_dir">C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev</parameter>
     <parameter key="request_listener.http_port">80</parameter>
     <parameter key="request_listener.https_port">443</parameter>
     <parameter key="serializer.mapping.cache.file">C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/serialization.php</parameter>
     <parameter key="cache.prefix.seed">_C:\Users\Admin\Desktop\eduZouZou\apiEZ.App_KernelDevDebugContainer</parameter>
+=======
+    <parameter key="router.cache_dir">C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev</parameter>
+    <parameter key="request_listener.http_port">80</parameter>
+    <parameter key="request_listener.https_port">443</parameter>
+    <parameter key="serializer.mapping.cache.file">C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/serialization.php</parameter>
+    <parameter key="cache.prefix.seed">_C:\Users\admin\Desktop\eduZouZou\apiEZ.App_KernelDevDebugContainer</parameter>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     <parameter key="session.metadata.storage_key">_sf2_meta</parameter>
     <parameter key="session.storage.options" type="collection">
       <parameter key="cache_limiter" type="string">0</parameter>
@@ -139,7 +217,11 @@
     </parameter>
     <parameter key="session.save_path">null</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
+<<<<<<< HEAD
     <parameter key="validator.mapping.cache.file">C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/validation.php</parameter>
+=======
+    <parameter key="validator.mapping.cache.file">C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/validation.php</parameter>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     <parameter key="validator.translation_domain">validators</parameter>
     <parameter key="data_collector.templates" type="collection"/>
     <parameter key="doctrine.dbal.configuration.class">Doctrine\DBAL\Configuration</parameter>
@@ -206,7 +288,11 @@
     <parameter key="doctrine.orm.second_level_cache.regions_configuration.class">Doctrine\ORM\Cache\RegionsConfiguration</parameter>
     <parameter key="doctrine.orm.auto_generate_proxy_classes">true</parameter>
     <parameter key="doctrine.orm.enable_lazy_ghost_objects">true</parameter>
+<<<<<<< HEAD
     <parameter key="doctrine.orm.proxy_dir">C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/doctrine/orm/Proxies</parameter>
+=======
+    <parameter key="doctrine.orm.proxy_dir">C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/doctrine/orm/Proxies</parameter>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     <parameter key="doctrine.orm.proxy_namespace">Proxies</parameter>
     <parameter key="doctrine.migrations.preferred_em">null</parameter>
     <parameter key="doctrine.migrations.preferred_connection">null</parameter>
@@ -238,7 +324,11 @@
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
     </parameter>
+<<<<<<< HEAD
     <parameter key="twig.default_path">C:\Users\Admin\Desktop\eduZouZou\apiEZ/templates</parameter>
+=======
+    <parameter key="twig.default_path">C:\Users\admin\Desktop\eduZouZou\apiEZ/templates</parameter>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     <parameter key="nelmio_cors.map" type="collection">
       <parameter key="^/" type="collection"/>
     </parameter>
@@ -491,7 +581,11 @@
       </argument>
     </service>
     <service id="http_cache.store" class="Symfony\Component\HttpKernel\HttpCache\Store">
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/http_cache</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/http_cache</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     </service>
     <service id="url_helper" class="Symfony\Component\HttpFoundation\UrlHelper">
       <argument type="service" id="request_stack"/>
@@ -501,7 +595,11 @@
       <tag name="container.no_preload"/>
       <argument type="tagged_iterator" tag="kernel.cache_warmer"/>
       <argument>true</argument>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/App_KernelDevDebugContainerDeprecations.log</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/App_KernelDevDebugContainerDeprecations.log</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     </service>
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer">
       <argument type="tagged_iterator" tag="kernel.cache_clearer"/>
@@ -689,7 +787,11 @@
       </argument>
       <argument>UTF-8</argument>
       <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service">
         <service>
           <argument type="service" id="request_stack"/>
@@ -725,7 +827,11 @@
       <tag name="console.command"/>
       <tag name="container.no_preload"/>
       <argument type="service" id="filesystem"/>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <call method="setName">
         <argument>assets:install</argument>
       </call>
@@ -905,7 +1011,11 @@
       <tag name="console.command"/>
       <tag name="container.no_preload"/>
       <argument>dev</argument>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <call method="setName">
         <argument>debug:dotenv</argument>
       </call>
@@ -1065,9 +1175,15 @@
     <service id="cache.app" class="Symfony\Component\Cache\Adapter\FilesystemAdapter" public="true">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
+<<<<<<< HEAD
       <argument>KiiDsiHZl4</argument>
       <argument>0</argument>
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/app</argument>
+=======
+      <argument>rFLbP-XHX5</argument>
+      <argument>0</argument>
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/app</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="logger" on-invalid="ignore"/>
@@ -1080,50 +1196,85 @@
     <service id="cache.system" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="true">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
+<<<<<<< HEAD
       <argument>YzKlAzPoz2</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+=======
+      <argument>COpITpdvT9</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.validator" class="Symfony\Component\Cache\Adapter\AdapterInterface">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
+<<<<<<< HEAD
       <argument>nB1MTmwKGb</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+=======
+      <argument>lY1yLShUW9</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.serializer" class="Symfony\Component\Cache\Adapter\AdapterInterface">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
+<<<<<<< HEAD
       <argument>uzyC+Zocbv</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+=======
+      <argument>gE5i64ljU5</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.annotations" class="Symfony\Component\Cache\Adapter\AdapterInterface">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
+<<<<<<< HEAD
       <argument>S1Wzc0Vyj3</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+=======
+      <argument>ttyCL62HjT</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.property_info" class="Symfony\Component\Cache\Adapter\AdapterInterface">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
+<<<<<<< HEAD
       <argument>BNpDvOvEta</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+=======
+      <argument>yuQfMjRaCR</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -1133,7 +1284,11 @@
       <argument></argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -1152,7 +1307,11 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/app</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/app</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="logger" on-invalid="ignore"/>
@@ -1855,7 +2014,11 @@
       <argument type="service" id=".service_locator.PvoQzFT.router.default"/>
       <argument>kernel::loadRoutes</argument>
       <argument type="collection">
+<<<<<<< HEAD
         <argument key="cache_dir">C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev</argument>
+=======
+        <argument key="cache_dir">C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\CompiledUrlGenerator</argument>
         <argument key="generator_dumper_class">Symfony\Component\Routing\Generator\Dumper\CompiledUrlGeneratorDumper</argument>
@@ -1904,7 +2067,11 @@
       <argument type="service" id="request_stack"/>
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
       <argument type="service" id="logger" on-invalid="ignore"/>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument>true</argument>
     </service>
     <service id="Symfony\Bundle\FrameworkBundle\Controller\RedirectController" class="Symfony\Bundle\FrameworkBundle\Controller\RedirectController" public="true">
@@ -1932,7 +2099,11 @@
     </service>
     <service id="secrets.vault" class="Symfony\Bundle\FrameworkBundle\Secrets\SodiumVault">
       <tag name="container.env_var_loader"/>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ/config/secrets/%env(default:kernel.environment:APP_RUNTIME_ENV)%</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ/config/secrets/%env(default:kernel.environment:APP_RUNTIME_ENV)%</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="secrets.decryption_key" on-invalid="ignore"/>
     </service>
     <service id="secrets.decryption_key" class="Symfony\Component\String\LazyString" constructor="fromCallable">
@@ -1940,7 +2111,11 @@
       <argument>base64:default::SYMFONY_DECRYPTION_SECRET</argument>
     </service>
     <service id="secrets.local_vault" class="Symfony\Bundle\FrameworkBundle\Secrets\DotenvVault">
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ/.env.dev.local</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ/.env.dev.local</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     </service>
     <service id="serializer" class="Symfony\Component\Serializer\Serializer">
       <argument type="collection">
@@ -2049,10 +2224,17 @@
           </service>
         </argument>
       </argument>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/serialization.php</argument>
     </service>
     <service id="serializer.mapping.cache.symfony" class="Psr\Cache\CacheItemPoolInterface">
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/serialization.php</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/serialization.php</argument>
+    </service>
+    <service id="serializer.mapping.cache.symfony" class="Psr\Cache\CacheItemPoolInterface">
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/serialization.php</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="cache.serializer"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
@@ -2182,7 +2364,11 @@
       <argument>true</argument>
     </service>
     <service id="session.storage.factory.mock_file" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorageFactory">
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/sessions</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/sessions</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument>MOCKSESSID</argument>
       <argument type="service">
         <service class="Symfony\Component\HttpFoundation\Session\Storage\MetadataBag">
@@ -2269,10 +2455,17 @@
     <service id="validator.mapping.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\ValidatorCacheWarmer">
       <tag name="kernel.cache_warmer"/>
       <argument type="service" id="validator.builder"/>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/validation.php</argument>
     </service>
     <service id="validator.mapping.cache.adapter" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" constructor="create">
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/validation.php</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/validation.php</argument>
+    </service>
+    <service id="validator.mapping.cache.adapter" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" constructor="create">
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/validation.php</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="cache.validator"/>
     </service>
     <service id="validator.validator_factory" class="Symfony\Component\Validator\ContainerConstraintValidatorFactory">
@@ -2538,10 +2731,17 @@
     <service id="cache.validator_expression_language" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="true">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
+<<<<<<< HEAD
       <argument>FAlf9BJP3x</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+=======
+      <argument>gONgfZ8bfM</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -2576,8 +2776,13 @@
       <argument type="service" id="filesystem"/>
       <argument type="service" id="maker.autoloader_util"/>
       <argument type="service" id="maker.file_link_formatter"/>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ</argument>
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ/templates</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ</argument>
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ/templates</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     </service>
     <service id="maker.autoloader_finder" class="Symfony\Bundle\MakerBundle\Util\ComposerAutoloaderFinder">
       <argument>App</argument>
@@ -2749,7 +2954,11 @@
     </service>
     <service id="maker.maker.make_migration" class="Symfony\Bundle\MakerBundle\Maker\MakeMigration">
       <tag name="maker.command"/>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="maker.file_link_formatter"/>
     </service>
     <service id="maker.maker.make_stimulus_controller" class="Symfony\Bundle\MakerBundle\Maker\MakeStimulusController">
@@ -2946,7 +3155,11 @@
       <argument type="service" id="doctrine.debug_data_holder"/>
       <argument type="service" id="debug.stopwatch" on-invalid="null"/>
     </service>
+<<<<<<< HEAD
     <service id=".1_ServiceLocator~d5B07RM" class="Symfony\Component\DependencyInjection\ServiceLocator">
+=======
+    <service id=".1_ServiceLocator~FI50kwz" class="Symfony\Component\DependencyInjection\ServiceLocator">
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="collection"/>
     </service>
     <service id="doctrine.orm.proxy_cache_warmer" class="Symfony\Bridge\Doctrine\CacheWarmer\ProxyCacheWarmer">
@@ -3139,7 +3352,11 @@
         <argument type="service" id=".doctrine.orm.default_metadata_driver"/>
       </call>
       <call method="setProxyDir">
+<<<<<<< HEAD
         <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/doctrine/orm/Proxies</argument>
+=======
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/doctrine/orm/Proxies</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       </call>
       <call method="setProxyNamespace">
         <argument>Proxies</argument>
@@ -3174,7 +3391,11 @@
     </service>
     <service id="doctrine.orm.default_attribute_metadata_driver" class="Doctrine\ORM\Mapping\Driver\AttributeDriver">
       <argument type="collection">
+<<<<<<< HEAD
         <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\src\Entity</argument>
+=======
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\src\Entity</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       </argument>
       <argument>true</argument>
     </service>
@@ -3236,7 +3457,11 @@
     <service id="doctrine.migrations.configuration" class="Doctrine\Migrations\Configuration\Configuration">
       <call method="addMigrationsDirectory">
         <argument>DoctrineMigrations</argument>
+<<<<<<< HEAD
         <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ/migrations</argument>
+=======
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ/migrations</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       </call>
       <call method="setAllOrNothing">
         <argument>false</argument>
@@ -3587,10 +3812,17 @@
     <service id="cache.security_expression_language" class="Symfony\Component\Cache\Adapter\AdapterInterface">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
+<<<<<<< HEAD
       <argument>Ki+o8-yKPX</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+=======
+      <argument>Vsq0E7mxA+</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -3606,10 +3838,17 @@
     <service id="cache.security_is_granted_attribute_expression_language" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="true">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
+<<<<<<< HEAD
       <argument>IqlrgBAkpA</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+=======
+      <argument>2jsKqaC5NW</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/pools/system</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -4302,16 +4541,22 @@
       <argument type="service" id="lexik_jwt_authentication.encoder.lcobucci"/>
       <argument type="service" id="debug.event_dispatcher"/>
       <argument>username</argument>
+<<<<<<< HEAD
       <argument type="service" id="lexik_jwt_authentication.payload_enrichment"/>
+=======
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <call method="setUserIdentityField">
         <argument>username</argument>
         <argument>false</argument>
       </call>
     </service>
+<<<<<<< HEAD
     <service id="lexik_jwt_authentication.payload_enrichment.random_jti_enrichment" class="Lexik\Bundle\JWTAuthenticationBundle\Services\PayloadEnrichment\RandomJtiEnrichment"/>
     <service id="lexik_jwt_authentication.payload_enrichment" class="Lexik\Bundle\JWTAuthenticationBundle\Services\PayloadEnrichment\ChainEnrichment">
       <argument type="collection"/>
     </service>
+=======
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     <service id="lexik_jwt_authentication.key_loader.abstract" abstract="true">
       <argument></argument>
       <argument></argument>
@@ -4378,12 +4623,20 @@
     <service id="lexik_jwt_authentication.security.jwt_user_provider" class="Lexik\Bundle\JWTAuthenticationBundle\Security\User\JWTUserProvider">
       <argument></argument>
     </service>
+<<<<<<< HEAD
     <service id=".1_TokenStorage~WpTFR2y" class="Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage"/>
+=======
+    <service id=".1_TokenStorage~UR6x5uV" class="Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage"/>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     <service id="lexik_jwt_authentication.security.guard.jwt_token_authenticator" class="Lexik\Bundle\JWTAuthenticationBundle\Security\Guard\JWTTokenAuthenticator">
       <argument type="service" id="lexik_jwt_authentication.jwt_manager"/>
       <argument type="service" id="debug.event_dispatcher"/>
       <argument type="service" id="lexik_jwt_authentication.extractor.chain_extractor"/>
+<<<<<<< HEAD
       <argument type="service" id=".1_TokenStorage~WpTFR2y"/>
+=======
+      <argument type="service" id=".1_TokenStorage~UR6x5uV"/>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument>null</argument>
       <deprecated package="lexik/jwt-authentication-bundle" version="2.7">The "%service_id%" service is deprecated and will be removed in 3.0, use the new "jwt" authenticator instead.</deprecated>
     </service>
@@ -4399,6 +4652,7 @@
         <argument>Checks that the bundle is properly configured.</argument>
       </call>
     </service>
+<<<<<<< HEAD
     <service id="lexik_jwt_authentication.migrate_config_command" class="Lexik\Bundle\JWTAuthenticationBundle\Command\MigrateConfigCommand">
       <tag name="console.command" command="lexik:jwt:migrate-config"/>
       <tag name="container.no_preload"/>
@@ -4423,6 +4677,8 @@
         <argument>Enable Web-Token encryption support.</argument>
       </call>
     </service>
+=======
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     <service id="lexik_jwt_authentication.generate_token_command" class="Lexik\Bundle\JWTAuthenticationBundle\Command\GenerateTokenCommand" public="true">
       <tag name="console.command" command="lexik:jwt:generate-token"/>
       <tag name="container.no_preload"/>
@@ -4709,7 +4965,11 @@
     </service>
     <service id="jms_serializer.metadata.cache.file_cache" class="Metadata\Cache\FileCache">
       <tag name="default">jms_serializer.instance</tag>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/jms_serializer_default</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/jms_serializer_default</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     </service>
     <service id="jms_serializer.version_exclusion_strategy" class="JMS\Serializer\Exclusion\VersionExclusionStrategy" abstract="true">
       <tag name="default">jms_serializer.instance</tag>
@@ -5506,7 +5766,11 @@
       <argument>hateoas.configuration.metadata_driver</argument>
     </service>
     <service id="hateoas.configuration.metadata.cache.file_cache" class="Metadata\Cache\FileCache">
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/hateoas</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/hateoas</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     </service>
     <service id="hateoas.configuration.metadata_factory" class="Metadata\MetadataFactory">
       <argument type="service" id="hateoas.configuration.metadata.lazy_loading_driver"/>
@@ -5855,7 +6119,11 @@
       <argument type="service" id="twig.loader.native_filesystem"/>
       <argument type="collection">
         <argument key="autoescape">name</argument>
+<<<<<<< HEAD
         <argument key="cache">C:\Users\Admin\Desktop\eduZouZou\apiEZ\var\cache\dev/twig</argument>
+=======
+        <argument key="cache">C:\Users\admin\Desktop\eduZouZou\apiEZ\var\cache\dev/twig</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
         <argument key="charset">UTF-8</argument>
         <argument key="debug">true</argument>
         <argument key="strict_variables">true</argument>
@@ -5964,7 +6232,11 @@
     <service id="twig.template_iterator" class="Symfony\Bundle\TwigBundle\TemplateIterator">
       <argument type="service" id="kernel"/>
       <argument type="collection"/>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ/templates</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ/templates</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="collection">
         <argument>*.twig</argument>
       </argument>
@@ -5978,6 +6250,7 @@
     <service id="twig.loader.native_filesystem" class="Twig\Loader\FilesystemLoader">
       <tag name="twig.loader"/>
       <argument type="collection"/>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ</argument>
       <call method="addPath">
         <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ\vendor\doctrine\doctrine-bundle/templates</argument>
@@ -6021,6 +6294,51 @@
       </call>
       <call method="addPath">
         <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ/templates</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ</argument>
+      <call method="addPath">
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\doctrine\doctrine-bundle/templates</argument>
+        <argument>Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\doctrine\doctrine-bundle/templates</argument>
+        <argument>!Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\doctrine\doctrine-migrations-bundle/Resources/views</argument>
+        <argument>DoctrineMigrations</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\doctrine\doctrine-migrations-bundle/Resources/views</argument>
+        <argument>!DoctrineMigrations</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\symfony\security-bundle/Resources/views</argument>
+        <argument>Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\symfony\security-bundle/Resources/views</argument>
+        <argument>!Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\jms\serializer-bundle/Resources/views</argument>
+        <argument>JMSSerializer</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\jms\serializer-bundle/Resources/views</argument>
+        <argument>!JMSSerializer</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\nelmio\api-doc-bundle/templates</argument>
+        <argument>NelmioApiDoc</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ\vendor\nelmio\api-doc-bundle/templates</argument>
+        <argument>!NelmioApiDoc</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ/templates</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       </call>
     </service>
     <service id="twig.loader.chain" class="Twig\Loader\ChainLoader"/>
@@ -6046,7 +6364,11 @@
     <service id="twig.extension.code" class="Symfony\Bridge\Twig\Extension\CodeExtension">
       <tag name="twig.extension"/>
       <argument type="service" id="debug.file_link_formatter" on-invalid="ignore"/>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument>UTF-8</argument>
     </service>
     <service id="twig.extension.routing" class="Symfony\Bridge\Twig\Extension\RoutingExtension">
@@ -6122,9 +6444,15 @@
       <tag name="console.command"/>
       <tag name="container.no_preload"/>
       <argument type="service" id="twig"/>
+<<<<<<< HEAD
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ</argument>
       <argument>%kernel.bundles_metadata%</argument>
       <argument>C:\Users\Admin\Desktop\eduZouZou\apiEZ/templates</argument>
+=======
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ</argument>
+      <argument>%kernel.bundles_metadata%</argument>
+      <argument>C:\Users\admin\Desktop\eduZouZou\apiEZ/templates</argument>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
       <call method="setName">
         <argument>debug:twig</argument>
@@ -8064,6 +8392,7 @@
       <argument>false</argument>
       <argument type="service_closure" id="lexik_jwt_authentication.check_config_command"/>
     </service>
+<<<<<<< HEAD
     <service id=".lexik_jwt_authentication.migrate_config_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>lexik:jwt:migrate-config</argument>
       <argument type="collection"/>
@@ -8078,6 +8407,8 @@
       <argument>false</argument>
       <argument type="service_closure" id="lexik_jwt_authentication.enable_encryption_config_command"/>
     </service>
+=======
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
     <service id=".lexik_jwt_authentication.generate_token_command.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>lexik:jwt:generate-token</argument>
       <argument type="collection"/>
@@ -8302,7 +8633,11 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
+<<<<<<< HEAD
       <argument type="service" id=".service_locator.m6sQXUP"/>
+=======
+      <argument type="service" id=".service_locator.VMMPUQ1"/>
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -8364,8 +8699,11 @@
         <argument key="debug:firewall">security.command.debug_firewall</argument>
         <argument key="security:hash-password">security.command.user_password_hash</argument>
         <argument key="lexik:jwt:check-config">lexik_jwt_authentication.check_config_command</argument>
+<<<<<<< HEAD
         <argument key="lexik:jwt:migrate-config">lexik_jwt_authentication.migrate_config_command</argument>
         <argument key="lexik:jwt:enable-encryption">lexik_jwt_authentication.enable_encryption_config_command</argument>
+=======
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
         <argument key="lexik:jwt:generate-token">lexik_jwt_authentication.generate_token_command</argument>
         <argument key="lexik:jwt:generate-keypair">lexik_jwt_authentication.generate_keypair_command</argument>
         <argument key="nelmio:apidoc:dump">nelmio_api_doc.command.dump</argument>
@@ -8403,7 +8741,11 @@
         <argument key="make:webhook">maker.auto_command.make_webhook</argument>
       </argument>
     </service>
+<<<<<<< HEAD
     <service id=".service_locator.m6sQXUP" class="Symfony\Component\DependencyInjection\ServiceLocator">
+=======
+    <service id=".service_locator.VMMPUQ1" class="Symfony\Component\DependencyInjection\ServiceLocator">
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
@@ -8466,8 +8808,11 @@
         <argument key="security.command.debug_firewall" type="service_closure" id=".security.command.debug_firewall.lazy"/>
         <argument key="security.command.user_password_hash" type="service_closure" id=".security.command.user_password_hash.lazy"/>
         <argument key="lexik_jwt_authentication.check_config_command" type="service_closure" id=".lexik_jwt_authentication.check_config_command.lazy"/>
+<<<<<<< HEAD
         <argument key="lexik_jwt_authentication.migrate_config_command" type="service_closure" id=".lexik_jwt_authentication.migrate_config_command.lazy"/>
         <argument key="lexik_jwt_authentication.enable_encryption_config_command" type="service_closure" id=".lexik_jwt_authentication.enable_encryption_config_command.lazy"/>
+=======
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
         <argument key="lexik_jwt_authentication.generate_token_command" type="service_closure" id=".lexik_jwt_authentication.generate_token_command.lazy"/>
         <argument key="lexik_jwt_authentication.generate_keypair_command" type="service_closure" id=".lexik_jwt_authentication.generate_keypair_command.lazy"/>
         <argument key="nelmio_api_doc.command.dump" type="service_closure" id="nelmio_api_doc.command.dump"/>

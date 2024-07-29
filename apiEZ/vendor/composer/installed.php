@@ -3,7 +3,11 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
+<<<<<<< HEAD
         'reference' => '676e962bcba4120295b1da13e0205c30bd427faa',
+=======
+        'reference' => 'f675b28d469963b1f352d350baacfd0573f0594a',
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +17,11 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
             'reference' => '676e962bcba4120295b1da13e0205c30bd427faa',
+=======
+            'reference' => 'f675b28d469963b1f352d350baacfd0573f0594a',
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -200,27 +208,45 @@
             'dev_requirement' => false,
         ),
         'lcobucci/clock' => array(
+<<<<<<< HEAD
             'pretty_version' => '3.2.0',
             'version' => '3.2.0.0',
             'reference' => '6f28b826ea01306b07980cb8320ab30b966cd715',
+=======
+            'pretty_version' => '2.3.0',
+            'version' => '2.3.0.0',
+            'reference' => 'c7aadcd6fd97ed9e199114269c0be3f335e38876',
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
             'type' => 'library',
             'install_path' => __DIR__ . '/../lcobucci/clock',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
         'lcobucci/jwt' => array(
+<<<<<<< HEAD
             'pretty_version' => '5.3.0',
             'version' => '5.3.0.0',
             'reference' => '08071d8d2c7f4b00222cc4b1fb6aa46990a80f83',
+=======
+            'pretty_version' => '4.0.4',
+            'version' => '4.0.4.0',
+            'reference' => '55564265fddf810504110bd68ca311932324b0e9',
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
             'type' => 'library',
             'install_path' => __DIR__ . '/../lcobucci/jwt',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
         'lexik/jwt-authentication-bundle' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v2.21.0',
             'version' => '2.21.0.0',
             'reference' => 'd57159da3f572b42ab609630edb6e27d71b37eca',
+=======
+            'pretty_version' => 'v2.18.1',
+            'version' => '2.18.1.0',
+            'reference' => '0609638166981258bd68663fd15b3c57ac63a0df',
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
             'type' => 'symfony-bundle',
             'install_path' => __DIR__ . '/../lexik/jwt-authentication-bundle',
             'aliases' => array(),
@@ -388,6 +414,18 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+<<<<<<< HEAD
+=======
+        'stella-maris/clock' => array(
+            'pretty_version' => '0.1.7',
+            'version' => '0.1.7.0',
+            'reference' => 'fa23ce16019289a18bb3446fdecd45befcdd94f8',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../stella-maris/clock',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+>>>>>>> 94f0e95efbee87b3177b2b395bd5adc824cfbd87
         'symfony/asset' => array(
             'pretty_version' => 'v6.4.8',
             'version' => '6.4.8.0',
