@@ -17,6 +17,8 @@ import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
 import { CreateActiviteComponent } from './pages/classe/activites/create-activite/create-activite.component';
 import { UpdateActiviteComponent } from './pages/classe/activites/update-activite/update-activite.component';
+import { CreateCoursComponent } from './pages/classe/cours/create-cours/create-cours.component';
+import { UpdateCoursComponent } from './pages/classe/cours/update-cours/update-cours.component';
 
 export const routes: Routes = [
 
@@ -30,6 +32,8 @@ export const routes: Routes = [
   {path: 'activites/:id', component: UpdateActiviteComponent},
 
   {path: 'cours', component: CoursComponent},
+  {path: 'creerCours', component: CreateCoursComponent},
+  {path: 'cours/:id', component: UpdateCoursComponent},
 
   {path: 'ecoles', component: EcolesComponent},
   { path: 'ecoles/:id', component: EcoleComponent },

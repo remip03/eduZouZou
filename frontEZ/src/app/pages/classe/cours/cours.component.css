@@ -1,0 +1,11 @@
+.carte{
+    margin: 1%;
+    text-align: center;
+  }
+  
+  .listecarte{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  

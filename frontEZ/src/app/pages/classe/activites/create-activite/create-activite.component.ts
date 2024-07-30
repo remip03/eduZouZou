@@ -17,6 +17,8 @@ export class CreateActiviteComponent{
   activiteCreate: FormGroup;
   valid: boolean = false;
   matieres!: string[];
+  typeActivite!: string[];
+  typeRA!: string[];
 
   constructor(
     private formbuild: FormBuilder,
@@ -24,12 +26,15 @@ export class CreateActiviteComponent{
     private router: Router,
   ){
     this.matieres = VariablesGlobales.matieres
+    this.typeActivite = VariablesGlobales.typeAct
+    this.typeRA = VariablesGlobales.typeRA
     this.activiteCreate = this.formbuild.group({
       nameR: ['', Validators.required],
       descritionR: ['', Validators.required],
       matiereR: ['', Validators.required],
       typeR: ['', Validators.required],
-      typeAct:  ['']
+      typeAct:  [''],
+      dtype: ['activite']
     })
   }
 

@@ -19,6 +19,8 @@ export class UpdateActiviteComponent implements OnInit {
   activiteID!: number;
   valid: boolean = false;
   matieres!: string[];
+  typeActivite!: string[];
+  typeRA!: string[];
 
   constructor(
     private formbuild: FormBuilder,
@@ -27,12 +29,15 @@ export class UpdateActiviteComponent implements OnInit {
     private router: Router,
   ) {
     this.matieres = VariablesGlobales.matieres
+    this.typeActivite = VariablesGlobales.typeAct
+    this.typeRA = VariablesGlobales.typeRA
     this.activiteUpdate = this.formbuild.group({
       nameR: ['', Validators.required],
       descritionR: ['', Validators.required],
       matiereR: ['', Validators.required],
       typeR: ['', Validators.required],
-      typeAct:  ['']
+      typeAct:  [''],
+      dtype: ['activite']
     })
   }
 
@@ -58,6 +63,10 @@ export class UpdateActiviteComponent implements OnInit {
 
   public get form(){
     return this.activiteUpdate.controls
+  }
+
+  deleteActivite(){
+    this.activiteService.deleteActivite(this.activiteID);
   }
 
   ngOnInit(): void {

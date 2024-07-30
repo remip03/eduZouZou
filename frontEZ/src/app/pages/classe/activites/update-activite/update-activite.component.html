@@ -1,10 +1,10 @@
 <h2>Modifier cette activité.</h2>
 
-<button>Supprimer cette activité</button>
+<button class="marge" (click)="deleteActivite()">Supprimer cette activité</button>
 
 <form [formGroup]="activiteUpdate">
 
-  <div>
+  <div class="colonne marge">
     <label for="nameR">Nom de l'activite : </label>
     <input type="text" id="nameR" name="nameR" formControlName="nameR" size="50" maxlength="50">
     @if (valid && form['nameR'].invalid) {
@@ -12,15 +12,25 @@
     }
   </div>
 
-  <div>
+  <div class="colonne marge">
     <label for="descritionR">Description de l'activité</label>
-    <input type="text" id="descritionR" name="descritionR" formControlName="descritionR" size="500" maxlength="500">
+    <input type="text" id="descritionR" name="descritionR" formControlName="descritionR" size="50" maxlength="50">
     @if (valid && form['descritionR'].invalid) {
       <span>Description invalide</span>
     }
   </div>
+  
+  <div class="colonne marge">
+    <label for="typeR">Choisissez le niveau</label>
+    <select name="typeR" id="typeR" formControlName="typeR">
+      <option value="" disabled selected>pour quelle niveau ?</option>
+      @for (item of typeRA; track $index) {
+        <option [value]="typeRA">{{ item }}</option>
+      }
+    </select>
+  </div>
 
-  <div>
+  <div class="colonne marge">
     <label for="matiereR">Choisissez la matière</label>
     <select name="matiereR" id="matiereR" formControlName="matiereR">
       <option value="" disabled selected>Liste des matières</option>
@@ -30,14 +40,16 @@
     </select>
   </div>
 
-  <div>
-    <label for="typeR">Type d'activité</label>
-    <input type="typeR" id="typeR" name="typeR" formControlName="typeR" size="50" maxlength="50">
-    @if (valid && form['typeR'].invalid) {
-      <span>Type invalide</span>
-    }
+  <div class="colonne marge">
+    <label for="typeAct">Quel type d'activité ?</label>
+    <select name="typeAct" id="typeAct" formControlName="typeAct">
+      <option value="" disabled selected>Type d'activité</option>
+      @for (item of typeActivite; track $index) {
+        <option [value]="typeActivite">{{ item }}</option>
+      }
+    </select>
   </div>
 
-  <button>Enregistrer les modifications.</button>
+  <button class="marge" (click)="updateActivite()">Enregistrer les modifications</button>
 
 </form>
