@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ActivitesService } from '../../../../services/activites.service';
-import Matiere from '../../../../models/matiere.models';
+import { VariablesGlobales } from '../../../../commons/variablesGlobales';
 
 @Component({
   selector: 'app-create-activite',
@@ -16,13 +16,14 @@ export class CreateActiviteComponent{
 
   activiteCreate: FormGroup;
   valid: boolean = false;
-  matieres: Matiere[] = []
+  matieres!: string[];
 
   constructor(
     private formbuild: FormBuilder,
     private activiteService: ActivitesService,
-    private router: Router
+    private router: Router,
   ){
+    this.matieres = VariablesGlobales.matieres
     this.activiteCreate = this.formbuild.group({
       nameR: ['', Validators.required],
       descritionR: ['', Validators.required],

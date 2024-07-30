@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ActivitesService } from '../../../../services/activites.service';
 import Activite from '../../../../models/activite.model';
+import { VariablesGlobales } from '../../../../commons/variablesGlobales';
 
 @Component({
   selector: 'app-update-activite',
@@ -17,13 +18,15 @@ export class UpdateActiviteComponent implements OnInit {
   activiteUpdate: FormGroup;
   activiteID!: number;
   valid: boolean = false;
+  matieres!: string[];
 
   constructor(
     private formbuild: FormBuilder,
     private activiteService: ActivitesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {
+    this.matieres = VariablesGlobales.matieres
     this.activiteUpdate = this.formbuild.group({
       nameR: ['', Validators.required],
       descritionR: ['', Validators.required],
