@@ -47,6 +47,10 @@ export class AddMessageComponent {
       .subscribe((responseMsg) => (this.messages = responseMsg));
     // Réinitialise le formulaire
     this.createMsg.reset();
+    // Récupère le rôle de l'utilisateur
+    this.role = this.authService.getRole();
+    // Affiche une notification si le message est créé avec succès
+    alert('Message créé avec succès!');
   }
   //
   get form() {

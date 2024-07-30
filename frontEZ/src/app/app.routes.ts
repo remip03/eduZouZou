@@ -18,6 +18,7 @@ import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
 import { MessageComponent } from './pages/message/message.component';
 import { AddMessageComponent } from './pages/message/add-message/add-message.component';
 import { UpdateMsgComponent } from './pages/message/update-msg/update-msg.component';
+import { MessagesDetailComponent } from './pages/profil/messagerie/messages-detail/messages-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -46,6 +47,8 @@ export const routes: Routes = [
   { path: 'competences', component: CompetencesComponent },
 
   { path: 'messagerie', component: MessagerieComponent },
+
+  { path: 'messageDetail/:id', component: MessagesDetailComponent },
 
   { path: 'messages', component: MessageComponent },
 
