@@ -55,4 +55,8 @@ export class UpdateMsgComponent {
       console.log('Form is invalid');
     }
   }
+
+  get form() {
+    return this.msg.controls;
+  }
 }
