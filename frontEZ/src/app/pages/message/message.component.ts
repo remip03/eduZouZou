@@ -16,9 +16,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class MessageComponent implements OnInit {
   messages: Message[] = []; // variable pour stocker la liste des messages
   role: string | null = null; // Propriété pour stocker le rôle de l'utilisateur
-  // variable pour créer un message
   msgId?: number;
 
+  // variable pour créer un message
   createMsg: FormGroup = this.formBuilder.group({
     content: [
       '',
