@@ -23,9 +23,9 @@ export class MessageService {
     return this.httpClient.post<Message>(`${this.ezURL}/messages`, message);
   }
 
-  updateMessage(message: Message): Observable<Message> {
+  updateMessage(id: number, message: Message): Observable<Message> {
     return this.httpClient.put<Message>(
-      `${this.ezURL}/messages/${message.id}`,
+      `${this.ezURL}/messages/${id}`,
       message
     );
   }

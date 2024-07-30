@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import Message from '../../models/message.models';
 import { MessageService } from '../../services/message.service';
 import { AuthService } from '../../services/auth.service';
@@ -17,6 +17,8 @@ export class MessageComponent implements OnInit {
   messages: Message[] = []; // variable pour stocker la liste des messages
   role: string | null = null; // Propriété pour stocker le rôle de l'utilisateur
   // variable pour créer un message
+  msgId?: number;
+
   createMsg: FormGroup = this.formBuilder.group({
     content: [
       '',
@@ -31,7 +33,9 @@ export class MessageComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   //méthode appelée lors du chargement du composant
@@ -58,27 +62,6 @@ export class MessageComponent implements OnInit {
   //methode pour creer un message
   createMessage(): void {
     this.messageService.addMessage(this.createMsg.value).subscribe(() => {
-      // Réinitialise le formulaire
-      this.createMsg.reset();
-      // Actualise la liste des messages
-      this.messageService
-        .getAllMessages()
-        .subscribe((responseMsg) => (this.messages = responseMsg));
-    });
-  }
-
-  //methode pour modifier un message
-  editMessage(message: Message): void {
-    // Crée un nouveau message avec les données du formulaire
-    const updatedMessage: Message = {
-      id: message.id,
-      content: this.createMsg.value.content,
-      destinataire: this.createMsg.value.destinataire,
-      expediteur: this.createMsg.value.expediteur,
-      msgDate: this.createMsg.value.msgDate,
-    };
-    // Met à jour le message avec son id
-    this.messageService.updateMessage(updatedMessage).subscribe(() => {
       // Réinitialise le formulaire
       this.createMsg.reset();
       // Actualise la liste des messages

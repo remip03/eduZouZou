@@ -39,15 +39,7 @@ export class AddMessageComponent {
   ) {}
 
   createMessage(): void {
-    // // Crée un nouveau message avec les données du formulaire
-    // const newMessage: Message = {
-    //   id: 0, // id généré automatiquement par le serveur
-    //   content: this.createMsg.value.content,
-    //   destinataire: this.createMsg.value.destinataire,
-    //   expediteur: this.createMsg.value.expediteur,
-    //   msgDate: this.createMsg.value.msgDate,
-    // };
-    // Ajoute le message au serveur
+    // crée le message
     this.messageService.addMessage(this.createMsg.value).subscribe();
     // Actualise la liste des messages
     this.messageService
@@ -55,5 +47,9 @@ export class AddMessageComponent {
       .subscribe((responseMsg) => (this.messages = responseMsg));
     // Réinitialise le formulaire
     this.createMsg.reset();
+  }
+  //
+  get form() {
+    return this.createMsg.controls;
   }
 }

@@ -1,8 +1,8 @@
-<p>add-message works!</p>
+<p>update-msg works!</p>
 
-<h2>creation message</h2>
+<h2>modification message</h2>
 
-<form [formGroup]="createMsg" (ngSubmit)="createMessage()">
+<form [formGroup]="msg" (ngSubmit)="editMessage()">
   <div class="mt-4">
     <label for="content">contenu :</label>
     <input type="text" id="content" formControlName="content" />
@@ -27,7 +27,7 @@
     <span>le nom doit contenir au moins 3 caractères</span>
     } -->
     <label for="msgDate">date :</label>
-    <input type="datetime-local" id="msgDate" formControlName="msgDate" />
+    <input type="text" id="msgDate" formControlName="msgDate" />
 
     <!-- @if (submitted && form['msgDate'].invalid) {
     <span>nom invalid</span>

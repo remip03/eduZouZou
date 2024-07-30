@@ -28,8 +28,9 @@ class Message
     #[Groups(['getMessages'])]
     #[ORM\Column(length: 50)]
     private ?string $expediteur = null;
-    
+
     #[Groups(['getMessages'])]
+    #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?\DateTimeImmutable $msgDate = null;
 
@@ -43,6 +44,7 @@ class Message
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->msgDate = new \DateTimeImmutable();
     }
 
 
@@ -127,10 +129,12 @@ class Message
         return $this->msgDate;
     }
 
-    public function setMsgDate(\DateTimeImmutable $msgDate): static
+    public function setMsgDate( \DateTimeImmutable $msgDate): static
     {
-        $this->msgDate = $msgDate;
+        $this->msgDate = new \DateTimeImmutable();
 
         return $this;
     }
+
+
 }
