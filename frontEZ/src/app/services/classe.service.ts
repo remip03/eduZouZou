@@ -9,7 +9,7 @@ import Classe from '../models/classe.model';
 export class ClasseService {
 
 
-  private apiUrl = 'http://localhost:8000/api'
+  private apiUrl = 'https://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) { }
 

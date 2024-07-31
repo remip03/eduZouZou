@@ -8,28 +8,28 @@ import Messagerie from '../models/messagerie.models';
 })
 export class MessagerieService {
 
-  private ezURL = 'http://localhost:8000/api'
+  private apiUrl = 'https://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) { }
 
   getMessageries() : Observable<Messagerie[]>{
-    return this.httpClient.get<Messagerie[]>(`${this.ezURL}/messagerie`)
+    return this.httpClient.get<Messagerie[]>(`${this.apiUrl}/messagerie`)
   }
 
   getMessagerie(id: number) : Observable<Messagerie>{
-    return this.httpClient.get<Messagerie>(`${this.ezURL}/messagerie/${id}`)
+    return this.httpClient.get<Messagerie>(`${this.apiUrl}/messagerie/${id}`)
   }
 
   addMessagerie(messagerie: Messagerie): Observable<Messagerie>{
-    return this.httpClient.post<Messagerie>(`${this.ezURL}/messagerie`, messagerie)
+    return this.httpClient.post<Messagerie>(`${this.apiUrl}/messagerie`, messagerie)
   }
 
   updateMessagerie(messagerie: Messagerie): Observable<Messagerie>{
-    return this.httpClient.put<Messagerie>(`${this.ezURL}/messagerie/${messagerie.id}`, messagerie)
+    return this.httpClient.put<Messagerie>(`${this.apiUrl}/messagerie/${messagerie.id}`, messagerie)
   }
 
   deleteMessagerie (id: number): Observable<Messagerie>{
-    return this.httpClient.delete<Messagerie>(`${this.ezURL}/messagerie/${id}`)
+    return this.httpClient.delete<Messagerie>(`${this.apiUrl}/messagerie/${id}`)
   }
 
 }
