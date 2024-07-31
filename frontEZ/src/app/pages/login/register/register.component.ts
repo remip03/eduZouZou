@@ -1,34 +1,36 @@
-import { UserService } from './../../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import User from '../../../models/user.models';
 import { AuthService } from '../../../services/auth.service';
+import Ecole from '../../../models/ecole.modelt';
+import { EcoleService } from '../../../services/ecole.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, FormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  userDetail: User[] = [];
   user: FormGroup; // Déclaration du formulaire de type FormGroup
   submitted: boolean = false; // Indicateur de soumission du formulaire
+  ecoles: Ecole[] = [];
+  selectedEcoleId: number | null = null;
 
   // Constructeur avec injection des services nécessaires
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private UserService: UserService
+    private ecoleService: EcoleService
   ) {
     this.user = this.formBuilder.group({
       username: [
@@ -53,8 +55,7 @@ export class RegisterComponent {
         '',
         [
           Validators.required,
-
-          // Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/g),
+          // Validators.pattern(/^[a-zA-Z]+$/),
         ],
       ],
 
@@ -62,8 +63,7 @@ export class RegisterComponent {
         '',
         [
           Validators.required,
-
-          // Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/g),
+          // Validators.pattern(/^[a-zA-Z]+$/),
         ],
       ],
 
@@ -71,44 +71,29 @@ export class RegisterComponent {
         '',
         [
           Validators.required,
-
-          // Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/g),
+          // Validators.pattern(/^[0-9]{10}$/),
         ],
       ],
 
-      adresse: [
-        '',
-        [
-          Validators.required,
-
-          // Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/g),
-        ],
-      ],
-
-      ecoleId: ['', [Validators.required]],
+      adresse: ['', [Validators.required]],
+      ecoleId: [null, Validators.required],
     });
   }
 
-  // Méthode privée pour ajouter un utilisateur
-  private addUser() {
-    const userData = {
-      email: this.user.value.username, // Changez 'username' en 'email'
-      password: this.user.value.password,
-    };
-    this.authService.register(userData).subscribe({
-      next: () => {
-        alert('Inscription effectuée avec succès !');
-        this.submitted = false;
-        this.router.navigate(['/login']);
-        this.user.reset();
-      },
-      error: (error) => {
-        console.error("Erreur lors de l'inscription.", error);
-        if (error.error) {
-          console.error("Détails de l'erreur:", error.error);
-        }
-      },
+  ngOnInit(): void {
+    this.loadEcoles();
+  }
+
+  loadEcoles(): void {
+    this.ecoleService.getEcoles().subscribe((data: Ecole[]) => {
+      this.ecoles = data;
     });
+  }
+
+  onEcoleChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedEcoleId = Number(selectElement.value);
+    this.user.patchValue({ ecoleId: this.selectedEcoleId });
   }
 
   // Méthode appelée lors de la soumission du formulaire
@@ -122,15 +107,33 @@ export class RegisterComponent {
     }
   }
 
-  //méthode appelée lors du chargement du composant
-  // ngOnInit(): void {
-  //   //recupère le role
-  //   this.role = this.authService.getRole();
-  //   // Récupère la liste des messages
-  //   this.userService
-  //     .getUsers()
-  //     .subscribe((responseMsg) => (this.userDetail = responseMsg));
-  // }
+  // Méthode privée pour ajouter un utilisateur
+  private addUser() {
+    const userData = {
+      email: this.user.value.username,
+      password: this.user.value.password,
+      lastName: this.user.value.lastName,
+      firstName: this.user.value.firstName,
+      tel: this.user.value.tel,
+      adresse: this.user.value.adresse,
+      ecoleId: this.user.value.ecoleId,
+    };
+    this.authService.register(userData).subscribe({
+      next: () => {
+        alert('Inscription effectuée avec succès !');
+        this.user.reset();
+        this.submitted = false;
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        console.error("Erreur lors de l'inscription.", error);
+        console.error("Détails de l'erreur:", error.error);
+        if (error.error) {
+          console.error("Détails de l'erreur:", error.error);
+        }
+      },
+    });
+  }
 
   // Getter pour accéder facilement aux contrôles du formulaire dans le template
   get form() {
