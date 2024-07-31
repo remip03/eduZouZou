@@ -42,7 +42,7 @@ export class UpdateClasseComponent {
     if (this.classeId) {
       // Si l'ID de la classe est valide, récupère les données de la classe
       this.classeService.getClasse(this.classeId).subscribe((data: Classe) => {
-        const classeData = { ...data, idEcole: data.ecole.id }; // Prépare les données de la classe pour le formulaire
+        const classeData = { ...data, ecoleId: data.ecole.id }; // Prépare les données de la classe pour le formulaire
         this.classe.patchValue(classeData); // Met à jour le formulaire avec les données de la classe
       });
     }

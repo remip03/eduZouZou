@@ -24,7 +24,7 @@ export class EcoleComponent implements OnInit {
   ) { }
 
 
-  // Mérgode pour s'abonner aux détails de l'école
+  // Méthode pour s'abonner aux détails de l'école
   private subscribeEcole(id: number) {
     this.ecoleService.getEcole(id).subscribe((response) => {
       this.detail = response; // Met à jour la propriété détail avec la réponse
