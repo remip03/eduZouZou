@@ -13,9 +13,6 @@ import { ResultatsComponent } from './pages/profil/resultats/resultats.component
 import { AddEcoleComponent } from './pages/ecoles/add-ecole/add-ecole.component';
 import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
-import { CreateActiviteComponent } from './pages/classe/activites/create-activite/create-activite.component';
-import { UpdateActiviteComponent } from './pages/classe/activites/update-activite/update-activite.component';
-import { UpdateCoursComponent } from './pages/classe/cours/update-cours/update-cours.component';
 import { ClasseComponent } from './pages/classes/classe/classe.component';
 import { UpdateEcoleComponent } from './pages/ecoles/update-ecole/update-ecole.component';
 import { ClassesComponent } from './pages/classes/classes.component';
@@ -26,22 +23,18 @@ import { EnfantComponent } from './pages/enfants/enfant/enfant.component';
 import { UpdateEnfantComponent } from './pages/enfants/update-enfant/update-enfant.component';
 import { AddEnfantComponent } from './pages/enfants/add-enfant/add-enfant.component';
 import { CoursComponent } from './pages/cours/cours.component';
-import { CreateCoursComponent } from './pages/cours/create-cours/create-cours.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
-  { path: 'Accueil', component: AccueilComponent },
-
-  { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
 
   { path: 'Accueil', component: AccueilComponent },
 
-  {path: 'activites', component: ActivitesComponent},
+  { path: 'activites', component: ActivitesComponent },
 
-  {path: 'cours', component: CoursComponent},
+  { path: 'cours', component: CoursComponent },
 
-    // Chemin pour les écoles
-  {path: 'ecoles', component: EcolesComponent},
+  // Chemin pour les écoles
+  { path: 'ecoles', component: EcolesComponent },
 
   { path: 'ecoles/:id', component: EcoleComponent },
 
