@@ -1,0 +1,53 @@
+<h2>Créer une activité.</h2>
+
+<form [formGroup]="activiteCreate">
+
+  <div class="colonne marge">
+    <label for="nameR">Nom de l'activite : </label>
+    <input type="text" id="nameR" name="nameR" formControlName="nameR" size="50" maxlength="50">
+    @if (valid && form['nameR'].invalid) {
+      <span>Nom invalide</span>
+    }
+  </div>
+
+  <div class="colonne marge">
+    <label for="descriptionR">Description de l'activité : </label>
+    <input type="text" id="descriptionR" name="descriptionR" formControlName="descriptionR" size="50" maxlength="50">
+    @if (valid && form['descriptionR'].invalid) {
+      <span>Description invalide</span>
+    }
+  </div>
+
+  <div class="colonne marge">
+    <label for="typeR">Choisissez le niveau : </label>
+    <select name="typeR" id="typeR" formControlName="typeR">
+      <option value="" disabled selected>pour quelle niveau ?</option>
+      @for (item of typeRA; track $index) {
+        <option [value]="item">{{ item }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="colonne marge">
+    <label for="matiereR">Choisissez la matière</label>
+    <select name="matiereR" id="matiereR" formControlName="matiereR">
+      <option value="" disabled selected>Liste des matières</option>
+      @for (matiere of matieres; track $index) {
+        <option [value]="matiere">{{ matiere }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="colonne marge">
+    <label for="typeAct">Quel type d'activité ?</label>
+    <select name="typeAct" id="typeAct" formControlName="typeAct">
+      <option value="" disabled selected>Type d'activité</option>
+      @for (item of typeActivite; track $index) {
+        <option [value]="item">{{ item }}</option>
+      }
+    </select>
+  </div>
+
+  <button class="marge" (click)="createActivite()">Créer cette activité</button>
+
+</form>

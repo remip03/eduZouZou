@@ -1,1 +1,17 @@
-<p>cours works!</p>
+<h2>Liste des Cours</h2>
+
+<div>
+  <button routerLink="/creerCours">Créer un cours</button>
+</div>
+
+<div class="listecarte">
+  @for (item of cours; track $index) {
+    <div class="card carte" style="width: 18rem;">
+      <p><b>{{ item.nameR }}</b></p>
+      <p>type : {{ item.typeR }}</p>
+      <p>matière : {{ item.matiereR }}</p>
+      <p>description : {{ item.descriptionR }}</p>
+      <button routerLink="/cours/{{item.id}}">Modifier</button>
+    </div>
+  }
+</div>

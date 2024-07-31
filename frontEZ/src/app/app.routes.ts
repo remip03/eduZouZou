@@ -15,10 +15,6 @@ import { ResultatsComponent } from './pages/profil/resultats/resultats.component
 import { AddEcoleComponent } from './pages/ecoles/add-ecole/add-ecole.component';
 import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
-import { MessageComponent } from './pages/message/message.component';
-import { AddMessageComponent } from './pages/message/add-message/add-message.component';
-import { UpdateMsgComponent } from './pages/message/update-msg/update-msg.component';
-import { MessagesDetailComponent } from './pages/profil/messagerie/messages-detail/messages-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -28,9 +24,11 @@ export const routes: Routes = [
 
   { path: 'activites', component: ActivitesComponent },
 
-  { path: 'cours', component: CoursComponent },
+  {path: 'activites', component: ActivitesComponent},
 
-  { path: 'ecoles', component: EcolesComponent },
+  {path: 'cours', component: CoursComponent},
+
+  {path: 'ecoles', component: EcolesComponent},
 
   { path: 'ecoles/:id', component: EcoleComponent },
 
