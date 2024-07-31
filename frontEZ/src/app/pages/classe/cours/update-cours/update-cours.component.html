@@ -58,7 +58,7 @@
 
     <div class="colonne marge">
       <label for="ressourceSupC">ressource supplémentaire : </label>
-      <input type="text" id="ressourceSupC" name="ressourceSupC" formControlName="ressourceSupC" size="50" maxlength="50">
+      <input type="file" id="ressourceSupC" name="ressourceSupC" formControlName="ressourceSupC" size="50" maxlength="50">
       @if (valid && form['ressourceSupC'].invalid) {
         <span>Type invalide</span>
       }
