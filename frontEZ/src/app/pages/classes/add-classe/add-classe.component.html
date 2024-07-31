@@ -11,7 +11,7 @@
   </div>
   <div class="form-group">
     <label for="niveauCl">Niveau</label>
-    <select name="niveauCl" id="niveauCl" formControlName="niveauCl">
+    <select class="form-control" name="niveauCl" id="niveauCl" formControlName="niveauCl">
       <option value="" disabled selected>Choisissez le niveau</option>
       @for (item of niveauCl; track $index) {
       <option [value]="item">{{ item }}</option>

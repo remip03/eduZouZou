@@ -1,7 +1,7 @@
 <p><span class="fw-bold">Id :</span> {{ detail.id }}</p>
 <p><span class="fw-bold">Nom :</span> {{ detail.lastNameE }}</p>
 <p><span class="fw-bold">Prénom :</span> {{ detail.firstNameE }}</p>
-<p><span class="fw-bold">Date de naissance :</span> {{ detail.birthDateE }}</p>
+<p><span class="fw-bold">Date de naissance :</span> {{ detail.birthDateE | date: 'yyyy-MM-dd'}}</p>
 <p><span class="fw-bold">Classe :</span> {{ detail.classe.nameCl }}</p>
 
 <button class="btn btn-danger" (click)="confirmDelete()">
