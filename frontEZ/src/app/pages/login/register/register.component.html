@@ -1,59 +1,70 @@
 <h2>Inscription</h2>
 <form [formGroup]="user" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label for="username">Email :</label>
-    <input type="email" class="form-control" id="username" formControlName="username" />
-    @if (submitted && form['username'].hasError('pattern')) {
-    <div class="alert alert-danger">L'email n'est pas valide</div>
-    }
+    <label for="username">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="username"
+      formControlName="username"
+      required
+    />
   </div>
   <div class="form-group">
-    <label for="password">Mot de passe :</label>
-    <input type="password" class="form-control" id="password" formControlName="password" />
-    @if (submitted && form['password'].invalid) {
-    <div class="alert alert-danger">Le mot de passe est requis</div>
-    } @if (submitted && form['password'].hasError('pattern')) {
-    <div class="alert alert-danger">
-      Le mot de passe doit contenir minimum 8 caractères.<br />
-      Au moins une lettre majuscule.<br />
-      Au moins une lettre minuscule.<br />
-      Au moins un chiffre.<br />
-      Au moins un caractère spécial.
-    </div>
-    }
+    <label for="password">Mot de passe</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      formControlName="password"
+      required
+    />
   </div>
   <div class="form-group">
-    <label for="lastName">nom :</label>
-    <input type="text" class="form-control" id="lastName" formControlName="lastName" />
-    @if (submitted && form['lastName'].hasError('pattern')) {
-    <div class="alert alert-danger">Le nom n'est pas valide</div>
-    }
+    <label for="lastName">Nom</label>
+    <input
+      type="text"
+      class="form-control"
+      id="lastName"
+      formControlName="lastName"
+      required
+    />
   </div>
   <div class="form-group">
-    <label for="firstName">prenom :</label>
-    <input type="text" class="form-control" id="firstName" formControlName="firstName" />
-    @if (submitted && form['firstName'].hasError('pattern')) {
-    <div class="alert alert-danger">Le prenom n'est pas valide</div>
-    }
+    <label for="firstName">Prénom</label>
+    <input
+      type="text"
+      class="form-control"
+      id="firstName"
+      formControlName="firstName"
+      required
+    />
   </div>
-
   <div class="form-group">
-    <label for="tel">télephone :</label>
-    <input type="text" class="form-control" id="tel" formControlName="tel" />
-    @if (submitted && form['tel'].hasError('pattern')) {
-    <div class="alert alert-danger">Le tel n'est pas valide</div>
-    }
+    <label for="tel">Téléphone</label>
+    <input
+      type="tel"
+      class="form-control"
+      id="tel"
+      formControlName="tel"
+      required
+    />
   </div>
-
   <div class="form-group">
-    <label for="adresse">adresse :</label>
-    <input type="text" class="form-control" id="adresse" formControlName="adresse" />
-    @if (submitted && form['adresse'].hasError('pattern')) {
-    <div class="alert alert-danger">L'adresse n'est pas valide</div>
-    }
+    <label for="adresse">Adresse</label>
+    <input
+      type="text"
+      class="form-control"
+      id="adresse"
+      formControlName="adresse"
+      required
+    />
   </div>
-
-
-
+  <div class="form-group">
+    <label for="ecole">École</label>
+    <select class="form-control" id="ecole" formControlName="ecoleId" (change)="onEcoleChange($event)">
+      <option *ngFor="let ecole of ecoles" [value]="ecole.id">{{ ecole.nameEc }}</option>
+    </select>
+  </div>
   <button type="submit" class="btn btn-primary">S'inscrire</button>
 </form>
