@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { CoursService } from '../../../../services/cours.service';
-import { VariablesGlobales } from '../../../../commons/variablesGlobales';
-import Cours from '../../../../models/Cours.model';
+import { CoursService } from '../../../services/cours.service';
+import { VariablesGlobales } from '../../../commons/variablesGlobales';
+import Cours from '../../../models/Cours.model';
 
 @Component({
   selector: 'app-update-cours',

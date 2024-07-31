@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ActivitesService } from '../../../../services/activites.service';
-import Activite from '../../../../models/activite.model';
-import { VariablesGlobales } from '../../../../commons/variablesGlobales';
+import { ActivitesService } from '../../../services/activites.service';
+import Activite from '../../../models/activite.model';
+import { VariablesGlobales } from '../../../commons/variablesGlobales';
 
 @Component({
   selector: 'app-update-activite',

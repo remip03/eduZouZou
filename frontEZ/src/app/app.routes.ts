@@ -14,8 +14,8 @@ import { AddEcoleComponent } from './pages/ecoles/add-ecole/add-ecole.component'
 import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
 import { CreateActiviteComponent } from './pages/classe/activites/create-activite/create-activite.component';
-import { UpdateActiviteComponent } from './pages/classe/activites/update-activite/update-activite.component';
-import { UpdateCoursComponent } from './pages/classe/cours/update-cours/update-cours.component';
+import { UpdateActiviteComponent } from './pages/activites/update-activite/update-activite.component';
+import { UpdateCoursComponent } from './pages/cours/update-cours/update-cours.component';
 import { ClasseComponent } from './pages/classes/classe/classe.component';
 import { UpdateEcoleComponent } from './pages/ecoles/update-ecole/update-ecole.component';
 import { ClassesComponent } from './pages/classes/classes.component';
