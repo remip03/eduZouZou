@@ -10,11 +10,11 @@ import Login from '../interfaces/login';
 })
 export class AuthService {
   private tokenKey = 'token'; // Clé pour stocker le token dans le localStorage
-  private apiUrl = 'http://127.0.0.1:8000/api'; // URL de base de l'API
+  private apiUrl = 'https://localhost:8000/api';
   private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn()); // BehaviorSubject pour suivre l'état de connexion
 
   // Injection des services HttpClient et Router dans le constructeur
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   // Méthode pour vérifier si l'utilisateur est connecté
   isLoggedIn(): boolean {

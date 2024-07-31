@@ -8,28 +8,28 @@ import Ressource from '../models/ressource.models';
 })
 export class RessourceService {
 
-  private ezURL = 'http://localhost:8000/api'
+  private apiUrl = 'https://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) { }
 
   getRessources() : Observable<Ressource[]>{
-    return this.httpClient.get<Ressource[]>(`${this.ezURL}/Ressources`)
+    return this.httpClient.get<Ressource[]>(`${this.apiUrl}/Ressources`)
   }
 
   getRessource(id: number) : Observable<Ressource>{
-    return this.httpClient.get<Ressource>(`${this.ezURL}/Ressources/${id}`)
+    return this.httpClient.get<Ressource>(`${this.apiUrl}/Ressources/${id}`)
   }
 
   addRessource(ressource: Ressource): Observable<Ressource>{
-    return this.httpClient.post<Ressource>(`${this.ezURL}/Ressources`, ressource)
+    return this.httpClient.post<Ressource>(`${this.apiUrl}/Ressources`, ressource)
   }
 
   updateRessource(ressource: Ressource): Observable<Ressource>{
-    return this.httpClient.put<Ressource>(`${this.ezURL}/Ressources/${ressource.id}`, ressource)
+    return this.httpClient.put<Ressource>(`${this.apiUrl}/Ressources/${ressource.id}`, ressource)
   }
 
   deleteRessource (id: number): Observable<Ressource>{
-    return this.httpClient.delete<Ressource>(`${this.ezURL}/Ressources/${id}`)
+    return this.httpClient.delete<Ressource>(`${this.apiUrl}/Ressources/${id}`)
   }
 
 }
