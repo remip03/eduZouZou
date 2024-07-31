@@ -92,9 +92,9 @@ export class RegisterComponent {
     this.authService.register(userData).subscribe({
       next: () => {
         alert('Inscription effectuée avec succès !');
-        this.user.reset();
         this.submitted = false;
         this.router.navigate(['/login']);
+        this.user.reset();
       },
       error: (error) => {
         console.error("Erreur lors de l'inscription.", error);
