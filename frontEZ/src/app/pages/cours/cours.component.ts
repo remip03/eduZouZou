@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import Cours from '../../../models/Cours.model';
-import { CoursService } from '../../../services/cours.service';
 import { RouterLink } from '@angular/router';
+import Cours from '../../models/Cours.model';
+import { CoursService } from '../../services/cours.service';
 
 @Component({
   selector: 'app-cours',

@@ -20,9 +20,9 @@ export class AddEcoleComponent {
     // Initialisation du formulaire avec des champs et des validateurs
     this.ecole = this.formBuilder.group({
       nameEc: ['', Validators.required],
-      addressEc: ['', Validators.required],
-      phoneEc: ['', Validators.required],
-      emailEc: ['', [Validators.required, Validators.email]],
+      adresseEc: ['', Validators.required],
+      telEc: ['', Validators.required],
+      mailEc: ['', [Validators.required, Validators.email]],
     });
   }
 

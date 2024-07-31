@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import Ressource from '../../../../models/ressource.models';
 import { Router } from '@angular/router';
-import { CoursService } from '../../../../services/cours.service';
-import { VariablesGlobales } from '../../../../commons/variablesGlobales';
-import Cours from '../../../../models/Cours.model';
+import { CoursService } from '../../../services/cours.service';
+import { VariablesGlobales } from '../../../commons/variablesGlobales';
+import Cours from '../../../models/Cours.model';
 
 @Component({
   selector: 'app-create-cours',

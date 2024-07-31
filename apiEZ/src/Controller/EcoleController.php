@@ -44,13 +44,13 @@ class EcoleController extends AbstractController
 
         // Récupération des données depuis le cache ou exécution de la requête si le cache est vide
         $jsonEcoleList = $cache->get($idCache, function (ItemInterface $item) use ($ecoleRepository, $serializer) {
-            $item->tag("classesCache");
+            $item->tag("ecolesCache");
             $ecoleList = $ecoleRepository->findAll();
             $context = SerializationContext::create()->setGroups(['getClasses']);
             return $serializer->serialize($ecoleList, 'json', $context);
         });
 
-        // Retourne la liste des classes en JSON
+        // Retourne la liste des écoles en JSON
         return new JsonResponse($jsonEcoleList, Response::HTTP_OK, [], true);
     }
 
@@ -78,17 +78,22 @@ class EcoleController extends AbstractController
     #[OA\Tag(name: "Ecoles")]
     public function deleteEcole(Ecole $ecole, EntityManagerInterface $entityManager, ClasseRepository $classeRepository, TagAwareCacheInterface $cachePool): JsonResponse
     {
+        // Invalidations des caches
         $cachePool->invalidateTags(["ecolesCache"]);
+
         // Récupération des classes de l'école
         $classes = $classeRepository->findBy(['ecole' => $ecole]);
+
         // Suppression des classes de l'école
         foreach ($classes as $classe) {
             $entityManager->remove($classe);
         }
+
         // Suppression de l'école
         $entityManager->remove($ecole);
         // Application des changements dans la base de données
         $entityManager->flush();
+
         // Retour d'une réponse JSON indiquant que l'école a été supprimée
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
@@ -132,7 +137,7 @@ class EcoleController extends AbstractController
     #[OA\Tag(name: "Ecoles")]
     public function createEcole(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse
     {
-        $cachePool->invalidateTags(["ecolesCaches"]);
+        $cachePool->invalidateTags(["ecolesCache"]);
         // Désérialisation du contenu de la requête pour créer une nouvelle instance d'Ecole.
         $ecole = $serializer->deserialize($request->getContent(), Ecole::class, 'json');
         // Vérification des erreurs
@@ -144,6 +149,7 @@ class EcoleController extends AbstractController
         // Enregistrement de l'école dans la base de données.
         $entityManager->persist($ecole);
         $entityManager->flush();
+        // Invalidations des caches
         // Sérialisation de l'école créé en JSON.
         $context = SerializationContext::create()->setGroups(['getClasses']);
         $jsonClasse = $serializer->serialize($ecole, 'json', $context);
