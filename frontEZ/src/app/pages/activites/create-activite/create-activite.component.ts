@@ -2,9 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { ActivitesService } from '../../../../services/activites.service';
-import { VariablesGlobales } from '../../../../commons/variablesGlobales';
-
+import { ActivitesService } from '../../../services/activites.service';
+import { VariablesGlobales } from '../../../commons/variablesGlobales';
 @Component({
   selector: 'app-create-activite',
   standalone: true,

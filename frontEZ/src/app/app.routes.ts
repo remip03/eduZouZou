@@ -23,15 +23,24 @@ import { EnfantComponent } from './pages/enfants/enfant/enfant.component';
 import { UpdateEnfantComponent } from './pages/enfants/update-enfant/update-enfant.component';
 import { AddEnfantComponent } from './pages/enfants/add-enfant/add-enfant.component';
 import { CoursComponent } from './pages/cours/cours.component';
+import { CreateActiviteComponent } from './pages/activites/create-activite/create-activite.component';
+import { UpdateActiviteComponent } from './pages/activites/update-activite/update-activite.component';
+import { CreateCoursComponent } from './pages/cours/create-cours/create-cours.component';
+import { UpdateCoursComponent } from './pages/cours/update-cours/update-cours.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
 
   { path: 'Accueil', component: AccueilComponent },
 
-  { path: 'activites', component: ActivitesComponent },
+  {path: 'activites', component: ActivitesComponent},
+  {path: 'createActivites', component: CreateActiviteComponent},
+  {path: 'activites/:id', component: UpdateActiviteComponent},
 
-  { path: 'cours', component: CoursComponent },
+  {path: 'cours', component: CoursComponent},
+  {path: 'createCours', component: CreateCoursComponent},
+  {path: 'cours/:id', component: UpdateCoursComponent},
 
   // Chemin pour les écoles
   { path: 'ecoles', component: EcolesComponent },
