@@ -40,13 +40,13 @@ export const routes: Routes = [
 
   { path: 'activites', component: ActivitesComponent },
 
-  { path: 'createActivites', component: CreateActiviteComponent },
+  { path: 'creerActivites', component: CreateActiviteComponent },
 
   { path: 'activites/:id', component: UpdateActiviteComponent },
 
   { path: 'cours', component: CoursComponent },
 
-  { path: 'createCours', component: CreateCoursComponent },
+  { path: 'creerCours', component: CreateCoursComponent },
 
   { path: 'cours/:id', component: UpdateCoursComponent },
 
@@ -87,6 +87,7 @@ export const routes: Routes = [
 
   { path: 'competences', component: CompetencesComponent },
 
+  // Chemin pour la messagerie
   { path: 'messagerie', component: MessagerieComponent },
 
   { path: 'messageDetail/:id', component: MessagesDetailComponent },
