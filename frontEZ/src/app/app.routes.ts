@@ -15,16 +15,24 @@ import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
 import { CreateActiviteComponent } from './pages/classe/activites/create-activite/create-activite.component';
 import { UpdateActiviteComponent } from './pages/classe/activites/update-activite/update-activite.component';
-import { CreateCoursComponent } from './pages/classe/cours/create-cours/create-cours.component';
 import { UpdateCoursComponent } from './pages/classe/cours/update-cours/update-cours.component';
+import { ClasseComponent } from './pages/classes/classe/classe.component';
+import { UpdateEcoleComponent } from './pages/ecoles/update-ecole/update-ecole.component';
+import { ClassesComponent } from './pages/classes/classes.component';
+import { UpdateClasseComponent } from './pages/classes/update-classe/update-classe.component';
+import { AddClasseComponent } from './pages/classes/add-classe/add-classe.component';
+import { EnfantsComponent } from './pages/enfants/enfants.component';
+import { EnfantComponent } from './pages/enfants/enfant/enfant.component';
+import { UpdateEnfantComponent } from './pages/enfants/update-enfant/update-enfant.component';
+import { AddEnfantComponent } from './pages/enfants/add-enfant/add-enfant.component';
+import { CoursComponent } from './pages/cours/cours.component';
+import { CreateCoursComponent } from './pages/cours/create-cours/create-cours.component';
 
 export const routes: Routes = [
 
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
 
   { path: 'Accueil', component: AccueilComponent },
-
-  {path: 'classes', component: ClasseComponent},
 
   {path: 'activites', component: ActivitesComponent},
   {path: 'creerActivites', component: CreateActiviteComponent},
@@ -34,7 +42,9 @@ export const routes: Routes = [
   {path: 'creerCours', component: CreateCoursComponent},
   {path: 'cours/:id', component: UpdateCoursComponent},
 
+    // Chemin pour les écoles
   {path: 'ecoles', component: EcolesComponent},
+
   { path: 'ecoles/:id', component: EcoleComponent },
 
   { path: 'ecoles/:id/edit', component: UpdateEcoleComponent },
@@ -58,7 +68,6 @@ export const routes: Routes = [
   { path: 'enfants/:id/edit', component: UpdateEnfantComponent },
 
   { path: 'newEnfant', component: AddEnfantComponent },
-
 
   { path: 'activites', component: ActivitesComponent },
 

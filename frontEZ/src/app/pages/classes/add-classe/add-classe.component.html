@@ -11,13 +11,12 @@
   </div>
   <div class="form-group">
     <label for="niveauCl">Niveau</label>
-    <input
-      type="text"
-      class="form-control"
-      id="niveauCl"
-      formControlName="niveauCl"
-      required
-    />
+    <select name="niveauCl" id="niveauCl" formControlName="niveauCl">
+      <option value="" disabled selected>Choisissez le niveau</option>
+      @for (item of niveauCl; track $index) {
+      <option [value]="item">{{ item }}</option>
+      }
+    </select>
   </div>
   <div class="form-group">
     <label for="anneeCl">Année</label>

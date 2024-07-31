@@ -22,7 +22,7 @@
           <span class="bold">Niveau : </span>{{ item.niveauCl }}
         </p>
         <p class="card-text">
-          <span class="bold">Année : </span>{{ item.anneeCl }}
+          <span class="bold">Année : </span>{{ item.anneeCl | date: 'yyyy-MM-dd' }}
         </p>
         <a routerLink="/classes/{{ item.id }}" class="btn btn-primary"
           >Voir la classe</a

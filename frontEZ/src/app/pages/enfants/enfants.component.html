@@ -20,7 +20,7 @@
           <span class="bold">Prénom : </span>{{ item.firstNameE }}
         </p>
         <p class="card-text">
-          <span class="bold">Date de naissance : </span>{{ item.birthDateE }}
+          <span class="bold">Date de naissance : </span>{{ item.birthDateE | date: 'yyyy-MM-dd'}}
         </p>
         <a routerLink="/enfants/{{ item.id }}" class="btn btn-primary"
           >Voir l'enfant</a

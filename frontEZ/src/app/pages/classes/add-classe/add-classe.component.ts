@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import Ecole from '../../../models/ecole.modelt';
 import { ClasseService } from '../../../services/classe.service';
 import { EcoleService } from '../../../services/ecole.service';
+import { VariablesGlobales } from '../../../commons/variablesGlobales';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class AddClasseComponent {
   classe: FormGroup; // Déclaration du formulaire de type FormGroup
   submitted: boolean = false; // Indicateur de soumission du formulaire
   ecoles: Ecole[] = []; // Liste des écoles pour le menu déroulant
+  niveauCl!: string[]; // Niveaux de classe pour le menu déroulant
 
   // Constructeur avec injection des services nécessaires
   constructor(
@@ -26,6 +28,7 @@ export class AddClasseComponent {
     private classeService: ClasseService,
     private ecoleService: EcoleService) {
 
+    this.niveauCl = VariablesGlobales.niveauCl; // Récupération des niveaux de classe
     // Initialisation du formulaire avec des champs et des validateurs
     this.classe = this.formBuilder.group({
       nameCl: ['', Validators.required],

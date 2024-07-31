@@ -6,6 +6,7 @@ import Ecole from '../../../models/ecole.modelt';
 import { ClasseService } from '../../../services/classe.service';
 import { EcoleService } from '../../../services/ecole.service';
 import Classe from '../../../models/classe.model';
+import { VariablesGlobales } from '../../../commons/variablesGlobales';
 
 @Component({
   selector: 'app-update-classe',
@@ -19,6 +20,7 @@ export class UpdateClasseComponent {
   submitted: boolean = false;
   classeId?: number;
   ecoles: Ecole[] = [];
+  niveauCl!: string[]; // Niveaux de classe pour le menu déroulant
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,6 +29,7 @@ export class UpdateClasseComponent {
     private classeService: ClasseService,
     private ecoleService: EcoleService
   ) {
+    this.niveauCl = VariablesGlobales.niveauCl; // Récupère les niveaux de classe
     // Initialise le formulaire avec des champs et des validateurs
     this.classe = this.formBuilder.group({
       nameCl: ['', Validators.required],
@@ -42,7 +45,10 @@ export class UpdateClasseComponent {
     if (this.classeId) {
       // Si l'ID de la classe est valide, récupère les données de la classe
       this.classeService.getClasse(this.classeId).subscribe((data: Classe) => {
-        const classeData = { ...data, ecoleId: data.ecole.id }; // Prépare les données de la classe pour le formulaire
+        // Vérifiez le format de la date
+        const formattedDate = new Date(data.anneeCl).toISOString().split('T')[0];
+        const classeData = { ...data, anneeCl: formattedDate, ecoleId: data.ecole.id }; // Prépare les données de la classe pour le formulaire
+        console.log('Classe Data:', classeData); // Ajoutez un log pour vérifier les données
         this.classe.patchValue(classeData); // Met à jour le formulaire avec les données de la classe
       });
     }

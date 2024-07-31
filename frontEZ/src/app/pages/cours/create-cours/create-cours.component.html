@@ -23,7 +23,7 @@
     <select name="typeR" id="typeR" formControlName="typeR">
       <option value="" disabled selected>pour quelle niveau ?</option>
       @for (item of typeRC; track $index) {
-        <option [value]="typeRC">{{ item }}</option>
+        <option [value]="item">{{ item }}</option>
       }
     </select>
   </div>

@@ -42,7 +42,9 @@ export class UpdateEnfantComponent {
     if (this.enfantId) {
       // Si l'ID de l'enfant est valide, récupère les données de l'enfant
       this.enfantService.getEnfant(this.enfantId).subscribe((data: Enfant) => {
-        const enfantData = { ...data, classeId: data.classe.id }; // Prépare les données de l'enfant pour le formulaire
+        // Vérifiez le format de la date
+        const formattedDate = new Date(data.birthDateE).toISOString().split('T')[0];
+        const enfantData = { ...data, birthDateE: formattedDate, classeId: data.classe.id }; // Prépare les données de l'enfant pour le formulaire
         this.enfant.patchValue(enfantData); // Met à jour le formulaire avec les données de l'enfant
       });
     }
