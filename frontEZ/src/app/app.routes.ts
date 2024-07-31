@@ -13,16 +13,10 @@ import { ResultatsComponent } from './pages/profil/resultats/resultats.component
 import { AddEcoleComponent } from './pages/ecoles/add-ecole/add-ecole.component';
 import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
-import { UpdateEcoleComponent } from './pages/ecoles/update-ecole/update-ecole.component';
-import { CoursComponent } from './pages/cours/cours.component';
-import { ClassesComponent } from './pages/classes/classes.component';
-import { ClasseComponent } from './pages/classes/classe/classe.component';
-import { EnfantsComponent } from './pages/enfants/enfants.component';
-import { EnfantComponent } from './pages/enfants/enfant/enfant.component';
-import { UpdateEnfantComponent } from './pages/enfants/update-enfant/update-enfant.component';
-import { AddEnfantComponent } from './pages/enfants/add-enfant/add-enfant.component';
-import { UpdateClasseComponent } from './pages/classes/update-classe/update-classe.component';
-import { AddClasseComponent } from './pages/classes/add-classe/add-classe.component';
+import { CreateActiviteComponent } from './pages/classe/activites/create-activite/create-activite.component';
+import { UpdateActiviteComponent } from './pages/classe/activites/update-activite/update-activite.component';
+import { CreateCoursComponent } from './pages/classe/cours/create-cours/create-cours.component';
+import { UpdateCoursComponent } from './pages/classe/cours/update-cours/update-cours.component';
 
 export const routes: Routes = [
 
@@ -30,9 +24,17 @@ export const routes: Routes = [
 
   { path: 'Accueil', component: AccueilComponent },
 
-  // Chemin pour les écoles
-  { path: 'ecoles', component: EcolesComponent },
+  {path: 'classes', component: ClasseComponent},
 
+  {path: 'activites', component: ActivitesComponent},
+  {path: 'creerActivites', component: CreateActiviteComponent},
+  {path: 'activites/:id', component: UpdateActiviteComponent},
+
+  {path: 'cours', component: CoursComponent},
+  {path: 'creerCours', component: CreateCoursComponent},
+  {path: 'cours/:id', component: UpdateCoursComponent},
+
+  {path: 'ecoles', component: EcolesComponent},
   { path: 'ecoles/:id', component: EcoleComponent },
 
   { path: 'ecoles/:id/edit', component: UpdateEcoleComponent },

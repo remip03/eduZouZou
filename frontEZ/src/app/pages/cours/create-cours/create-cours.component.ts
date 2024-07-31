@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import Ressource from '../../../../models/ressource.models';
-import { RessourceService } from '../../../../services/ressource.service';
 import { Router } from '@angular/router';
+import { CoursService } from '../../../../services/cours.service';
+import { VariablesGlobales } from '../../../../commons/variablesGlobales';
+import Cours from '../../../../models/Cours.model';
 
 @Component({
   selector: 'app-create-cours',
@@ -15,21 +17,25 @@ export class CreateCoursComponent {
 
   coursCreate: FormGroup;
   valid: boolean = false;
-  cours: Ressource[] = []
+  matieres!: string[];
+  typeRC!: string[];
 
   constructor(
     private formbuild: FormBuilder,
-    private ressourceService: RessourceService,
+    private coursService: CoursService,
     private router: Router
   ){
+    this.matieres = VariablesGlobales.matieres
+    this.typeRC = VariablesGlobales.typeRC
     this.coursCreate = this.formbuild.group({
-      typeR: ['cours'],
+      typeR: [''],
       nameR: ['', Validators.required],
       descriptionR: [''],
       matiereR: ['', Validators.required],
       docC: [''],
       videoC: [''],
-      ressourceSupC: ['']
+      ressourceSupC: [''],
+      dtype: ['cours']
     })
   }
 
@@ -39,12 +45,12 @@ export class CreateCoursComponent {
       return ;
     }
 
-    const newCours: Ressource = this.coursCreate.value
+    const newCours: Cours = this.coursCreate.value
 
-    this.ressourceService.addRessource(newCours).subscribe({
+    this.coursService.addCours(newCours).subscribe({
       next: () => {
         alert('Le cours a bien été ajouté à la liste.')
-        this.router.navigate(['/Cours'])
+        this.router.navigate(['/cours'])
       },
       error: () =>
         alert("Ce cours n'a pas été ajouté à la liste.")
