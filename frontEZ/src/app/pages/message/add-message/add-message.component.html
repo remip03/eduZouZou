@@ -1,0 +1,40 @@
+<p>add-message works!</p>
+
+<h2>creation message</h2>
+
+<form [formGroup]="createMsg" (ngSubmit)="createMessage()">
+  <div class="mt-4">
+    <label for="content">contenu :</label>
+    <input type="text" id="content" formControlName="content" />
+    <!-- @if (submitted && form['content'].invalid) {
+    <span>prenom invalid</span>
+    }@else if (form['content'].hasError('minlength')) {
+    <span>le prenom doit contenir au moins 3 caractères</span>
+    } -->
+
+    <label for="expediteur">expéditeur :</label>
+    <input type="text" id="expediteur" formControlName="expediteur" />
+    <!-- @if (submitted && form['expediteur'].invalid) {
+    <span>nom invalid</span>
+    }@else if (form['expediteur'].hasError('minlength')) {
+    <span>le nom doit contenir au moins 3 caractères</span>
+    } -->
+    <label for="destinataire">destinataire :</label>
+    <input type="text" id="destinataire" formControlName="destinataire" />
+    <!-- @if (submitted && form['destinataire'].invalid) {
+    <span>nom invalid</span>
+    }@else if (form['destinataire'].hasError('minlength')) {
+    <span>le nom doit contenir au moins 3 caractères</span>
+    } -->
+    <label for="msgDate">date :</label>
+    <input type="datetime-local" id="msgDate" formControlName="msgDate" />
+
+    <!-- @if (submitted && form['msgDate'].invalid) {
+    <span>nom invalid</span>
+    }@else if (form['msgDate'].hasError('minlength')) {
+    <span>le nom doit contenir au moins 3 caractères</span>
+    } -->
+
+    <button type="submit">creer</button>
+  </div>
+</form>

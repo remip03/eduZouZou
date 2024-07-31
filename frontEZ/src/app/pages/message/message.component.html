@@ -1,0 +1,22 @@
+<h2>Messages</h2>
+
+<button routerLink="/messagesCreate">nouveau message</button>
+
+@for (item of messages; track $index) {
+<div class="card text-center mt-5">
+  <div class="card-header">Messages</div>
+  <div class="card-body">
+    <h5 class="card-title">expéditeur : {{ item.expediteur }}</h5>
+    <p class="card-text">message : {{ item.content }}</p>
+    <h5 class="card-title">destinataire : {{ item.destinataire }}</h5>
+
+    <a routerLink="/messagesCreate" class="btn btn-primary m-5">répondre</a>
+    <button (click)="deleteMessage(item.id)" class="btn btn-danger m-5">
+      supprimer
+    </button>
+    <a routerLink="/messagesUpdate/{{ item.id }}" class="btn btn-success m-5"
+      >modifier</a
+    >
+  </div>
+</div>
+}

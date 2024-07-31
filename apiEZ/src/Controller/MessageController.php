@@ -119,6 +119,7 @@ class MessageController extends AbstractController
                         new OA\Property(property: "content", type: "string"),
                         new OA\Property(property: "destinataire", type: "string"),
                         new OA\Property(property: "expediteur", type: "string"),
+                        new OA\Property(property: "msgDate", type: "string", format: "date"),
 
                     ]
                 )
@@ -204,6 +205,7 @@ class MessageController extends AbstractController
                         new OA\Property(property: "content", type: "string"),
                         new OA\Property(property: "destinataire", type: "string"),
                         new OA\Property(property: "expediteur", type: "string"),
+                        new OA\Property(property: "msgDate", type: "string", format: "date"),
                     ]
                 )
             ),
@@ -220,6 +222,9 @@ class MessageController extends AbstractController
     #[OA\Tag(name: "messages")]
     public function updateMessage(Request $request, SerializerInterface $serializer, Message $currentMessage, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse
     {
+        // Invalide le cache associé aux messages
+        $cachePool->invalidateTags(["messagesCache"]);
+
         // Désérialisation du contenu de la requête pour créer une instance de message
         $data = json_decode($request->getContent(), true);
 
@@ -232,6 +237,7 @@ class MessageController extends AbstractController
         $currentMessage->setContent($newMessage->getContent());
         $currentMessage->setDestinataire($newMessage->getDestinataire());
         $currentMessage->setExpediteur($newMessage->getExpediteur());
+        $currentMessage->setMsgDate($newMessage->getMsgDate());
 
         // On vérifie les erreurs
         $errors = $validator->validate($currentMessage);
@@ -247,8 +253,6 @@ class MessageController extends AbstractController
         $em->persist($currentMessage);
         $em->flush();
 
-        // Invalide le cache associé aux messages
-        $cachePool->invalidateTags(["messagesCache"]);
 
         // Retourne une réponse indiquant que la mise à jour a été effectuée avec succès
         return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);

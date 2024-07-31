@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import Login from '../interfaces/login';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private tokenKey = 'token'; // Clé pour stocker le token dans le localStorage
@@ -14,7 +14,7 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn()); // BehaviorSubject pour suivre l'état de connexion
 
   // Injection des services HttpClient et Router dans le constructeur
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   // Méthode pour vérifier si l'utilisateur est connecté
   isLoggedIn(): boolean {
@@ -30,19 +30,21 @@ export class AuthService {
   register(userData: any): Observable<any> {
     return this.httpClient.post(`${this.apiUrl}/register`, userData, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
+        'Content-Type': 'application/json',
+      }),
     });
   }
 
   // Méthode pour se connecter
   login(credentials: Login): Observable<{ token: string }> {
-    return this.httpClient.post<{ token: string }>(`${this.apiUrl}/login_check`, credentials).pipe(
-      tap(response => {
-        localStorage.setItem(this.tokenKey, response.token); // Stocke le token dans le localStorage
-        this.loggedIn.next(true); // Met à jour l'état de connexion
-      })
-    );
+    return this.httpClient
+      .post<{ token: string }>(`${this.apiUrl}/login_check`, credentials)
+      .pipe(
+        tap((response) => {
+          localStorage.setItem(this.tokenKey, response.token); // Stocke le token dans le localStorage
+          this.loggedIn.next(true); // Met à jour l'état de connexion
+        })
+      );
   }
 
   // Méthode pour se déconnecter

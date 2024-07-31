@@ -1,6 +1,6 @@
 export default interface Ressource{
   id: number
-  typeR: boolean;
+  typeR: string;
   nameR: string;
   descriptionR: string;
   matiereR: string;
@@ -8,4 +8,5 @@ export default interface Ressource{
   docC: string;
   videoC: string;
   ressourceSupC: string;
+  dtype: string;
 }

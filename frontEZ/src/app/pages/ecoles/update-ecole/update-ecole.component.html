@@ -1,1 +1,40 @@
-<p>update-ecole works!</p>
+<form [formGroup]="ecole" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="nameEc">Nom École</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nameEc"
+      formControlName="nameEc"
+    />
+  </div>
+  <div class="form-group">
+    <label for="adresseEc">Adresse</label>
+    <input
+      type="text"
+      class="form-control"
+      id="adresseEc"
+      formControlName="adresseEc"
+    />
+  </div>
+  <div class="form-group">
+    <label for="telEc">Téléphone</label>
+    <input
+      type="text"
+      class="form-control"
+      id="telEc"
+      formControlName="telEc"
+    />
+  </div>
+  <div class="form-group">
+    <label for="mailEc">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="mailEc"
+      formControlName="mailEc"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Modifier</button>
+  <a routerLink="/ecoles" class="btn btn-secondary">Retour</a>
+</form>

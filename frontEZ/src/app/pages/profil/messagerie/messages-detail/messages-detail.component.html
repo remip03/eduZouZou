@@ -1,0 +1,16 @@
+<p>messages-detail works!</p>
+
+<div class="card text-center mt-5">
+  <div class="card-header">Messages</div>
+  <div class="card-body">
+    <h5 class="card-title">expéditeur : {{ msgDetail.expediteur }}</h5>
+    <p class="card-text">message : {{ msgDetail.content }}</p>
+    <h5 class="card-title">destinataire : {{ msgDetail.destinataire }}</h5>
+
+    <a routerLink="/messagesCreate" class="btn btn-primary m-5">répondre</a>
+    <button (click)="deleteMessage(msgDetail.id)" class="btn btn-danger m-5">
+      supprimer
+    </button>
+    <a routerLink="/messagesUpdate/{{ msgDetail.id }}" class="btn btn-success m-5">modifier</a>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<p>messages-tables works!</p>
+
+<h2>liste des messages</h2>
+
+<table class="table mt-1">
+  <thead>
+    <tr>
+      <th scope="col">msg numéro</th>
+      <th scope="col">expéditeur</th>
+      <th scope="col">destinataire</th>
+      <th scope="col">contenu du message</th>
+      <th scope="col">date et heure</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of messages; track $index ;){
+    <tr>
+      <th scope="row">{{ $index }}</th>
+      <td>{{ item.expediteur }}</td>
+      <td>{{ item.destinataire }}</td>
+      <td>{{ item.content }}</td>
+      <td>{{ item.msgDate }}</td>
+
+      <a routerLink="/messageDetail/{{ item.id }}" class="btn btn-primary m-2"
+        >lire</a
+      >
+      <button (click)="deleteMessage(item.id)" class="btn btn-danger m-2">
+        supprimer
+      </button>
+    </tr>
+    }
+  </tbody>
+</table>

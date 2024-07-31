@@ -38,6 +38,7 @@ return [
             [['_route' => 'messageries', '_controller' => 'App\\Controller\\MessagerieController::getAllMessageries'], null, ['GET' => 0], null, false, false, null],
             [['_route' => 'createMessagerie', '_controller' => 'App\\Controller\\MessagerieController::createMessagerie'], null, ['POST' => 0], null, false, false, null],
         ],
+        '/api/register' => [[['_route' => 'register', '_controller' => 'App\\Controller\\RegisterController::register'], null, ['POST' => 0], null, false, false, null]],
         '/api/ressources' => [
             [['_route' => 'app_ressource', '_controller' => 'App\\Controller\\RessourceController::getAllRessources'], null, ['GET' => 0], null, false, false, null],
             [['_route' => 'createRessource', '_controller' => 'App\\Controller\\RessourceController::createRessource'], null, ['POST' => 0], null, false, false, null],

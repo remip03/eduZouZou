@@ -1,0 +1,69 @@
+<h2>Créer un cours.</h2>
+
+<form [formGroup]="coursCreate">
+
+  <div class="colonne marge">
+    <label for="nameR">Nom du cours : </label>
+    <input id="nameR" name="nameR" type="text" size="50" formControlName="nameR">
+    @if (valid && form['nameR'].invalid) {
+      <span>Nom invalide</span>
+    }
+  </div>
+
+  <div class="colonne marge">
+    <label for="descriptionR">Description du cours : </label>
+    <input type="text" id="descriptionR" name="descriptionR" formControlName="descriptionR" size="500" maxlength="500">
+    @if (valid && form['descriptionR'].invalid) {
+      <span>Description invalide</span>
+    }
+  </div>
+
+  <div class="colonne marge">
+    <label for="typeR">Choisissez le niveau : </label>
+    <select name="typeR" id="typeR" formControlName="typeR">
+      <option value="" disabled selected>pour quelle niveau ?</option>
+      @for (item of typeRC; track $index) {
+        <option [value]="item">{{ item }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="colonne marge">
+    <label for="matiereR">Choisissez la matière : </label>
+    <select name="matiereR" id="matiereR" formControlName="matiereR">
+      <option value="" disabled selected>Liste des matières</option>
+      @for (matiere of matieres; track $index) {
+        <option [value]="matiere">{{ matiere }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="colonne marge">
+    <label for="docC">ajouter un lien (document) : </label>
+    <input type="text" id="docC" name="docC" formControlName="docC" size="50" maxlength="50">
+    @if (valid && form['docC'].invalid) {
+      <span>Type invalide</span>
+    }
+  </div>
+
+  <div class="colonne marge">
+    <label for="videoC">ajouter un lien (video) : </label>
+    <input type="text" id="videoC" name="videoC" formControlName="videoC" size="50" maxlength="50">
+    @if (valid && form['videoC'].invalid) {
+      <span>Type invalide</span>
+    }
+  </div>
+
+  <div class="colonne marge">
+    <label for="ressourceSupC">ressource supplémentaire : </label>
+    <input type="text" id="ressourceSupC" name="ressourceSupC" formControlName="ressourceSupC" size="50" maxlength="50">
+    @if (valid && form['ressourceSupC'].invalid) {
+      <span>Type invalide</span>
+    }
+  </div>
+
+  <button class="marge" (click)="createCours()">Créer ce cours</button>
+
+</form>
+
+

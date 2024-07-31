@@ -1,12 +1,10 @@
 import { Routes } from '@angular/router';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { ClasseComponent } from './pages/classe/classe.component';
 import { ForumComponent } from './pages/forum/forum.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/login/register/register.component';
-import { ActivitesComponent } from './pages/classe/activites/activites.component';
-import { CoursComponent } from './pages/classe/cours/cours.component';
+import { ActivitesComponent } from './pages/activites/activites.component';
 import { ProfilComponent } from './pages/profil/profil.component';
 import { CompetencesComponent } from './pages/profil/competences/competences.component';
 import { MessagerieComponent } from './pages/profil/messagerie/messagerie.component';
@@ -15,40 +13,80 @@ import { ResultatsComponent } from './pages/profil/resultats/resultats.component
 import { AddEcoleComponent } from './pages/ecoles/add-ecole/add-ecole.component';
 import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
+import { CreateActiviteComponent } from './pages/classe/activites/create-activite/create-activite.component';
+import { UpdateActiviteComponent } from './pages/classe/activites/update-activite/update-activite.component';
+import { UpdateCoursComponent } from './pages/classe/cours/update-cours/update-cours.component';
+import { ClasseComponent } from './pages/classes/classe/classe.component';
+import { UpdateEcoleComponent } from './pages/ecoles/update-ecole/update-ecole.component';
+import { ClassesComponent } from './pages/classes/classes.component';
+import { UpdateClasseComponent } from './pages/classes/update-classe/update-classe.component';
+import { AddClasseComponent } from './pages/classes/add-classe/add-classe.component';
+import { EnfantsComponent } from './pages/enfants/enfants.component';
+import { EnfantComponent } from './pages/enfants/enfant/enfant.component';
+import { UpdateEnfantComponent } from './pages/enfants/update-enfant/update-enfant.component';
+import { AddEnfantComponent } from './pages/enfants/add-enfant/add-enfant.component';
+import { CoursComponent } from './pages/cours/cours.component';
+import { CreateCoursComponent } from './pages/cours/create-cours/create-cours.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
+  { path: 'Accueil', component: AccueilComponent },
 
-  {path: '', redirectTo: 'Accueil', pathMatch: 'full'},
-  {path: 'Accueil', component: AccueilComponent},
+  { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
 
-  {path: 'classes', component: ClasseComponent},
+  { path: 'Accueil', component: AccueilComponent },
 
   {path: 'activites', component: ActivitesComponent},
 
   {path: 'cours', component: CoursComponent},
 
+    // Chemin pour les écoles
   {path: 'ecoles', component: EcolesComponent},
 
   { path: 'ecoles/:id', component: EcoleComponent },
 
+  { path: 'ecoles/:id/edit', component: UpdateEcoleComponent },
+
   { path: 'newEcole', component: AddEcoleComponent },
 
-  {path: 'forum', component: ForumComponent},
+  // Chemin pour les classes
+  { path: 'classes', component: ClassesComponent },
 
-  {path: 'login', component: LoginComponent},
+  { path: 'classes/:id', component: ClasseComponent },
 
-  {path: 'register', component: RegisterComponent},
+  { path: 'classes/:id/edit', component: UpdateClasseComponent },
 
-  {path: 'profil', component: ProfilComponent},
+  { path: 'newClasse', component: AddClasseComponent },
 
-  {path: 'competences', component: CompetencesComponent},
+  // Chemin pour les enfants
+  { path: 'enfants', component: EnfantsComponent },
 
-  {path: 'messagerie', component: MessagerieComponent},
+  { path: 'enfants/:id', component: EnfantComponent },
 
-  {path: 'modifierProfil', component: ModifierProfilComponent},
+  { path: 'enfants/:id/edit', component: UpdateEnfantComponent },
 
-  {path: 'resultats', component: ResultatsComponent},
+  { path: 'newEnfant', component: AddEnfantComponent },
 
-  {path: '**', component: NotFoundComponent}
+  { path: 'activites', component: ActivitesComponent },
+
+  { path: 'cours', component: CoursComponent },
+
+  { path: 'forum', component: ForumComponent },
+
+  { path: 'login', component: LoginComponent },
+
+  { path: 'register', component: RegisterComponent },
+
+  { path: 'profil', component: ProfilComponent },
+
+  { path: 'competences', component: CompetencesComponent },
+
+  { path: 'messagerie', component: MessagerieComponent },
+
+  { path: 'modifierProfil', component: ModifierProfilComponent },
+
+  { path: 'resultats', component: ResultatsComponent },
+
+  { path: '**', component: NotFoundComponent }
 
 ];
