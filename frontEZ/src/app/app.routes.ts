@@ -13,9 +13,6 @@ import { ResultatsComponent } from './pages/profil/resultats/resultats.component
 import { AddEcoleComponent } from './pages/ecoles/add-ecole/add-ecole.component';
 import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
-import { CreateActiviteComponent } from './pages/classe/activites/create-activite/create-activite.component';
-import { UpdateActiviteComponent } from './pages/activites/update-activite/update-activite.component';
-import { UpdateCoursComponent } from './pages/cours/update-cours/update-cours.component';
 import { ClasseComponent } from './pages/classes/classe/classe.component';
 import { UpdateEcoleComponent } from './pages/ecoles/update-ecole/update-ecole.component';
 import { ClassesComponent } from './pages/classes/classes.component';
@@ -26,7 +23,11 @@ import { EnfantComponent } from './pages/enfants/enfant/enfant.component';
 import { UpdateEnfantComponent } from './pages/enfants/update-enfant/update-enfant.component';
 import { AddEnfantComponent } from './pages/enfants/add-enfant/add-enfant.component';
 import { CoursComponent } from './pages/cours/cours.component';
+import { CreateActiviteComponent } from './pages/activites/create-activite/create-activite.component';
+import { UpdateActiviteComponent } from './pages/activites/update-activite/update-activite.component';
 import { CreateCoursComponent } from './pages/cours/create-cours/create-cours.component';
+import { UpdateCoursComponent } from './pages/cours/update-cours/update-cours.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -37,8 +38,12 @@ export const routes: Routes = [
   { path: 'Accueil', component: AccueilComponent },
 
   {path: 'activites', component: ActivitesComponent},
+  {path: 'createActivites', component: CreateActiviteComponent},
+  {path: 'activites/:id', component: UpdateActiviteComponent},
 
   {path: 'cours', component: CoursComponent},
+  {path: 'createCours', component: CreateCoursComponent},
+  {path: 'cours/:id', component: UpdateCoursComponent},
 
     // Chemin pour les écoles
   {path: 'ecoles', component: EcolesComponent},
