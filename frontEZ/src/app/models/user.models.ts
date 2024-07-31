@@ -1,4 +1,4 @@
-export default interface User{
+export default interface User {
   id: number;
   role: string;
   password: string;
@@ -6,4 +6,5 @@ export default interface User{
   lastName: string;
   tel: number;
   adresse: string;
+  ecoleId: number;
 }

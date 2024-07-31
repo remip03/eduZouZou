@@ -53,6 +53,20 @@
     }
   </div>
 
+  <div class="colonne marge">
+    <label for="ecoleId">selectionner une école : </label>
+    <select class="m-3" name="ecoleId" id="ecoleId" formControlName="ecoleId">
+      <option value="" disabled selected>Liste des ecoles</option>
+      @for (item of userDetail; track $index) {
+      <option [value]="item.ecoleId">{{ item.ecoleId }}</option>
+      }
+    </select>
+
+    @if (submitted && form['ecoleId'].hasError('pattern')) {
+    <div class="alert alert-danger">veuillez selectionner une école</div>
+    }
+  </div>
+
 
 
   <button type="submit" class="btn btn-primary">S'inscrire</button>

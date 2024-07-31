@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
@@ -7,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import User from '../../../models/user.models';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -17,6 +19,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
+  userDetail: User[] = [];
   user: FormGroup; // Déclaration du formulaire de type FormGroup
   submitted: boolean = false; // Indicateur de soumission du formulaire
 
@@ -24,7 +27,8 @@ export class RegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private UserService: UserService
   ) {
     this.user = this.formBuilder.group({
       username: [
@@ -80,6 +84,8 @@ export class RegisterComponent {
           // Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/g),
         ],
       ],
+
+      ecoleId: ['', [Validators.required]],
     });
   }
 
@@ -115,6 +121,16 @@ export class RegisterComponent {
       return true;
     }
   }
+
+  //méthode appelée lors du chargement du composant
+  // ngOnInit(): void {
+  //   //recupère le role
+  //   this.role = this.authService.getRole();
+  //   // Récupère la liste des messages
+  //   this.userService
+  //     .getUsers()
+  //     .subscribe((responseMsg) => (this.userDetail = responseMsg));
+  // }
 
   // Getter pour accéder facilement aux contrôles du formulaire dans le template
   get form() {
