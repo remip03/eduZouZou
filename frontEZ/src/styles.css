@@ -8,3 +8,12 @@
 .marge{
     margin: 1%;
 }
+
+.homer{
+  display: flex;
+  flex-wrap: wrap
+}
+
+.carte{
+  text-align: center;
+}
