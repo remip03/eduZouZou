@@ -27,26 +27,31 @@ import { CreateActiviteComponent } from './pages/activites/create-activite/creat
 import { UpdateActiviteComponent } from './pages/activites/update-activite/update-activite.component';
 import { CreateCoursComponent } from './pages/cours/create-cours/create-cours.component';
 import { UpdateCoursComponent } from './pages/cours/update-cours/update-cours.component';
-
+import { MessagesDetailComponent } from './pages/profil/messagerie/messages-detail/messages-detail.component';
+import { MessageComponent } from './pages/message/message.component';
+import { AddMessageComponent } from './pages/message/add-message/add-message.component';
+import { UpdateMsgComponent } from './pages/message/update-msg/update-msg.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
   { path: 'Accueil', component: AccueilComponent },
 
-  { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
-
   { path: 'Accueil', component: AccueilComponent },
 
-  {path: 'activites', component: ActivitesComponent},
-  {path: 'createActivites', component: CreateActiviteComponent},
-  {path: 'activites/:id', component: UpdateActiviteComponent},
+  { path: 'activites', component: ActivitesComponent },
 
-  {path: 'cours', component: CoursComponent},
-  {path: 'createCours', component: CreateCoursComponent},
-  {path: 'cours/:id', component: UpdateCoursComponent},
+  { path: 'createActivites', component: CreateActiviteComponent },
 
-    // Chemin pour les écoles
-  {path: 'ecoles', component: EcolesComponent},
+  { path: 'activites/:id', component: UpdateActiviteComponent },
+
+  { path: 'cours', component: CoursComponent },
+
+  { path: 'createCours', component: CreateCoursComponent },
+
+  { path: 'cours/:id', component: UpdateCoursComponent },
+
+  // Chemin pour les écoles
+  { path: 'ecoles', component: EcolesComponent },
 
   { path: 'ecoles/:id', component: EcoleComponent },
 
@@ -72,10 +77,6 @@ export const routes: Routes = [
 
   { path: 'newEnfant', component: AddEnfantComponent },
 
-  { path: 'activites', component: ActivitesComponent },
-
-  { path: 'cours', component: CoursComponent },
-
   { path: 'forum', component: ForumComponent },
 
   { path: 'login', component: LoginComponent },
@@ -88,10 +89,17 @@ export const routes: Routes = [
 
   { path: 'messagerie', component: MessagerieComponent },
 
+  { path: 'messageDetail/:id', component: MessagesDetailComponent },
+
+  { path: 'messages', component: MessageComponent },
+
+  { path: 'messagesCreate', component: AddMessageComponent },
+
+  { path: 'messagesUpdate/:id', component: UpdateMsgComponent },
+
   { path: 'modifierProfil', component: ModifierProfilComponent },
 
   { path: 'resultats', component: ResultatsComponent },
 
-  { path: '**', component: NotFoundComponent }
-
+  { path: '**', component: NotFoundComponent },
 ];
