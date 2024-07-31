@@ -132,9 +132,11 @@ class AppFixtures extends Fixture
         $listMessages[] = $message;
 
         $listMessagerie = [];
-
+for ($i = 0; $i < 10; $i++) {
         $messagerie = new Messagerie();
         $messagerie->setMessages(($listMessages[array_rand($listMessages)]));
+        $manager->persist($messagerie);
+}
 
         $manager->persist($messagerie);
         $listMessagerie[] = $messagerie;
