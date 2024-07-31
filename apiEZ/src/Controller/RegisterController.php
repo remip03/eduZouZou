@@ -34,10 +34,9 @@ class RegisterController extends AbstractController
                     type: "object",
                     properties: [
                         new OA\Property(property: "email", type: "string"),
-                        new OA\Property(property: "password", type: "string"),
-                        new OA\Property(property: "roles", type: "array", items: new OA\Items(type: "string")),
-                        new OA\Property(property: "first_name", type: "string"),
-                        new OA\Property(property: "last_name", type: "string"),
+                        new OA\Property(property: "password", type: "string"),                        
+                        new OA\Property(property: "firstName", type: "string"),
+                        new OA\Property(property: "lastName", type: "string"),
                         new OA\Property(property: "tel", type: "string"),
                         new OA\Property(property: "adresse", type: "string")
                     ]
@@ -53,15 +52,15 @@ class RegisterController extends AbstractController
     public function register(Request $request, EntityManagerInterface $manager): Response
     {
         $data = json_decode($request->getContent(), true);
-        if (empty($data['email']) || empty($data['password'])) {
+        if (empty($data['email']) || empty($data['password']) || empty($data['firstName']) || empty($data['lastName']) || empty($data['tel']) || empty($data['adresse'])  ){
             return $this->json(['error' => 'Invalid data'], Response::HTTP_BAD_REQUEST);
         }
         $user = new User();
         $user->setEmail($data['email']);
         $user->setPassword(password_hash($data['password'], PASSWORD_BCRYPT));
         $user->setRoles(['ROLE_USER']);
-        $user->setFirstName($data['first_name']);
-        $user->setLastName($data['last_name']);
+        $user->setFirstName($data['firstName']);
+        $user->setLastName($data['lastName']);
         $user->setTel($data['tel']);
         $user->setAdresse($data['adresse']);
 
@@ -75,8 +74,8 @@ class RegisterController extends AbstractController
             'id' => $user->getId(),
             'email' => $user->getEmail(),
             'roles' => $user->getRoles(),
-            'first_name' => $user->getFirstName(),
-            'last_name' => $user->getLastName(),
+            'firstName' => $user->getFirstName(),
+            'lastName' => $user->getLastName(),
             'tel' => $user->getTel(),
             'adresse' => $user->getAdresse(),
         ], Response::HTTP_CREATED);

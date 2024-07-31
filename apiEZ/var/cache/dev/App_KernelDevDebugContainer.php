@@ -16,7 +16,7 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerMxcHWex\App_KernelDevDebugContainer([
     'container.build_hash' => 'MxcHWex',
-    'container.build_id' => '8a3ef3ed',
-    'container.build_time' => 1722420552,
+    'container.build_id' => '0e3c21e2',
+    'container.build_time' => 1722423218,
     'container.runtime_mode' => \in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? 'web=0' : 'web=1',
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerMxcHWex');
