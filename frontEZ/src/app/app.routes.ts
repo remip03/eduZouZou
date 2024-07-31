@@ -27,6 +27,10 @@ import { CreateActiviteComponent } from './pages/activites/create-activite/creat
 import { UpdateActiviteComponent } from './pages/activites/update-activite/update-activite.component';
 import { CreateCoursComponent } from './pages/cours/create-cours/create-cours.component';
 import { UpdateCoursComponent } from './pages/cours/update-cours/update-cours.component';
+import { MessagesDetailComponent } from './pages/profil/messagerie/messages-detail/messages-detail.component';
+import { MessageComponent } from './pages/message/message.component';
+import { AddMessageComponent } from './pages/message/add-message/add-message.component';
+import { UpdateMsgComponent } from './pages/message/update-msg/update-msg.component';
 
 
 export const routes: Routes = [
@@ -34,13 +38,19 @@ export const routes: Routes = [
 
   { path: 'Accueil', component: AccueilComponent },
 
-  {path: 'activites', component: ActivitesComponent},
-  {path: 'createActivites', component: CreateActiviteComponent},
-  {path: 'activites/:id', component: UpdateActiviteComponent},
+  // Chemin pour les activités
+  { path: 'activites', component: ActivitesComponent },
 
-  {path: 'cours', component: CoursComponent},
-  {path: 'createCours', component: CreateCoursComponent},
-  {path: 'cours/:id', component: UpdateCoursComponent},
+  { path: 'creerActivites', component: CreateActiviteComponent },
+
+  { path: 'activites/:id', component: UpdateActiviteComponent },
+
+  // Chemin pour les cours
+  { path: 'cours', component: CoursComponent },
+
+  { path: 'creerCours', component: CreateCoursComponent },
+
+  { path: 'cours/:id', component: UpdateCoursComponent },
 
   // Chemin pour les écoles
   { path: 'ecoles', component: EcolesComponent },
@@ -69,24 +79,35 @@ export const routes: Routes = [
 
   { path: 'newEnfant', component: AddEnfantComponent },
 
-  { path: 'activites', component: ActivitesComponent },
-
-  { path: 'cours', component: CoursComponent },
-
+  // Chemin pour le forum
   { path: 'forum', component: ForumComponent },
 
+  // Chemin pour le login
   { path: 'login', component: LoginComponent },
 
+  // Chemin pour le register
   { path: 'register', component: RegisterComponent },
 
+  // Chemin pour le profil
   { path: 'profil', component: ProfilComponent },
-
-  { path: 'competences', component: CompetencesComponent },
-
-  { path: 'messagerie', component: MessagerieComponent },
 
   { path: 'modifierProfil', component: ModifierProfilComponent },
 
+  // Chemin pour les compétences
+  { path: 'competences', component: CompetencesComponent },
+
+  // Chemin pour la messagerie
+  { path: 'messagerie', component: MessagerieComponent },
+
+  { path: 'messageDetail/:id', component: MessagesDetailComponent },
+
+  { path: 'messages', component: MessageComponent },
+
+  { path: 'messagesCreate', component: AddMessageComponent },
+
+  { path: 'messagesUpdate/:id', component: UpdateMsgComponent },
+
+  // Chemin pour les résultats
   { path: 'resultats', component: ResultatsComponent },
 
   { path: '**', component: NotFoundComponent }
