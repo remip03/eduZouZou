@@ -6,36 +6,32 @@ use App\Repository\MessagerieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MessagerieRepository::class)]
 class Messagerie
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups(['getMessageries'])]
     #[ORM\Column( nullable: true)]
     private ?int $id = null;
-
-   
 
     /**
      * @var Collection<int, User>
      */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messagerie', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messagerie')]
     private Collection $users;
 
-    #[ORM\ManyToOne(inversedBy: 'messages')]
-    private ?message $messages = null;
-
-   
-
- 
+    #[ORM\ManyToOne(inversedBy: 'messages',cascade:['remove'])]
+    private ?Message $messages = null;
 
     public function __construct()
     {
-      
+
         $this->users = new ArrayCollection();
-     
-      
+
+
     }
 
     public function getId(): ?int
@@ -43,7 +39,7 @@ class Messagerie
         return $this->id;
     }
 
-   
+
 
     /**
      * @return Collection<int, User>
@@ -75,19 +71,19 @@ class Messagerie
         return $this;
     }
 
-    public function getMessages(): ?message
+    public function getMessages(): ?Message
     {
         return $this->messages;
     }
 
-    public function setMessages(?message $messages): static
+    public function setMessages(?Message $messages): static
     {
         $this->messages = $messages;
 
         return $this;
     }
 
-   
 
-   
+
+
 }
