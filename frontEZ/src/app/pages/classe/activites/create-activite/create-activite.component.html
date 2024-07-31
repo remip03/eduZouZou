@@ -11,9 +11,9 @@
   </div>
 
   <div class="colonne marge">
-    <label for="descritionR">Description de l'activité : </label>
-    <input type="text" id="descritionR" name="descritionR" formControlName="descritionR" size="50" maxlength="50">
-    @if (valid && form['descritionR'].invalid) {
+    <label for="descriptionR">Description de l'activité : </label>
+    <input type="text" id="descriptionR" name="descriptionR" formControlName="descriptionR" size="50" maxlength="50">
+    @if (valid && form['descriptionR'].invalid) {
       <span>Description invalide</span>
     }
   </div>
@@ -23,7 +23,7 @@
     <select name="typeR" id="typeR" formControlName="typeR">
       <option value="" disabled selected>pour quelle niveau ?</option>
       @for (item of typeRA; track $index) {
-        <option [value]="typeRA">{{ item }}</option>
+        <option [value]="item">{{ item }}</option>
       }
     </select>
   </div>
@@ -33,7 +33,7 @@
     <select name="matiereR" id="matiereR" formControlName="matiereR">
       <option value="" disabled selected>Liste des matières</option>
       @for (matiere of matieres; track $index) {
-        <option [value]="matieres">{{ matiere }}</option>
+        <option [value]="matiere">{{ matiere }}</option>
       }
     </select>
   </div>
@@ -43,7 +43,7 @@
     <select name="typeAct" id="typeAct" formControlName="typeAct">
       <option value="" disabled selected>Type d'activité</option>
       @for (item of typeActivite; track $index) {
-        <option [value]="typeActivite">{{ item }}</option>
+        <option [value]="item">{{ item }}</option>
       }
     </select>
   </div>

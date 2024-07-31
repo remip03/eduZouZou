@@ -33,7 +33,7 @@ export class UpdateActiviteComponent implements OnInit {
     this.typeRA = VariablesGlobales.typeRA
     this.activiteUpdate = this.formbuild.group({
       nameR: ['', Validators.required],
-      descritionR: ['', Validators.required],
+      descriptionR: ['', Validators.required],
       matiereR: ['', Validators.required],
       typeR: ['', Validators.required],
       typeAct:  [''],
@@ -66,7 +66,15 @@ export class UpdateActiviteComponent implements OnInit {
   }
 
   deleteActivite(){
-    this.activiteService.deleteActivite(this.activiteID);
+    this.activiteService.deleteActivite(this.activiteID).subscribe({
+      next: () =>{
+        alert('Cette activité a été effacée.');
+        this.router.navigate(['/activites'])
+      },
+      error:() =>{
+        alert('Une erreur est survenue.');
+      }
+    });
   }
 
   ngOnInit(): void {

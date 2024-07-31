@@ -31,7 +31,7 @@ export class UpdateCoursComponent implements OnInit{
     this.typeRC = VariablesGlobales.typeRC
     this.coursUpdate = this.formbuild.group({
       nameR: ['', Validators.required],
-      descritionR: ['', Validators.required],
+      descriptionR: ['', Validators.required],
       matiereR: ['', Validators.required],
       typeR: ['', Validators.required],
       docC: [''],
@@ -66,7 +66,15 @@ export class UpdateCoursComponent implements OnInit{
   }
 
   deleteCours(){
-    this.coursService.deleteCours(this.coursID);
+    this.coursService.deleteCours(this.coursID).subscribe({
+      next: () => {
+        alert('Ce cours a été effacé.');
+        this.router.navigate(['/cours'])
+      },
+      error:() =>{
+        alert('Une erreur est survenue.');
+      }
+    });
   }
 
   ngOnInit(): void {

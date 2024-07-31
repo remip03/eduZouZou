@@ -30,7 +30,7 @@ export class CreateActiviteComponent{
     this.typeRA = VariablesGlobales.typeRA
     this.activiteCreate = this.formbuild.group({
       nameR: ['', Validators.required],
-      descritionR: ['', Validators.required],
+      descriptionR: ['', Validators.required],
       matiereR: ['', Validators.required],
       typeR: ['', Validators.required],
       typeAct:  [''],
