@@ -90,8 +90,8 @@ export class RegisterComponent {
   }
 
   loadEcoles(): void {
-    this.ecoleService.getEcoles().subscribe((data: Ecole[]) => {
-      this.ecoles = data;
+    this.ecoleService.getEcoles().subscribe((ecoles) => {
+      this.ecoles = ecoles;
     });
   }
 
