@@ -10,7 +10,10 @@ import Login from '../interfaces/login';
 })
 export class AuthService {
   private tokenKey = 'token'; // Clé pour stocker le token dans le localStorage
-  private apiUrl = 'https://localhost:8000/api';
+
+  // private apiUrl = 'https://localhost:8000/api';
+  private apiUrl = 'http://localhost:8000/api';
+
   private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn()); // BehaviorSubject pour suivre l'état de connexion
 
   // Injection des services HttpClient et Router dans le constructeur

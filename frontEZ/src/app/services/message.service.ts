@@ -7,7 +7,8 @@ import Message from '../models/message.models';
   providedIn: 'root',
 })
 export class MessageService {
-  private apiUrl = 'https://localhost:8000/api';
+  // private apiUrl = 'https://localhost:8000/api';
+  private apiUrl = 'http://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) {}
 
