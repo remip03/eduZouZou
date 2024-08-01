@@ -56,8 +56,6 @@ class RegisterController extends AbstractController
         // Décoder le contenu JSON de la requête
         $data = json_decode($request->getContent(), true);
 
-        $data = json_decode($request->getContent(), true);
-
         // Vérifiez que l'ID de l'école est présent
         if (!isset($data['ecoleId'])) {
             return new JsonResponse(['message' => "L'id de l'Ecole est requis"], Response::HTTP_BAD_REQUEST);
