@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -13,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -23,21 +21,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[Groups(['getUsers'])]
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 100)]
     private ?string $email = null;
 
     /**
-     * @var list<string> The user roles
+     * @var array<string> The user roles
      */
     #[Groups(['getUsers'])]
-    #[ORM\Column]
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[Groups(['getUsers'])]
-    #[ORM\Column]
+    #[ORM\Column(length: 60)]
     private ?string $password = null;
 
     #[Groups(['getUsers'])]
@@ -56,35 +54,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     private ?string $adresse = null;
 
-    #[ORM\ManyToOne(inversedBy: 'users')]
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Messagerie $messagerie = null;
-
-    #[ORM\ManyToOne(inversedBy: 'users')]
+ 
+    #[ORM\ManyToOne(inversedBy: 'user')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Ecole $ecole = null;
-
-    /**
-     * @var Collection<int, Classe>
-     */
-    #[ORM\ManyToMany(targetEntity: Classe::class, mappedBy: 'users', cascade:['remove'])]
-    private Collection $classes;
-
-    /**
-     * @var Collection<int, Ressource>
-     */
-    #[ORM\ManyToMany(targetEntity: Ressource::class, mappedBy: 'users')]
-    private Collection $ressources;
-
-    public function __construct()
-    {
-        $this->classes = new ArrayCollection();
-        $this->ressources = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -98,7 +85,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
     /**
      * A visual identifier that represents this user.
      *
@@ -205,16 +191,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getUsername(): string {
-        return $this->getUserIdentifier();
-    }
-
     public function getMessagerie(): ?Messagerie
     {
         return $this->messagerie;
     }
 
-    public function setMessagerie(?Messagerie $messagerie): static
+    public function setMessagerie(Messagerie $messagerie): static
     {
         $this->messagerie = $messagerie;
 
@@ -233,57 +215,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Classe>
-     */
-    public function getClasses(): Collection
-    {
-        return $this->classes;
-    }
-
-    public function addClass(Classe $class): static
-    {
-        if (!$this->classes->contains($class)) {
-            $this->classes->add($class);
-            // $class->addUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClass(Classe $class): static
-    {
-        if ($this->classes->removeElement($class)) {
-            // $class->removeUser($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Ressource>
-     */
-    public function getRessources(): Collection
-    {
-        return $this->ressources;
-    }
-
-    public function addRessource(Ressource $ressource): static
-    {
-        if (!$this->ressources->contains($ressource)) {
-            $this->ressources->add($ressource);
-            $ressource->addUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRessource(Ressource $ressource): static
-    {
-        if ($this->ressources->removeElement($ressource)) {
-            $ressource->removeUser($this);
-        }
-
-        return $this;
-    }
 }

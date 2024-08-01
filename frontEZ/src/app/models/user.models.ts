@@ -1,6 +1,7 @@
 export default interface User {
   id: number;
-  role: string;
+  email: string;
+  roles: string;
   password: string;
   firstName: string;
   lastName: string;

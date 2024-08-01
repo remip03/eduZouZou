@@ -28,7 +28,6 @@ class AppFixtures extends Fixture
     {
 
         // Créations des écoles
-        $listEcole = [];
         for ($i = 0; $i < 5; $i++) {
             $ecole = new Ecole();
             $ecole->setNameEc('Ecole ' . $i);
@@ -73,25 +72,6 @@ class AppFixtures extends Fixture
             $manager->persist($activite);
         }
 
-        // Créations des enfants
-        for ($i = 0; $i < 100; $i++) {
-            $enfant = new Enfant();
-            $enfant->setLastNameE('Enfant ' . $i);
-            $enfant->setFirstNameE('Prénom ' . $i);
-            $enfant->setBirthDateE(new \DateTimeImmutable());
-            $enfant->setClasse($listClasse[array_rand($listClasse)]);
-            $manager->persist($enfant);
-        }
-        // Créations des enfants
-        for ($i = 0; $i < 100; $i++) {
-            $enfant = new Enfant();
-            $enfant->setLastNameE('Enfant ' . $i);
-            $enfant->setFirstNameE('Prénom ' . $i);
-            $enfant->setBirthDateE(new \DateTimeImmutable());
-            $enfant->setClasse($listClasse[array_rand($listClasse)]);
-            $manager->persist($enfant);
-        }
-
         // Création des cours.
         for ($i = 0; $i < 10; $i++) {
             $cours = new Cours();
@@ -105,38 +85,28 @@ class AppFixtures extends Fixture
             $manager->persist($cours);
         }
 
+        // // Création des messages.
+        // for ($i = 0; $i < 10; $i++) {
+        //     $message = new Message;
+        //     $message->setContent('hello world' . $i);
+        //     $message->setDestinataire('john doe' . $i);
+        //     $message->setExpediteur('bob marley' . $i);
+        //     $message->setMsgDate(new \DateTimeImmutable());
+        //     $manager->persist($message);
 
+        //     $listMessages[] = $message;
+        // }
+
+        // Création des messageries.
+        for ($i = 0; $i < 10; $i++) {
+            $messagerie = new Messagerie();
+            $manager->persist($messagerie);
+        }
 
         //creation user admin
         $user = new User();
-        $listUser[] = $user;
-        $message = new Message;
-        $listMessages[] = $message;
-        $messagerie = new Messagerie();
-        $listMessagerie[] = $message;
         $activite = new Activite();
-        $listActivite[] = $activite;
         $cours = new Cours();
-        $listCours[] = $cours;
-
-        $listMessages = [];
-        for ($i = 0; $i <10; $i++) {
-        $message = new Message;
-        $message->setContent('hello world'.$i);
-        $message->setDestinataire('john doe'.$i);
-        $message->setExpediteur('bob marley'.$i);
-        $message->setMsgDate(new \DateTimeImmutable());
-
-        $manager->persist($message);
-        }
-        $listMessages[] = $message;
-
-        $listMessagerie = [];
-for ($i = 0; $i < 10; $i++) {
-        $messagerie = new Messagerie();
-        $messagerie->setMessages(($listMessages[array_rand($listMessages)]));
-        $manager->persist($messagerie);
-}
 
         $manager->persist($messagerie);
         $listMessagerie[] = $messagerie;
@@ -150,8 +120,6 @@ for ($i = 0; $i < 10; $i++) {
         $user->setAdresse('adresse user');
         $user->setMessagerie($listMessagerie[array_rand($listMessagerie)]);
         $user->setEcole($listEcole[array_rand($listEcole)]);
-
-
         $manager->persist($user);
 
         $manager->flush();

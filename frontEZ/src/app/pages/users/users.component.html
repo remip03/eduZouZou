@@ -1,0 +1,39 @@
+<div class="row g-1">
+  <div
+    class="col-md-4 d-flex justify-content-center"
+    *ngFor="let item of users; let i = index"
+  >
+    <div class="card">
+      <div class="card-body">
+        <h2>User n°{{ item.id }}</h2>
+        <p class="card-text">
+          <span class="bold">Nom : </span>{{ item.firstName }}
+        </p>
+        <p class="card-text">
+          <span class="bold">Prénom : </span>{{ item.lastName }}
+        </p>
+        <p class="card-text">
+          <span class="bold">Email : </span>{{ item.email }}
+        </p>
+        <p class="card-text">
+          <span class="bold">Adresse : </span>{{ item.adresse }}
+        </p>
+        <p class="card-text">
+          <span class="bold">Téléphone : </span>{{ item.tel }}
+        </p>
+        <p class="card-text">
+          <span class="bold">Role : </span>{{ item.roles }}
+        </p>
+        <p class="card-text">
+          <span class="bold">Mot de passe : </span>{{ item.password }}
+        </p>
+        <a routerLink="/users/{{ item.id }}" class="btn btn-primary"
+          >Voir l'utilisateur</a
+        >
+        <a routerLink="/users/{{ item.id }}/edit" class="btn btn-success"
+          >Modifier</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,25 +17,25 @@ use Hateoas\Configuration\Annotation as Hateoas;
  *         "detailEcole",
  *         parameters = { "id" = "expr(object.getId())" },
  *     ),
- *     exclusion = @Hateoas\Exclusion(groups = "getClasses"),
+ *     exclusion = @Hateoas\Exclusion(groups = "getEcoles"),
  * )
  * 
  * @Hateoas\Relation(
  *    "delete",
  *   href = @Hateoas\Route(
- *      "deleteClasse",
+ *      "deleteEcole",
  *     parameters = { "id" = "expr(object.getId())" },
  *     ),
- *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
+ *     exclusion = @Hateoas\Exclusion(groups = "getEcoles", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
  * )
  * 
  * @Hateoas\Relation(
  *    "update",
  *   href = @Hateoas\Route(
- *      "updateClasse",
+ *      "updateEcole",
  *     parameters = { "id" = "expr(object.getId())" },
  *     ),
- *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
+ *     exclusion = @Hateoas\Exclusion(groups = "getEcoles", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
  * )
  * 
  */

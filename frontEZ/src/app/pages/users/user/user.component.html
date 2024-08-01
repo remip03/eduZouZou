@@ -1,0 +1,10 @@
+<p><span class="fw-bold">Id :</span> {{ detail.id }}</p>
+<p><span class="fw-bold">Nom :</span> {{ detail.firstName }}</p>
+<p><span class="fw-bold">Prénom :</span> {{ detail.lastName }}</p>
+<p><span class="fw-bold">Email :</span> {{ detail.email }}</p>
+<p><span class="fw-bold">Adresse :</span> {{ detail.adresse }}</p>
+<p><span class="fw-bold">Téléphone :</span> {{ detail.tel }}</p>
+<p><span class="fw-bold">Role :</span> {{ detail.roles }}</p>
+<p><span class="fw-bold">Mot de passe :</span> {{ detail.password }}</p>
+<button class="btn btn-danger" (click)="confirmDelete()">Supprimer l'utilisateur</button>
+<a routerLink="/users" class="btn btn-secondary">Retour</a>
