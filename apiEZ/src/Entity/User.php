@@ -67,7 +67,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Classe>
      */
-    #[ORM\ManyToMany(targetEntity: Classe::class, mappedBy: 'users', cascade:['remove'])]
+    #[ORM\ManyToMany(targetEntity: Classe::class, mappedBy: 'users')]
     private Collection $classes;
 
     /**
