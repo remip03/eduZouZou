@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -22,8 +22,8 @@ import { EcoleService } from '../../../services/ecole.service';
 export class RegisterComponent {
   user: FormGroup; // Déclaration du formulaire de type FormGroup
   submitted: boolean = false; // Indicateur de soumission du formulaire
-  ecoles: Ecole[] = [];
-  selectedEcoleId: number | null = null;
+  ecoles: Ecole[] = []; // Liste des écoles
+  selectedEcoleId: number | null = null; // ID de l'école sélectionnée
 
   // Constructeur avec injection des services nécessaires
   constructor(
@@ -32,77 +32,106 @@ export class RegisterComponent {
     private authService: AuthService,
     private ecoleService: EcoleService
   ) {
-    this.user = this.formBuilder.group({
-      username: [
-        '',
-        [
-          Validators.required,
-          Validators.email,
-          // Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/g),
+    // Initialisation du formulaire avec les contrôles et leurs validateurs
+    this.user = this.formBuilder.group(
+      {
+        username: [
+          '',
+          [
+            Validators.required,
+            Validators.email,
+            // Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/g),
+          ],
+        ], // Ajoutez Validators.email pour valider l'email
+        password: [
+          '',
+          [
+            Validators.required,
+            // Validators.pattern(
+            //   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g
+            // ),
+          ],
         ],
-      ], // Ajoutez Validators.email pour valider l'email
-      password: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern(
-          //   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g
-          // ),
+        confirmPassword: [
+          '',
+          [
+            Validators.required,
+            // Validators.pattern(
+            //   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g
+            // ),
+          ],
         ],
-      ],
 
-      lastName: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern(/^[a-zA-Z]+$/),
+        lastName: [
+          '',
+          [
+            Validators.required,
+            // Validators.pattern(/^[a-zA-Z]+$/),
+          ],
         ],
-      ],
 
-      firstName: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern(/^[a-zA-Z]+$/),
+        firstName: [
+          '',
+          [
+            Validators.required,
+            // Validators.pattern(/^[a-zA-Z]+$/),
+          ],
         ],
-      ],
 
-      tel: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern(/^[0-9]{10}$/),
+        tel: [
+          '',
+          [
+            Validators.required,
+            // Validators.pattern(/^[0-9]{10}$/),
+          ],
         ],
-      ],
 
-      adresse: ['', [Validators.required]],
-      ecoleId: [null, Validators.required],
-    });
+        adresse: ['', [Validators.required]],
+        ecoleId: ['', Validators.required],
+      },
+      { validator: this.passwordMatchValidator }
+    );
   }
 
+  // Méthode appelée lors de l'initialisation du composant
   ngOnInit(): void {
-    this.loadEcoles();
+    this.loadEcoles(); // Chargement des écoles
   }
 
+  // Méthode pour charger les écoles depuis le service
   loadEcoles(): void {
     this.ecoleService.getEcoles().subscribe((ecoles) => {
       this.ecoles = ecoles;
     });
   }
 
+  // Méthode appelée lors du changement de sélection d'une école
   onEcoleChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedEcoleId = Number(selectElement.value);
     this.user.patchValue({ ecoleId: this.selectedEcoleId });
   }
 
+  // Validateur personnalisé pour vérifier la correspondance des mots de passe
+  private passwordMatchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('password');
+    const confirmPassword = formGroup.get('confirmPassword');
+    if (password && confirmPassword) {
+      if (password.value !== confirmPassword.value) {
+        confirmPassword.setErrors({ passwordMismatch: true });
+      } else {
+        confirmPassword.setErrors(null);
+      }
+    }
+  }
+
   // Méthode appelée lors de la soumission du formulaire
   onSubmit() {
     this.submitted = true; // Indique que le formulaire a été soumis
     if (this.user.invalid) {
-      return false;
+      return false; // Si le formulaire est invalide, on arrête la soumission
     } else {
-      this.addUser();
+      this.addUser(); // Sinon, on ajoute l'utilisateur
       return true;
     }
   }
@@ -121,13 +150,12 @@ export class RegisterComponent {
     this.authService.register(userData).subscribe({
       next: () => {
         alert('Inscription effectuée avec succès !');
-        this.user.reset();
-        this.submitted = false;
-        this.router.navigate(['/login']);
+        this.user.reset(); // Réinitialisation du formulaire
+        this.submitted = false; // Réinitialisation de l'indicateur de soumission
+        this.router.navigate(['/login']); // Redirection vers la page de login
       },
       error: (error) => {
         console.error("Erreur lors de l'inscription.", error);
-        console.error("Détails de l'erreur:", error.error);
         if (error.error) {
           console.error("Détails de l'erreur:", error.error);
         }
