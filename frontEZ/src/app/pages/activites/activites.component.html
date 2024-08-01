@@ -4,9 +4,9 @@
   <button routerLink="/creerActivites">Créer une activité</button>
 </div>
 
-<div class="listecarte">
+<div class="listecarte homer">
   @for (item of activites; track $index) {
-    <div class="card carte" style="width: 18rem;">
+    <div class="card carte marge" style="width: 18rem;">
       <p><b>{{ item.nameR }}</b></p>
       <p>type : {{ item.typeAct }}</p>
       <p>matière : {{ item.matiereR }}</p>

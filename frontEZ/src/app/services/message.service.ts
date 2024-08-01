@@ -7,30 +7,31 @@ import Message from '../models/message.models';
   providedIn: 'root',
 })
 export class MessageService {
-  private ezURL = 'http://localhost:8000/api';
+  // private apiUrl = 'https://localhost:8000/api';
+  private apiUrl = 'http://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) {}
 
   getAllMessages(): Observable<Message[]> {
-    return this.httpClient.get<Message[]>(`${this.ezURL}/messages`);
+    return this.httpClient.get<Message[]>(`${this.apiUrl}/messages`);
   }
 
   getMessage(id: number): Observable<Message> {
-    return this.httpClient.get<Message>(`${this.ezURL}/messages/${id}`);
+    return this.httpClient.get<Message>(`${this.apiUrl}/messages/${id}`);
   }
 
   addMessage(message: Message): Observable<Message> {
-    return this.httpClient.post<Message>(`${this.ezURL}/messages`, message);
+    return this.httpClient.post<Message>(`${this.apiUrl}/messages`, message);
   }
 
   updateMessage(id: number, message: Message): Observable<Message> {
     return this.httpClient.put<Message>(
-      `${this.ezURL}/messages/${id}`,
+      `${this.apiUrl}/messages/${id}`,
       message
     );
   }
 
   deleteMessage(id: number): Observable<Message> {
-    return this.httpClient.delete<Message>(`${this.ezURL}/messages/${id}`);
+    return this.httpClient.delete<Message>(`${this.apiUrl}/messages/${id}`);
   }
 }

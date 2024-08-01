@@ -9,28 +9,29 @@ import Activite from '../models/activite.model';
 export class ActivitesService {
 
 
-  private ezURL = 'http://localhost:8000/api'
+  private apiUrl = 'https://localhost:8000/api';
+  // private apiUrl = 'http://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) { }
 
   getActivites() : Observable<Activite[]>{
-    return this.httpClient.get<Activite[]>(`${this.ezURL}/activites`)
+    return this.httpClient.get<Activite[]>(`${this.apiUrl}/activites`)
   }
 
   getActivite(id: number) : Observable<Activite>{
-    return this.httpClient.get<Activite>(`${this.ezURL}/activites/${id}`)
+    return this.httpClient.get<Activite>(`${this.apiUrl}/activites/${id}`)
   }
 
   addActivite(activite: Activite): Observable<Activite>{
-    return this.httpClient.post<Activite>(`${this.ezURL}/activites`, activite)
+    return this.httpClient.post<Activite>(`${this.apiUrl}/activites`, activite)
   }
 
   updateActivite(activite: Activite): Observable<Activite>{
-    return this.httpClient.put<Activite>(`${this.ezURL}/activites/${activite.id}`, activite)
+    return this.httpClient.put<Activite>(`${this.apiUrl}/activites/${activite.id}`, activite)
   }
 
   deleteActivite (id: number): Observable<Activite>{
-    return this.httpClient.delete<Activite>(`${this.ezURL}/activites/${id}`)
+    return this.httpClient.delete<Activite>(`${this.apiUrl}/activites/${id}`)
   }
 
 }

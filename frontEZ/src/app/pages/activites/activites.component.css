@@ -1,0 +1,10 @@
+.listecarte {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.carte {
+  margin: 2em;
+  padding: 1em;
+}

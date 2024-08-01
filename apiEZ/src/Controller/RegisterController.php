@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Ecole;
 use App\Entity\Messagerie;
 use App\Entity\User;
+use App\Repository\EcoleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\SerializerInterface as SerializerSerializerInterface;
@@ -50,21 +51,21 @@ class RegisterController extends AbstractController
         ]
     )]
     #[Groups(["getUsers"])]
-    public function register(Request $request, EntityManagerInterface $manager, SerializerSerializerInterface $serializer, ValidatorInterface $validator): Response
+    public function register(Request $request, EntityManagerInterface $manager, SerializerSerializerInterface $serializer, ValidatorInterface $validator, EcoleRepository $ecoleRepository): Response
     {
         // Décoder le contenu JSON de la requête
         $data = json_decode($request->getContent(), true);
 
-        // Récupérer l'école à partir de l'ID fourni dans la requête
-        $ecoleId = $data['ecole_id'] ?? null;
-        if (!$ecoleId) {
-            return new JsonResponse(['message' => 'L\'id de l\'Ecole est requis'], JsonResponse::HTTP_BAD_REQUEST);
-        }
+        $data = json_decode($request->getContent(), true);
 
-        // Chercher l'école dans la base de données
-        $ecole = $manager->getRepository(Ecole::class)->find($ecoleId);
+        // Vérifiez que l'ID de l'école est présent
+        if (!isset($data['ecoleId'])) {
+            return new JsonResponse(['message' => "L'id de l'Ecole est requis"], Response::HTTP_BAD_REQUEST);
+        }
+    
+        $ecole = $ecoleRepository->find($data['ecoleId']);
         if (!$ecole) {
-            return new JsonResponse(['message' => 'L\ecole n\'a pas été trouvée'], JsonResponse::HTTP_NOT_FOUND);
+            return new JsonResponse(['message' => 'Ecole non trouvée'], Response::HTTP_NOT_FOUND);
         }
 
         // Créer un nouvel utilisateur et définir ses propriétés

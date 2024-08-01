@@ -34,16 +34,17 @@ import { UpdateMsgComponent } from './pages/message/update-msg/update-msg.compon
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
-  { path: 'Accueil', component: AccueilComponent },
 
   { path: 'Accueil', component: AccueilComponent },
 
+  // Chemin pour les activités
   { path: 'activites', component: ActivitesComponent },
 
   { path: 'creerActivites', component: CreateActiviteComponent },
 
   { path: 'activites/:id', component: UpdateActiviteComponent },
 
+  // Chemin pour les cours
   { path: 'cours', component: CoursComponent },
 
   { path: 'creerCours', component: CreateCoursComponent },
@@ -77,14 +78,21 @@ export const routes: Routes = [
 
   { path: 'newEnfant', component: AddEnfantComponent },
 
+  // Chemin pour le forum
   { path: 'forum', component: ForumComponent },
 
+  // Chemin pour le login
   { path: 'login', component: LoginComponent },
 
+  // Chemin pour le register
   { path: 'register', component: RegisterComponent },
 
+  // Chemin pour le profil
   { path: 'profil', component: ProfilComponent },
 
+  { path: 'modifierProfil', component: ModifierProfilComponent },
+
+  // Chemin pour les compétences
   { path: 'competences', component: CompetencesComponent },
 
   // Chemin pour la messagerie
@@ -98,8 +106,7 @@ export const routes: Routes = [
 
   { path: 'messagesUpdate/:id', component: UpdateMsgComponent },
 
-  { path: 'modifierProfil', component: ModifierProfilComponent },
-
+  // Chemin pour les résultats
   { path: 'resultats', component: ResultatsComponent },
 
   { path: '**', component: NotFoundComponent },
