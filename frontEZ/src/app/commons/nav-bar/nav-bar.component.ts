@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-nav-bar',
   standalone: true,
 
-  imports: [RouterLink, MessageComponent],
+  imports: [RouterLink, CommonModule],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css',
 })

@@ -4,9 +4,15 @@
 
   <label for="username">username</label>
   <input type="text" name="username" placeholder="username" formControlName="username" />
+
   <br />
   <label for="password">mot de passe</label>
   <input type="password" name="password" placeholder="password" formControlName="password" />
+
   <br />
-  <button type="submit" routerLink="home">se connecter</button>
+
+  <button type="submit" onsubmit="getRole()">se connecter</button>
+  @if (submitted && (form['username'].invalid || form['password'].invalid)) {
+  <span>les éléments saisis sont incorrects</span>
+  }
 </form>
