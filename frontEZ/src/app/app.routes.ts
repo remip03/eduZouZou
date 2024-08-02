@@ -31,11 +31,29 @@ import { MessagesDetailComponent } from './pages/profil/messagerie/messages-deta
 import { MessageComponent } from './pages/message/message.component';
 import { AddMessageComponent } from './pages/message/add-message/add-message.component';
 import { UpdateMsgComponent } from './pages/message/update-msg/update-msg.component';
+import { UsersComponent } from './pages/users/users.component';
+import { UserComponent } from './pages/users/user/user.component';
+import { UpdateUserComponent } from './pages/users/update-user/update-user.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
 
   { path: 'Accueil', component: AccueilComponent },
+
+  // Chemin pour les utilisateurs
+  { path: 'users', component: UsersComponent },
+
+  { path: 'users/:id', component: UserComponent },
+
+  { path : 'users/:id/edit', component: UpdateUserComponent },
+
+  // Chemin pour le register
+  { path: 'register', component: RegisterComponent },
+  
+  // Chemin pour le profil
+  { path: 'profil', component: ProfilComponent },
+
+  { path: 'modifierProfil', component: ModifierProfilComponent },
 
   // Chemin pour les activités
   { path: 'activites', component: ActivitesComponent },
@@ -84,14 +102,6 @@ export const routes: Routes = [
   // Chemin pour le login
   { path: 'login', component: LoginComponent },
 
-  // Chemin pour le register
-  { path: 'register', component: RegisterComponent },
-
-  // Chemin pour le profil
-  { path: 'profil', component: ProfilComponent },
-
-  { path: 'modifierProfil', component: ModifierProfilComponent },
-
   // Chemin pour les compétences
   { path: 'competences', component: CompetencesComponent },
 
@@ -100,7 +110,7 @@ export const routes: Routes = [
 
   { path: 'messageDetail/:id', component: MessagesDetailComponent },
 
-  { path: 'messages', component: MessageComponent },
+  { path: 'messagerie/messages', component: MessageComponent },
 
   { path: 'messagesCreate', component: AddMessageComponent },
 

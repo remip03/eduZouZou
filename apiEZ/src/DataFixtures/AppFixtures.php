@@ -28,7 +28,6 @@ class AppFixtures extends Fixture
     {
 
         // Créations des écoles
-        $listEcole = [];
         for ($i = 0; $i < 5; $i++) {
             $ecole = new Ecole();
             $ecole->setNameEc('Ecole ' . $i);
@@ -73,25 +72,6 @@ class AppFixtures extends Fixture
             $manager->persist($activite);
         }
 
-        // Créations des enfants
-        for ($i = 0; $i < 100; $i++) {
-            $enfant = new Enfant();
-            $enfant->setLastNameE('Enfant ' . $i);
-            $enfant->setFirstNameE('Prénom ' . $i);
-            $enfant->setBirthDateE(new \DateTimeImmutable());
-            $enfant->setClasse($listClasse[array_rand($listClasse)]);
-            $manager->persist($enfant);
-        }
-        // Créations des enfants
-        for ($i = 0; $i < 100; $i++) {
-            $enfant = new Enfant();
-            $enfant->setLastNameE('Enfant ' . $i);
-            $enfant->setFirstNameE('Prénom ' . $i);
-            $enfant->setBirthDateE(new \DateTimeImmutable());
-            $enfant->setClasse($listClasse[array_rand($listClasse)]);
-            $manager->persist($enfant);
-        }
-
         // Création des cours.
         for ($i = 0; $i < 10; $i++) {
             $cours = new Cours();
@@ -105,55 +85,63 @@ class AppFixtures extends Fixture
             $manager->persist($cours);
         }
 
+        // Création des messages.
+        for ($i = 0; $i < 10; $i++) {
+            $message = new Message;
+            $message->setContent('hello world' . $i);
+            $message->setDestinataire('john doe' . $i);
+            $message->setExpediteur('bob marley' . $i);
+            $message->setMsgDate(new \DateTimeImmutable());
+            $manager->persist($message);
 
-
-        //creation user admin
-        $user = new User();
-        $listUser[] = $user;
-        $message = new Message;
-        $listMessages[] = $message;
-        $messagerie = new Messagerie();
-        $listMessagerie[] = $message;
-        $activite = new Activite();
-        $listActivite[] = $activite;
-        $cours = new Cours();
-        $listCours[] = $cours;
-
-        $listMessages = [];
-        for ($i = 0; $i <10; $i++) {
-        $message = new Message;
-        $message->setContent('hello world'.$i);
-        $message->setDestinataire('john doe'.$i);
-        $message->setExpediteur('bob marley'.$i);
-        $message->setMsgDate(new \DateTimeImmutable());
-
-        $manager->persist($message);
+            $listMessages[] = $message;
         }
-        $listMessages[] = $message;
 
-        $listMessagerie = [];
-for ($i = 0; $i < 10; $i++) {
-        $messagerie = new Messagerie();
-        $messagerie->setMessages(($listMessages[array_rand($listMessages)]));
-        $manager->persist($messagerie);
-}
+        // Création des messageries.
+        for ($i = 0; $i < 10; $i++) {
+            $messagerie = new Messagerie();
+            $manager->persist($messagerie);
+            $listMessagerie[] = $messagerie;
+        }
 
-        $manager->persist($messagerie);
-        $listMessagerie[] = $messagerie;
+        // Création des users
+        // Création des messageries.
+        for ($i = 0; $i < 10; $i++) {
+            $messagerie = new Messagerie();
+            $manager->persist($messagerie);
+            $listMessagerie[] = $messagerie;
+        }
 
-        $user->setEmail('user@api.com');
-        $user->setRoles(['ROLE_ADMIN']);
-        $user->setPassword($this->userPasswordHasher->hashPassword($user, 'password'));
-        $user->setFirstName('jean');
-        $user->setLastName('dupont');
-        $user->setTel('0123456789');
-        $user->setAdresse('adresse user');
-        $user->setMessagerie($listMessagerie[array_rand($listMessagerie)]);
-        $user->setEcole($listEcole[array_rand($listEcole)]);
+        // Création des users
+        $baseEmails = [
+            'user@api.com',
+        ];
 
+        $usedEmails = [];
 
-        $manager->persist($user);
+        foreach ($baseEmails as $index => $baseEmail) {
+            $email = $baseEmail;
+            $counter = 1;
+            while (in_array($email, $usedEmails)) {
+                $email = str_replace('@', $counter . '@', $baseEmail);
+                $counter++;
+            }
+            $usedEmails[] = $email;
 
+            $user = new User();
+            $user->setEmail($email);
+            $roles = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_PROF', 'ROLE_SUPERADMIN'];
+            $user->setRoles([$roles[$index]]);
+            $user->setPassword($this->userPasswordHasher->hashPassword($user, 'password'));
+            $user->setFirstName('FirstName' . $index);
+            $user->setLastName('LastName' . $index);
+            $user->setTel('0123456789');
+            $user->setAdresse('adresse user');
+            $user->setMessagerie($listMessagerie[array_rand($listMessagerie)]);
+            $user->setEcole($listEcole[array_rand($listEcole)]);
+            $manager->persist($user);
+            echo "Insère utilisateur avec l'email : " . $email . "\n";
+        }
         $manager->flush();
     }
 }

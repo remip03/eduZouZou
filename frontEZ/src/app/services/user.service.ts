@@ -8,28 +8,30 @@ import User from '../models/user.models';
 })
 export class UserService {
 
+  // URL de base de l'API
   private apiUrl = 'http://localhost:8000/api';
   // private apiUrl = 'https://localhost:8000/api';
 
+  // Injection du service HttpClient
   constructor(private httpClient: HttpClient) { }
 
+  // Récupération de la liste des users
   getUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.apiUrl}/user`)
+    return this.httpClient.get<User[]>(`${this.apiUrl}/users`)
   }
 
+  // Récupérer un users par son ID
   getUser(id: number): Observable<User> {
-    return this.httpClient.get<User>(`${this.apiUrl}/user/${id}`)
+    return this.httpClient.get<User>(`${this.apiUrl}/users/${id}`)
   }
 
-  addUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(`${this.apiUrl}/user`, user)
-  }
-
+  // Mettre à jour un user existant
   updateUser(user: User): Observable<User> {
-    return this.httpClient.put<User>(`${this.apiUrl}/user/${user.id}`, user)
+    return this.httpClient.put<User>(`${this.apiUrl}/users/${user.id}`, user)
   }
 
+  // Supprimer un user par son ID
   deleteUser(id: number): Observable<User> {
-    return this.httpClient.delete<User>(`${this.apiUrl}/user/${id}`)
+    return this.httpClient.delete<User>(`${this.apiUrl}/users/${id}`)
   }
 }
