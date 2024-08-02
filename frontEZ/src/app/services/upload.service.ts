@@ -11,6 +11,6 @@ export class UploadService {
   public uploadfile(file: File){
     let formParams = new FormData();
     formParams.append('file', file);
-    return this.httpClient.post('.../assets/img',formParams)
+    return this.httpClient.post('frontEZ/src/app/assets/img/',formParams)
   }
 }
