@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { Router } from '@angular/router';
 import Login from '../interfaces/login';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +14,12 @@ export class AuthService {
 
   // private apiUrl = 'https://localhost:8000/api';
   private apiUrl = 'http://localhost:8000/api';
+  private loginUrl = 'http://127.0.0.1:8000/api/login_check';
 
   private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn()); // BehaviorSubject pour suivre l'état de connexion
 
   // Injection des services HttpClient et Router dans le constructeur
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   // Méthode pour vérifier si l'utilisateur est connecté
   isLoggedIn(): boolean {
@@ -70,5 +72,28 @@ export class AuthService {
       }
     }
     return null; // Retourne null si aucun token n'est trouvé
+  }
+
+  //méthode pour enregistrer le token dans local storage
+  saveToken(token: string): void {
+    localStorage.setItem('storageToken', token);
+    this.router.navigate(['accueil']);
+  }
+  // Méthode pour recupérer le token dans le local storage
+  getToken(): any {
+    const token = localStorage.getItem('storageToken');
+
+    return token;
+  }
+
+  // Méthode pour décoder le token et obtenir les informations de l'utilisateur
+  decodeToken(): any {
+    const Token = this.getToken();
+    if (Token) {
+      const decodedToken = jwtDecode(Token);
+      return decodedToken;
+    }
+
+    return null;
   }
 }

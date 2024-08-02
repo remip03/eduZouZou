@@ -20,9 +20,7 @@
       <td>{{ item.content }}</td>
       <td>{{ item.msgDate }}</td>
 
-      <a routerLink="/messageDetail/{{ item.id }}" class="btn btn-primary m-2"
-        >lire</a
-      >
+      <a routerLink="/messageDetail/{{ item.id }}" class="btn btn-primary m-2">lire</a>
       <button (click)="deleteMessage(item.id)" class="btn btn-danger m-2">
         supprimer
       </button>

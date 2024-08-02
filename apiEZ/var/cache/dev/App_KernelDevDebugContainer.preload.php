@@ -289,6 +289,7 @@ $classes[] = 'App\Repository\EnfantRepository';
 $classes[] = 'App\Repository\MessageRepository';
 $classes[] = 'App\Repository\MessagerieRepository';
 $classes[] = 'App\Repository\RessourceRepository';
+$classes[] = 'App\Repository\RessourcesfilesRepository';
 $classes[] = 'App\Repository\UserRepository';
 $classes[] = 'Symfony\Bundle\FrameworkBundle\Controller\RedirectController';
 $classes[] = 'Symfony\Bundle\FrameworkBundle\Controller\TemplateController';

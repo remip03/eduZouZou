@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CoursService } from '../../../services/cours.service';
 import { VariablesGlobales } from '../../../commons/variablesGlobales';
 import Cours from '../../../models/Cours.model';
+import { UploadService } from '../../../services/upload.service';
 
 @Component({
   selector: 'app-update-cours',
@@ -20,12 +21,14 @@ export class UpdateCoursComponent implements OnInit{
   valid: boolean = false;
   matieres!: string[];
   typeRC!: string[];
+  file!: File;
 
   constructor(
     private formbuild: FormBuilder,
     private coursService: CoursService,
     private route: ActivatedRoute,
     private router: Router,
+    private upServ: UploadService
   ) {
     this.matieres = VariablesGlobales.matieres
     this.typeRC = VariablesGlobales.typeRC
@@ -58,6 +61,19 @@ export class UpdateCoursComponent implements OnInit{
           alert('Le cours n\'a pas été modifié.');
         }
       })
+    }
+  }
+
+  onFilechange(event: any){
+    this.file = event.target.files[0]
+  }
+
+  upload(){
+    if(this.file){
+      this.upServ.uploadfile(this.file).subscribe(res => {alert('image téléchargée')})
+    }
+    else{
+      alert('Ce fichier n\'est pas compatible.')
     }
   }
 
