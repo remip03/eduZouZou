@@ -43,6 +43,7 @@ return [
             [['_route' => 'app_ressource', '_controller' => 'App\\Controller\\RessourceController::getAllRessources'], null, ['GET' => 0], null, false, false, null],
             [['_route' => 'createRessource', '_controller' => 'App\\Controller\\RessourceController::createRessource'], null, ['POST' => 0], null, false, false, null],
         ],
+        '/api/users' => [[['_route' => 'users', '_controller' => 'App\\Controller\\UserController::getAllUsers'], null, ['GET' => 0], null, false, false, null]],
         '/api/login_check' => [[['_route' => 'api_login_check'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
@@ -130,6 +131,7 @@ return [
         300 => [
             [['_route' => 'detailUser', '_controller' => 'App\\Controller\\UserController::getUserDetails'], ['id'], ['GET' => 0], null, false, true, null],
             [['_route' => 'deleteUser', '_controller' => 'App\\Controller\\UserController::deleteUser'], ['id'], ['DELETE' => 0], null, false, true, null],
+            [['_route' => 'updateUser', '_controller' => 'App\\Controller\\UserController::updateUser'], ['id'], ['PUT' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

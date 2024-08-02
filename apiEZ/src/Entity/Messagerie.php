@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\MessagerieRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
 
@@ -13,60 +11,38 @@ class Messagerie
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[Groups(['getMessageries'])]
-    #[ORM\Column( nullable: true)]
+    #[Groups(['getClasses'])]
+    #[ORM\Column]
     private ?int $id = null;
 
-    /**
-     * @var Collection<int, User>
-     */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messagerie')]
-    private Collection $users;
-
-    #[ORM\ManyToOne(inversedBy: 'messages',cascade:['remove'])]
-    private ?Message $messages = null;
-
-    public function __construct()
-    {
-
-        $this->users = new ArrayCollection();
-
-
-    }
+    #[ORM\OneToOne(mappedBy: 'messagerie', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-
-
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
+    public function setId(int $id): static
     {
-        return $this->users;
-    }
-
-    public function addUser(User $user): static
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->setMessagerie($this);
-        }
+        $this->id = $id;
 
         return $this;
     }
 
-    public function removeUser(User $user): static
+    public function getUser(): ?User
     {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getMessagerie() === $this) {
-                $user->setMessagerie(null);
-            }
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        // set the owning side of the relation if necessary
+        if ($user->getMessagerie() !== $this) {
+            $user->setMessagerie($this);
         }
+
+        $this->user = $user;
 
         return $this;
     }
@@ -82,8 +58,4 @@ class Messagerie
 
         return $this;
     }
-
-
-
-
 }
