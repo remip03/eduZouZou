@@ -2,90 +2,41 @@
 <form [formGroup]="user" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="username">Email</label>
-    <input
-      type="email"
-      class="form-control"
-      id="username"
-      formControlName="username"
-      required
-    />
+    <input type="email" class="form-control" id="username" formControlName="username" required />
   </div>
   <div class="form-group">
     <label for="password">Mot de passe</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password"
-      formControlName="password"
-      required
-    />
+    <input type="password" class="form-control" id="password" formControlName="password" required />
   </div>
   <div class="form-group">
     <label for="confirmPassword">Confirmation du mot de passe</label>
-    <input
-      type="password"
-      class="form-control"
-      id="confirmPassword"
-      formControlName="confirmPassword"
-      required
-    />
-    <div
-      *ngIf="
+    <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" required />
+    <div *ngIf="
       user.get('confirmPassword')?.errors?.['passwordMismatch'] &&
       user.get('confirmPassword')?.touched
-    "
-    >
+    ">
       Les mots de passe ne correspondent pas.
     </div>
   </div>
   <div class="form-group">
     <label for="lastName">Nom</label>
-    <input
-      type="text"
-      class="form-control"
-      id="lastName"
-      formControlName="lastName"
-      required
-    />
+    <input type="text" class="form-control" id="lastName" formControlName="lastName" required />
   </div>
   <div class="form-group">
     <label for="firstName">Prénom</label>
-    <input
-      type="text"
-      class="form-control"
-      id="firstName"
-      formControlName="firstName"
-      required
-    />
+    <input type="text" class="form-control" id="firstName" formControlName="firstName" required />
   </div>
   <div class="form-group">
     <label for="tel">Téléphone</label>
-    <input
-      type="tel"
-      class="form-control"
-      id="tel"
-      formControlName="tel"
-      required
-    />
+    <input type="tel" class="form-control" id="tel" formControlName="tel" required />
   </div>
   <div class="form-group">
     <label for="adresse">Adresse</label>
-    <input
-      type="text"
-      class="form-control"
-      id="adresse"
-      formControlName="adresse"
-      required
-    />
+    <input type="text" class="form-control" id="adresse" formControlName="adresse" required />
   </div>
   <div class="form-group">
     <label for="ecole">École</label>
-    <select
-      class="form-control"
-      id="ecole"
-      formControlName="ecoleId"
-      (change)="onEcoleChange($event)"
-    >
+    <select class="form-control" id="ecole" formControlName="ecoleId" (change)="onEcoleChange($event)">
       <option value="" disabled selected>Selectionnez une école</option>
 
       <option *ngFor="let ecole of ecoles" [value]="ecole.id">

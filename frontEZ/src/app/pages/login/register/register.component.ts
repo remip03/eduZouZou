@@ -33,66 +33,64 @@ export class RegisterComponent {
     private ecoleService: EcoleService
   ) {
     // Initialisation du formulaire avec les contrôles et leurs validateurs
-    this.user = this.formBuilder.group({
-      username: [
-        '',
-        [
-          Validators.required,
-          Validators.email,
-          // Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/g),
+    this.user = this.formBuilder.group(
+      {
+        username: [
+          '',
+          [
+            Validators.required,
+            Validators.email,
+            // Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/g),
+          ],
+        ], // Ajoutez Validators.email pour valider l'email
+        password: [
+          '',
+          [
+            Validators.required,
+            // Validators.pattern(
+            //   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g
+            // ),
+          ],
         ],
-      ], // Ajoutez Validators.email pour valider l'email
-      password: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern(
-          //   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g
-          // ),
+        confirmPassword: [
+          '',
+          [
+            Validators.required,
+            // Validators.pattern(
+            //   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g
+            // ),
+          ],
         ],
-      ],
-      confirmPassword: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern(
-          //   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g
-          // ),
-        ],
-      ],
 
-      lastName: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern(/^[a-zA-Z]+$/),
+        lastName: [
+          '',
+          [
+            Validators.required,
+            // Validators.pattern(/^[a-zA-Z]+$/),
+          ],
         ],
-      ],
 
-      firstName: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern(/^[a-zA-Z]+$/),
+        firstName: [
+          '',
+          [
+            Validators.required,
+            // Validators.pattern(/^[a-zA-Z]+$/),
+          ],
         ],
-      ],
 
-      tel: [
-        '',
-        [
-          Validators.required,
-          // Validators.pattern(/^[0-9]{10}$/),
+        tel: [
+          '',
+          [
+            Validators.required,
+            // Validators.pattern(/^[0-9]{10}$/),
+          ],
         ],
-      ],
 
-      adresse: [
-        '',
-        [
-          Validators.required,
-        ],
-      ],
-      ecoleId: ['', Validators.required]
-    }, { validator: this.passwordMatchValidator });
+        adresse: ['', [Validators.required]],
+        ecoleId: ['', Validators.required],
+      },
+      { validator: this.passwordMatchValidator }
+    );
   }
 
   // Méthode appelée lors de l'initialisation du composant
@@ -147,7 +145,7 @@ export class RegisterComponent {
       firstName: this.user.value.firstName,
       tel: this.user.value.tel,
       adresse: this.user.value.adresse,
-      ecoleId: this.user.value.ecoleId
+      ecoleId: this.user.value.ecoleId,
     };
     this.authService.register(userData).subscribe({
       next: () => {

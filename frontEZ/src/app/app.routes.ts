@@ -32,7 +32,6 @@ import { MessageComponent } from './pages/message/message.component';
 import { AddMessageComponent } from './pages/message/add-message/add-message.component';
 import { UpdateMsgComponent } from './pages/message/update-msg/update-msg.component';
 
-
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
 
@@ -110,6 +109,5 @@ export const routes: Routes = [
   // Chemin pour les résultats
   { path: 'resultats', component: ResultatsComponent },
 
-  { path: '**', component: NotFoundComponent }
-
+  { path: '**', component: NotFoundComponent },
 ];
