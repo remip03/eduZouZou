@@ -5,11 +5,12 @@ import Message from '../../models/message.models';
 import { MessageService } from '../../services/message.service';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AddMessageComponent } from './add-message/add-message.component';
 
 @Component({
   selector: 'app-message',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, AddMessageComponent],
   templateUrl: './message.component.html',
   styleUrl: './message.component.css',
 })

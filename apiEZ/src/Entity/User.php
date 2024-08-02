@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -17,33 +18,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups(['getUsers'])]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(['getUsers'])]
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
     /**
      * @var list<string> The user roles
      */
+    #[Groups(['getUsers'])]
     #[ORM\Column]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
+    #[Groups(['getUsers'])]
     #[ORM\Column]
     private ?string $password = null;
 
+    #[Groups(['getUsers'])]
     #[ORM\Column(length: 50)]
     private ?string $firstName = null;
 
+    #[Groups(['getUsers'])]
     #[ORM\Column(length: 50)]
     private ?string $lastName = null;
 
+    #[Groups(['getUsers'])]
     #[ORM\Column(length: 20)]
     private ?string $tel = null;
 
+    #[Groups(['getUsers'])]
     #[ORM\Column(length: 100)]
     private ?string $adresse = null;
 

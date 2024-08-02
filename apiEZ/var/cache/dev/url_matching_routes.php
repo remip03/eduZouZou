@@ -79,6 +79,9 @@ return [
                     .'|ressources/([^/]++)(?'
                         .'|(*:274)'
                     .')'
+                    .'|users/([^/]++)(?'
+                        .'|(*:300)'
+                    .')'
                 .')'
             .')/?$}sDu',
     ],
@@ -123,6 +126,10 @@ return [
             [['_route' => 'detailRessource', '_controller' => 'App\\Controller\\RessourceController::getRessourceDetail'], ['id'], ['GET' => 0], null, false, true, null],
             [['_route' => 'deleteRessource', '_controller' => 'App\\Controller\\RessourceController::deleteRessource'], ['id'], ['DELETE' => 0], null, false, true, null],
             [['_route' => 'updateRessource', '_controller' => 'App\\Controller\\RessourceController::updateRessource'], ['id'], ['PUT' => 0], null, false, true, null],
+        ],
+        300 => [
+            [['_route' => 'detailUser', '_controller' => 'App\\Controller\\UserController::getUserDetails'], ['id'], ['GET' => 0], null, false, true, null],
+            [['_route' => 'deleteUser', '_controller' => 'App\\Controller\\UserController::deleteUser'], ['id'], ['DELETE' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { MessageService } from '../../../services/message.service';
 import { AuthService } from '../../../services/auth.service';
+import { dateTimestampProvider } from 'rxjs/internal/scheduler/dateTimestampProvider';
 
 @Component({
   selector: 'app-add-message',
@@ -20,6 +21,11 @@ import { AuthService } from '../../../services/auth.service';
 export class AddMessageComponent {
   messages: Message[] = []; // variable pour stocker la liste des messages
   role: string | null = null; // Propriété pour stocker le rôle de l'utilisateur
+
+  // datetime pour message
+  public date = new Date();
+  public formattedDate = this.date.toLocaleDateString();
+
   // variable pour créer un message
   createMsg: FormGroup = this.formBuilder.group({
     content: [
