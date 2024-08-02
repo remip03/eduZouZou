@@ -6,6 +6,7 @@ import { UserService } from '../../../services/user.service';
 import { EcoleService } from '../../../services/ecole.service'; // Importez le service des écoles
 import User from '../../../models/user.models';
 import Ecole from '../../../models/ecole.modelt';
+import { VariablesGlobales } from '../../../commons/variablesGlobales';
 
 @Component({
   selector: 'app-update-user',
@@ -18,7 +19,8 @@ export class UpdateUserComponent implements OnInit {
   user: FormGroup;
   submitted: boolean = false;
   userId?: number;
-  ecoles: Ecole[] = []; // Ajoutez une variable pour stocker les écoles
+  ecoles: Ecole[] = [];
+  roles!: string[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,6 +29,7 @@ export class UpdateUserComponent implements OnInit {
     private userService: UserService,
     private ecoleService: EcoleService // Injectez le service des écoles
   ) {
+    this.roles = VariablesGlobales.roles;
     this.user = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -44,7 +47,7 @@ export class UpdateUserComponent implements OnInit {
     if (this.userId) {
       this.userService.getUser(this.userId).subscribe((data: User) => {
 
-        const userData = { ...data, ecoleId: data.ecoleId }; // Préparez les données de l'utilisateur pour le formulaire
+        const userData = { ...data, ecoleId: data.ecole.id }; // Préparez les données de l'utilisateur pour le formulaire
         console.log(userData); // Vérifiez les données reçues
         this.user.patchValue(userData);
       });

@@ -5,6 +5,6 @@
 <p><span class="fw-bold">Adresse :</span> {{ detail.adresse }}</p>
 <p><span class="fw-bold">Téléphone :</span> {{ detail.tel }}</p>
 <p><span class="fw-bold">Role :</span> {{ detail.roles }}</p>
-<p><span class="fw-bold">Mot de passe :</span> {{ detail.password }}</p>
+<p><span class="fw-bold">Classe :</span> {{ detail.ecole.nameEc}}</p>
 <button class="btn btn-danger" (click)="confirmDelete()">Supprimer l'utilisateur</button>
 <a routerLink="/users" class="btn btn-secondary">Retour</a>

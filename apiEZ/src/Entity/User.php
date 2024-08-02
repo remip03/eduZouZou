@@ -8,6 +8,37 @@ use JMS\Serializer\Annotation\Groups;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Hateoas\Configuration\Annotation as Hateoas;
+
+/**
+ * @Hateoas\Relation(
+ *     "self",
+ *     href = @Hateoas\Route(
+ *         "detailUser",
+ *         parameters = { "id" = "expr(object.getId())" },
+ *     ),
+ *     exclusion = @Hateoas\Exclusion(groups = "getClasses"),
+ * )
+ *
+ * @Hateoas\Relation(
+ *    "delete",
+ *   href = @Hateoas\Route(
+ *      "deleteUser",
+ *     parameters = { "id" = "expr(object.getId())" },
+ *     ),
+ *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
+ * )
+ *
+ * @Hateoas\Relation(
+ *    "update",
+ *   href = @Hateoas\Route(
+ *      "updateUser",
+ *     parameters = { "id" = "expr(object.getId())" },
+ *     ),
+ *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
+ * )
+ *
+ */
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -16,41 +47,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[Groups(['getUsers'])]
+    #[Groups(['getClasses'])]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Groups(['getUsers'])]
+    #[Groups(['getClasses'])]
     #[ORM\Column(length: 100)]
     private ?string $email = null;
 
     /**
      * @var array<string> The user roles
      */
-    #[Groups(['getUsers'])]
+    #[Groups(['getClasses'])]
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
-    #[Groups(['getUsers'])]
+    #[Groups(['getClasses'])]
     #[ORM\Column(length: 60)]
     private ?string $password = null;
 
-    #[Groups(['getUsers'])]
+    #[Groups(['getClasses'])]
     #[ORM\Column(length: 50)]
     private ?string $firstName = null;
 
-    #[Groups(['getUsers'])]
+    #[Groups(['getClasses'])]
     #[ORM\Column(length: 50)]
     private ?string $lastName = null;
 
-    #[Groups(['getUsers'])]
+    #[Groups(['getClasses'])]
     #[ORM\Column(length: 20)]
     private ?string $tel = null;
 
-    #[Groups(['getUsers'])]
+    #[Groups(['getClasses'])]
     #[ORM\Column(length: 100)]
     private ?string $adresse = null;
 
@@ -59,7 +90,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?Messagerie $messagerie = null;
  
     #[ORM\ManyToOne(inversedBy: 'user')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['getClasses'])]
     private ?Ecole $ecole = null;
 
     public function getId(): ?int

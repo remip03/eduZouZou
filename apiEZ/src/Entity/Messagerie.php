@@ -11,7 +11,7 @@ class Messagerie
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[Groups(['getUsers'])]
+    #[Groups(['getClasses'])]
     #[ORM\Column]
     private ?int $id = null;
 

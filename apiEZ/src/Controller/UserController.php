@@ -32,7 +32,7 @@ class UserController extends AbstractController
         description: "Retourne la liste des utilisateur",
         content: new OA\JsonContent(
             type: "array",
-            items: new OA\Items(ref: new Model(type: User::class, groups: ["getUsers"]))
+            items: new OA\Items(ref: new Model(type: User::class, groups: ["getClasses"]))
         )
     )]
     #[OA\Tag(name: "Users")]
@@ -45,7 +45,7 @@ class UserController extends AbstractController
         $jsonUserList = $cache->get($idCache, function (ItemInterface $item) use ($userRepository, $serializer) {
             $item->tag("usersCache");
             $userList = $userRepository->findAll();
-            $context = SerializationContext::create()->setGroups(['getUsers']);
+            $context = SerializationContext::create()->setGroups(['getClasses']);
             return $serializer->serialize($userList, 'json', $context);
         });
 
@@ -61,7 +61,7 @@ class UserController extends AbstractController
     #[OA\Tag(name: "Users")]
     public function getUserDetails(User $user, SerializerInterface $serializer): JsonResponse
     {
-        $context = SerializationContext::create()->setGroups(['getUsers']);
+        $context = SerializationContext::create()->setGroups(['getClasses']);
         // Sérialisation de l'utilisateur spécifié en JSON.
         $jsonUser = $serializer->serialize($user, 'json', $context);
         // Retour d'une réponse JSON avec les détails de l'utilisateur.
@@ -121,14 +121,15 @@ class UserController extends AbstractController
                 content: new OA\JsonContent(
                     type: "object",
                     properties: [
+                        new OA\Property(property: "id", type: "integer"),
+                        new OA\Property(property: "ecoleId", type: "integer"),
                         new OA\Property(property: "email", type: "string"),
+                        new OA\Property(property: "roles", type: "string"),
                         new OA\Property(property: "password", type: "string"),
                         new OA\Property(property: "firstName", type: "string"),
                         new OA\Property(property: "lastName", type: "string"),
                         new OA\Property(property: "tel", type: "string"),
                         new OA\Property(property: "adresse", type: "string"),
-                        new OA\Property(property: "ecoleId", type: "integer"),
-                        new OA\Property(property: "role", type: "string"),
                     ]
                 )
             ),

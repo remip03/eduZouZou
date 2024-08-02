@@ -56,7 +56,7 @@ class RegisterController extends AbstractController
             )
         ]
     )]
-    #[Groups(["getUsers"])]
+    #[Groups(["getClasses"])]
     public function register(Request $request, EntityManagerInterface $manager, SerializerSerializerInterface $serializer, ValidatorInterface $validator, EcoleRepository $ecoleRepository): Response
     {
         // Décoder le contenu JSON de la requête

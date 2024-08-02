@@ -85,43 +85,63 @@ class AppFixtures extends Fixture
             $manager->persist($cours);
         }
 
-        // // Création des messages.
-        // for ($i = 0; $i < 10; $i++) {
-        //     $message = new Message;
-        //     $message->setContent('hello world' . $i);
-        //     $message->setDestinataire('john doe' . $i);
-        //     $message->setExpediteur('bob marley' . $i);
-        //     $message->setMsgDate(new \DateTimeImmutable());
-        //     $manager->persist($message);
+        // Création des messages.
+        for ($i = 0; $i < 10; $i++) {
+            $message = new Message;
+            $message->setContent('hello world' . $i);
+            $message->setDestinataire('john doe' . $i);
+            $message->setExpediteur('bob marley' . $i);
+            $message->setMsgDate(new \DateTimeImmutable());
+            $manager->persist($message);
 
-        //     $listMessages[] = $message;
-        // }
+            $listMessages[] = $message;
+        }
 
         // Création des messageries.
         for ($i = 0; $i < 10; $i++) {
             $messagerie = new Messagerie();
             $manager->persist($messagerie);
+            $listMessagerie[] = $messagerie;
         }
 
-        //creation user admin
-        $user = new User();
-        $activite = new Activite();
-        $cours = new Cours();
+        // Création des users
+        // Création des messageries.
+        for ($i = 0; $i < 10; $i++) {
+            $messagerie = new Messagerie();
+            $manager->persist($messagerie);
+            $listMessagerie[] = $messagerie;
+        }
 
-        $manager->persist($messagerie);
-        $listMessagerie[] = $messagerie;
+        // Création des users
+        $baseEmails = [
+            'user@api.com',
+        ];
 
-        $user->setEmail('user@api.com');
-        $user->setRoles(['ROLE_ADMIN']);
-        $user->setPassword($this->userPasswordHasher->hashPassword($user, 'password'));
-        $user->setFirstName('jean');
-        $user->setLastName('dupont');
-        $user->setTel('0123456789');
-        $user->setAdresse('adresse user');
-        $user->setMessagerie($listMessagerie[array_rand($listMessagerie)]);
-        $user->setEcole($listEcole[array_rand($listEcole)]);
-        $manager->persist($user);
+        $usedEmails = [];
 
+        foreach ($baseEmails as $index => $baseEmail) {
+            $email = $baseEmail;
+            $counter = 1;
+            while (in_array($email, $usedEmails)) {
+                $email = str_replace('@', $counter . '@', $baseEmail);
+                $counter++;
+            }
+            $usedEmails[] = $email;
+
+            $user = new User();
+            $user->setEmail($email);
+            $roles = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_PROF', 'ROLE_SUPERADMIN'];
+            $user->setRoles([$roles[$index]]);
+            $user->setPassword($this->userPasswordHasher->hashPassword($user, 'password'));
+            $user->setFirstName('FirstName' . $index);
+            $user->setLastName('LastName' . $index);
+            $user->setTel('0123456789');
+            $user->setAdresse('adresse user');
+            $user->setMessagerie($listMessagerie[array_rand($listMessagerie)]);
+            $user->setEcole($listEcole[array_rand($listEcole)]);
+            $manager->persist($user);
+            echo "Insère utilisateur avec l'email : " . $email . "\n";
+        }
         $manager->flush();
     }
 }

@@ -50,12 +50,12 @@
   </div>
   <div class="form-group">
     <label for="roles">Role</label>
-    <input
-      type="text"
-      class="form-control"
-      id="roles"
-      formControlName="roles"
-    />
+    <select class="form-control" name="roles" id="roles" formControlName="roles">
+      <option value="" disabled selected>Choisissez le niveau</option>
+      @for (item of roles; track $index) {
+      <option [value]="item">{{ item }}</option>
+      }
+    </select>
   </div>
   <div class="form-group">
     <label for="ecoleId">École</label>
