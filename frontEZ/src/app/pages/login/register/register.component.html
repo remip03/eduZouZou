@@ -1,6 +1,8 @@
 <div class="container colonne">
   <div class="btnRetour">
-    <a href=""><img class="return" src="icon\flèche-gauche.png" alt="" /></a>
+    <a href="javascript:void(0);" onclick="window.history.back()"
+      ><img class="return" src="icon\flèche-gauche.png" alt=""
+    /></a>
   </div>
   <form
     [formGroup]="user"
@@ -29,7 +31,7 @@
       />
     </div>
     <br />
-    <div class="input">
+    <div class="input confirmPass">
       <input
         type="password"
         placeholder="Confirmer le mot de passe"
@@ -101,5 +103,7 @@
     </div>
     <br />
     <button type="submit">S'inscrire</button>
+    <br />
   </form>
+  <hr />
 </div>
