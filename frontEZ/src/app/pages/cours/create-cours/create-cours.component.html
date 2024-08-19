@@ -1,10 +1,15 @@
-<h2>Créer un cours.</h2>
+<div class="btnRetour">
+  <a href="javascript:void(0);" onclick="window.history.back()"><img class="return" src="icon\flèche-gauche.png"
+      alt="" /></a>
+</div>
+
+<h2>Créer ou modifier un cours</h2>
 
 <form [formGroup]="coursCreate">
 
   <div class="container">
 
-    <div class="colonne marge">
+    <div class="colonne marge input label button">
       <label for="nameR">Nom du cours : </label>
       <input id="nameR" name="nameR" type="text" size="50" formControlName="nameR">
       @if (valid && form['nameR'].invalid) {
@@ -65,7 +70,8 @@
       <span>Type invalide</span>
       }
     </div>
-
-    <button class="marge" (click)="createCours()">Créer ce cours</button>
+    <div class="btn">
+      <button class="marge" (click)="createCours()">Créer ce cours</button>
+    </div>
   </div>
 </form>
