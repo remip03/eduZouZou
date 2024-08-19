@@ -5,8 +5,13 @@
 .colonne{
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
+.ligne{
+  display: flex;
+  flex-direction: row;
+}
 
 .homer{
   display: flex;
@@ -20,6 +25,16 @@
 .centre{
   display: flex;
   justify-content: center;
+}
+
+.centrecolonne{
+  display: flex;
+  align-items: center;
+}
+
+.espace{
+  display: flex;
+  justify-content: space-around;
 }
 
   /* commons */
@@ -89,9 +104,24 @@ footer{
   color: white;
 }
 
+.colorCo{
+  background-color: #FACC99;
+  color: white;
+}
+
+.colorIns{
+  background-color: #F9D5CF;
+  color: white;
+}
+
 .BGgeneral{
   background-color: #EAEFF5;
   height: 100%;
   width: auto;
 }
 
+p{
+  text-align: center;
+  text-size-adjust: auto;
+  color: #294F7F;
+}

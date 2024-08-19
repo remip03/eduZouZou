@@ -1,0 +1,70 @@
+
+
+.imgPresentation{
+  width: 12.5rem;
+  height: 12.5rem;
+  border-radius: 7rem;
+}
+
+.imgCoIns{
+  width: 8rem;
+  height: auto;
+}
+
+.imgProfil{
+  width: 5rem;
+  height: 5rem;
+  grid-column: 1;
+}
+
+.imgLogo{
+  width: 3rem;
+  height: 3rem;
+  opacity: 70%;
+}
+
+.boutonCoIns{
+  width: 12.5rem;
+  height: 12.5rem;
+  border-radius: 2rem;
+}
+
+.bullePresentation{
+  width: 80%;
+  height: 12.5rem;
+  text-align: center;
+  background-color: white;
+  border-radius: 10rem;
+}
+
+.bulleTemoignage{
+  width: 28rem;
+  height: auto;
+  background-color: white;
+  border: solid 2px #85B4F2;
+  border-radius: 2rem;
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.textPresentation{
+  font-size: 150%;
+  width: 50%;
+  height: auto;
+}
+
+.textTemoignage{
+  grid-column: 2;
+}
+
+h3{
+  text-align: center;
+  font-family: 'Playwrite AR';
+  color: #294F7F;
+}
+
+h4{
+  text-align: center;
+  font-family: 'Playwrite AR', 'regular';
+  color: #294F7F;
+}
