@@ -1,7 +1,6 @@
 /* For Mobile: */
 /* CONTAINER */
 .container {
-  height: 100vh;
   padding: 0;
   align-items: center;
 }
@@ -41,6 +40,12 @@ input {
   padding-left: 10%;
 }
 
+.confirmPassword {
+  display: flex;
+  flex-direction: column;
+  color: red;
+}
+
 input::placeholder {
   background-color: #ffffff;
   color: #294f7f;
@@ -53,7 +58,77 @@ select {
   padding-left: 9%;
 }
 
+option {
+  color: #294f7f;
+}
+
 /* BOUTON INSCRIPTION */
 button {
   width: 90%;
+}
+
+/* LIGNE HR */
+.customHr {
+  border: 1px solid;
+  width: 50%;
+}
+
+.hideHr {
+  display: block;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  /* BLOC INPUT */
+  input {
+    padding-left: 5%;
+  }
+
+  select {
+    padding-left: 4%;
+  }
+
+  /* BOUTON INSCRIPTION */
+  button {
+    width: 50%;
+  }
+
+  /* LIGNE HR */
+  .customHr {
+    border: 1px solid;
+    width: 50%;
+  }
+
+  .hideHr {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  /* For Desktop: */
+
+  /* BOUTON RETOUR */
+  .btnRetour {
+    display: none;
+  }
+
+  .formRegister {
+    width: 70%;
+    margin: 1rem 0;
+  }
+
+  /* BLOC INPUT */
+  .input {
+    width: 80%;
+  }
+
+  /* LIGNE HR */
+  .customHr {
+    border: 1px solid;
+    width: 25%;
+  }
+
+  .hideHr {
+    display: block;
+  }
 }
