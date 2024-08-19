@@ -17,25 +17,25 @@ use Hateoas\Configuration\Annotation as Hateoas;
  *         "detailEcole",
  *         parameters = { "id" = "expr(object.getId())" },
  *     ),
- *     exclusion = @Hateoas\Exclusion(groups = "getClasses"),
+ *     exclusion = @Hateoas\Exclusion(groups = "getEcoles"),
  * )
  * 
  * @Hateoas\Relation(
  *    "delete",
  *   href = @Hateoas\Route(
- *      "deleteClasse",
+ *      "deleteEcole",
  *     parameters = { "id" = "expr(object.getId())" },
  *     ),
- *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
+ *     exclusion = @Hateoas\Exclusion(groups = "getEcoles", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
  * )
  * 
  * @Hateoas\Relation(
  *    "update",
  *   href = @Hateoas\Route(
- *      "updateClasse",
+ *      "updateEcole",
  *     parameters = { "id" = "expr(object.getId())" },
  *     ),
- *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
+ *     exclusion = @Hateoas\Exclusion(groups = "getEcoles", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
  * )
  * 
  */
@@ -99,9 +99,16 @@ class Ecole
     #[ORM\OneToMany(targetEntity: Classe::class, mappedBy: 'ecole', cascade: ['remove'])]
     private Collection $Classes;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'ecole', cascade: ['remove'])]
+    private Collection $users;
+
     public function __construct()
     {
         $this->Classes = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -181,6 +188,35 @@ class Ecole
             // set the owning side to null (unless already changed)
             if ($classe->getEcole() === $this) {
                 $classe->setEcole(null);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->setEcole($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getEcole() === $this) {
+                $user->setEcole(null);
             }
         }
         return $this;

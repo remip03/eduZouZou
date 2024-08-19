@@ -47,12 +47,6 @@ class Message
         $this->msgDate = new \DateTimeImmutable();
     }
 
-
-
-
-
-
-
     public function getId(): ?int
     {
         return $this->id;

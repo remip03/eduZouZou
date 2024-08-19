@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Messagerie;
-use App\Repository\ClasseRepository;
 use App\Repository\MessageRepository;
 use App\Repository\MessagerieRepository;
 use Doctrine\ORM\EntityManagerInterface;

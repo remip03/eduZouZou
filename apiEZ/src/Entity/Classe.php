@@ -80,6 +80,8 @@ class Classe
     #[Groups(['getClasses'])]
     private? Ecole $ecole = null;
 
+    
+
     #[ORM\OneToMany(targetEntity: Enfant::class, mappedBy: "classe", cascade:['remove'])]
     private Collection $Enfants;
 

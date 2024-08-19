@@ -1,18 +1,47 @@
-<p>login works!</p>
-<form [formGroup]="loginForm" name="loginForm" (ngSubmit)="onLogin()">
-  <h2>se connecter</h2>
+<div class="container colonne">
+  <div class="btnRetour">
+    <a href=""><img class="return" src="icon\flèche-gauche.png" alt="" /></a>
+  </div>
+  <form
+    [formGroup]="loginForm"
+    name="loginForm"
+    (ngSubmit)="onLogin()"
+    class="formLogin centre colonne bordure"
+  >
+    <h2>Connexion</h2>
+    <br />
+    <div class="input">
+      <img class="icon" src="icon\utilisateur.png" alt="identifiant" />
+      <input
+        class="inputId"
+        type="text"
+        name="username"
+        placeholder="Identifiant"
+        formControlName="username"
+      />
+    </div>
+    <br />
+    <div class="input">
+      <img class="icon" src="icon\cadenas.png" alt="identifiant" />
+      <input
+        class="inputMdp"
+        type="password"
+        name="password"
+        placeholder="Mot de passe"
+        formControlName="password"
+      />
+    </div>
 
-  <label for="username">username</label>
-  <input type="text" name="username" placeholder="username" formControlName="username" />
+    <br />
 
-  <br />
-  <label for="password">mot de passe</label>
-  <input type="password" name="password" placeholder="password" formControlName="password" />
-
-  <br />
-
-  <button type="submit" onsubmit="getRole()">se connecter</button>
-  @if (submitted && (form['username'].invalid || form['password'].invalid)) {
-  <span>les éléments saisis sont incorrects</span>
-  }
-</form>
+    <button type="submit" onsubmit="getRole()">Connexion</button>
+    @if (submitted && (form['username'].invalid || form['password'].invalid)) {
+    <span>les éléments saisis sont incorrects</span>
+    }
+    <hr class="customHr" />
+    <span class="forgetPass">Mot de passe oublié</span>
+    <br />
+    <button type="submit">Nouveau mot de passe</button>
+  </form>
+  <hr class="customHr hideHr" />
+</div>
