@@ -1,0 +1,21 @@
+.imgLogo{
+  width: 3rem;
+  height: 3rem;
+  opacity: 70%;
+}
+
+.imgFooter{
+  background-image: url("/footerImg.png");
+  background-repeat: repeat-x;
+  overflow-x: hidden;
+}
+
+.ecarter{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+hr {
+  text-align: center;
+  margin: 4rem 10rem 4rem 10rem;
+}

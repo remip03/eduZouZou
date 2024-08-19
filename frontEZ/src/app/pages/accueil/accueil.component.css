@@ -1,4 +1,11 @@
 
+.intro{
+  font-size: 150%;
+}
+
+.masque{
+  display: none;
+}
 
 .imgPresentation{
   width: 12.5rem;
@@ -17,20 +24,15 @@
   grid-column: 1;
 }
 
-.imgLogo{
-  width: 3rem;
-  height: 3rem;
-  opacity: 70%;
-}
-
 .boutonCoIns{
   width: 12.5rem;
   height: 12.5rem;
   border-radius: 2rem;
+  margin: 2%;
 }
 
 .bullePresentation{
-  width: 80%;
+  width: 100%;
   height: 12.5rem;
   text-align: center;
   background-color: white;
@@ -38,7 +40,7 @@
 }
 
 .bulleTemoignage{
-  width: 28rem;
+  width: 100%;
   height: auto;
   background-color: white;
   border: solid 2px #85B4F2;
@@ -48,23 +50,53 @@
 }
 
 .textPresentation{
-  font-size: 150%;
-  width: 50%;
+  font-size: 100%;
+  width: 80%;
   height: auto;
+}
+
+.textCoIns{
+  color: white;
+  font-family: 'Playwrite AR';
+  text-align: center;
 }
 
 .textTemoignage{
   grid-column: 2;
 }
 
+.colonneAc{
+  display: flex;
+  flex-direction: column;
+}
+
 h3{
   text-align: center;
   font-family: 'Playwrite AR';
   color: #294F7F;
+  margin: 5%;
 }
 
 h4{
   text-align: center;
-  font-family: 'Playwrite AR', 'regular';
+  font-family: 'Playwrite AR';
   color: #294F7F;
+  margin: 5%;
+}
+
+@media screen and (min-width: 1440px) {
+  .colonneAc{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .masque{
+    display: block;
+  }
+
+  .textPresentation{
+    font-size: 150%;
+    width: 50%;
+    height: auto;
+  }
 }
