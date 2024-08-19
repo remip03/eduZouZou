@@ -1,48 +1,105 @@
-<h2>Inscription</h2>
-<form [formGroup]="user" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="username">Email</label>
-    <input type="email" class="form-control" id="username" formControlName="username" required />
+<div class="container colonne">
+  <div class="btnRetour">
+    <a href=""><img class="return" src="icon\flèche-gauche.png" alt="" /></a>
   </div>
-  <div class="form-group">
-    <label for="password">Mot de passe</label>
-    <input type="password" class="form-control" id="password" formControlName="password" required />
-  </div>
-  <div class="form-group">
-    <label for="confirmPassword">Confirmation du mot de passe</label>
-    <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" required />
-    <div *ngIf="
+  <form
+    [formGroup]="user"
+    (ngSubmit)="onSubmit()"
+    class="formRegister centre colonne bordure"
+  >
+    <h2>Inscription</h2>
+    <br />
+    <div class="input">
+      <input
+        type="email"
+        placeholder="E-mail"
+        id="username"
+        formControlName="username"
+        required
+      />
+    </div>
+    <br />
+    <div class="input">
+      <input
+        type="password"
+        placeholder="Mot de passe"
+        id="password"
+        formControlName="password"
+        required
+      />
+    </div>
+    <br />
+    <div class="input">
+      <input
+        type="password"
+        placeholder="Confirmer le mot de passe"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        required
+      />
+      <div
+        *ngIf="
       user.get('confirmPassword')?.errors?.['passwordMismatch'] &&
       user.get('confirmPassword')?.touched
-    ">
-      Les mots de passe ne correspondent pas.
+    "
+      >
+        Les mots de passe ne correspondent pas.
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="lastName">Nom</label>
-    <input type="text" class="form-control" id="lastName" formControlName="lastName" required />
-  </div>
-  <div class="form-group">
-    <label for="firstName">Prénom</label>
-    <input type="text" class="form-control" id="firstName" formControlName="firstName" required />
-  </div>
-  <div class="form-group">
-    <label for="tel">Téléphone</label>
-    <input type="tel" class="form-control" id="tel" formControlName="tel" required />
-  </div>
-  <div class="form-group">
-    <label for="adresse">Adresse</label>
-    <input type="text" class="form-control" id="adresse" formControlName="adresse" required />
-  </div>
-  <div class="form-group">
-    <label for="ecole">École</label>
-    <select class="form-control" id="ecole" formControlName="ecoleId" (change)="onEcoleChange($event)">
-      <option value="" disabled selected>Selectionnez une école</option>
-
-      <option *ngFor="let ecole of ecoles" [value]="ecole.id">
-        {{ ecole.nameEc }}
-      </option>
-    </select>
-  </div>
-  <button type="submit" class="btn btn-primary">S'inscrire</button>
-</form>
+    <br />
+    <div class="input">
+      <input
+        type="text"
+        placeholder="Nom"
+        id="lastName"
+        formControlName="lastName"
+        required
+      />
+    </div>
+    <br />
+    <div class="input">
+      <input
+        type="text"
+        placeholder="Prénom"
+        id="firstName"
+        formControlName="firstName"
+        required
+      />
+    </div>
+    <br />
+    <div class="input">
+      <input
+        type="tel"
+        placeholder="Téléphone"
+        id="tel"
+        formControlName="tel"
+        required
+      />
+    </div>
+    <br />
+    <div class="input">
+      <input
+        type="text"
+        placeholder="Adresse"
+        id="adresse"
+        formControlName="adresse"
+        required
+      />
+    </div>
+    <br />
+    <div class="input">
+      <select
+        id="ecole"
+        formControlName="ecoleId"
+        (change)="onEcoleChange($event)"
+      >
+        <option value="" disabled selected>Selectionnez une école</option>
+        <option *ngFor="let ecole of ecoles" [value]="ecole.id">
+          {{ ecole.nameEc }}
+        </option>
+      </select>
+    </div>
+    <br />
+    <button type="submit">S'inscrire</button>
+  </form>
+</div>
