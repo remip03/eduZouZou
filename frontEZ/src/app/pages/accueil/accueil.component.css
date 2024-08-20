@@ -19,8 +19,8 @@
 }
 
 .imgProfil{
-  width: 5rem;
-  height: 5rem;
+  width: 100%;
+  height: auto;
   grid-column: 1;
 }
 
