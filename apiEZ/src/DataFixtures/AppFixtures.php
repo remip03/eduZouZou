@@ -64,7 +64,7 @@ class AppFixtures extends Fixture
         // Création des activités.
         for ($i = 0; $i < 10; $i++) {
             $activite = new Activite();
-            $activite->setTypeR('type ' . $i);
+            $activite->setTypeR('CP');
             $activite->setNameR('activite n°' . $i);
             $activite->setDescriptionR('Voici l\'activite n°' . $i);
             $activite->setMatiereR('Mathématiques' . $i);
@@ -75,7 +75,7 @@ class AppFixtures extends Fixture
         // Création des cours.
         for ($i = 0; $i < 10; $i++) {
             $cours = new Cours();
-            $cours->setTypeR('type ' . $i);
+            $cours->setTypeR('CM1');
             $cours->setNameR('cours n° ' . $i);
             $cours->setDescriptionR('Voici le cours n° ' . $i);
             $cours->setMatiereR('Mathématiques ' . $i);
