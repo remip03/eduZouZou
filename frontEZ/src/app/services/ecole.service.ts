@@ -10,7 +10,7 @@ export class EcoleService {
 
   // URL de base de l'API
   // private apiUrl = 'https://localhost:8000/api';
-  private apiUrl = 'http://localhost:8000/api';
+  private apiUrl = 'https://localhost:8000/api';
 
   // Injection du service HttpClient
   constructor(private httpClient: HttpClient) { }

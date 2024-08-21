@@ -10,7 +10,7 @@ export class ActivitesService {
 
 
   // private apiUrl = 'https://localhost:8000/api';
-  private apiUrl = 'http://localhost:8000/api';
+  private apiUrl = 'https://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) {}
 
