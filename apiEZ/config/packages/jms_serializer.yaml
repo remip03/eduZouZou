@@ -33,4 +33,4 @@ when@dev:
 
     handlers:
       datetime:
-        default_format: 'Y-m-d\TH:i'
+        default_format: "yyyy-MM-dd HH:mm:ss"

@@ -1,17 +1,18 @@
 <h2>Liste des Cours</h2>
 
-<div>
+<div class="btn">
   <button routerLink="/creerCours">Créer un cours</button>
 </div>
-
-<div class="listecarte homer">
+<div class="listecarte homer ">
   @for (item of cours; track $index) {
-    <div class="card carte marge" style="width: 18rem;">
-      <p><b>{{ item.nameR }}</b></p>
-      <p>type : {{ item.typeR }}</p>
-      <p>matière : {{ item.matiereR }}</p>
-      <p>description : {{ item.descriptionR }}</p>
-      <button routerLink="/cours/{{item.id}}">Modifier</button>
-    </div>
+
+  <div class="card carte marge" style="width: 18rem;">
+    <p><b>{{ item.nameR }}</b></p>
+    <p>type : {{ item.typeR }}</p>
+    <p>matière : {{ item.matiereR }}</p>
+    <p>description : {{ item.descriptionR }}</p>
+    <button routerLink="/cours/{{item.id}}">Modifier</button>
+  </div>
+
   }
 </div>
