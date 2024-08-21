@@ -41,6 +41,12 @@ class RegisterController extends AbstractController
                     type: "object",
                     properties: [
                         new OA\Property(property: "email", type: "string"),
+                        new OA\Property(property: "password", type: "string"),
+                        new OA\Property(property: "firstName", type: "string"),
+                        new OA\Property(property: "lastName", type: "string"),
+                        new OA\Property(property: "tel", type: "string"),
+                        new OA\Property(property: "adresse", type: "string"),
+                        new OA\Property(property: "ecoleId", type: "integer"),
                     ]
                 )
             ),
@@ -50,12 +56,10 @@ class RegisterController extends AbstractController
             )
         ]
     )]
-    #[Groups(["getUsers"])]
+    #[Groups(["getClasses"])]
     public function register(Request $request, EntityManagerInterface $manager, SerializerSerializerInterface $serializer, ValidatorInterface $validator, EcoleRepository $ecoleRepository): Response
     {
         // Décoder le contenu JSON de la requête
-        $data = json_decode($request->getContent(), true);
-
         $data = json_decode($request->getContent(), true);
 
         // Vérifiez que l'ID de l'école est présent
