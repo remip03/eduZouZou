@@ -4923,7 +4923,7 @@
     <service id="jms_serializer.datetime_handler" class="JMS\Serializer\Handler\DateHandler">
       <tag name="jms_serializer.subscribing_handler"/>
       <tag name="default">jms_serializer.instance</tag>
-      <argument>yyyy-MM-dd HH:mm:ss</argument>
+      <argument>Y-m-d\TH:i:sO</argument>
       <argument>UTC</argument>
       <argument>true</argument>
     </service>
