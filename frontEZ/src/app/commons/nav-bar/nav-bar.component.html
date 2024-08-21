@@ -21,7 +21,13 @@
       <a routerLink="/profil" class="navLink" *ngIf="isLoggedIn$ | async"
         ><img src="icon/utilisateur(1).png" alt="" />Profil</a
       >
-      <a routerLink="/login" class="navLink"
+      <a routerLink="/register" class="navLink" *ngIf="!(isLoggedIn$ | async)"
+        ><img src="icon/utilisateur(1).png" alt="" />Inscription</a
+      >
+      <a class="navLink" *ngIf="isLoggedIn$ | async"
+        ><img src="icon/croix-petit.png" (click)="logout()" />Déconnexion</a
+      >
+      <a routerLink="/login" class="navLink" *ngIf="!(isLoggedIn$ | async)"
         ><img src="icon/utilisateur(1).png" alt="" />Connexion</a
       >
     </div>
