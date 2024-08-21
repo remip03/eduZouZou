@@ -1,1 +1,57 @@
-<p>profil works!</p>
+<div class="container colonne">
+  <div class="btnRetour">
+    <a href="javascript:void(0);" onclick="window.history.back()"
+      ><img class="return" src="icon\flèche-gauche.png" alt=""
+    /></a>
+  </div>
+  <div class="profilContent">
+    <h2>Mes informations</h2>
+    <span>Photo du profil</span>
+    <input
+      type="email"
+      placeholder="E-mail"
+      id="username"
+      formControlName="username"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Prénom"
+      id="firstName"
+      formControlName="firstName"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Nom"
+      id="lastName"
+      formControlName="lastName"
+      required
+    />
+    <input
+      type="tel"
+      placeholder="Numéro de Téléphone"
+      id="tel"
+      formControlName="tel"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Adresse"
+      id="adresse"
+      formControlName="adresse"
+      required
+    />
+    <select
+      id="ecole"
+      formControlName="ecoleId"
+      (change)="onEcoleChange($event)"
+    >
+      <option value="" disabled selected>Selectionnez une école</option>
+      <option *ngFor="let ecole of ecoles" [value]="ecole.id">
+        {{ ecole.nameEc }}
+      </option>
+    </select>
+    <button type="submit">Enregistrer</button>
+  </div>
+</div>

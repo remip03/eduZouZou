@@ -1,0 +1,29 @@
+.profilContent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  color: rgb(41, 79, 127, 0.9);
+}
+
+input {
+  width: 90%;
+  height: 3rem;
+  margin: 1rem 0;
+}
+
+input::placeholder {
+  color: rgb(41, 79, 127, 0.9);
+  padding-left: 1rem;
+}
+
+button {
+  width: 80%;
+  height: 3rem;
+  margin: 1rem 0;
+  background-color: rgb(41, 79, 127);
+  color: white;
+  border: none;
+  border-radius: 30px;
+}
