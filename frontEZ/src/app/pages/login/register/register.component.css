@@ -40,7 +40,7 @@ input {
   padding-left: 10%;
 }
 
-.confirmPassword {
+.confirmPass {
   display: flex;
   flex-direction: column;
   color: red;
@@ -70,15 +70,16 @@ button {
 /* LIGNE HR */
 .customHr {
   border: 1px solid;
-  width: 50%;
+  width: 70%;
 }
 
 .hideHr {
-  display: block;
+  display: none;
 }
 
 @media only screen and (min-width: 600px) {
   /* For tablets: */
+
   /* BLOC INPUT */
   input {
     padding-left: 5%;
@@ -112,6 +113,7 @@ button {
     display: none;
   }
 
+  /* FORM */
   .formRegister {
     width: 70%;
     margin: 1rem 0;
@@ -120,6 +122,15 @@ button {
   /* BLOC INPUT */
   .input {
     width: 80%;
+  }
+
+  input {
+    padding-left: 5%;
+  }
+
+  /* BOUTON INSCRIPTION */
+  button {
+    width: 25%;
   }
 
   /* LIGNE HR */
