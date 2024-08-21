@@ -6,6 +6,6 @@ export default interface Cours{
     matiereR: string;
     docC: string;
     videoC: string;
-    ressourceSupC: string;
+    ressourceSupC: File;
     dtype: string;
 }

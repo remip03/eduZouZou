@@ -69,8 +69,6 @@
     <label for="ressourceSupC">ressource supplémentaire : </label>
     <input type="file" (change)="this.onFilechange($event)" id="ressourceSupC" name="ressourceSupC" size="50"
       maxlength="50">
-    <label for="nomRSUP">nom de l'image</label>
-    <input type="text" id="nomRSUP" name="nomRSUP" formControlName="ressourceSupC">
     @if (valid && form['ressourceSupC'].invalid) {
     <span>Type invalide</span>
     }

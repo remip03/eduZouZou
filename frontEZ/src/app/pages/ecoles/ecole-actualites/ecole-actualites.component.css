@@ -1,0 +1,13 @@
+
+.choixMenu{
+  width: 44%;
+  height: auto;
+  border-radius: 1rem;
+  margin: 3%;
+}
+
+.cardsActu{
+  width: 90%;
+  height: auto;
+  border-radius: 2rem;
+}

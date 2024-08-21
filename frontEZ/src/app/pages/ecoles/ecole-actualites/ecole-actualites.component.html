@@ -1,0 +1,82 @@
+<div class="btnRetour">
+  <a href="javascript:void(0);" onclick="window.history.back()"><img class="return" src="icon\flèche-gauche.png"
+      alt="" /></a>
+</div>
+
+     <!-- Nom de l'école et boutons Actu/établissements -->
+
+<section class="container">
+
+
+  <div>
+    <h2>{{ ecole.nameEc }}</h2>
+
+    <div class="ligne espace">
+      <div class="choixMenu centre colonne">
+        <img src="" alt="">
+        <p>Actualités</p>
+      </div>
+
+      <div class="choixMenu centre colonne">
+        <img src="" alt="">
+        <p>L'établissement</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+     <!-- liste des cards actualités -->
+
+<section>
+
+  <div class="cardsActu centre colonne">
+    <img src="" alt="">
+    <h4>Titre</h4>
+    <p>Date et heure de la mise en ligne</p>
+  </div>
+
+  <div class="cardsActu centre colonne">
+    <img src="" alt="">
+    <h4>Titre</h4>
+    <p>Date et heure de la mise en ligne</p>
+  </div>
+
+  <div class="cardsActu centre colonne">
+    <img src="" alt="">
+    <h4>Titre</h4>
+    <p>Date et heure de la mise en ligne</p>
+  </div>
+
+</section>
+
+     <!-- Infos sur l'établissement -->
+
+<section>
+
+  <div class="cardsActu colonne">
+
+    <h5>Contact</h5>
+
+    <div class="ligne">
+      <p>Numéro de téléphone : </p>
+      <p>{{ ecole.telEc }}</p>
+    </div>
+
+    <div class="ligne">
+      <p>Adresse de l'établissement : </p>
+      <p>{{ ecole.adresseEc }}</p>
+    </div>
+
+    <div>
+      <p>Adresse mail : </p>
+      <p>{{ ecole.mailEc }}</p>
+    </div>
+
+  </div>
+
+
+
+</section>
+

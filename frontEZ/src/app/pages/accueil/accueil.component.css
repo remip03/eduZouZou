@@ -7,6 +7,11 @@
   display: none;
 }
 
+.mascotte{
+  width: 80%;
+  height: auto;
+}
+
 .imgPresentation{
   width: 12.5rem;
   height: 12.5rem;
@@ -22,6 +27,17 @@
   width: 100%;
   height: auto;
   grid-column: 1;
+}
+
+.SavoirPlus{
+  width: 12rem;
+  height: 4rem;
+  border-radius: 2rem;
+  margin: 5%;
+  background-color: #7182FF;
+  color: white;
+  text-align: center;
+  font-size: 150%;
 }
 
 .boutonCoIns{

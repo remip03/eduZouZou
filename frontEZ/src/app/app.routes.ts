@@ -34,11 +34,15 @@ import { UpdateMsgComponent } from './pages/message/update-msg/update-msg.compon
 import { UsersComponent } from './pages/users/users.component';
 import { UserComponent } from './pages/users/user/user.component';
 import { UpdateUserComponent } from './pages/users/update-user/update-user.component';
+import { EnSavoirPlusComponent } from './pages/en-savoir-plus/en-savoir-plus.component';
+import { EcoleActualitesComponent } from './pages/ecoles/ecole-actualites/ecole-actualites.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
 
   { path: 'Accueil', component: AccueilComponent },
+
+  { path: 'ensavoirplus', component: EnSavoirPlusComponent },
 
   // Chemin pour les utilisateurs
   { path: 'users', component: UsersComponent },
@@ -49,7 +53,7 @@ export const routes: Routes = [
 
   // Chemin pour le register
   { path: 'register', component: RegisterComponent },
-  
+
   // Chemin pour le profil
   { path: 'profil', component: ProfilComponent },
 
@@ -77,6 +81,8 @@ export const routes: Routes = [
   { path: 'ecoles/:id/edit', component: UpdateEcoleComponent },
 
   { path: 'newEcole', component: AddEcoleComponent },
+
+  { path: 'ecoleActualites/:id', component: EcoleActualitesComponent},
 
   // Chemin pour les classes
   { path: 'classes', component: ClassesComponent },
