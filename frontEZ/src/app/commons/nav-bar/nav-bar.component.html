@@ -44,30 +44,38 @@
     </div>
     <hr />
     <div class="burgerLink">
-      <a aria-current="page" routerLink="home"
+      <a aria-current="page" routerLink="home" (click)="closeModal()"
         ><img src="icon/maison(1).png" alt="" />Accueil</a
       >
     </div>
     <div class="burgerLink">
-      <a routerLink="classes"
+      <a routerLink="classes" (click)="closeModal()"
         ><img src="icon/casquette-de-graduation1.png" alt="" />Classes</a
       >
     </div>
     <div class="burgerLink">
-      <a routerLink="ecoles"><img src="icon/ecole-1.png" alt="" />Ecoles</a>
+      <a routerLink="ecoles" (click)="closeModal()"
+        ><img src="icon/ecole-1.png" alt="" />Ecoles</a
+      >
     </div>
     <div class="burgerLink">
-      <a routerLink="messagerie"
+      <a routerLink="messagerie" (click)="closeModal()"
         ><img src="icon/commentaire-alt.png" alt="" />Messagerie</a
       >
     </div>
     <div class="burgerLink">
-      <a *ngIf="isLoggedIn$ | async" routerLink="/decoProfil"
+      <a
+        *ngIf="isLoggedIn$ | async"
+        routerLink="/decoProfil"
+        (click)="closeModal()"
         ><img src="icon/utilisateur(1).png" alt="" />Profil / Déconnexion</a
       >
     </div>
     <div class="burgerLink">
-      <a *ngIf="!(isLoggedIn$ | async)" routerLink="/conInsc"
+      <a
+        *ngIf="!(isLoggedIn$ | async)"
+        routerLink="/conInsc"
+        (click)="closeModal()"
         ><img src="icon/utilisateur(1).png" alt="" />Connexion / Inscription</a
       >
     </div>
