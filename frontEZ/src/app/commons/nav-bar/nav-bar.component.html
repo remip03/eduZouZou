@@ -7,34 +7,64 @@
         alt="logo"
       />
     </a>
-    <img class="burgerIcon" src="icon/menu-burger.png" alt="" />
+    <div class="navLinks">
+      <a routerLink="classes" class="navLink"
+        ><img src="icon/casquette-de-graduation1.png" alt="" />Classes</a
+      >
+      <a routerLink="ecoles" class="navLink"
+        ><img src="icon/ecole-1.png" alt="" />Ecoles</a
+      >
+
+      <a routerLink="messagerie" class="navLink"
+        ><img src="icon/commentaire-alt.png" alt="" />Messagerie</a
+      >
+      <a routerLink="/profil" class="navLink" *ngIf="isLoggedIn$ | async"
+        ><img src="icon/utilisateur(1).png" alt="" />Profil</a
+      >
+      <a routerLink="/login" class="navLink"
+        ><img src="icon/utilisateur(1).png" alt="" />Connexion</a
+      >
+    </div>
+    <div class="burger">
+      <img class="burgerIcon" src="icon/menu-burger.png" alt="" />
+    </div>
   </div>
 </nav>
+
+<!--MODAL MENU BURGER-->
 <div class="modal hiddenMenu" id="navbarSupportedContent">
   <div class="modalContent">
-    <a aria-current="page" routerLink="home"
-      ><img src="icon/maison(1).png" alt="" />Accueil</a
-    >
-    <a routerLink="classes"
-      ><img src="icon/casquette-de-graduation1.png" alt="" />Classes</a
-    >
-    <a routerLink="ecoles"><img src="icon/ecole-1.png" alt="" />Ecoles</a>
-    <a routerLink="messagerie"
-      ><img src="icon/commentaire-alt.png" alt="" />Messagerie</a
-    >
-    <li *ngIf="isLoggedIn$ | async">
+    <div>
+      <a aria-current="page" routerLink="home"
+        ><img src="icon/maison(1).png" alt="" />Accueil</a
+      >
+    </div>
+    <div>
+      <a routerLink="classes"
+        ><img src="icon/casquette-de-graduation1.png" alt="" />Classes</a
+      >
+    </div>
+    <div>
+      <a routerLink="ecoles"><img src="icon/ecole-1.png" alt="" />Ecoles</a>
+    </div>
+    <div>
+      <a routerLink="messagerie"
+        ><img src="icon/commentaire-alt.png" alt="" />Messagerie</a
+      >
+    </div>
+    <div *ngIf="isLoggedIn$ | async">
       <a routerLink="/profil"><img src="icon/utilisateur(1)" alt="" />Profil</a>
-    </li>
-    <li *ngIf="isLoggedIn$ | async">
+    </div>
+    <div *ngIf="isLoggedIn$ | async">
       <a (click)="logout()">Déconnexion</a>
-    </li>
+    </div>
 
-    <li *ngIf="!(isLoggedIn$ | async)">
+    <div *ngIf="!(isLoggedIn$ | async)">
       <a routerLink="/login">Connexion</a>
-    </li>
+    </div>
 
-    <li *ngIf="!(isLoggedIn$ | async)">
+    <div *ngIf="!(isLoggedIn$ | async)">
       <a routerLink="/register">Inscription</a>
-    </li>
+    </div>
   </div>
 </div>

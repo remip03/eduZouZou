@@ -34,22 +34,31 @@ import { UpdateMsgComponent } from './pages/message/update-msg/update-msg.compon
 import { UsersComponent } from './pages/users/users.component';
 import { UserComponent } from './pages/users/user/user.component';
 import { UpdateUserComponent } from './pages/users/update-user/update-user.component';
+import { RgpdComponent } from './pages/rgpd/rgpd.component';
+import { CguComponent } from './pages/cgu/cgu.component';
+import { AccueilCoComponent } from './pages/accueil-co/accueil-co.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
 
   { path: 'Accueil', component: AccueilComponent },
 
+  { path: 'rgpd', component: RgpdComponent },
+
+  { path: 'cgu', component: CguComponent },
+
+  { path: 'accueilCo', component: AccueilCoComponent },
+
   // Chemin pour les utilisateurs
   { path: 'users', component: UsersComponent },
 
   { path: 'users/:id', component: UserComponent },
 
-  { path : 'users/:id/edit', component: UpdateUserComponent },
+  { path: 'users/:id/edit', component: UpdateUserComponent },
 
   // Chemin pour le register
   { path: 'register', component: RegisterComponent },
-  
+
   // Chemin pour le profil
   { path: 'profil', component: ProfilComponent },
 

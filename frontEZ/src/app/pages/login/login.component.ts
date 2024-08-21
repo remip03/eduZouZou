@@ -59,7 +59,7 @@ export class LoginComponent {
       console.log('Form is invalid');
       return false; //retourne la valeur false pour invalider les champs login
     } else {
-      this.router.navigate(['Accueil']); //
+      this.router.navigate(['accueilCo']); //
     }
   }
 

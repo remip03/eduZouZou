@@ -16,6 +16,15 @@
   font-style: normal;
 }
 
+body {
+  margin: none;
+  padding: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 p{
   font-family: 'nunito';
 }
