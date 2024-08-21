@@ -1,18 +1,47 @@
 <h2>Liste des Cours</h2>
 
-<div class="btn">
+<!-- <div class="btn1">
   <button routerLink="/creerCours">Créer un cours</button>
-</div>
-<div class="listecarte homer ">
-  @for (item of cours; track $index) {
+</div> -->
 
-  <div class="card carte marge" style="width: 18rem;">
+<div class="btn2">
+  <button><a href="">filtrer</a></button>
+  <button><a href="">trier</a></button>
+</div>
+
+<!-- <div class="container carte marge centre" *ngFor="let item of cours; let i = index"
+  [style.background-color]="colors[i % colors.length]">
+
+
+  <p><b>{{ item.nameR }}</b></p>
+  <p>type : {{ item.typeR }}</p>
+  <p>matière : {{ item.matiereR }}</p>
+  <p>description : {{ item.descriptionR }}</p>
+  <button routerLink="/cours/{{item.id}}">Modifier</button>
+
+</div> -->
+
+<div class="webVersion">
+  <div class="container carte marge centre" *ngFor="let item of cours; let i = index"
+    [style.background-color]="colors[i % colors.length]">
+
     <p><b>{{ item.nameR }}</b></p>
-    <p>type : {{ item.typeR }}</p>
-    <p>matière : {{ item.matiereR }}</p>
-    <p>description : {{ item.descriptionR }}</p>
-    <button routerLink="/cours/{{item.id}}">Modifier</button>
+
+    <select name="Type" id="Type">
+      <option value="">Type</option>
+    </select>
+
+    <select name="Matière" id="Matière">
+      <option value="">Matière</option>
+    </select>
+
+    <select name="Description" id="Description">
+      <option value="">Description</option>
+    </select>
+
+    <button id="btn3" routerLink="/cours/{{item.id}}">Modifier</button>
+
+
   </div>
 
-  }
 </div>
