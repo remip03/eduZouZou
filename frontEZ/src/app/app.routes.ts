@@ -37,6 +37,8 @@ import { UpdateUserComponent } from './pages/users/update-user/update-user.compo
 import { RgpdComponent } from './pages/rgpd/rgpd.component';
 import { CguComponent } from './pages/cgu/cgu.component';
 import { AccueilCoComponent } from './pages/accueil-co/accueil-co.component';
+import { ConInscComponent } from './pages/con-insc/con-insc.component';
+import { DecoProfilComponent } from './pages/deco-profil/deco-profil.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -48,6 +50,10 @@ export const routes: Routes = [
   { path: 'cgu', component: CguComponent },
 
   { path: 'accueilCo', component: AccueilCoComponent },
+
+  { path: 'conInsc', component: ConInscComponent },
+
+  { path : 'decoProfil', component: DecoProfilComponent },
 
   // Chemin pour les utilisateurs
   { path: 'users', component: UsersComponent },

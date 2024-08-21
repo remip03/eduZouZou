@@ -1,0 +1,45 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 90%;
+  border-radius: 30px;
+  margin-bottom: 3rem;
+  text-decoration: none;
+  font-family: "Playwrite AR";
+  text-align: center;
+}
+
+h2 {
+  color: #ffffff;
+  margin: 2rem 0;
+}
+
+.card1 {
+  background-color: #facc99;
+}
+
+.card2 {
+  background-color: #f9d5cf;
+}
+
+@media only screen and (min-width: 600px) {
+  .card {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .content {
+    flex-direction: row;
+  }
+
+  .card {
+    width: 25%;
+    margin: 0 3rem;
+  }
+}

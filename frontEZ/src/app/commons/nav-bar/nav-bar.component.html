@@ -20,17 +20,12 @@
       <a routerLink="messagerie" class="navLink"
         ><img src="icon/commentaire-alt.png" alt="" />Messagerie</a
       >
-      <a routerLink="/profil" class="navLink" *ngIf="isLoggedIn$ | async"
-        ><img src="icon/utilisateur(1).png" alt="" />Profil</a
+      <a routerLink="/decoProfil" class="navLink" *ngIf="isLoggedIn$ | async"
+        ><img src="icon/utilisateur(1).png" alt="" />Profil / Déconnexion</a
       >
-      <a routerLink="/register" class="navLink" *ngIf="!(isLoggedIn$ | async)"
-        ><img src="icon/utilisateur(1).png" alt="" />Inscription</a
-      >
-      <a class="navLink" *ngIf="isLoggedIn$ | async"
-        ><img src="icon/croix-petit.png" (click)="logout()" />Déconnexion</a
-      >
-      <a routerLink="/login" class="navLink" *ngIf="!(isLoggedIn$ | async)"
-        ><img src="icon/utilisateur(1).png" alt="" />Connexion</a
+      <a routerLink="/conInsc" class="navLink" *ngIf="!(isLoggedIn$ | async)"
+        ><img src="icon/utilisateur(1).png" alt="" />Connexion /
+        S'inscription</a
       >
     </div>
   </div>
@@ -67,18 +62,14 @@
       >
     </div>
     <div class="burgerLink">
-      <a *ngIf="isLoggedIn$ | async" routerLink="/profil"
-        ><img src="icon/utilisateur(1)" alt="" />Profil</a
+      <a *ngIf="isLoggedIn$ | async" routerLink="/decoProfil"
+        ><img src="icon/utilisateur(1).png" alt="" />Profil / Déconnexion</a
       >
     </div>
     <div class="burgerLink">
-      <a *ngIf="isLoggedIn$ | async" (click)="logout()">Déconnexion</a>
-    </div>
-    <div class="burgerLink">
-      <a *ngIf="!(isLoggedIn$ | async)" routerLink="/login">Connexion</a>
-    </div>
-    <div class="burgerLink">
-      <a *ngIf="!(isLoggedIn$ | async)" routerLink="/register">Inscription</a>
+      <a *ngIf="!(isLoggedIn$ | async)" routerLink="/conInsc"
+        ><img src="icon/utilisateur(1).png" alt="" />Connexion / Inscription</a
+      >
     </div>
   </div>
 </div>
