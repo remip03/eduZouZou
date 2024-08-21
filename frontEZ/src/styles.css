@@ -1,12 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* disposition */
-.colonne {
-  display: flex;
-  flex-direction: column;
+
+  /* police d'écriture */
+@font-face {
+  font-family: 'Playwrite AR';
+  src: url('../font/PlaywriteAR-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.homer {
+@font-face {
+  font-family: 'nunito';
+  src: url(../font/Nunito-Regular.ttf) format(truetype);
+  font-weight: normal;
+  font-style: normal;
+}
+
+p{
+  font-family: 'nunito';
+}
+
+  /* disposition */
+.colonne{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ligne{
+  display: flex;
+  flex-direction: row;
+}
+
+.homer{
   display: flex;
   flex-wrap: wrap;
 }
@@ -18,6 +44,16 @@
 .centre {
   display: flex;
   justify-content: center;
+}
+
+.centrecolonne{
+  display: flex;
+  align-items: center;
+}
+
+.espace{
+  display: flex;
+  justify-content: space-around;
 }
 
 /* commons */
@@ -33,11 +69,6 @@ h2 {
   width: 5rem;
   height: auto;
   background-color: white;
-}
-
-.logofooter {
-  width: 100%;
-  height: auto;
 }
 
 button {
@@ -95,8 +126,19 @@ footer {
   color: white;
 }
 
+.colorCo{
+  background-color: #FACC99;
+  color: white;
+}
+
+.colorIns{
+  background-color: #F9D5CF;
+  color: white;
+}
+
 .BGgeneral {
   background-color: #eaeff5;
   height: 100%;
   width: auto;
 }
+

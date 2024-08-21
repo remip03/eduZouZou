@@ -25,9 +25,9 @@ export class CreateCoursComponent {
     private router: Router
   ){
     this.matieres = VariablesGlobales.matieres
-    this.typeRC = VariablesGlobales.typeRC
+    this.typeRC = VariablesGlobales.niveauCl
     this.coursCreate = this.formbuild.group({
-      typeR: [''],
+      typeR: ['', Validators.required],
       nameR: ['', Validators.required],
       descriptionR: [''],
       matiereR: ['', Validators.required],

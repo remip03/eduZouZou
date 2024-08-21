@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240802102443 extends AbstractMigration
+final class Version20240820213915 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -25,7 +25,7 @@ final class Version20240802102443 extends AbstractMigration
         $this->addSql('CREATE TABLE enfant (id INT AUTO_INCREMENT NOT NULL, classe_id INT DEFAULT NULL, last_name_e VARCHAR(50) NOT NULL, first_name_e VARCHAR(50) NOT NULL, birth_date_e DATE NOT NULL COMMENT \'(DC2Type:date_immutable)\', INDEX IDX_34B70CA28F5EA509 (classe_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE message (id INT AUTO_INCREMENT NOT NULL, content VARCHAR(500) NOT NULL, destinataire VARCHAR(50) NOT NULL, expediteur VARCHAR(50) NOT NULL, msg_date DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE messagerie (id INT AUTO_INCREMENT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE ressource (id INT AUTO_INCREMENT NOT NULL, type_r VARCHAR(50) NOT NULL, name_r VARCHAR(50) NOT NULL, description_r VARCHAR(500) DEFAULT NULL, matiere_r VARCHAR(50) NOT NULL, dtype VARCHAR(255) NOT NULL, type_act VARCHAR(50) DEFAULT NULL, doc_c VARCHAR(50) DEFAULT NULL, video_c VARCHAR(100) DEFAULT NULL, ressource_sup_c VARCHAR(50) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE ressource (id INT AUTO_INCREMENT NOT NULL, type_r VARCHAR(50) NOT NULL, name_r VARCHAR(50) NOT NULL, description_r VARCHAR(500) DEFAULT NULL, matiere_r VARCHAR(50) NOT NULL, dtype VARCHAR(255) NOT NULL, type_act VARCHAR(50) DEFAULT NULL, doc_c VARCHAR(50) DEFAULT NULL, video_c VARCHAR(100) DEFAULT NULL, ressource_sup_c VARCHAR(50) DEFAULT NULL, updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ressource_user (ressource_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_7D2CD6C0FC6CD52A (ressource_id), INDEX IDX_7D2CD6C0A76ED395 (user_id), PRIMARY KEY(ressource_id, user_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, messagerie_id INT NOT NULL, ecole_id INT DEFAULT NULL, email VARCHAR(100) NOT NULL, roles JSON NOT NULL, password VARCHAR(60) NOT NULL, first_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, tel VARCHAR(20) NOT NULL, adresse VARCHAR(100) NOT NULL, UNIQUE INDEX UNIQ_8D93D649836C1031 (messagerie_id), INDEX IDX_8D93D64977EF1B1E (ecole_id), UNIQUE INDEX UNIQ_IDENTIFIER_EMAIL (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE classe ADD CONSTRAINT FK_8F87BF9677EF1B1E FOREIGN KEY (ecole_id) REFERENCES ecole (id)');
@@ -34,11 +34,13 @@ final class Version20240802102443 extends AbstractMigration
         $this->addSql('ALTER TABLE ressource_user ADD CONSTRAINT FK_7D2CD6C0A76ED395 FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D649836C1031 FOREIGN KEY (messagerie_id) REFERENCES messagerie (id)');
         $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D64977EF1B1E FOREIGN KEY (ecole_id) REFERENCES ecole (id)');
+        $this->addSql('DROP TABLE ressourcesfiles');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE TABLE ressourcesfiles (id INT AUTO_INCREMENT NOT NULL, file_name VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
         $this->addSql('ALTER TABLE classe DROP FOREIGN KEY FK_8F87BF9677EF1B1E');
         $this->addSql('ALTER TABLE enfant DROP FOREIGN KEY FK_34B70CA28F5EA509');
         $this->addSql('ALTER TABLE ressource_user DROP FOREIGN KEY FK_7D2CD6C0FC6CD52A');
