@@ -45,7 +45,6 @@
     <select
       id="ecole"
       formControlName="ecoleId"
-      (change)="onEcoleChange($event)"
     >
       <option value="" disabled selected>Selectionnez une école</option>
       <option *ngFor="let ecole of ecoles" [value]="ecole.id">
