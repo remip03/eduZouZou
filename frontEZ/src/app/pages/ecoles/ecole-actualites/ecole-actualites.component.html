@@ -5,21 +5,20 @@
 
      <!-- Nom de l'école et boutons Actu/établissements -->
 
-<section class="container">
+<section class="container centre centrecolonne">
 
-
-  <div>
+  <div class="choixMenuP">
     <h2>{{ ecole.nameEc }}</h2>
 
     <div class="ligne espace">
-      <div class="choixMenu centre colonne">
-        <img src="" alt="">
-        <p>Actualités</p>
+      <div class="choixMenuActualites iconeActualite1 centrecolonne colonne">
+        <img src="icon\un-journal.png" alt="icon actu" class="iconeActualite">
+        <p class="tailletext">Actualités</p>
       </div>
 
-      <div class="choixMenu centre colonne">
-        <img src="" alt="">
-        <p>L'établissement</p>
+      <div class="choixMenuActualites iconeActualite2 centrecolonne colonne">
+        <img src="icon\ecole-1.png" alt="icon etablissement" class="iconeActualite" routerLink="../../ecoleEtablissement/{{ecole.id}}">
+        <p class="tailletext">L'établissement</p>
       </div>
     </div>
 
@@ -29,22 +28,22 @@
 
      <!-- liste des cards actualités -->
 
-<section>
+<section class="centrecolonne colonneEc">
 
-  <div class="cardsActu centre colonne">
-    <img src="" alt="">
+  <div class="cardsActu couleurcard1 centrecolonne colonne">
+    <img src="img\actu bleu tel.png" alt="imageactu1" class="imagecards">
     <h4>Titre</h4>
     <p>Date et heure de la mise en ligne</p>
   </div>
 
-  <div class="cardsActu centre colonne">
-    <img src="" alt="">
+  <div class="cardsActu couleurcard2 centrecolonne colonne">
+    <img src="img\actu jaune.png" alt="imageactu2" class="imagecards">
     <h4>Titre</h4>
     <p>Date et heure de la mise en ligne</p>
   </div>
 
-  <div class="cardsActu centre colonne">
-    <img src="" alt="">
+  <div class="cardsActu couleurcard3 centrecolonne colonne">
+    <img src="img\actu rouge.png" alt="imageactu3" class="imagecards">
     <h4>Titre</h4>
     <p>Date et heure de la mise en ligne</p>
   </div>
@@ -53,30 +52,19 @@
 
      <!-- Infos sur l'établissement -->
 
-<section>
+<section class="centre">
 
-  <div class="cardsActu colonne">
+  <div class="cardsActu colonne cardContact">
 
     <h5>Contact</h5>
 
-    <div class="ligne">
-      <p>Numéro de téléphone : </p>
-      <p>{{ ecole.telEc }}</p>
-    </div>
+    <p><b>Numéro de téléphone :</b> {{ ecole.telEc }}</p>
 
-    <div class="ligne">
-      <p>Adresse de l'établissement : </p>
-      <p>{{ ecole.adresseEc }}</p>
-    </div>
+    <p><b>Adresse de l'établissement :</b> {{ ecole.adresseEc }}</p>
 
-    <div>
-      <p>Adresse mail : </p>
-      <p>{{ ecole.mailEc }}</p>
-    </div>
+    <p><b>Adresse mail :</b> {{ ecole.mailEc }}</p>
 
   </div>
-
-
 
 </section>
 

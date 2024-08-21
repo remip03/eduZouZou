@@ -1,13 +1,153 @@
 
-.choixMenu{
-  width: 44%;
+     /* partie nom de l'école et boutons, le haut de la page quoi */
+
+h2{
+  text-align: center;
+  font-family: 'nunito';
+  margin: 1%;
+}
+
+.choixMenuP{
+  width: 90%;
   height: auto;
+  border-radius: 2rem;
+  margin: 3%;
+  background-color: white;
+}
+
+.choixMenuActualites{
+  width: 40%;
+  height: auto;
+  margin: 5%;
   border-radius: 1rem;
+}
+
+.tailletext{
+  font-size: 100%;
   margin: 3%;
 }
+
+.iconeActualite{
+  width: 20%;
+  height: auto;
+  margin: 5%;
+}
+
+.iconeActualite1{
+background-color: #85B4F2;
+color: white;
+}
+
+.iconeActualite2{
+background-color: white;
+color: #85B4F2;
+border: solid 4px #85B4F2;
+}
+
+     /* Cette classe est utilisée sur toute la page */
 
 .cardsActu{
   width: 90%;
   height: auto;
   border-radius: 2rem;
+  margin: 3%;
+}
+
+     /* partie des cards actualités */
+
+.colonneEc{
+  display: flex;
+  flex-direction: column;
+}
+
+h4{
+  font-family: 'nunito';
+  text-align: center;
+  margin: 1%;
+}
+
+.imagecards{
+  margin: 5%;
+  width: 75%;
+}
+
+.couleurcard1{
+  background-color: #7EA8C5;
+  color: white;
+}
+
+.couleurcard2{
+  background-color: #FFC17D;
+  color: white;
+}
+
+.couleurcard3{
+  background-color: #FF5E5E;
+  color: white;
+}
+
+     /* partie contact */
+
+.cardContact{
+  background-color: white;
+  padding: 3%;
+  display: flex;
+  align-items: baseline;
+  color: #294F7F;
+  font-family: 'nunito';
+}
+
+     /* changements :
+     passage des cards actu en liste,
+     ajustement de leurs tailles,
+     ajustement de la taille des textes. */
+
+@media screen and (min-width: 768px) {
+  .colonneEc{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .cardsActu{
+    width: 45%;
+    height: auto;
+    border-radius: 2rem;
+    margin: 2.5%;
+  }
+
+  .cardContact{
+    background-color: white;
+    padding: 3%;
+    display: flex;
+    align-items: baseline;
+    width: 50%;
+    height: auto;
+  }
+
+  .tailletext{
+    font-size: 150%;
+    margin: 3%;
+  }
+}
+
+     /* Ajustements de la taille des cards */
+
+@media screen and (min-width: 1440px) {
+  .choixMenuP{
+    width: 60%;
+    height: auto;
+    border-radius: 2rem;
+    margin: 3%;
+    background-color: white;
+  }
+
+  .cardsActu{
+    width: 30%;
+    height: auto;
+    border-radius: 2rem;
+    margin: 1.5%;
+  }
+
+
 }

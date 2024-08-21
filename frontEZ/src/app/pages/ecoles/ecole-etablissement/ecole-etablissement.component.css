@@ -1,0 +1,61 @@
+     /* partie nom de l'école et boutons, le haut de la page quoi */
+
+     h2{
+      text-align: center;
+      font-family: 'nunito';
+      margin: 1%;
+    }
+
+    .choixMenuP{
+      width: 90%;
+      height: auto;
+      border-radius: 2rem;
+      margin: 3%;
+      background-color: white;
+    }
+
+    .choixMenuActualites{
+      width: 40%;
+      height: auto;
+      margin: 5%;
+      border-radius: 1rem;
+    }
+
+    .tailletext{
+      font-size: 100%;
+      margin: 3%;
+    }
+
+    .iconeActualite{
+      width: 20%;
+      height: auto;
+      margin: 5%;
+    }
+
+    .iconeActualite1{
+    background-color: #85B4F2;
+    color: white;
+    }
+
+    .iconeActualite2{
+    background-color: white;
+    color: #85B4F2;
+    border: solid 4px #85B4F2;
+    }
+
+.cardsActu{
+  width: 90%;
+  height: auto;
+  border-radius: 2rem;
+}
+
+   /* partie contact */
+
+.cardContact{
+  background-color: white;
+  padding: 3%;
+  display: flex;
+  align-items: baseline;
+  color: #294F7F;
+  font-family: 'nunito';
+}

@@ -36,6 +36,7 @@ import { UserComponent } from './pages/users/user/user.component';
 import { UpdateUserComponent } from './pages/users/update-user/update-user.component';
 import { EnSavoirPlusComponent } from './pages/en-savoir-plus/en-savoir-plus.component';
 import { EcoleActualitesComponent } from './pages/ecoles/ecole-actualites/ecole-actualites.component';
+import { EcoleEtablissementComponent } from './pages/ecoles/ecole-etablissement/ecole-etablissement.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -83,6 +84,8 @@ export const routes: Routes = [
   { path: 'newEcole', component: AddEcoleComponent },
 
   { path: 'ecoleActualites/:id', component: EcoleActualitesComponent},
+
+  { path: 'ecoleEtablissement/:id', component: EcoleEtablissementComponent},
 
   // Chemin pour les classes
   { path: 'classes', component: ClassesComponent },
