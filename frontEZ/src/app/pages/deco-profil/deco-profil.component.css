@@ -13,6 +13,13 @@
   text-decoration: none;
   font-family: "Playwrite AR";
   text-align: center;
+}
+
+.card1 {
+  background-color: #6d154c;
+}
+
+.card2 {
   background-color: #514bdb;
 }
 

@@ -1,16 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
-
-  /* police d'écriture */
+/* police d'écriture */
 @font-face {
-  font-family: 'Playwrite AR';
-  src: url('../font/PlaywriteAR-VariableFont_wght.ttf') format('truetype');
+  font-family: "Playwrite AR";
+  src: url("../font/PlaywriteAR-VariableFont_wght.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'nunito';
+  font-family: "nunito";
   src: url(../font/Nunito-Regular.ttf) format(truetype);
   font-weight: normal;
   font-style: normal;
@@ -25,23 +24,27 @@ body {
   font-weight: bold;
 }
 
-p{
-  font-family: 'nunito';
+p {
+  font-family: "nunito";
 }
 
-  /* disposition */
-.colonne{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+/* disposition */
+.colonne {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.ligne{
+.ligne {
   display: flex;
   flex-direction: row;
 }
 
-.homer{
+.homer {
   display: flex;
   flex-wrap: wrap;
 }
@@ -55,12 +58,12 @@ p{
   justify-content: center;
 }
 
-.centrecolonne{
+.centrecolonne {
   display: flex;
   align-items: center;
 }
 
-.espace{
+.espace {
   display: flex;
   justify-content: space-around;
 }
@@ -145,13 +148,13 @@ footer {
   color: white;
 }
 
-.colorCo{
-  background-color: #FACC99;
+.colorCo {
+  background-color: #facc99;
   color: white;
 }
 
-.colorIns{
-  background-color: #F9D5CF;
+.colorIns {
+  background-color: #f9d5cf;
   color: white;
 }
 
@@ -161,3 +164,7 @@ footer {
   width: auto;
 }
 
+/* BOUTON RETOUR */
+app-return-btn {
+  width: 100%;
+}

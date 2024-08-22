@@ -1,17 +1,14 @@
 <div class="container colonne">
-  <div class="btnRetour">
-    <a href="javascript:void(0);" onclick="window.history.back()"
-      ><img class="return" src="icon\flèche-gauche.png" alt=""
-    /></a>
-  </div>
+  <app-return-btn />
   <div class="content">
-    <a routerLink="/profil" class="card">
-      <img src="img/connexion.png" alt="profil" />
+    <a routerLink="/profil" class="card card1">
+      <img src="img/profil.png" alt="profil" />
       <h2>Profil</h2></a
     >
-    <a (click)="logout()" class="card" >
+    <a class="card card2" (click)="openModal()">
       <img src="img/connexion.png" alt="deconnexion" />
       <h2>Déconnexion</h2></a
     >
   </div>
+  <app-comfirm-deco-modal (close)="closeModal()" />
 </div>

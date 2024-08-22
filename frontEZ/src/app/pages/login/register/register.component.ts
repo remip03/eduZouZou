@@ -11,11 +11,12 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import Ecole from '../../../models/ecole.modelt';
 import { EcoleService } from '../../../services/ecole.service';
+import { ReturnBtnComponent } from '../../../commons/return-btn/return-btn.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, FormsModule, ReturnBtnComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })

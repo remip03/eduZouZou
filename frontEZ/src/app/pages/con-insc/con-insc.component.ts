@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ReturnBtnComponent } from '../../commons/return-btn/return-btn.component';
 
 @Component({
   selector: 'app-con-insc',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ReturnBtnComponent],
   templateUrl: './con-insc.component.html',
   styleUrl: './con-insc.component.css'
 })

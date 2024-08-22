@@ -9,7 +9,7 @@ import Ressource from '../models/ressource.models';
 export class RessourceService {
 
   // private apiUrl = 'https://localhost:8000/api';
-  private apiUrl = 'https://localhost:8000/api';
+  private apiUrl = 'http://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) { }
 
