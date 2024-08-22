@@ -22,8 +22,8 @@ export class CoursComponent implements OnInit {
   }
 
   bg() {
-    let color = ['F9DBA0', 'BBE2EA', 'A7B2FB', 'FBB0A7', 'F9AAB8', 'F2A6FD'];
+    let colors = ['F9DBA0', 'BBE2EA', 'A7B2FB', 'FBB0A7', 'F9AAB8', 'F2A6FD'];
 
-    return color[Math.floor(Math.random() * color.length)];
+    return colors[Math.floor(Math.random() * colors.length)];
   }
 }

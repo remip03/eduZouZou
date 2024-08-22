@@ -3,15 +3,17 @@
 <div class="btn">
   <button routerLink="/creerCours">Créer un cours</button>
 </div>
-<div class="listecarte homer ">
+<div class="listecarte homer">
   @for (item of cours; track $index) {
 
-  <div class="card carte marge" style="width: 18rem;">
-    <p><b>{{ item.nameR }}</b></p>
+  <div class="card carte marge" style="width: 18rem; color: 'bg()'">
+    <p>
+      <b>{{ item.nameR }}</b>
+    </p>
     <p>type : {{ item.typeR }}</p>
     <p>matière : {{ item.matiereR }}</p>
     <p>description : {{ item.descriptionR }}</p>
-    <button routerLink="/cours/{{item.id}}">Modifier</button>
+    <button routerLink="/cours/{{ item.id }}">Modifier</button>
   </div>
 
   }
