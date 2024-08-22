@@ -10,8 +10,8 @@
 }
 
 .modalContent {
-  background-color: #FFFFFF;
-  color: #294F7F;
+  background-color: #ffffff;
+  color: #294f7f;
   padding: 20px;
   border-radius: 5px;
   text-align: center;
@@ -36,4 +36,18 @@
   width: 250px;
   height: 250px;
   margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+}
+
+@media only screen and (min-width: 769px) {
+  .imgModal {
+    width: 400px;
+    height: 400px;
+  }
+
+  .modal span {
+    font-size: 20px;
+  }
 }

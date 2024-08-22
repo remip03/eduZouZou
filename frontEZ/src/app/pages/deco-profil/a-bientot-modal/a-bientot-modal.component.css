@@ -37,3 +37,20 @@
   height: 230px;
   margin-bottom: 1rem;
 }
+
+@media only screen and (min-width: 600px) {
+}
+
+@media only screen and (min-width: 769px) {
+  .modalContent {
+    justify-content: flex-start;
+  }
+  .imgModal {
+    width: 1300px;
+    height: 700px;
+  }
+
+  .modal span {
+    font-size: 60px;
+  }
+}
