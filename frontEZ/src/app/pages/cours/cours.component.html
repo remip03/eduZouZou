@@ -1,20 +1,72 @@
 <h2>Liste des Cours</h2>
 
-<div class="btn">
+<!-- <div class="btn1">
   <button routerLink="/creerCours">Créer un cours</button>
-</div>
-<div class="listecarte homer">
-  @for (item of cours; track $index) {
+</div> -->
 
-  <div class="card carte marge" style="width: 18rem; color: 'bg()'">
+<div class="btn2">
+  <button onclick="">filtrer</button>
+  <button>trier</button>
+</div>
+<div class="overlay">
+  <div class="filtrer">
+    <select name="filtre" id="filtre">
+      <option class="bold" value="">Filtrer par</option>
+      <option value="classe">Classe</option>
+      <option value="matiere">Matière</option>
+    </select>
+  </div>
+
+  <div class="matiere">
+    <select name="matiere" id="matiere">
+      <option value="Mathematiques">Mathematiques</option>
+      <option value="Français">Français</option>
+      <option value="Histoire">Histoire</option>
+      <option value="Geographie">Geographie</option>
+      <option value="art plastique">art plastique</option>
+      <option value="Anglais">Anglais</option>
+      <option value="EPS">EPS</option>
+      <option value="Education morale et civique">
+        Education morale et civique
+      </option>
+      <option value="Autre">Autre</option>
+    </select>
+  </div>
+
+  <div class="classe">
+    <select name="classe" id="classe">
+      <option value="cp">cp</option>
+      <option value="ce1">ce1</option>
+      <option value="ce2">ce2</option>
+      <option value="cm1">cm1</option>
+      <option value="cm2">cm2</option>
+    </select>
+  </div>
+
+  <div class="trie">
+    <select name="trie" id="trie">
+      <option value="">trier par</option>
+
+      <option value="classe">Classe</option>
+      <option value="matiere">Matière</option>
+    </select>
+  </div>
+</div>
+
+<div class="webVersion">
+  <div
+    class="container carte marge centre"
+    *ngFor="let item of cours; let i = index"
+    [style.background-color]="colors[i % colors.length]"
+  >
+    .
     <p>
       <b>{{ item.nameR }}</b>
     </p>
-    <p>type : {{ item.typeR }}</p>
-    <p>matière : {{ item.matiereR }}</p>
-    <p>description : {{ item.descriptionR }}</p>
+
+    <span>classe : {{ item.typeR }}</span>
+    <span>matière : {{ item.matiereR }}</span>
+    <span>description : {{ item.descriptionR }}</span>
     <button routerLink="/cours/{{ item.id }}">Modifier</button>
   </div>
-
-  }
 </div>

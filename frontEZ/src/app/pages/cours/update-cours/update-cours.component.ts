@@ -31,7 +31,7 @@ export class UpdateCoursComponent implements OnInit{
     private upServ: UploadService
   ) {
     this.matieres = VariablesGlobales.matieres
-    this.typeRC = VariablesGlobales.typeRC
+    this.typeRC = VariablesGlobales.niveauCl
     this.coursUpdate = this.formbuild.group({
       nameR: ['', Validators.required],
       descriptionR: ['', Validators.required],

@@ -30,7 +30,7 @@ export class UpdateActiviteComponent implements OnInit {
   ) {
     this.matieres = VariablesGlobales.matieres
     this.typeActivite = VariablesGlobales.typeAct
-    this.typeRA = VariablesGlobales.typeRA
+    this.typeRA = VariablesGlobales.niveauCl
     this.activiteUpdate = this.formbuild.group({
       nameR: ['', Validators.required],
       descriptionR: ['', Validators.required],
