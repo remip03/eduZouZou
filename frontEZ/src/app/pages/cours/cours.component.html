@@ -5,15 +5,17 @@
 </div> -->
 
 <div class="btn2">
-  <button (click)="toogle()">filtrer</button>
-  <button (click)="toogle()">trier</button>
-
+  <button (click)="toogleFilter()">filtrer</button>
+  <button (click)="toogleSearch()">rechercher</button>
+  <!-- <button (click)="filterByClasse(valueChange)">classe</button>
+  <button (click)="selectClasse('')">matiere</button> -->
 </div>
 
-<div class="matiereMenu">
+<div class="filterMenu">
 
-  @if (isVisible) {
-  <select name="matieres" id="matieres">
+  @if (isFilterVisible) {
+
+  <select name="selectType" id="selectType">
     <option value="">filtrer par</option>
     @for (item of filterValue ; track $index){
     <option (click)="filterSelect(item)" [value]="item">{{ item }}</option>
@@ -28,9 +30,6 @@
 
     }
   </select>
-
-
-
 
   }
 
@@ -47,7 +46,18 @@
   }
 
 </div>
+
+<div class="searchMenu">
+  @if (isSearchable){
+  <input type="text" placeholder="Rechercher..." [(ngModel)]="valueSearch" />
+  <button (click)="showResultSearch(valueSearch)">valider</button>
+
+  }
+
+</div>
+
 <div class="webVersion">
+  @if(hidden){
   <div class="container carte marge centre" *ngFor="let item of cours; let i = index"
     [style.background-color]="colors[i % colors.length]">
     <p>
@@ -59,4 +69,5 @@
     <span>description : {{ item.descriptionR }}</span>
     <button routerLink="/cours/{{ item.id }}">Modifier</button>
   </div>
+  }
 </div>

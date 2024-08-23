@@ -67,7 +67,7 @@ class AppFixtures extends Fixture
             $activite->setTypeR('CP');
             $activite->setNameR('activite n°' . $i);
             $activite->setDescriptionR('Voici l\'activite n°' . $i);
-            $activite->setMatiereR('Mathématiques' . $i);
+            $activite->setMatiereR('mathématiques' . $i);
             $activite->setTypeAct('quizz n°' . $i);
             $manager->persist($activite);
         }
@@ -78,7 +78,7 @@ class AppFixtures extends Fixture
             $cours->setTypeR('CM1');
             $cours->setNameR('cours n° ' . $i);
             $cours->setDescriptionR('Voici le cours n° ' . $i);
-            $cours->setMatiereR('Mathématiques ' . $i);
+            $cours->setMatiereR('mathématiques ' . $i);
             $cours->setDocC('doc n° ' . $i);
             $cours->setVideoC('video n° ' . $i);
             $cours->setRessourceSupC('ressource supplémentaire n° ' . $i);
