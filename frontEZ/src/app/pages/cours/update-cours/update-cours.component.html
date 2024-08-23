@@ -66,16 +66,15 @@
   </div>
 
   <div class="colonne marge">
-    <label for="ressourceSupC">ressource supplémentaire : </label>
-    <input type="file" (change)="this.onFilechange($event)" id="ressourceSupC" name="ressourceSupC" size="50"
-      maxlength="50">
-    @if (valid && form['ressourceSupC'].invalid) {
+    <label for="imageFile">ressource supplémentaire : </label>
+    <input type="file" id="imageFile" name="imageFile">
+    @if (valid && form['imageFile'].invalid) {
     <span>Type invalide</span>
     }
   </div>
 
   <div class="btn">
-    <button class="marge" (click)="upload()" (click)="updateCours()">Enregistrer les modifications</button>
+    <button class="marge" (click)="updateCours()">Enregistrer les modifications</button>
   </div>
 
 </form>

@@ -289,8 +289,8 @@
     <parameter key="vich_uploader.default_filename_attribute_suffix">_name</parameter>
     <parameter key="vich_uploader.mappings" type="collection">
       <parameter key="cours_images" type="collection">
-        <parameter key="uri_prefix">/images/cours</parameter>
-        <parameter key="upload_destination">C:\Users\Stagiaire\Desktop\eduZouZou\apiEZ/public/images/cours</parameter>
+        <parameter key="uri_prefix">/cours/images</parameter>
+        <parameter key="upload_destination">C:\Users\Stagiaire\Desktop\eduZouZou\apiEZ/public/cours/images</parameter>
         <parameter key="namer" type="collection">
           <parameter key="service">Vich\UploaderBundle\Naming\SmartUniqueNamer.cours_images</parameter>
           <parameter key="options" type="collection"/>

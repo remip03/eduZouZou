@@ -5,6 +5,6 @@ vich_uploader:
 
     mappings:
        cours_images:
-           uri_prefix: /images/cours
-           upload_destination: '%kernel.project_dir%/public/images/cours'
+           uri_prefix: /cours/images
+           upload_destination: '%kernel.project_dir%/public/cours/images'
            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

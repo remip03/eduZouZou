@@ -6,9 +6,11 @@ use App\Repository\CoursRepository;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 #[Vich\Uploadable]
 class Cours extends Ressource
 {
@@ -30,6 +32,14 @@ class Cours extends Ressource
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    // #[ORM\Column(nullable: true)]
+    // private ?\DateTimeImmutable $createdAt = null;
+
+    public function __construct(){
+        $this->updatedAt = new \DateTimeImmutable();
+        // $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getDocC(): ?string
     {
@@ -64,7 +74,7 @@ class Cours extends Ressource
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
      */
-    public function setImageFile(?File $imageFile = null): void
+    public function setImageFile(File|UploadedFile|null $imageFile = null): void
     {
         $this->imageFile = $imageFile;
 
@@ -88,6 +98,18 @@ class Cours extends Ressource
     public function setRessourceSupC(?string $resourceSupC): static
     {
         $this->ressourceSupC = $resourceSupC;
+
+        return $this;
+    }
+
+    public function getUpadatedAt(): ?string
+    {
+        return $this->updatedAt;
+    }
+
+    public function setupdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

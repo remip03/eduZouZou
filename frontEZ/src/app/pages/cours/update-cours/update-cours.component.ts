@@ -21,14 +21,14 @@ export class UpdateCoursComponent implements OnInit{
   valid: boolean = false;
   matieres!: string[];
   typeRC!: string[];
-  file!: File;
+  // file!: File;
 
   constructor(
     private formbuild: FormBuilder,
     private coursService: CoursService,
     private route: ActivatedRoute,
     private router: Router,
-    private upServ: UploadService
+    // private upServ: UploadService
   ) {
     this.matieres = VariablesGlobales.matieres
     this.typeRC = VariablesGlobales.niveauCl
@@ -39,7 +39,7 @@ export class UpdateCoursComponent implements OnInit{
       typeR: ['', Validators.required],
       docC: [''],
       videoC: [''],
-      ressourceSupC: [''],
+      imageFile: [''],
       dtype: ['cours']
     })
   }
@@ -55,7 +55,9 @@ export class UpdateCoursComponent implements OnInit{
       this.coursService.updateCours(updatedCours).subscribe({
         next: () => {
           alert('Ce cours a bien été modifié.');
-          this.router.navigate(['/cours'])
+          // this.router.navigate(['/cours'])
+          console.log(updatedCours);
+
         },
         error:() =>{
           alert('Le cours n\'a pas été modifié.');
@@ -64,18 +66,18 @@ export class UpdateCoursComponent implements OnInit{
     }
   }
 
-  onFilechange(event: any){
-    this.file = event.target.files[0]
-  }
+  // onFilechange(event: any){
+  //   this.file = event.target.files[0]
+  // }
 
-  upload(){
-    if(this.file){
-      this.upServ.uploadfile(this.file).subscribe(res => {alert('image téléchargée')})
-    }
-    else{
-      alert('Ce fichier n\'est pas compatible.')
-    }
-  }
+  // upload(){
+  //   if(this.file){
+  //     this.upServ.uploadfile(this.file).subscribe(res => {alert('image téléchargée')})
+  //   }
+  //   else{
+  //     alert('Ce fichier n\'est pas compatible.')
+  //   }
+  // }
 
   public get form(){
     return this.coursUpdate.controls
