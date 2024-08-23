@@ -1,3 +1,5 @@
+import { ProtectionDesDonneesComponent } from './commons/footer/protection-des-donnees/protection-des-donnees.component';
+import { ConditionsGeneralesDutilisationComponent } from './commons/footer/conditions-generales-dutilisation/conditions-generales-dutilisation.component';
 import { Routes } from '@angular/router';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -37,6 +39,7 @@ import { UpdateUserComponent } from './pages/users/update-user/update-user.compo
 import { EnSavoirPlusComponent } from './pages/en-savoir-plus/en-savoir-plus.component';
 import { EcoleActualitesComponent } from './pages/ecoles/ecole-actualites/ecole-actualites.component';
 import { EcoleEtablissementComponent } from './pages/ecoles/ecole-etablissement/ecole-etablissement.component';
+import { SupportEtAssistanceComponent } from './commons/footer/support-et-assistance/support-et-assistance.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -124,6 +127,14 @@ export const routes: Routes = [
   { path: 'messagesCreate', component: AddMessageComponent },
 
   { path: 'messagesUpdate/:id', component: UpdateMsgComponent },
+
+  // Chemin pour les liens du footer
+
+  { path: 'conditionsgeneralesdutilisation', component: ConditionsGeneralesDutilisationComponent },
+
+  { path: 'protectiondesdonnees', component: ProtectionDesDonneesComponent },
+
+  { path: 'supportetassistance', component: SupportEtAssistanceComponent },
 
   // Chemin pour les résultats
   { path: 'resultats', component: ResultatsComponent },
