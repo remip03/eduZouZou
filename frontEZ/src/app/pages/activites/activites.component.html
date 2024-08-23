@@ -46,7 +46,7 @@
 <div class="searchMenu">
   @if (isSearchable){
   <input type="text" placeholder="Rechercher..." [(ngModel)]="valueSearch" />
-  <button (click)="showResultSearch(valueSearch)">valider</button>
+  <button onsubmit="showResultSearch(valueSearch)">valider</button>
 
   }
 
