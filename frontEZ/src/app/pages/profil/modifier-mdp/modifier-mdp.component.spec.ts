@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MessagerieComponent } from './messagerie.component';
+import { ModifierMdpComponent } from './modifier-mdp.component';
 
-describe('MessagerieComponent', () => {
-  let component: MessagerieComponent;
-  let fixture: ComponentFixture<MessagerieComponent>;
+describe('ModifierMdpComponent', () => {
+  let component: ModifierMdpComponent;
+  let fixture: ComponentFixture<ModifierMdpComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MessagerieComponent]
+      imports: [ModifierMdpComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MessagerieComponent);
+    fixture = TestBed.createComponent(ModifierMdpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

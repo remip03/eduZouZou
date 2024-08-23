@@ -6,10 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/login/register/register.component';
 import { ActivitesComponent } from './pages/activites/activites.component';
 import { ProfilComponent } from './pages/profil/profil.component';
-import { CompetencesComponent } from './pages/profil/competences/competences.component';
-import { MessagerieComponent } from './pages/profil/messagerie/messagerie.component';
 import { ModifierProfilComponent } from './pages/profil/modifier-profil/modifier-profil.component';
-import { ResultatsComponent } from './pages/profil/resultats/resultats.component';
 import { AddEcoleComponent } from './pages/ecoles/add-ecole/add-ecole.component';
 import { EcolesComponent } from './pages/ecoles/ecoles.component';
 import { EcoleComponent } from './pages/ecoles/ecole/ecole.component';
@@ -27,7 +24,6 @@ import { CreateActiviteComponent } from './pages/activites/create-activite/creat
 import { UpdateActiviteComponent } from './pages/activites/update-activite/update-activite.component';
 import { CreateCoursComponent } from './pages/cours/create-cours/create-cours.component';
 import { UpdateCoursComponent } from './pages/cours/update-cours/update-cours.component';
-import { MessagesDetailComponent } from './pages/profil/messagerie/messages-detail/messages-detail.component';
 import { MessageComponent } from './pages/message/message.component';
 import { AddMessageComponent } from './pages/message/add-message/add-message.component';
 import { UpdateMsgComponent } from './pages/message/update-msg/update-msg.component';
@@ -39,6 +35,8 @@ import { CguComponent } from './pages/cgu/cgu.component';
 import { AccueilCoComponent } from './pages/accueil-co/accueil-co.component';
 import { ConInscComponent } from './pages/con-insc/con-insc.component';
 import { DecoProfilComponent } from './pages/deco-profil/deco-profil.component';
+import { ModifierMdpComponent } from './pages/profil/modifier-mdp/modifier-mdp.component';
+import { SuppCompteComponent } from './pages/profil/supp-compte/supp-compte.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -53,7 +51,15 @@ export const routes: Routes = [
 
   { path: 'conInsc', component: ConInscComponent },
 
-  { path : 'decoProfil', component: DecoProfilComponent },
+  { path: 'decoProfil', component: DecoProfilComponent },
+
+  { path: 'suivis', component: ProfilComponent },
+
+  { path: 'modifProfil', component: ModifierProfilComponent },
+
+  { path: 'modifMdp', component: ModifierMdpComponent },
+
+  { path: 'suppCompte', component: SuppCompteComponent },
 
   // Chemin pour les utilisateurs
   { path: 'users', component: UsersComponent },
@@ -117,22 +123,14 @@ export const routes: Routes = [
   // Chemin pour le login
   { path: 'login', component: LoginComponent },
 
-  // Chemin pour les compétences
-  { path: 'competences', component: CompetencesComponent },
-
   // Chemin pour la messagerie
-  { path: 'messagerie', component: MessagerieComponent },
-
-  { path: 'messageDetail/:id', component: MessagesDetailComponent },
-
   { path: 'messagerie/messages', component: MessageComponent },
 
   { path: 'messagesCreate', component: AddMessageComponent },
 
   { path: 'messagesUpdate/:id', component: UpdateMsgComponent },
 
-  // Chemin pour les résultats
-  { path: 'resultats', component: ResultatsComponent },
+
 
   { path: '**', component: NotFoundComponent },
 ];

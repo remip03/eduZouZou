@@ -1,48 +1,32 @@
-import { Component, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, HostListener, ElementRef, ChangeDetectorRef, NgZone } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-slider-profil',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, CommonModule],
   templateUrl: './slider-profil.component.html',
-  styleUrl: './slider-profil.component.css'
+  styleUrls: ['./slider-profil.component.css']
 })
 export class SliderProfilComponent {
-  currentIndex = 0;
-  totalSlides = 2; // Nombre total de slides
   startX: number = 0;
-  endX: number = 0;
+  currentTranslateX: number = 0;
   isDragging: boolean = false;
+  transform: string = 'translateX(0px)';
+  containerWidth: number = 0;
+  sliderContentWidth: number = 0;
+  maxTranslateX: number = 0;
+  selectedMenu: string = '';
 
-  slide(direction: 'left' | 'right') {
-    if (direction === 'left' && this.currentIndex > 0) {
-      this.currentIndex--;
-    } else if (direction === 'right' && this.currentIndex < this.totalSlides - 1) {
-      this.currentIndex++;
-    }
-  }
+  constructor(private el: ElementRef, private ngZone: NgZone) { }
 
-  getTransform() {
-    return `translateX(-${this.currentIndex * 100 / this.totalSlides}%)`; // Ajuster la transformation en fonction de la largeur des slides
-  }
-
-  @HostListener('touchstart', ['$event'])
-  onTouchStart(event: TouchEvent) {
-    this.startX = event.touches[0].clientX;
-    this.isDragging = true;
-  }
-
-  @HostListener('touchmove', ['$event'])
-  onTouchMove(event: TouchEvent) {
-    if (this.isDragging) {
-      this.endX = event.touches[0].clientX;
-    }
-  }
-
-  @HostListener('touchend', ['$event'])
-  onTouchEnd(event: TouchEvent) {
-    this.isDragging = false;
-    this.handleSwipe();
+  ngAfterViewInit() {
+    const container = this.el.nativeElement.querySelector('.container');
+    const sliderContent = this.el.nativeElement.querySelector('.sliderContent');
+    this.containerWidth = container.offsetWidth;
+    this.sliderContentWidth = sliderContent.scrollWidth;
+    this.maxTranslateX = this.containerWidth - this.sliderContentWidth;
   }
 
   @HostListener('mousedown', ['$event'])
@@ -54,21 +38,50 @@ export class SliderProfilComponent {
   @HostListener('mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
     if (this.isDragging) {
-      this.endX = event.clientX;
+      const moveX = event.clientX - this.startX;
+      let newTranslateX = this.currentTranslateX + moveX;
+      newTranslateX = Math.max(this.maxTranslateX, Math.min(0, newTranslateX));
+      this.transform = `translateX(${newTranslateX}px)`;
     }
   }
 
   @HostListener('mouseup', ['$event'])
   onMouseUp(event: MouseEvent) {
     this.isDragging = false;
-    this.handleSwipe();
+    const moveX = event.clientX - this.startX;
+    this.currentTranslateX = Math.max(this.maxTranslateX, Math.min(0, this.currentTranslateX + moveX));
   }
 
-  handleSwipe() {
-    if (this.startX - this.endX > 50) {
-      this.slide('right');
-    } else if (this.endX - this.startX > 50) {
-      this.slide('left');
+  @HostListener('touchstart', ['$event'])
+  onTouchStart(event: TouchEvent) {
+    this.startX = event.touches[0].clientX;
+    this.isDragging = true;
+  }
+
+  @HostListener('touchmove', ['$event'])
+  onTouchMove(event: TouchEvent) {
+    if (this.isDragging) {
+      const moveX = event.touches[0].clientX - this.startX;
+      let newTranslateX = this.currentTranslateX + moveX;
+      newTranslateX = Math.max(this.maxTranslateX, Math.min(0, newTranslateX));
+      this.transform = `translateX(${newTranslateX}px)`;
     }
+  }
+
+  @HostListener('touchend', ['$event'])
+  onTouchEnd(event: TouchEvent) {
+    this.isDragging = false;
+    const moveX = event.changedTouches[0].clientX - this.startX;
+    this.currentTranslateX = Math.max(this.maxTranslateX, Math.min(0, this.currentTranslateX + moveX));
+  }
+
+  onSelectMenu(menu: string) {
+    this.ngZone.run(() => {
+      this.selectedMenu = menu;
+    });
+  }
+
+  isSelected(menu: string): boolean {
+    return this.selectedMenu === menu;
   }
 }

@@ -3,12 +3,12 @@ import { ReturnBtnComponent } from '../../../commons/return-btn/return-btn.compo
 import { SliderProfilComponent } from '../../../commons/slider-profil/slider-profil.component';
 
 @Component({
-  selector: 'app-modifier-profil',
+  selector: 'app-supp-compte',
   standalone: true,
   imports: [ReturnBtnComponent, SliderProfilComponent],
-  templateUrl: './modifier-profil.component.html',
-  styleUrl: './modifier-profil.component.css'
+  templateUrl: './supp-compte.component.html',
+  styleUrl: './supp-compte.component.css'
 })
-export class ModifierProfilComponent {
+export class SuppCompteComponent {
 
 }
