@@ -7,14 +7,13 @@
 <div class="btn2">
   <button (click)="toogle()">filtrer</button>
   <button (click)="toogle()">trier</button>
-  <!-- <button (click)="filterByClasse(valueChange)">classe</button>
-  <button (click)="selectClasse('')">matiere</button> -->
+
 </div>
 
 <div class="matiereMenu">
 
   @if (isVisible) {
-  <select name="matieres" id="matiere select">
+  <select name="matieres" id="matieres">
     <option value="">filtrer par</option>
     @for (item of filterValue ; track $index){
     <option (click)="filterSelect(item)" [value]="item">{{ item }}</option>
@@ -29,80 +28,26 @@
 
     }
   </select>
-  <div class="container carte marge centre" *ngFor="let item of cours; let i = index"
-    [style.background-color]="colors[i % colors.length]">
-    <p>
-      <b>{{ item.nameR }}</b>
-    </p>
 
-    <span>classe : {{ item.typeR }}</span>
-    <span>matière : {{ item.matiereR }}</span>
-    <span>description : {{ item.descriptionR }}</span>
-    <button routerLink="/cours/{{ item.id }}">Modifier</button>
-  </div>
+
+
 
   }
-  <!-- @if(valueChange === filterValue[1]){
-  <select name="classe" id="classe">
+
+  @if(valueChange === filterValue[1]){
+  <select name="classeSelect" id="classeSelect">
     <option value="">Toutes les classes</option>
     @for (item of classe ; track $index) {
-    <option [value]="item">{{ item}}</option>
+    <option (click)="selectFilter(item)" [value]="item">{{ item}}</option>
     }
   </select>
-  } -->
+
+  }
 
   }
 
 </div>
-
-
-<!-- <div class="overlay">
-  <div class="filtrer">
-    <select id="filtre" name="filtre">
-      <option class="bold" value="">Filtrer par</option>
-      <option value="classe">Classe</option>
-      <option value="matiere">Matière</option>
-    </select>
-  </div> -->
-
-<!-- <div class="matiere">
-    <select name="matiere" id="matiere">
-      <option value="Mathematiques">Mathematiques</option>
-      <option value="Français">Français</option>
-      <option value="Histoire">Histoire</option>
-      <option value="Geographie">Geographie</option>
-      <option value="art plastique">art plastique</option>
-      <option value="Anglais">Anglais</option>
-      <option value="EPS">EPS</option>
-      <option value="Education morale et civique">
-        Education morale et civique
-      </option>
-      <option value="Autre">Autre</option>
-    </select>
-  </div> -->
-
-<!-- <div class="classe">
-    <select name="classe" id="classe">
-      <option value="cp">cp</option>
-      <option value="ce1">ce1</option>
-      <option value="ce2">ce2</option>
-      <option value="cm1">cm1</option>
-      <option value="cm2">cm2</option>
-    </select>
-  </div> -->
-
-<!-- <div class="trie">
-    <select name="trie" id="trie">
-      <option value="">trier par</option>
-
-      <option value="classe">Classe</option>
-      <option value="matiere">Matière</option>
-    </select>
-  </div> -->
-
-
 <div class="webVersion">
-  @if(hidden){
   <div class="container carte marge centre" *ngFor="let item of cours; let i = index"
     [style.background-color]="colors[i % colors.length]">
     <p>
@@ -114,5 +59,4 @@
     <span>description : {{ item.descriptionR }}</span>
     <button routerLink="/cours/{{ item.id }}">Modifier</button>
   </div>
-  }
 </div>

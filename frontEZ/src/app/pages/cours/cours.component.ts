@@ -20,7 +20,7 @@ export class CoursComponent implements OnInit {
   filterValue: string[] = ['matiere', 'classe'];
 
   isVisible: boolean = false;
-  hidden: boolean = false;
+  hidden: boolean = true;
 
   valueChange: string = '';
 
@@ -61,34 +61,28 @@ export class CoursComponent implements OnInit {
     return this.colors[index % this.colors.length];
   }
 
-  // // Fonction pour filtrer et afficher les resultats par classe
-  // filterByClasse(rep: any) {
-  //   this.classe = this.classe.filter((classe) => this.classe.values === rep);
-  //   console.log(this.cours);
-  //   console.log(this.classe);
-
-  //   this.isVisible = false;
-  // }
-  // // Fonction pour filtrer et afficher les resultats par matière
-  // filterByMatiere(rep: any) {
-  //   this.matiere = this.matiere.filter(
-  //     (matiere) => this.matiere.values === rep
-  //   );
-  //   console.log(this.cours);
-  //   console.log(this.matiere);
-  // }
-  // fonction pour selectionner classe
+  // fonction pour selectionner
   selectFilter(rep: any) {
     this.classe = [rep];
 
+    this.isVisible = false;
+    this.showResult(rep);
     console.log(this.classe);
   }
 
-  // fonction pour afficher classe selectionnée
-  showClasse() {
+  // fonction pour afficher resultat selectionnée
+  showResult(result: any) {
     this.coursService.getCours().subscribe((res) => {
       this.cours = res;
+
+      this.cours = this.cours.filter(
+        (cours) => cours.matiereR && cours.typeR === result
+      );
+
       console.log(this.classe);
+      console.log(this.cours);
+
+      this.hidden = false;
     });
   }
 }
