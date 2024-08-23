@@ -1,0 +1,68 @@
+.container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.sliderContent {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 200%;
+  padding: 1rem 1rem;
+}
+
+.imgMenu {
+  height: 30px;
+  width: 30px;
+}
+
+.slinderLink {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0 0.2rem;
+}
+
+.menu1 {
+  background-color: #90d3d0;
+  min-width: 15%;
+  height: 4rem;
+  color: #ffffff;
+  border: 2px solid #90d3d0;
+}
+
+.menu2,
+.menu3,
+.menu4 {
+  background-color: #ffffff;
+  color: #90d3d0;
+  border: 2px solid #90d3d0;
+}
+
+.menu2 {
+  min-width: 25%;
+  height: 4rem;
+}
+
+.menu3 {
+  min-width: 25%;
+  height: 4rem;
+}
+
+.menu4 {
+  min-width: 25%;
+  height: 4rem;
+}
+
+img.suivi {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+    hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+img.other {
+  filter: brightness(0) saturate(100%) invert(87%) sepia(83%) saturate(215%)
+    hue-rotate(96deg) brightness(92%) contrast(78%);
+}
