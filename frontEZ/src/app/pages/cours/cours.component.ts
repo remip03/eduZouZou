@@ -17,24 +17,34 @@ export class CoursComponent implements OnInit {
   classe!: string[];
   matiere!: string[];
 
-  result: Cours[] = [];
+  filterValue: string[] = ['matiere', 'classe'];
+
+  isVisible: boolean = false;
+  hidden: boolean = false;
+
+  valueChange: string = '';
 
   constructor(private coursService: CoursService) {
     this.classe = VariablesGlobales.niveauCl;
     this.matiere = VariablesGlobales.matieres;
+  }
 
-    // Ajouter un écouteur d'événement sur la balise <select>
-    const selectElement = document.getElementById(
-      'classeSelect'
-    ) as HTMLSelectElement;
-    // selectElement.addEventListener('change', () =>
-    //   this.filterByClasse(selectElement.value)
-    // );
+  toogle() {
+    this.isVisible = !this.isVisible;
+    if (!this.isVisible) {
+      location.reload();
+    }
+  }
+
+  filterSelect(item: any) {
+    this.valueChange = item;
   }
 
   ngOnInit(): void {
     this.coursService.getCours().subscribe((res) => {
       this.cours = res;
+      console.log(this.matiere);
+      this.isVisible = false;
     });
   }
 
@@ -51,69 +61,34 @@ export class CoursComponent implements OnInit {
     return this.colors[index % this.colors.length];
   }
 
-  filteredCours = this.cours;
+  // // Fonction pour filtrer et afficher les resultats par classe
+  // filterByClasse(rep: any) {
+  //   this.classe = this.classe.filter((classe) => this.classe.values === rep);
+  //   console.log(this.cours);
+  //   console.log(this.classe);
 
-  // Méthode pour filtrer par classe
-  filterByClasse(classe: string) {
-    this.filteredCours = this.cours.filter((cours) => cours.typeR === classe);
+  //   this.isVisible = false;
+  // }
+  // // Fonction pour filtrer et afficher les resultats par matière
+  // filterByMatiere(rep: any) {
+  //   this.matiere = this.matiere.filter(
+  //     (matiere) => this.matiere.values === rep
+  //   );
+  //   console.log(this.cours);
+  //   console.log(this.matiere);
+  // }
+  // fonction pour selectionner classe
+  selectFilter(rep: any) {
+    this.classe = [rep];
+
+    console.log(this.classe);
   }
 
-  // Fonction pour filtrer et afficher les étudiants par classe
-  filterAndDisplayByClasse(classeCible: string) {
-    const filteredresults = this.cours.filter(
-      (result) => result.matiereR === classeCible
-    );
-
-    // Sélectionner l'élément div où les résultats seront affichés
-    const resultatsDiv = document.getElementById('resultats') as HTMLDivElement;
-
-    // Effacer les résultats précédents
-    resultatsDiv.innerHTML = '';
-
-    // Afficher les étudiants filtrés
-    if (filteredresults.length > 0) {
-      filteredresults.forEach((result) => {
-        const p = document.createElement('p');
-        p.textContent = `matiere: ${result.matiereR}, description: ${result.descriptionR}`;
-        resultatsDiv.appendChild(p);
-      });
-    } else {
-      resultatsDiv.textContent = 'Aucun étudiant trouvé pour cette classe.';
-    }
+  // fonction pour afficher classe selectionnée
+  showClasse() {
+    this.coursService.getCours().subscribe((res) => {
+      this.cours = res;
+      console.log(this.classe);
+    });
   }
 }
-
-// // Instanciation de la classe pour lancer le script
-// const manager = new resultManager();
-
-//   // Méthode pour filtrer par matière
-//   filterByMatiere(matiere: string) {
-//     this.filteredCours = this.cours.filter(
-//       (cours) => cours.matiereR === matiere
-//     );
-//   }
-
-//   // Méthode pour reset le filtre
-//   resetFilter() {
-//     this.filteredCours = this.cours;
-//   }
-
-//   // Méthode pour trier par nom
-//   sortByType() {
-//     this.filteredCours = [...this.filteredCours].sort((a, b) =>
-//       a.nameR.localeCompare(b.dtype)
-//     );
-//   }
-//   // Méthode pour trier par matière
-//   sortByMatiere() {
-//     this.filteredCours = [...this.filteredCours].sort((a, b) =>
-//       a.matiereR.localeCompare(b.matiereR)
-//     );
-//   }
-//   // Méthode pour trier par classe
-//   sortByClasse() {
-//     this.filteredCours = [...this.filteredCours].sort((a, b) =>
-//       a.docC.localeCompare(b.typeR)
-//     );
-//   }
-// }

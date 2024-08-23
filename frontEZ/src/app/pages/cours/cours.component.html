@@ -5,19 +5,67 @@
 </div> -->
 
 <div class="btn2">
-  <button onclick="">filtrer</button>
-  <button>trier</button>
+  <button (click)="toogle()">filtrer</button>
+  <button (click)="toogle()">trier</button>
+  <!-- <button (click)="filterByClasse(valueChange)">classe</button>
+  <button (click)="selectClasse('')">matiere</button> -->
 </div>
-<div class="overlay">
+
+<div class="matiereMenu">
+
+  @if (isVisible) {
+  <select name="matieres" id="matiere select">
+    <option value="">filtrer par</option>
+    @for (item of filterValue ; track $index){
+    <option (click)="filterSelect(item)" [value]="item">{{ item }}</option>
+    }
+  </select>
+
+  @if (valueChange === filterValue[0]) {
+  <select name="matiereSelect" id="matiereSelect">
+    <option value="">Toutes les matières</option>
+    @for (item of matiere ; track $index) {
+    <option (click)="selectFilter(item)" [value]="item">{{ item }}</option>
+
+    }
+  </select>
+  <div class="container carte marge centre" *ngFor="let item of cours; let i = index"
+    [style.background-color]="colors[i % colors.length]">
+    <p>
+      <b>{{ item.nameR }}</b>
+    </p>
+
+    <span>classe : {{ item.typeR }}</span>
+    <span>matière : {{ item.matiereR }}</span>
+    <span>description : {{ item.descriptionR }}</span>
+    <button routerLink="/cours/{{ item.id }}">Modifier</button>
+  </div>
+
+  }
+  <!-- @if(valueChange === filterValue[1]){
+  <select name="classe" id="classe">
+    <option value="">Toutes les classes</option>
+    @for (item of classe ; track $index) {
+    <option [value]="item">{{ item}}</option>
+    }
+  </select>
+  } -->
+
+  }
+
+</div>
+
+
+<!-- <div class="overlay">
   <div class="filtrer">
-    <select name="filtre" id="filtre">
+    <select id="filtre" name="filtre">
       <option class="bold" value="">Filtrer par</option>
       <option value="classe">Classe</option>
       <option value="matiere">Matière</option>
     </select>
-  </div>
+  </div> -->
 
-  <div class="matiere">
+<!-- <div class="matiere">
     <select name="matiere" id="matiere">
       <option value="Mathematiques">Mathematiques</option>
       <option value="Français">Français</option>
@@ -31,9 +79,9 @@
       </option>
       <option value="Autre">Autre</option>
     </select>
-  </div>
+  </div> -->
 
-  <div class="classe">
+<!-- <div class="classe">
     <select name="classe" id="classe">
       <option value="cp">cp</option>
       <option value="ce1">ce1</option>
@@ -41,25 +89,22 @@
       <option value="cm1">cm1</option>
       <option value="cm2">cm2</option>
     </select>
-  </div>
+  </div> -->
 
-  <div class="trie">
+<!-- <div class="trie">
     <select name="trie" id="trie">
       <option value="">trier par</option>
 
       <option value="classe">Classe</option>
       <option value="matiere">Matière</option>
     </select>
-  </div>
-</div>
+  </div> -->
+
 
 <div class="webVersion">
-  <div
-    class="container carte marge centre"
-    *ngFor="let item of cours; let i = index"
-    [style.background-color]="colors[i % colors.length]"
-  >
-    .
+  @if(hidden){
+  <div class="container carte marge centre" *ngFor="let item of cours; let i = index"
+    [style.background-color]="colors[i % colors.length]">
     <p>
       <b>{{ item.nameR }}</b>
     </p>
@@ -69,4 +114,5 @@
     <span>description : {{ item.descriptionR }}</span>
     <button routerLink="/cours/{{ item.id }}">Modifier</button>
   </div>
+  }
 </div>
