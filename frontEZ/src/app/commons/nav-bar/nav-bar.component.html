@@ -1,40 +1,83 @@
 <nav class="navbar">
   <div class="navbarMenu">
     <a class="" routerLink="/Accueil"
-      ><img
-        src="/logoEduzouzou.png"
-        style="height: 4rem; width: auto"
-        alt="logo"
-      />
+      ><img class="logo" src="/logoEduzouzou.png" alt="logo" />
     </a>
-    <img class="burgerIcon" src="icon/menu-burger.png" alt="" />
+    <img
+      class="burgerIcon"
+      src="icon/menu-burger.png"
+      alt="burgerMenu"
+      (click)="openModal()"
+    />
+    <div class="navLinks">
+      <a routerLink="classes" class="navLink"
+        ><img src="icon/casquette-de-graduation1.png" alt="" />Classes</a
+      >
+      <a routerLink="ecoles" class="navLink"
+        ><img src="icon/ecole-1.png" alt="" />Ecoles</a
+      >
+
+      <a routerLink="messagerie" class="navLink"
+        ><img src="icon/commentaire-alt.png" alt="" />Messagerie</a
+      >
+      <a routerLink="/decoProfil" class="navLink" *ngIf="isLoggedIn$ | async"
+        ><img src="icon/utilisateur(1).png" alt="" />Profil / Déconnexion</a
+      >
+      <a routerLink="/conInsc" class="navLink" *ngIf="!(isLoggedIn$ | async)"
+        ><img src="icon/utilisateur(1).png" alt="" />Connexion /
+        S'inscription</a
+      >
+    </div>
   </div>
 </nav>
+
+<!--MODAL MENU BURGER-->
 <div class="modal hiddenMenu" id="navbarSupportedContent">
   <div class="modalContent">
-    <a aria-current="page" routerLink="home"
-      ><img src="icon/maison(1).png" alt="" />Accueil</a
-    >
-    <a routerLink="classes"
-      ><img src="icon/casquette-de-graduation1.png" alt="" />Classes</a
-    >
-    <a routerLink="ecoles"><img src="icon/ecole-1.png" alt="" />Ecoles</a>
-    <a routerLink="messagerie"
-      ><img src="icon/commentaire-alt.png" alt="" />Messagerie</a
-    >
-    <li *ngIf="isLoggedIn$ | async">
-      <a routerLink="/profil"><img src="icon/utilisateur(1)" alt="" />Profil</a>
-    </li>
-    <li *ngIf="isLoggedIn$ | async">
-      <a (click)="logout()">Déconnexion</a>
-    </li>
-
-    <li *ngIf="!(isLoggedIn$ | async)">
-      <a routerLink="/login">Connexion</a>
-    </li>
-
-    <li *ngIf="!(isLoggedIn$ | async)">
-      <a routerLink="/register">Inscription</a>
-    </li>
+    <div class="btnBurger">
+      <img
+        class="closeBurger"
+        src="icon/bouton-quitter.png"
+        alt="quitter"
+        (click)="closeModal()"
+      />
+    </div>
+    <hr />
+    <div class="burgerLink">
+      <a aria-current="page" routerLink="home" (click)="closeModal()"
+        ><img src="icon/maison(1).png" alt="" />Accueil</a
+      >
+    </div>
+    <div class="burgerLink">
+      <a routerLink="classes" (click)="closeModal()"
+        ><img src="icon/casquette-de-graduation1.png" alt="" />Classes</a
+      >
+    </div>
+    <div class="burgerLink">
+      <a routerLink="ecoles" (click)="closeModal()"
+        ><img src="icon/ecole-1.png" alt="" />Ecoles</a
+      >
+    </div>
+    <div class="burgerLink">
+      <a routerLink="messagerie" (click)="closeModal()"
+        ><img src="icon/commentaire-alt.png" alt="" />Messagerie</a
+      >
+    </div>
+    <div class="burgerLink">
+      <a
+        *ngIf="isLoggedIn$ | async"
+        routerLink="/decoProfil"
+        (click)="closeModal()"
+        ><img src="icon/utilisateur(1).png" alt="" />Profil / Déconnexion</a
+      >
+    </div>
+    <div class="burgerLink">
+      <a
+        *ngIf="!(isLoggedIn$ | async)"
+        routerLink="/conInsc"
+        (click)="closeModal()"
+        ><img src="icon/utilisateur(1).png" alt="" />Connexion / Inscription</a
+      >
+    </div>
   </div>
 </div>

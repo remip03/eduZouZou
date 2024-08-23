@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="sliderContent" [style.transform]="transform">
+    <div
+      (click)="onSelectMenu('menu1')"
+      routerLink="/suivis"
+      class="slinderLink menu1 height menuSuivi"
+      [ngClass]="{
+        menuSuivi: isSelected('menu1'),
+        menuSuivi1: !isSelected('menu1'),
+      }"
+    >
+      <img
+        class="imgMenu"
+        [ngClass]="{
+          iconSelected1: !isSelected('menu1'),
+          otherMenu1: isSelected('menu1')
+        }"
+        src="icon/mon-suivi.png"
+        alt=""
+      />
+      <span>Mon Suivi</span>
+    </div>
+    <div
+      (click)="onSelectMenu('menu2')"
+      routerLink="/modifProfil"
+      class="slinderLink menu2 height menuSuivi1"
+      [ngClass]="{
+        menuInfo: isSelected('menu2'),
+        menuInfo1: !isSelected('menu2')
+      }"
+    >
+      <img
+        [ngClass]="{
+          iconSelected2: !isSelected('menu2'),
+          otherMenu1: isSelected('menu2')
+        }"
+        class="imgMenu iconSelected1"
+        src="icon/utilisateur(1).png"
+        alt=""
+      /><span>Mes informations</span>
+    </div>
+    <div
+      (click)="onSelectMenu('menu3')"
+      routerLink="/modifMdp"
+      class="slinderLink menu3 height menuSuivi1"
+      [ngClass]="{
+        menuMdp: isSelected('menu3'),
+        menuMdp1: !isSelected('menu3')
+      }"
+    >
+      <img
+        class="imgMenu iconSelected1"
+        src="icon/cadenas-black.png"
+        [ngClass]="{
+          iconSelected3: !isSelected('menu3'),
+          otherMenu1: isSelected('menu3')
+        }"
+      /><span>Changer le mot de passe</span>
+    </div>
+    <div
+      (click)="onSelectMenu('menu4')"
+      routerLink="/suppCompte"
+      class="slinderLink menu4 height menuSuivi1"
+      [ngClass]="{
+        menuDelete: isSelected('menu4'),
+        menuDelete1: !isSelected('menu4')
+      }"
+    >
+      <img
+        class="imgMenu iconSelected1"
+        src="icon/quitter.png"
+        alt=""
+        [ngClass]="{
+          iconSelected4: !isSelected('menu4'),
+          otherMenu1: isSelected('menu4')
+        }"
+      /><span>Supprimer le compte</span>
+    </div>
+  </div>
+</div>

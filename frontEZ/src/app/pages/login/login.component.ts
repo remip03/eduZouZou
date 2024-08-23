@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { ReturnBtnComponent } from '../../commons/return-btn/return-btn.component';
 
 interface IToken {
   access_token: string;
@@ -20,7 +21,7 @@ interface Login {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, ReturnBtnComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -59,7 +60,7 @@ export class LoginComponent {
       console.log('Form is invalid');
       return false; //retourne la valeur false pour invalider les champs login
     } else {
-      this.router.navigate(['Accueil']); //
+      this.router.navigate(['accueilCo']); //
     }
   }
 

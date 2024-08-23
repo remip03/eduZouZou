@@ -14,7 +14,6 @@ export class AuthService {
 
   // private apiUrl = 'https://localhost:8000/api';
   private apiUrl = 'http://localhost:8000/api';
-  private loginUrl = 'http://127.0.0.1:8000/api/login_check';
 
   private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn()); // BehaviorSubject pour suivre l'état de connexion
 

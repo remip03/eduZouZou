@@ -1,5 +1,11 @@
 .navbar {
   background-color: #ffffff;
+  height: 6rem;
+}
+
+.logo {
+  width: 120px;
+  height: 50px;
 }
 
 .navbarMenu {
@@ -12,13 +18,25 @@
 .burgerIcon {
   width: 40px;
   height: 40px;
+  cursor: pointer;
 }
 
-.hiddenMenu {
+.closeBurger {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+hr {
+  width: 100%;
+}
+
+.navLinks {
   display: none;
 }
 
 .modal {
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
@@ -41,7 +59,81 @@
   width: 100%;
 }
 
+.modal.hiddenMenu {
+  display: none; /* Masquez la modal lorsque la classe hiddenMenu est présente */
+}
+
+.modalContent {
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+.modalContent a {
+  text-decoration: none;
+  color: rgba(41, 79, 127, 0.9);
+}
+
 img {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
+}
+
+.btnBurger {
+  padding: 1rem 3rem 0 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 80%;
+}
+
+.burgerLink {
+  width: 100%;
+}
+
+.burgerLink a {
+  padding: 1rem 3rem 1rem 1rem;
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.burgerLink img {
+  margin-right: 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+}
+
+@media only screen and (min-width: 769px) {
+  .navbarMenu {
+    padding: 0 2rem;
+  }
+  .navLinks {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  .navLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: rgba(41, 79, 127, 0.9);
+    font-size: large;
+  }
+
+  .burger {
+    display: none;
+  }
+
+  .burgerIcon {
+    display: none;
+  }
 }

@@ -15,14 +15,23 @@
   font-style: normal;
 }
 
-p {
-  font-family: "nunito";
+body {
+  margin: none;
+  padding: none;
 }
 
 .bold {
   font-weight: bold;
 }
 
+p {
+  font-family: "nunito";
+}
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
 /* disposition */
 .colonne {
   display: flex;
@@ -81,16 +90,6 @@ button {
   height: 3rem;
   width: auto;
   font-size: 1.2rem;
-}
-/* BOUTON RETOUR */
-.btnRetour {
-  margin: 2rem 0;
-  width: 90%;
-}
-
-.return {
-  width: 40px;
-  height: 40px;
 }
 
 input {
@@ -153,4 +152,9 @@ footer {
   background-color: #eaeff5;
   height: 100%;
   width: auto;
+}
+
+/* BOUTON RETOUR */
+app-return-btn {
+  width: 100%;
 }

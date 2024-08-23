@@ -24,10 +24,30 @@ export class NavBarComponent {
   }
 
   //Méthode appelée lors de l'initialisation du composant
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   // Méthode pour déconnecter l'utilisateur
   logout(): void {
     this.authService.logout(); // Appelle la méthode logout du service AuthService
+  }
+
+  // Méthode pour ouvrir le menu déroulant
+  openModal() {
+    console.log('openModal called');
+    const modal = document.getElementById('navbarSupportedContent');
+    if (modal) {
+      modal.classList.remove('hiddenMenu');
+      console.log('Classes after removing hiddenMenu:', modal.className);
+    }
+  }
+
+  // Méthode pour fermer le menu déroulant
+  closeModal() {
+    console.log('closeModal called');
+    const modal = document.getElementById('navbarSupportedContent');
+    if (modal) {
+      modal.classList.add('hiddenMenu');
+      console.log('Classes after adding hiddenMenu:', modal.className);
+    }
   }
 }
