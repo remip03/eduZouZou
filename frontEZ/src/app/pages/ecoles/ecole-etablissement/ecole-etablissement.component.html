@@ -11,13 +11,13 @@
   <h2>{{ ecole.nameEc }}</h2>
 
   <div class="ligne espace">
-    <div class="choixMenuActualites iconeActualite1 centrecolonne colonne">
-      <img src="icon\un-journal.png" alt="icon actu" class="iconeActualite">
+    <div class="choixMenuEtablissement iconeActualite2 centrecolonne colonne" routerLink="../../ecoleActualites/{{ecole.id}}">
+      <img src="icon\un-journal2.png" alt="icon actu" class="iconeActualite">
       <p class="tailletext">Actualités</p>
     </div>
 
-    <div class="choixMenuActualites iconeActualite2 centrecolonne colonne">
-      <img src="icon\ecole-1.png" alt="icon etablissement" class="iconeActualite" routerLink="../../ecoleEtablissement/{{ecole.id}}">
+    <div class="choixMenuEtablissement iconeActualite1 centrecolonne colonne">
+      <img src="icon\ecole.png" alt="icon etablissement" class="iconeActualite">
       <p class="tailletext">L'établissement</p>
     </div>
   </div>
@@ -26,12 +26,30 @@
 
 </section>
 
+   <!-- liste des cards établissement -->
+
+<section class="centrecolonne colonneEc">
+
+  <div class="cardsEtablissement1 couleurcard1 centrecolonne colonne">
+    <div class="imagecards1"></div>
+    <h4>Présentation de l'école [...]</h4>
+    <p>Descriptif</p>
+  </div>
+
+  <div class="centrecolonne colonneEc">
+    <div class="cardsEtablissement couleurcard2 centrecolonne colonne">
+      <img src="img\spaghetti.png" alt="imageactu1" class="imagecards">
+      <p>Menu de la cantine</p>
+    </div>
+</div>
+
+</section>
 
    <!-- Infos sur l'établissement -->
 
 <section class="centre">
 
-<div class="cardsActu colonne cardContact">
+<div class="cardsEtablissement colonne cardContact">
 
   <h5>Contact</h5>
 

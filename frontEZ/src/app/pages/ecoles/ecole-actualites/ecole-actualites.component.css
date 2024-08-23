@@ -1,5 +1,5 @@
 
-     /* partie nom de l'école et boutons, le haut de la page quoi */
+   /* partie nom de l'école et boutons, le haut de la page quoi */
 
 h2{
   text-align: center;
@@ -44,7 +44,7 @@ color: #85B4F2;
 border: solid 4px #85B4F2;
 }
 
-     /* Cette classe est utilisée sur toute la page */
+   /* Cette classe est utilisée sur toute la page */
 
 .cardsActu{
   width: 90%;
@@ -53,7 +53,7 @@ border: solid 4px #85B4F2;
   margin: 3%;
 }
 
-     /* partie des cards actualités */
+   /* partie des cards actualités */
 
 .colonneEc{
   display: flex;
@@ -86,7 +86,7 @@ h4{
   color: white;
 }
 
-     /* partie contact */
+   /* partie contact */
 
 .cardContact{
   background-color: white;
@@ -97,10 +97,10 @@ h4{
   font-family: 'nunito';
 }
 
-     /* changements :
-     passage des cards actu en liste,
-     ajustement de leurs tailles,
-     ajustement de la taille des textes. */
+   /* changements :
+   passage des cards actu en liste,
+   ajustement de leurs tailles,
+   ajustement de la taille des textes. */
 
 @media screen and (min-width: 768px) {
   .colonneEc{
@@ -131,7 +131,7 @@ h4{
   }
 }
 
-     /* Ajustements de la taille des cards */
+   /* Ajustements de la taille des cards */
 
 @media screen and (min-width: 1440px) {
   .choixMenuP{
@@ -148,6 +148,5 @@ h4{
     border-radius: 2rem;
     margin: 1.5%;
   }
-
 
 }
