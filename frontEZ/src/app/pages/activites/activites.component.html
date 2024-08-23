@@ -1,17 +1,70 @@
 <h2>Liste des activités</h2>
 
-<div>
-  <button routerLink="/creerActivites">Créer une activité</button>
+<div class="btn2">
+  <button (click)="toogleFilter()">filtrer</button>
+  <button (click)="toogleSearch()">rechercher</button>
+  <!-- <button (click)="filterByClasse(valueChange)">classe</button>
+  <button (click)="selectClasse('')">matiere</button> -->
 </div>
 
-<div class="listecarte homer">
-  @for (item of activites; track $index) {
-    <div class="card carte marge" style="width: 18rem;">
-      <p><b>{{ item.nameR }}</b></p>
-      <p>type : {{ item.typeAct }}</p>
-      <p>matière : {{ item.matiereR }}</p>
-      <p>description : {{ item.descriptionR }}</p>
-      <button routerLink="/activites/{{item.id}}">Modifier</button>
-    </div>
+<div class="filterMenu">
+
+  @if (isFilterVisible) {
+
+  <select name="selectType" id="selectType">
+    <option value="">filtrer par</option>
+    @for (item of filterValue ; track $index){
+    <option (click)="filterSelect(item)" [value]="item">{{ item }}</option>
+    }
+  </select>
+
+  @if (valueChange === filterValue[0]) {
+  <select name="matiereSelect" id="matiereSelect">
+    <option value="">Toutes les matières</option>
+    @for (item of matiere ; track $index) {
+    <option (click)="selectFilter(item)" [value]="item">{{ item }}</option>
+
+    }
+  </select>
+
+  }
+
+  @if(valueChange === filterValue[1]){
+  <select name="classeSelect" id="classeSelect">
+    <option value="">Toutes les classes</option>
+    @for (item of classe ; track $index) {
+    <option (click)="selectFilter(item)" [value]="item">{{ item}}</option>
+    }
+  </select>
+
+  }
+
+  }
+
+</div>
+
+<div class="searchMenu">
+  @if (isSearchable){
+  <input type="text" placeholder="Rechercher..." [(ngModel)]="valueSearch" />
+  <button (click)="showResultSearch(valueSearch)">valider</button>
+
+  }
+
+</div>
+
+<div class="webVersion">
+  @if(hidden){
+  <div class="container carte marge centre" *ngFor="let item of activites; let i = index"
+    [style.background-color]="colors[i % colors.length]">
+    <p>
+      <b>{{ item.nameR }}</b>
+    </p>
+
+    <span>classe : {{ item.typeR }}</span>
+    <span>matière : {{ item.matiereR }}</span>
+    <span>type d'activités : {{ item.typeAct }}</span>
+    <span>description : {{ item.descriptionR }}</span>
+    <button routerLink="/activites/{{ item.id }}">Modifier</button>
+  </div>
   }
 </div>

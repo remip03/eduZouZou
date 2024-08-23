@@ -1,54 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 
-
-  /* police d'écriture */
+/* police d'écriture */
 @font-face {
-  font-family: 'Playwrite AR';
-  src: url('../font/PlaywriteAR-VariableFont_wght.ttf') format('truetype');
+  font-family: "Playwrite AR";
+  src: url("../font/PlaywriteAR-VariableFont_wght.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'nunito';
+  font-family: "nunito";
   src: url(../font/Nunito-Regular.ttf) format(truetype);
   font-weight: normal;
   font-style: normal;
 }
 
-p{
-  font-family: 'nunito';
-  text-align: center;
+p {
+  font-family: "nunito";
 }
 
-.typo{
-  font-family: 'Playwrite AR';
+.bold {
+  font-weight: bold;
 }
 
-/* BOUTON RETOUR */
-.btnRetour {
-  margin: 2rem 0;
-  width: 90%;
+/* disposition */
+.colonne {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.return {
-  width: 40px;
-  height: 40px;
-}
-
-  /* disposition */
-.colonne{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.ligne{
+.ligne {
   display: flex;
   flex-direction: row;
 }
 
-.homer{
+.homer {
   display: flex;
   flex-wrap: wrap;
 }
@@ -62,12 +49,12 @@ p{
   justify-content: center;
 }
 
-.centrecolonne{
+.centrecolonne {
   display: flex;
   align-items: center;
 }
 
-.espace{
+.espace {
   display: flex;
   justify-content: space-around;
 }
@@ -152,13 +139,13 @@ footer {
   color: white;
 }
 
-.colorCo{
-  background-color: #FACC99;
+.colorCo {
+  background-color: #facc99;
   color: white;
 }
 
-.colorIns{
-  background-color: #F9D5CF;
+.colorIns {
+  background-color: #f9d5cf;
   color: white;
 }
 
@@ -167,4 +154,3 @@ footer {
   height: 100%;
   width: auto;
 }
-

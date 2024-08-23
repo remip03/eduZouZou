@@ -5,6 +5,7 @@
 }
 
 .carte {
+  width: 100%;
   margin: 2em;
   padding: 1em;
 }
@@ -13,7 +14,83 @@ h2 {
   text-align: center;
 }
 
-.btn {
+.btn1 {
   display: flex;
   justify-content: center;
+}
+
+.btn2 {
+  display: flex;
+  justify-content: space-around;
+}
+.btn2 button {
+  width: 50%;
+  height: 4rem;
+  background-color: white;
+  color: rgba(41, 79, 127, 0.9);
+  border-radius: 1rem;
+  margin: 10px;
+}
+
+#btn3 {
+  width: 100%;
+}
+.centre {
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  border-radius: 3rem;
+  margin: 3rem auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+}
+
+p {
+  padding: 5px;
+  text-shadow: -2px 2px 2px black;
+}
+
+span {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: white;
+  border: solid 1px rgba(41, 79, 127, 0.9);
+  border-radius: 1rem;
+  color: rgba(41, 79, 127, 0.9);
+}
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+@media screen and (min-width: 1440px) {
+  .webVersion {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+  }
+
+  .btn2 {
+    justify-content: center;
+    margin: 2em;
+    gap: 3em;
+  }
+  .btn2 button {
+    width: 20%;
+    height: 4rem;
+    margin: 5px;
+  }
 }
