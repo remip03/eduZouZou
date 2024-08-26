@@ -44,6 +44,7 @@ import { EcoleEtablissementComponent } from './pages/ecoles/ecole-etablissement/
 import { EcoleActualitesComponent } from './pages/ecoles/ecole-actualites/ecole-actualites.component';
 import { SupportEtAssistanceComponent } from './commons/footer/support-et-assistance/support-et-assistance.component';
 import { MessagerieComponent } from './pages/messagerie/messagerie.component';
+import { MessagesDetailComponent } from './pages/messagerie/messages-detail/messages-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -140,6 +141,10 @@ export const routes: Routes = [
 
   // Chemin pour la messagerie
   { path: 'messagerie', component: MessagerieComponent },
+
+  { path: 'message', component: MessageComponent },
+
+  { path: 'messageDetail/:id', component: MessagesDetailComponent },
 
   { path: 'messagesCreate', component: AddMessageComponent },
 
