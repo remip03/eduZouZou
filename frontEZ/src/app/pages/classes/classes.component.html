@@ -6,7 +6,9 @@
 <button routerLink="/newClasse" class="boutonAjout">Ajouter une nouvelle classe</button>
 
 <div class="colonneCl">
-  <div class="bulle" *ngFor="let item of classes; let i = index">
+  <div class="bulle" *ngFor="let item of classes; let i = index"
+  [style.background-color]="couleurs[i % couleurs.length]">
+
         <h2>Classe n°{{ item.id }}</h2>
 
         <p>Id de l'école : {{ item.ecole.id }}</p>

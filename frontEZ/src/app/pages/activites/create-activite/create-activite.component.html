@@ -1,6 +1,10 @@
 
 <app-return-btn></app-return-btn>
 
+<section class="centre">
+
+<div class="bulle">
+
 <h2>Créer une activité.</h2>
 
 <form [formGroup]="activiteCreate">
@@ -24,7 +28,7 @@
   <div class="colonne marge">
     <label for="typeR">Choisissez le niveau : </label>
     <select name="typeR" id="typeR" formControlName="typeR">
-      <option value="" disabled selected>pour quelle niveau ?</option>
+      <option value="" disabled selected>Pour quelle niveau ?</option>
       @for (item of typeRA; track $index) {
         <option [value]="item">{{ item }}</option>
       }
@@ -51,6 +55,12 @@
     </select>
   </div>
 
-  <button class="marge" (click)="createActivite()">Créer cette activité</button>
+  <div class="centre">
+    <button class="marge" (click)="createActivite()">Créer cette activité</button>
+  </div>
 
 </form>
+
+</div>
+
+</section>

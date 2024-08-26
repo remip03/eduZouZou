@@ -22,11 +22,13 @@ button{
 input{
   width: 80%;
   margin: 0% 10% 1% 10%;
+  padding: 0% 1%;
 }
 
 select{
   width: 80%;
   margin: 0% 10% 1% 10%;
+  padding: 0% 1%;
 }
 
 label{
