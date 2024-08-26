@@ -142,7 +142,7 @@ export const routes: Routes = [
   // Chemin pour la messagerie
   { path: 'messagerie', component: MessagerieComponent },
 
-  { path: 'message', component: MessageComponent },
+  { path: 'messages', component: MessageComponent },
 
   { path: 'messageDetail/:id', component: MessagesDetailComponent },
 
