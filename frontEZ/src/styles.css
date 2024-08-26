@@ -71,6 +71,10 @@ p {
 /* commons */
 h2 {
   color: rgba(41, 79, 127, 0.9);
+  font-size: 130%;
+  margin: 1%;
+  text-align: center;
+  font-weight: bold;
 }
 
 .marge {
