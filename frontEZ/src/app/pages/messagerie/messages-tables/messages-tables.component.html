@@ -3,13 +3,13 @@
 <app-return-btn></app-return-btn>
 
 <div class="centre color">
-  <button class="m-5" routerLink="/messagesCreate">Nouveau message</button>
+  <button class=" bordure m-5" routerLink="/messagesCreate">Nouveau message</button>
 </div>
 
-<table class=" textColor table mt-1">
+<table class="bordure textColor table mt-1">
   <thead class="textColor">
     <tr>
-      <th scope="col">msg numéro</th>
+
       <th scope="col">icone</th>
       <th scope="col">expéditeur</th>
       <th scope="col">destinataire</th>
@@ -19,16 +19,15 @@
   </thead>
   <tbody class="textColor">
     @for (item of messages; track $index ;){
-    <tr>
-      <th scope="row">{{ $index }}</th>
+    <tr routerLink="/messageDetail/{{ item.id }}" class="textColor">
+
       <img id="imgProfil" src="img/touriste 1.png" alt="homme touriste">
       <td>{{ item.expediteur }}</td>
       <td>{{ item.destinataire }}</td>
       <td>{{ item.content }}</td>
       <td>{{ item.msgDate }}</td>
 
-      <a routerLink="/messageDetail/{{ item.id }}" class="textColor"> <span class="textColor">lire message</span></a>
-      <button (click)="deleteMessage(item.id)" class="btn btn-danger m-2">
+      <button (click)="deleteMessage(item.id)" class="btn m-2">
         <img id="iconSupp" src="icon/poubelle.png" alt="poubelle supprimer">
       </button>
     </tr>

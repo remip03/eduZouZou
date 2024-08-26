@@ -18,3 +18,7 @@ table td {
 a {
   text-decoration: none;
 }
+
+tr {
+  cursor: pointer;
+}
