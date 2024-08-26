@@ -24,7 +24,7 @@
       <img id="imgProfil" src="img/touriste 1.png" alt="homme touriste">
       <td>{{ item.expediteur }}</td>
       <td>{{ item.destinataire }}</td>
-      <td>{{ item.content }}</td>
+      <td>{{ truncate(item.content,10)}}</td>
       <td>{{ item.msgDate }}</td>
 
       <button (click)="deleteMessage(item.id)" class="btn m-2">

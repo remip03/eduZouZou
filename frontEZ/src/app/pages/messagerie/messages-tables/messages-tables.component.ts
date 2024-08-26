@@ -54,15 +54,7 @@ export class MessagesTablesComponent {
   }
   messageDetail(): void {}
 
-  // La fonction pour afficher les premiers mots d'un message
-  afficherPremiersMots(message: any, nombreMots: number): string {
-    // On divise le message en mots
-    const mots = message.split(' ');
-    // On sélectionne les premiers mots selon le nombre spécifié
-    return mots.slice(0, nombreMots).join(' ');
+  truncate(text: string, limit: number): string {
+    return text.length > limit ? text.substring(0, limit) + '...' : text;
   }
-
-  // Exemple d'utilisation
-  //  message = this.messages.content
-  premiersMots = this.afficherPremiersMots(this.messages.content, 5);
 }
