@@ -5,11 +5,12 @@ import Message from '../../../models/message.models';
 import { MessageType } from '../../../models/messageType.model';
 import { MessageService } from '../../../services/message.service';
 import { AuthService } from '../../../services/auth.service';
+import { ReturnBtnComponent } from '../../../commons/return-btn/return-btn.component';
 
 @Component({
   selector: 'app-messages-tables',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ReturnBtnComponent],
   templateUrl: './messages-tables.component.html',
   styleUrl: './messages-tables.component.css',
 })

@@ -1,0 +1,20 @@
+#imgProfil {
+  height: 5rem;
+  width: auto;
+}
+#btn1 {
+  text-align: center;
+}
+#iconSupp {
+  height: 2rem;
+  width: auto;
+}
+table th,
+table td {
+  color: rgba(41, 79, 127, 0.9);
+  font-family: "nunito";
+}
+
+a {
+  text-decoration: none;
+}
