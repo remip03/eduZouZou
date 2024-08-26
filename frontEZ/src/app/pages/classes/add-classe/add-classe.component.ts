@@ -6,12 +6,13 @@ import Ecole from '../../../models/ecole.modelt';
 import { ClasseService } from '../../../services/classe.service';
 import { EcoleService } from '../../../services/ecole.service';
 import { VariablesGlobales } from '../../../commons/variablesGlobales';
+import { ReturnBtnComponent } from "../../../commons/return-btn/return-btn.component";
 
 
 @Component({
   selector: 'app-add-classe',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, ReturnBtnComponent],
   templateUrl: './add-classe.component.html',
   styleUrl: './add-classe.component.css'
 })

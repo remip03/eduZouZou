@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
 import { CoursService } from '../../../services/cours.service';
 import { VariablesGlobales } from '../../../commons/variablesGlobales';
 import Cours from '../../../models/Cours.model';
+import { ReturnBtnComponent } from "../../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-create-cours',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ReturnBtnComponent],
   templateUrl: './create-cours.component.html',
   styleUrl: './create-cours.component.css',
 })

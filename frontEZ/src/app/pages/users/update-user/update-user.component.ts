@@ -7,11 +7,12 @@ import { EcoleService } from '../../../services/ecole.service'; // Importez le s
 import User from '../../../models/user.models';
 import Ecole from '../../../models/ecole.modelt';
 import { VariablesGlobales } from '../../../commons/variablesGlobales';
+import { ReturnBtnComponent } from "../../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-update-user',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, ReturnBtnComponent],
   templateUrl: './update-user.component.html',
   styleUrl: './update-user.component.css'
 })

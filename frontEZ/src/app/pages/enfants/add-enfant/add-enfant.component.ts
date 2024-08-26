@@ -5,11 +5,12 @@ import { Router, RouterLink } from '@angular/router';
 import Classe from '../../../models/classe.model';
 import { EnfantService } from '../../../services/enfant.service';
 import { ClasseService } from '../../../services/classe.service';
+import { ReturnBtnComponent } from "../../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-add-enfant',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, ReturnBtnComponent],
   templateUrl: './add-enfant.component.html',
   styleUrl: './add-enfant.component.css'
 })

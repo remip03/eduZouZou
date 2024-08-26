@@ -6,11 +6,12 @@ import { ClasseService } from '../../../services/classe.service';
 import { EnfantService } from '../../../services/enfant.service';
 import Classe from '../../../models/classe.model';
 import Enfant from '../../../models/enfant.model';
+import { ReturnBtnComponent } from "../../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-update-enfant',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, ReturnBtnComponent],
   templateUrl: './update-enfant.component.html',
   styleUrl: './update-enfant.component.css'
 })
