@@ -1,6 +1,4 @@
-import { MessageComponent } from './../message.component';
 import { Component } from '@angular/core';
-import Message from '../../../models/message.models';
 import { DatePipe } from '@angular/common';
 import {
   FormBuilder,
@@ -10,6 +8,8 @@ import {
 } from '@angular/forms';
 import { MessageService } from '../../../services/message.service';
 import { AuthService } from '../../../services/auth.service';
+import { MessageComponent } from '../message.component';
+import Message from '../../../models/message.models';
 
 @Component({
   selector: 'app-add-message',

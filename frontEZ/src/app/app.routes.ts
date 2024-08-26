@@ -43,6 +43,8 @@ import { EnSavoirPlusComponent } from './pages/en-savoir-plus/en-savoir-plus.com
 import { EcoleEtablissementComponent } from './pages/ecoles/ecole-etablissement/ecole-etablissement.component';
 import { EcoleActualitesComponent } from './pages/ecoles/ecole-actualites/ecole-actualites.component';
 import { SupportEtAssistanceComponent } from './commons/footer/support-et-assistance/support-et-assistance.component';
+import { MessagerieComponent } from './pages/messagerie/messagerie.component';
+import { MessagesDetailComponent } from './pages/messagerie/messages-detail/messages-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -138,7 +140,11 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
   // Chemin pour la messagerie
-  { path: 'messagerie/messages', component: MessageComponent },
+  { path: 'messagerie', component: MessagerieComponent },
+
+  { path: 'messages', component: MessageComponent },
+
+  { path: 'messageDetail/:id', component: MessagesDetailComponent },
 
   { path: 'messagesCreate', component: AddMessageComponent },
 
