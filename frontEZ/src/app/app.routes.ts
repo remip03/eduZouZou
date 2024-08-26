@@ -42,6 +42,7 @@ import { SuppCompteComponent } from './pages/profil/supp-compte/supp-compte.comp
 import { EnSavoirPlusComponent } from './pages/en-savoir-plus/en-savoir-plus.component';
 import { EcoleEtablissementComponent } from './pages/ecoles/ecole-etablissement/ecole-etablissement.component';
 import { EcoleActualitesComponent } from './pages/ecoles/ecole-actualites/ecole-actualites.component';
+import { SupportEtAssistanceComponent } from './commons/footer/support-et-assistance/support-et-assistance.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -67,6 +68,8 @@ export const routes: Routes = [
   { path: 'suppCompte', component: SuppCompteComponent },
 
   { path: 'ensavoirplus', component: EnSavoirPlusComponent },
+
+  { path: 'supportassistance', component: SupportEtAssistanceComponent },
 
   // Chemin pour les utilisateurs
   { path: 'users', component: UsersComponent },
@@ -106,9 +109,9 @@ export const routes: Routes = [
 
   { path: 'newEcole', component: AddEcoleComponent },
 
-  { path: 'ecoleActualites/:id', component: EcoleActualitesComponent},
+  { path: 'ecoleActualites/:id', component: EcoleActualitesComponent },
 
-  { path: 'ecoleEtablissement/:id', component: EcoleEtablissementComponent},
+  { path: 'ecoleEtablissement/:id', component: EcoleEtablissementComponent },
 
   // Chemin pour les classes
   { path: 'classes', component: ClassesComponent },
@@ -140,8 +143,6 @@ export const routes: Routes = [
   { path: 'messagesCreate', component: AddMessageComponent },
 
   { path: 'messagesUpdate/:id', component: UpdateMsgComponent },
-
-
 
   { path: '**', component: NotFoundComponent },
 ];
