@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, ElementRef, ChangeDetectorRef, NgZone } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-slider-profil',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, RouterLinkActive],
   templateUrl: './slider-profil.component.html',
   styleUrls: ['./slider-profil.component.css']
 })
@@ -17,9 +17,9 @@ export class SliderProfilComponent {
   containerWidth: number = 0;
   sliderContentWidth: number = 0;
   maxTranslateX: number = 0;
-  selectedMenu: string = '';
+  selectedMenu: string = 'menu1';
 
-  constructor(private el: ElementRef, private ngZone: NgZone) { }
+  constructor(private el: ElementRef, private cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
     const container = this.el.nativeElement.querySelector('.container');
@@ -76,12 +76,15 @@ export class SliderProfilComponent {
   }
 
   onSelectMenu(menu: string) {
-    this.ngZone.run(() => {
-      this.selectedMenu = menu;
-    });
+    this.selectedMenu = menu;
+    this.cdr.detectChanges();
   }
 
   isSelected(menu: string): boolean {
     return this.selectedMenu === menu;
+  }
+
+  isNotSelected(menu: string): boolean {
+    return this.selectedMenu !== menu && this.selectedMenu !== '';
   }
 }
