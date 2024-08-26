@@ -5,11 +5,12 @@ import { CoursService } from '../../services/cours.service';
 import { CommonModule } from '@angular/common';
 import { VariablesGlobales } from '../../commons/variablesGlobales';
 import { FormsModule } from '@angular/forms';
+import { ReturnBtnComponent } from "../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-cours',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule, ReturnBtnComponent],
   templateUrl: './cours.component.html',
   styleUrl: './cours.component.css',
 })

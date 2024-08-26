@@ -4,11 +4,12 @@ import Ecole from '../../../models/ecole.modelt';
 import { EcoleService } from '../../../services/ecole.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ReturnBtnComponent } from "../../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-ecole-actualites',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, ReturnBtnComponent],
   templateUrl: './ecole-actualites.component.html',
   styleUrl: './ecole-actualites.component.css'
 })

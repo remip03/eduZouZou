@@ -5,11 +5,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ActivitesService } from '../../../services/activites.service';
 import Activite from '../../../models/activite.model';
 import { VariablesGlobales } from '../../../commons/variablesGlobales';
+import { ReturnBtnComponent } from "../../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-update-activite',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, CommonModule],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule, ReturnBtnComponent],
   templateUrl: './update-activite.component.html',
   styleUrl: './update-activite.component.css'
 })

@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import User from '../../models/user.models';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
+import { ReturnBtnComponent } from "../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, ReturnBtnComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })

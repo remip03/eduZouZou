@@ -4,10 +4,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { ActivitesService } from '../../../services/activites.service';
 import { VariablesGlobales } from '../../../commons/variablesGlobales';
+import { ReturnBtnComponent } from "../../../commons/return-btn/return-btn.component";
 @Component({
   selector: 'app-create-activite',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, CommonModule],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule, ReturnBtnComponent],
   templateUrl: './create-activite.component.html',
   styleUrl: './create-activite.component.css'
 })

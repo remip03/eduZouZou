@@ -4,11 +4,12 @@ import { ClasseService } from '../../services/classe.service';
 import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ReturnBtnComponent } from "../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-classes',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, ReturnBtnComponent],
   templateUrl: './classes.component.html',
   styleUrl: './classes.component.css'
 })

@@ -4,11 +4,12 @@ import { EcoleService } from '../../services/ecole.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { ReturnBtnComponent } from "../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-ecoles',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, ReturnBtnComponent],
   templateUrl: './ecoles.component.html',
   styleUrl: './ecoles.component.css'
 })

@@ -5,11 +5,12 @@ import Activite from '../../models/activite.model';
 import { VariablesGlobales } from '../../commons/variablesGlobales';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ReturnBtnComponent } from "../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-activites',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule, ReturnBtnComponent],
   templateUrl: './activites.component.html',
   styleUrl: './activites.component.css',
 })

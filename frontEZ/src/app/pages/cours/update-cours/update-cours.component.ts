@@ -6,11 +6,12 @@ import { CoursService } from '../../../services/cours.service';
 import { VariablesGlobales } from '../../../commons/variablesGlobales';
 import Cours from '../../../models/Cours.model';
 import { UploadService } from '../../../services/upload.service';
+import { ReturnBtnComponent } from "../../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-update-cours',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, CommonModule],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule, ReturnBtnComponent],
   templateUrl: './update-cours.component.html',
   styleUrl: './update-cours.component.css'
 })

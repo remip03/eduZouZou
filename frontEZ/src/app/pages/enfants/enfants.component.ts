@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import Enfant from '../../models/enfant.model';
 import { EnfantService } from '../../services/enfant.service';
 import { AuthService } from '../../services/auth.service';
+import { ReturnBtnComponent } from "../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-enfants',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, ReturnBtnComponent],
   templateUrl: './enfants.component.html',
   styleUrl: './enfants.component.css'
 })
