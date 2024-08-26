@@ -4,6 +4,7 @@
     <h5 class="card-title">expéditeur : {{ msgDetail.expediteur }}</h5>
     <p class="card-text">message : {{ msgDetail.content }}</p>
     <h5 class="card-title">destinataire : {{ msgDetail.destinataire }}</h5>
+    <h5 class="card-title">date : {{ msgDetail.msgDate }}</h5>
 
     <a routerLink="/messagesCreate" class="btn btn-primary m-5">répondre</a>
     <button (click)="deleteMessage(msgDetail.id)" class="btn btn-danger m-5">
