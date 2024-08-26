@@ -1,0 +1,59 @@
+.colonneResp{
+  display: flex;
+  flex-direction: column;
+}
+
+.bulle{
+  background-color: white;
+  color: #294F7F;
+  width: 94%;
+  height: auto;
+  margin: 3%;
+  border-radius: 2rem;
+  font-size: 150%;
+}
+
+button{
+  width: 45%;
+  height: auto;
+  margin: 2.5%;
+}
+
+input{
+  width: 80%;
+  margin: 0% 10% 1% 10%;
+}
+
+select{
+  width: 80%;
+  margin: 0% 10% 1% 10%;
+}
+
+label{
+  margin: 1% 10% 0% 10%;
+}
+
+@media screen and (min-width: 1440px) {
+
+  .bulle{
+    background-color: white;
+    color: #294F7F;
+    width: 70%;
+    height: auto;
+    margin: 3%;
+    border-radius: 2rem;
+    font-size: 150%;
+  }
+
+  .colonneResp{
+    display: flex;
+    flex-direction: row;
+  }
+
+  button{
+    width: 30%;
+    height: auto;
+    margin: 2% 10%;
+  }
+
+}

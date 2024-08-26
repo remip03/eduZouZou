@@ -1,11 +1,23 @@
-button{
-  width: 25%;
+.bulle{
+  background-color: white;
+  color: #294F7F;
+  width: 94%;
   height: auto;
   margin: 3%;
+  border-radius: 2rem;
+  font-size: 150%;
 }
 
-a{
-  width: 25%;
-  height: auto;
-  margin: 3%;
+p{
+  margin: 1% 10%;
+}
+
+@media screen and (min-width: 1440px) {
+
+  .bulle{
+    width: 50%;
+    height: auto;
+    margin: 3%;
+  }
+
 }

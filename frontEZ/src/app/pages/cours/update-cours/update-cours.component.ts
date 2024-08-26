@@ -56,7 +56,7 @@ export class UpdateCoursComponent implements OnInit{
       this.coursService.updateCours(updatedCours).subscribe({
         next: () => {
           alert('Ce cours a bien été modifié.');
-          // this.router.navigate(['/cours'])
+          this.router.navigate(['/cours'])
           console.log(updatedCours);
 
         },

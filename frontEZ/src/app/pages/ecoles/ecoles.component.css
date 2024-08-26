@@ -1,0 +1,69 @@
+.colonneResp{
+  display: flex;
+  flex-direction: column;
+}
+
+.bulle{
+  background-color: white;
+  color: #294F7F;
+  width: 94%;
+  height: auto;
+  margin: 3%;
+  border-radius: 2rem;
+  font-family: 'nunito';
+  font-size: 150%;
+}
+
+p{
+  margin: 1% 3%;
+}
+
+h2{
+  font-size: 130%;
+  margin: 1%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.boutonAjout{
+  width: 80%;
+  height: auto;
+  border-radius: 2rem;
+  margin: 2%;
+  color: white;
+  background-color: #294F7F;
+  font-family: 'nunito';
+  font-size: 150%;
+  padding: 1%;
+}
+
+.boutonMod{
+  width: 45%;
+  height: auto;
+  border-radius: 2rem;
+  margin: 2%;
+  color: white;
+  background-color: #294F7F;
+  font-family: 'nunito';
+  padding: 1%;
+}
+
+@media screen and (min-width: 1440px) {
+
+  .colonneResp{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .bulle{
+    width: 29%;
+    height: auto;
+    margin: 2%;
+  }
+
+  .boutonAjout{
+    width: 25%;
+  }
+
+}

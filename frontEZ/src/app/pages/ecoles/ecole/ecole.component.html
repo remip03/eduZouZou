@@ -1,12 +1,17 @@
 <app-return-btn></app-return-btn>
 
+<section class="centre">
 
-<p><span class="fw-bold">Nom :</span> {{ detail.nameEc }}</p>
-<p><span class="fw-bold">Adresse :</span> {{ detail.adresseEc }}</p>
-<p><span class="fw-bold">Téléphone :</span> {{ detail.telEc }}</p>
-<p><span class="fw-bold">Email :</span> {{ detail.mailEc }}</p>
-<p routerLink="/ecoleActualites/{{ detail.id }}">accéder à l'école</p>
-<div class="ligne centre">
-  <button class="btn btn-danger" (click)="confirmDelete()">Supprimer cette école</button>
-  <a routerLink="/ecoles" class="btn btn-secondary">Retour</a>
-</div>
+  <div class="bulle colonne">
+
+    <p>Nom : {{ detail.nameEc }}</p>
+    <p>Adresse : {{ detail.adresseEc }}</p>
+    <p>Téléphone : {{ detail.telEc }}</p>
+    <p>Email : {{ detail.mailEc }}</p>
+  <div class="centre">
+    <button routerLink="/ecoleActualites/{{ detail.id }}">accéder à l'école</button>
+  </div>
+
+  </div>
+
+</section>
