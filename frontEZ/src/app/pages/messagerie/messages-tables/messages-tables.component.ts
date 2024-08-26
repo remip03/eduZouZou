@@ -5,11 +5,12 @@ import Message from '../../../models/message.models';
 import { MessageType } from '../../../models/messageType.model';
 import { MessageService } from '../../../services/message.service';
 import { AuthService } from '../../../services/auth.service';
+import { ReturnBtnComponent } from '../../../commons/return-btn/return-btn.component';
 
 @Component({
   selector: 'app-messages-tables',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ReturnBtnComponent],
   templateUrl: './messages-tables.component.html',
   styleUrl: './messages-tables.component.css',
 })
@@ -52,4 +53,16 @@ export class MessagesTablesComponent {
     });
   }
   messageDetail(): void {}
+
+  // La fonction pour afficher les premiers mots d'un message
+  afficherPremiersMots(message: any, nombreMots: number): string {
+    // On divise le message en mots
+    const mots = message.split(' ');
+    // On sélectionne les premiers mots selon le nombre spécifié
+    return mots.slice(0, nombreMots).join(' ');
+  }
+
+  // Exemple d'utilisation
+  //  message = this.messages.content
+  premiersMots = this.afficherPremiersMots(this.messages.content, 5);
 }
