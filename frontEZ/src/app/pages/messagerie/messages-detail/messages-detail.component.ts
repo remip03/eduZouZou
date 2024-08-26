@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import Message from '../../../../models/message.models';
-import { MessageService } from '../../../../services/message.service';
-import { AuthService } from '../../../../services/auth.service';
 import {
   FormBuilder,
   FormGroup,
@@ -9,6 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import Message from '../../../models/message.models';
+import { MessageService } from '../../../services/message.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-messages-detail',
