@@ -67,12 +67,32 @@ export class AddMessageComponent {
     // Affiche une notification si le message est créé avec succès
     alert('Message créé avec succès!');
   }
-  dateAuto() {
-    this.date = new Date();
-    this.formattedDate = this.date.toLocaleDateString();
-    this.createMsg.patchValue({ msgDate: this.formattedDate });
-    //console.log(this.createMsg.value.msgDate); // to test the value in console
+  // dateAuto() {
+  //   this.date = new Date();
+  //   this.formattedDate = this.date.toLocaleDateString();
+  //   this.createMsg.patchValue({ msgDate: this.formattedDate });
+  //   //console.log(this.createMsg.value.msgDate); // to test the value in console
+  // }
+  formatDateTime(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    const formattedDate = date.toISOString().split('T')[0];
+    return formattedDate;
+    const formattedTime = date.toISOString().split('T')[1].split('.')[0];
+    return `${formattedDate} ${formattedTime}`;
+    const formattedDateTime = `${formattedDate} ${formattedTime}`;
+    return formattedDateTime;
+    const formattedDateTime = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    return formattedDateTime;
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
   }
+
   //
   get form() {
     return this.createMsg.controls;
