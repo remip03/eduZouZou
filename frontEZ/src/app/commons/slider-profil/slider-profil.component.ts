@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, ElementRef, ChangeDetectorRef, NgZone } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-slider-profil',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, RouterLinkActive],
   templateUrl: './slider-profil.component.html',
   styleUrls: ['./slider-profil.component.css']
 })
@@ -17,9 +17,16 @@ export class SliderProfilComponent {
   containerWidth: number = 0;
   sliderContentWidth: number = 0;
   maxTranslateX: number = 0;
-  selectedMenu: string = '';
+  selectedMenu: string = 'menu1';
+  isDesktop: boolean = window.innerWidth >= 768;
 
-  constructor(private el: ElementRef, private ngZone: NgZone) { }
+  constructor(private el: ElementRef, private cdr: ChangeDetectorRef, private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.updateSelectedMenu();
+      }
+    });
+  }
 
   ngAfterViewInit() {
     const container = this.el.nativeElement.querySelector('.container');
@@ -27,6 +34,11 @@ export class SliderProfilComponent {
     this.containerWidth = container.offsetWidth;
     this.sliderContentWidth = sliderContent.scrollWidth;
     this.maxTranslateX = this.containerWidth - this.sliderContentWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.isDesktop = window.innerWidth >= 769;
   }
 
   @HostListener('mousedown', ['$event'])
@@ -76,12 +88,46 @@ export class SliderProfilComponent {
   }
 
   onSelectMenu(menu: string) {
-    this.ngZone.run(() => {
-      this.selectedMenu = menu;
-    });
+    this.selectedMenu = menu;
+    this.cdr.detectChanges();
   }
 
-  isSelected(menu: string): boolean {
-    return this.selectedMenu === menu;
+  updateSelectedMenu() {
+    const url = this.router.url;
+    if (url.includes('/suivis')) {
+      this.selectedMenu = 'menu1';
+    } else if (url.includes('/modifProfil')) {
+      this.selectedMenu = 'menu2';
+    } else if (url.includes('/modifMdp')) {
+      this.selectedMenu = 'menu3';
+    } else if (url.includes('/suppCompte')) {
+      this.selectedMenu = 'menu4';
+    }
+    this.cdr.detectChanges();
+  }
+
+  getDivClass(menu: string): { [key: string]: boolean } {
+    const isActive = this.selectedMenu === menu;
+    return {
+      menuSuivi: menu === 'menu1' && isActive,
+      menuInfo: menu === 'menu2' && isActive,
+      menuMdp: menu === 'menu3' && isActive,
+      menuDelete: menu === 'menu4' && isActive,
+      menuSuiviInactive: !isActive && this.selectedMenu === 'menu1',
+      menuInfoInactive: !isActive && this.selectedMenu === 'menu2',
+      menuMdpInactive: !isActive && this.selectedMenu === 'menu3',
+      menuDeleteInactive: !isActive && this.selectedMenu === 'menu4'
+    };
+  }
+
+  getImgClass(menu: string): { [key: string]: boolean } {
+    const isActive = this.selectedMenu === menu;
+    return {
+      iconWhite: isActive,
+      iconInactiveSuivi: !isActive && this.selectedMenu === 'menu1',
+      iconInactiveInfo: !isActive && this.selectedMenu === 'menu2',
+      iconInactiveMdp: !isActive && this.selectedMenu === 'menu3',
+      iconInactiveDelete: !isActive && this.selectedMenu === 'menu4'
+    };
   }
 }

@@ -1,14 +1,16 @@
-<div class="container colonne">
+<div>
   <app-return-btn />
-  <div class="content">
-    <a routerLink="/profil" class="card card1">
-      <img src="img/profil.png" alt="profil" />
-      <h2>Profil</h2></a
-    >
-    <a class="card card2" (click)="openModal()">
-      <img src="img/connexion.png" alt="deconnexion" />
-      <h2>Déconnexion</h2></a
-    >
+  <div class="container colonne">
+    <div class="content">
+      <a routerLink="/profil" class="card card1">
+        <img src="img/profil.png" alt="profil" />
+        <h2>Profil</h2></a
+      >
+      <a class="card card2" (click)="openModal()">
+        <img src="img/connexion.png" alt="deconnexion" />
+        <h2>Déconnexion</h2></a
+      >
+    </div>
+    <app-comfirm-deco-modal (close)="closeModal()" />
   </div>
-  <app-comfirm-deco-modal (close)="closeModal()" />
 </div>
