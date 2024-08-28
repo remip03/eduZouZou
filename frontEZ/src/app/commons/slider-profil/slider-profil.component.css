@@ -165,8 +165,29 @@ img.iconWhite {
   .slinderLink {
     cursor: pointer;
   }
-
 }
 
 @media only screen and (min-width: 769px) {
+  .sliderContent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* WITH & HEIGHT MENU */
+  .menu1 {
+    min-width: 10%;
+  }
+
+  .menu2 {
+    min-width: 20%;
+  }
+
+  .menu3 {
+    min-width: 20%;
+  }
+
+  .menu4 {
+    min-width: 20%;
+  }
 }
