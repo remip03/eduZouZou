@@ -1,4 +1,3 @@
-
 <app-return-btn></app-return-btn>
 
 <h2>Liste des Cours</h2>
@@ -6,12 +5,16 @@
 <div class="centre">
   <button routerLink="/creerCours">Créer un cours</button>
 </div>
+<div class="search carte">
+  <input type="text" placeholder="Rechercher..." [(ngModel)]="valueSearch" />
+  <a class="btnSearch m-2" (click)="showResultSearch(valueSearch)"><img id="iconSearch" src="icon/chercher.png"
+      alt="icon recherche"></a>
+</div>
 
 <div class="btn2">
   <button (click)="toogleFilter()">filtrer</button>
-  <button (click)="toogleSearch()">rechercher</button>
-  <!-- <button (click)="filterByClasse(valueChange)">classe</button>
-  <button (click)="selectClasse('')">matiere</button> -->
+
+
 </div>
 
 <div class="filterMenu">
@@ -50,14 +53,6 @@
 
 </div>
 
-<div class="searchMenu">
-  @if (isSearchable){
-  <input type="text" placeholder="Rechercher..." [(ngModel)]="valueSearch" />
-  <button (click)="showResultSearch(valueSearch)">valider</button>
-
-  }
-
-</div>
 
 <div class="webVersion">
   @if(hidden){
@@ -71,6 +66,8 @@
     <span>matière : {{ item.matiereR }}</span>
     <span>description : {{ item.descriptionR }}</span>
     <button routerLink="/cours/{{ item.id }}">Modifier</button>
+    <button routerLink="/coursDetail/{{ item.id }}">accéder au cours</button>
+
   </div>
   }
 </div>

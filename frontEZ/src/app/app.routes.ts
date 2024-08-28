@@ -45,6 +45,8 @@ import { EcoleActualitesComponent } from './pages/ecoles/ecole-actualites/ecole-
 import { SupportEtAssistanceComponent } from './commons/footer/support-et-assistance/support-et-assistance.component';
 import { MessagerieComponent } from './pages/messagerie/messagerie.component';
 import { MessagesDetailComponent } from './pages/messagerie/messages-detail/messages-detail.component';
+import { CoursDetailComponent } from './pages/cours/cours-detail/cours-detail.component';
+import { ActivitesDetailComponent } from './pages/activites/activites-detail/activites-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -95,12 +97,16 @@ export const routes: Routes = [
 
   { path: 'activites/:id', component: UpdateActiviteComponent },
 
+  { path: 'activitesDetail/:id', component: ActivitesDetailComponent },
+
   // Chemin pour les cours
   { path: 'cours', component: CoursComponent },
 
   { path: 'creerCours', component: CreateCoursComponent },
 
   { path: 'cours/:id', component: UpdateCoursComponent },
+
+  { path: 'coursDetail/:id', component: CoursDetailComponent },
 
   // Chemin pour les écoles
   { path: 'ecoles', component: EcolesComponent },

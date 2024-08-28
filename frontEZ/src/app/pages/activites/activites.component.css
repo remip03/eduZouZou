@@ -76,6 +76,16 @@ select {
   appearance: none;
 }
 
+img {
+  height: 1.5rem;
+  width: auto;
+}
+
+.btnSearch {
+  background-color: white;
+  text-decoration: none;
+}
+
 @media screen and (min-width: 1440px) {
   .webVersion {
     display: grid;

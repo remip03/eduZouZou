@@ -1,17 +1,19 @@
-
 <app-return-btn></app-return-btn>
 
 <h2>Liste des activités</h2>
 
 <div class="centre">
-  <button routerLink="/creerActivites">Créer une activité</button>
+  <button routerLink="/creerCours">Créer une activité</button>
+</div>
+
+<div class="search carte">
+  <input type="text" placeholder="Rechercher..." [(ngModel)]="valueSearch" />
+  <a class="btnSearch m-2" (click)="showResultSearch(valueSearch)"><img id="iconSearch" src="icon/chercher.png"
+      alt="icon recherche"></a>
 </div>
 
 <div class="btn2">
   <button (click)="toogleFilter()">filtrer</button>
-  <button (click)="toogleSearch()">rechercher</button>
-  <!-- <button (click)="filterByClasse(valueChange)">classe</button>
-  <button (click)="selectClasse('')">matiere</button> -->
 </div>
 
 <div class="filterMenu">
@@ -50,14 +52,14 @@
 
 </div>
 
-<div class="searchMenu">
-  @if (isSearchable){
-  <input type="text" placeholder="Rechercher..." [(ngModel)]="valueSearch" />
-  <button (click)="showResultSearch(valueSearch)">valider</button>
+<!-- <div class="searchMenu">
+    @if (isSearchable){
+    <input type="text" placeholder="Rechercher..." [(ngModel)]="valueSearch" />
+    <button (click)="showResultSearch(valueSearch)">valider</button>
 
-  }
+    }
 
-</div>
+  </div> -->
 
 <div class="webVersion">
   @if(hidden){
@@ -72,6 +74,7 @@
     <span>type d'activités : {{ item.typeAct }}</span>
     <span>description : {{ item.descriptionR }}</span>
     <button routerLink="/activites/{{ item.id }}">Modifier</button>
+    <button routerLink="/activitesDetail/{{ item.id }}">accéder à l'activité</button>
   </div>
   }
 </div>
