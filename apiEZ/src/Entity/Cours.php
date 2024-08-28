@@ -33,6 +33,7 @@ class Cours extends Ressource
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+
     // #[ORM\Column(nullable: true)]
     // private ?\DateTimeImmutable $createdAt = null;
 

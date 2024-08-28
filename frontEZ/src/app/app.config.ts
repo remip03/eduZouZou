@@ -7,6 +7,7 @@ import { provideHttpClient } from '@angular/common/http';
 
 // Importation des intercepteurs HTTP et de l'intercepteur d'authentification personnalisé
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 // import { AuthInterceptor } from './auth.interceptor';
 
 // Définition de la configuration de l'application
@@ -20,5 +21,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     // Ajout de l'intercepteur d'authentification à la chaîne des intercepteurs HTTP
     // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    DatePipe,
   ]
 };
