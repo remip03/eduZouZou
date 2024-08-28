@@ -230,7 +230,7 @@ class CoursController extends AbstractController
         $currentCours->setMatiereR($newCours->getMatiereR());
         $currentCours->setDocC($newCours->getDocC());
         $currentCours->setVideoC($newCours->getVideoC());
-        $currentCours->setImageFile($newCours->getImageFile());
+        $currentCours->setRessourceSupC($newCours->getRessourceSupC());
 
         // Validation des données mises à jour
         $errors = $validator->validate($currentCours);

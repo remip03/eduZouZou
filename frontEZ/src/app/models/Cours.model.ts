@@ -7,5 +7,7 @@ export default interface Cours{
     docC: string;
     videoC: string;
     imageFile: File;
+    ressourceSupC: string;
+    // updatedAt: Date;
     dtype: string;
 }

@@ -64,7 +64,7 @@
 
   <div class="colonne marge">
     <label for="imageFile">ressource supplémentaire : </label>
-    <input type="file" id="imageFile" name="imageFile">
+    <input (input)="onFilechange($event)" type="file" id="imageFile" name="imageFile">
     @if (valid && form['imageFile'].invalid) {
     <span>Type invalide</span>
     }

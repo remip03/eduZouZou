@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -26,15 +26,22 @@ export class UpdateCoursComponent implements OnInit {
   valid: boolean = false;
   matieres!: string[];
   typeRC!: string[];
-  // file!: File;
+  upload!: File;
+  uploadName!: string;
+  // public date = new Date();
+  // public updatedAt = this.datePipe.transform(
+  //   this.date,
+  //   'yyyy-MM-dd HH:mm:ss'
+  // );
 
   constructor(
     private formbuild: FormBuilder,
     private coursService: CoursService,
     private route: ActivatedRoute,
-    private router: Router
-  ) // private upServ: UploadService
-  {
+    private router: Router,
+    private upServ: UploadService,
+    // private datePipe: DatePipe,
+  ){
     this.matieres = VariablesGlobales.matieres;
     this.typeRC = VariablesGlobales.niveauCl;
     this.coursUpdate = this.formbuild.group({
@@ -44,6 +51,8 @@ export class UpdateCoursComponent implements OnInit {
       typeR: ['', Validators.required],
       docC: [''],
       videoC: [''],
+      ressourceSupC: [''],
+      // updatedAt: [''],
       imageFile: [''],
       dtype: ['cours'],
     });
@@ -56,12 +65,23 @@ export class UpdateCoursComponent implements OnInit {
     }
 
     if (this.coursID) {
+      const formParams = new FormData();
+      formParams.append('upload', this.coursUpdate.get('imageFile')?.value);
+      formParams.append('uploadName', this.coursUpdate.get('ressourceSupC')?.value);
+      // formParams.append('uploadAt', this.coursUpdate.get('updatedAt')?.value);
+
       const updatedCours = { ...this.coursUpdate.value, id: this.coursID };
+
+      // if(this.upload){
+      //   this.httpClient.post('http://localhost:8000/apiEZ/public/cours/images', this.upload)
+      // }
+
       this.coursService.updateCours(updatedCours).subscribe({
         next: () => {
           alert('Ce cours a bien été modifié.');
-          this.router.navigate(['/cours']);
-          console.log(updatedCours);
+          console.log(this.coursUpdate.value);
+
+          // this.router.navigate(['/cours']);
         },
         error: () => {
           alert("Le cours n'a pas été modifié.");
@@ -70,13 +90,19 @@ export class UpdateCoursComponent implements OnInit {
     }
   }
 
-  // onFilechange(event: any){
-  //   this.file = event.target.files[0]
-  // }
+  onFilechange(event: any){
+    this.upload = event.target.files ? event.target.files[0] : null;
+    this.uploadName = this.upload.name;
 
-  // upload(){
-  //   if(this.file){
-  //     this.upServ.uploadfile(this.file).subscribe(res => {alert('image téléchargée')})
+    this.coursUpdate.get('imageFile')?.setValue(this.upload);
+    this.coursUpdate.get('ressourceSupC')?.setValue(this.uploadName);
+    // this.coursUpdate.get('updatedAt')?.setValue(this.updatedAt);
+    console.log(this.upload);
+  }
+
+  // uploadImage(){
+  //   if(this.upload){
+  //     this.upServ.uploadfile(this.upload).subscribe(res => {alert('image téléchargée')})
   //   }
   //   else{
   //     alert('Ce fichier n\'est pas compatible.')
