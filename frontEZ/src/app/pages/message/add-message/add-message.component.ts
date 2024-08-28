@@ -27,7 +27,7 @@ export class AddMessageComponent {
   public date = new Date();
   public formattedDate = this.datePipe.transform(
     this.date,
-    'yyyy-MM-dd HH:mm:ss'
+    "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
   );
 
   // variable pour créer un message
@@ -50,11 +50,9 @@ export class AddMessageComponent {
   ) {}
 
   createMessage(): void {
-    console.log(this.formattedDate);
-
     // crée le message
-    this.messageService.addMessage(this.createMsg.value).subscribe();
     this.createMsg.patchValue({ msgDate: this.formattedDate });
+    this.messageService.addMessage(this.createMsg.value).subscribe();
     console.log(this.createMsg.value.msgDate); // to test the value in console
     // Actualise la liste des messages
     this.messageService
@@ -66,31 +64,6 @@ export class AddMessageComponent {
     this.role = this.authService.getRole();
     // Affiche une notification si le message est créé avec succès
     alert('Message créé avec succès!');
-  }
-  // dateAuto() {
-  //   this.date = new Date();
-  //   this.formattedDate = this.date.toLocaleDateString();
-  //   this.createMsg.patchValue({ msgDate: this.formattedDate });
-  //   //console.log(this.createMsg.value.msgDate); // to test the value in console
-  // }
-  formatDateTime(date: Date): string {
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    const seconds = date.getSeconds().toString().padStart(2, '0');
-    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-    const formattedDate = date.toISOString().split('T')[0];
-    return formattedDate;
-    const formattedTime = date.toISOString().split('T')[1].split('.')[0];
-    return `${formattedDate} ${formattedTime}`;
-    const formattedDateTime = `${formattedDate} ${formattedTime}`;
-    return formattedDateTime;
-    const formattedDateTime = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-    return formattedDateTime;
-    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
   }
 
   //
