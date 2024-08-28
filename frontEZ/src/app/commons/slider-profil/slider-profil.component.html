@@ -1,65 +1,60 @@
 <div class="container">
   <div class="sliderContent" [style.transform]="transform">
     <div
-      routerLink="/suivis"
-      routerLinkActive="menuSuivi"
-      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="onSelectMenu('menu1')"
       class="slinderLink menu1 height"
-      [ngClass]="{ menuSuiviInactive: !isSelected('menu1'), }"
+      [ngClass]="getDivClass('menu1')"
+      routerLink="/suivis"
     >
       <img
         class="imgMenu"
         src="icon/mon-suivi.png"
         alt=""
-        routerLinkActive="iconWhite"
-        [ngClass]="{ iconInactiveSuivi: !isSelected('menu1') }"
+        [ngClass]="getImgClass('menu1')"
       />
       <span>Mon Suivi</span>
     </div>
     <div
-      routerLink="/modifProfil"
-      routerLinkActive="menuInfo"
-      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="onSelectMenu('menu2')"
       class="slinderLink menu2 height"
-      [ngClass]="{ menuSuiviInactive: !isSelected('menu2') }"
+      [ngClass]="getDivClass('menu2')"
+      routerLink="/modifProfil"
     >
       <img
         class="imgMenu"
         src="icon/utilisateur(1).png"
         alt=""
-        routerLinkActive="iconWhite"
-        [ngClass]="{ iconInactiveSuivi: !isSelected('menu2') }"
-      /><span>Mes informations</span>
+        [ngClass]="getImgClass('menu2')"
+      />
+      <span>Mes informations</span>
     </div>
     <div
-      routerLink="/modifMdp"
-      routerLinkActive="menuMdp"
-      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="onSelectMenu('menu3')"
       class="slinderLink menu3 height"
-      [ngClass]="{ menuSuiviInactive: !isSelected('menu3') }"
+      [ngClass]="getDivClass('menu3')"
+      routerLink="/modifMdp"
     >
       <img
         class="imgMenu"
         src="icon/cadenas-black.png"
         alt=""
-        routerLinkActive="iconWhite"
-        [ngClass]="{ iconInactiveSuivi: !isSelected('menu3') }"
-      /><span>Changer le mot de passe</span>
+        [ngClass]="getImgClass('menu3')"
+      />
+      <span>Changer le mot de passe</span>
     </div>
     <div
-      routerLink="/suppCompte"
-      routerLinkActive="menuDelete"
-      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="onSelectMenu('menu4')"
       class="slinderLink menu4 height"
-      [ngClass]="{ menuSuiviInactive: !isSelected('menu4') }"
+      [ngClass]="getDivClass('menu4')"
+      routerLink="/suppCompte"
     >
       <img
         class="imgMenu"
         src="icon/quitter.png"
         alt=""
-        routerLinkActive="iconWhite"
-        [ngClass]="{ iconInactiveSuivi: !isSelected('menu4') }"
-      /><span>Supprimer le compte</span>
+        [ngClass]="getImgClass('menu4')"
+      />
+      <span>Déconnexion</span>
     </div>
   </div>
 </div>

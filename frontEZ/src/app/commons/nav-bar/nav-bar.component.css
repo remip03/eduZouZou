@@ -60,7 +60,7 @@ hr {
 }
 
 .modal.hiddenMenu {
-  display: none; /* Masquez la modal lorsque la classe hiddenMenu est présente */
+  display: none;
 }
 
 .modalContent {
@@ -105,6 +105,28 @@ img {
 
 .burgerLink img {
   margin-right: 1rem;
+}
+
+.dropdown {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background-color: white;
+  z-index: 1;
+  top: 100%;
+  border-bottom: 1px solid rgba(41, 79, 127, 0.9);
+  border-left: 1px solid rgba(41, 79, 127, 0.9);
+  border-right: 1px solid rgba(41, 79, 127, 0.9);
+}
+
+.dropdown li {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background-color: #f1f1f1;
 }
 
 @media only screen and (min-width: 600px) {

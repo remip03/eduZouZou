@@ -190,4 +190,27 @@ class UserController extends AbstractController
         // Retourner une réponse de succès
         return new JsonResponse(['message' => 'Utilisateur mis à jour avec succès'], JsonResponse::HTTP_CREATED);
     }
+
+    /**
+     * Cette méthode permet de récupérer un utilisateur par son email
+     */
+    #[Route('/api/users/email/{email}', name: 'getUserByEmail', methods: ['GET'])]
+    #[OA\Tag(name: "Users")]
+    public function getUserByEmail(string $email, UserRepository $userRepository, SerializerInterface $serializer): JsonResponse
+    {
+        // Recherche de l'utilisateur par son email
+        $user = $userRepository->findOneBy(['email' => $email]);
+
+        // Vérification si l'utilisateur existe
+        if (!$user) {
+            return new JsonResponse(['message' => 'Utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
+        }
+
+        // Sérialisation de l'utilisateur en JSON
+        $context = SerializationContext::create()->setGroups(['getClasses']);
+        $jsonUser = $serializer->serialize($user, 'json', $context);
+
+        // Retourne les détails de l'utilisateur en JSON
+        return new JsonResponse($jsonUser, Response::HTTP_OK, [], true);
+    }
 }

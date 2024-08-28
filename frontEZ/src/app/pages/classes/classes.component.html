@@ -1,39 +1,26 @@
 
 <app-return-btn></app-return-btn>
 
-<a routerLink="/newClasse" class="btn btn-warning"
-  >Ajouter une nouvelle classe</a
->
-<div class="row g-1">
-  <div
-    class="col-md-4 d-flex justify-content-center"
-    *ngFor="let item of classes; let i = index"
-  >
-    <div class="card">
-      <div class="card-body">
+<section class="colonne">
+
+<button routerLink="/newClasse" class="boutonAjout">Ajouter une nouvelle classe</button>
+
+<div class="colonneCl">
+  <div class="bulle" *ngFor="let item of classes; let i = index"
+  [style.background-color]="couleurs[i % couleurs.length]">
+
         <h2>Classe n°{{ item.id }}</h2>
-        <p class="card-text">
-          <span class="bold">Id de l'école : </span>{{ item.ecole.id }}
-        </p>
-        <p class="card-text">
-          <span class="bold">Nom de l'école : </span>{{ item.ecole.nameEc }}
-        </p>
-        <p class="card-text">
-          <span class="bold">Nom : </span>{{ item.nameCl }}
-        </p>
-        <p class="card-text">
-          <span class="bold">Niveau : </span>{{ item.niveauCl }}
-        </p>
-        <p class="card-text">
-          <span class="bold">Année : </span>{{ item.anneeCl | date: 'yyyy' }}
-        </p>
-        <a routerLink="/classes/{{ item.id }}" class="btn btn-primary"
-          >Voir la classe</a
-        >
-        <a routerLink="/classes/{{ item.id }}/edit" class="btn btn-success"
-          >Modifier</a
-        >
-      </div>
-    </div>
+
+        <p>Id de l'école : {{ item.ecole.id }}</p>
+        <p>Nom de l'école : {{ item.ecole.nameEc }}</p>
+        <p>Nom : {{ item.nameCl }}</p>
+        <p>Niveau : {{ item.niveauCl }}</p>
+        <p>Année : {{ item.anneeCl | date: 'yyyy' }}</p>
+
+        <button routerLink="/classes/{{ item.id }}" class="boutonMod">Voir la classe</button>
+        <button routerLink="/classes/{{ item.id }}/edit" class="boutonMod">Modifier</button>
+
   </div>
 </div>
+
+</section>

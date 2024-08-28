@@ -1,14 +1,20 @@
-<div class="card text-center mt-5">
-  <div class="card-header">Messages</div>
-  <div class="card-body">
-    <h5 class="card-title">expéditeur : {{ msgDetail.expediteur }}</h5>
-    <p class="card-text">message : {{ msgDetail.content }}</p>
-    <h5 class="card-title">destinataire : {{ msgDetail.destinataire }}</h5>
+<app-return-btn></app-return-btn>
 
-    <a routerLink="/messagesCreate" class="btn btn-primary m-5">répondre</a>
-    <button (click)="deleteMessage(msgDetail.id)" class="btn btn-danger m-5">
+<div class="card text-center textColor  mt-5">
+  <div class="centre p-10">
+    <h5 class="card-title bordure">message</h5>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title  bordure ">destinataire : {{ msgDetail.destinataire }}</h5>
+    <label for="text">message</label>
+    <textarea name="text" id="text" class="card-text bordure">{{ msgDetail.content }}</textarea>
+    <h5 class="card-title bordure">expéditeur : {{ msgDetail.expediteur }}</h5>
+    <h5 class="card-title bordure">date : {{ msgDetail.msgDate }}</h5>
+
+    <button routerLink="/messagesCreate" class="button m-5">répondre</button>
+    <button (click)="deleteMessage(msgDetail.id)" class=" button  m-5">
       supprimer
     </button>
-    <a routerLink="/messagesUpdate/{{ msgDetail.id }}" class="btn btn-success m-5">modifier</a>
+    <!-- <button routerLink="/messagesUpdate/{{ msgDetail.id }}" class=" button m-5">modifier</button> -->
   </div>
 </div>

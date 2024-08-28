@@ -9,11 +9,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import Message from '../../../models/message.models';
 import { MessageService } from '../../../services/message.service';
 import { AuthService } from '../../../services/auth.service';
+import { ReturnBtnComponent } from '../../../commons/return-btn/return-btn.component';
 
 @Component({
   selector: 'app-messages-detail',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, ReturnBtnComponent],
   templateUrl: './messages-detail.component.html',
   styleUrl: './messages-detail.component.css',
 })
@@ -36,7 +37,7 @@ export class MessagesDetailComponent {
       content: ['', Validators.required],
       expediteur: ['', Validators.required],
       destinataire: ['', Validators.required],
-      // msgDate: [''],
+      // msgDate:  [''],
     });
   }
 
