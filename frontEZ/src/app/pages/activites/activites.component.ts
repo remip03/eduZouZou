@@ -5,7 +5,7 @@ import Activite from '../../models/activite.model';
 import { VariablesGlobales } from '../../commons/variablesGlobales';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ReturnBtnComponent } from "../../commons/return-btn/return-btn.component";
+import { ReturnBtnComponent } from '../../commons/return-btn/return-btn.component';
 
 @Component({
   selector: 'app-activites',
@@ -62,11 +62,11 @@ export class ActivitesComponent implements OnInit {
 
   colors: any[] = [
     '#F9DBA0',
-    '#BBE2EA',
-    '#A7B2FB',
     '#FBB0A7',
-    '#F9AAB8',
+    '#BBE2EA',
     '#F2A6FD',
+    '#A7B2FB',
+    '#F9AAB8',
   ];
   // fonction pour modifier couleur suivant le tableau colors
   getColor(index: number): string {
