@@ -8,6 +8,6 @@ export default interface Cours{
     videoC: string;
     imageFile: File;
     ressourceSupC: string;
-    // updatedAt: Date;
+    updatedAt: Date;
     dtype: string;
 }
