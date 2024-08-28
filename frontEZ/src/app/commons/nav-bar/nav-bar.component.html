@@ -10,9 +10,13 @@
       (click)="openModal()"
     />
     <div class="navLinks">
-      <a routerLink="classes" class="navLink"
-        ><img src="icon/casquette-de-graduation1.png" alt="" />Classes</a
-      >
+      <a class="navLink" (click)="toggleClassesDropdown()">
+        <img src="icon/casquette-de-graduation1.png" alt="" />Classes
+        <ul *ngIf="isClassesDropdownOpen" class="dropdown">
+          <li routerLink="cours">Cours</li>
+          <li routerLink="activites">Activités</li>
+        </ul>
+      </a>
       <a routerLink="ecoles" class="navLink"
         ><img src="icon/ecole-1.png" alt="" />Ecoles</a
       >

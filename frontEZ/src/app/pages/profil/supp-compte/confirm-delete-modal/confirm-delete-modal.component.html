@@ -1,0 +1,20 @@
+<div class="container colonne">
+  <div class="modal hidden" id="modalDelete">
+    <div class="modalContent">
+      <img
+        src="mascotte_tristesse.svg"
+        alt="mascotte triste"
+        class="imgModal"
+      />
+      <span>Etes vous sûr de vouloir supprimer votre compte ?</span>
+      <div class="groupBtn">
+        <button class="change" (click)="closeModal()">
+          J'ai changé d'avis
+        </button>
+        <button class="ouiSur" (click)="confirmDelete()">
+          Oui, je suis sûr
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

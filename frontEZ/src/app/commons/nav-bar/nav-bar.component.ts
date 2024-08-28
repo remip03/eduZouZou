@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { MessageComponent } from '../../pages/message/message.component';
@@ -17,6 +17,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavBarComponent {
   isLoggedIn$: Observable<boolean>; // Observable pour suivre l'état de connexion de l'utilisateur
+  isClassesDropdownOpen = false;
 
   // Constructeur du composant, injecte le service AuthService
   constructor(private authService: AuthService) {
@@ -33,21 +34,34 @@ export class NavBarComponent {
 
   // Méthode pour ouvrir le menu déroulant
   openModal() {
-    console.log('openModal called');
     const modal = document.getElementById('navbarSupportedContent');
     if (modal) {
       modal.classList.remove('hiddenMenu');
-      console.log('Classes after removing hiddenMenu:', modal.className);
     }
   }
 
   // Méthode pour fermer le menu déroulant
   closeModal() {
-    console.log('closeModal called');
     const modal = document.getElementById('navbarSupportedContent');
     if (modal) {
       modal.classList.add('hiddenMenu');
-      console.log('Classes after adding hiddenMenu:', modal.className);
+    }
+  }
+
+  // Méthode pour basculer l'état du menu déroulant
+  toggleClassesDropdown() {
+    this.isClassesDropdownOpen = !this.isClassesDropdownOpen;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    const dropdown = document.querySelector('.dropdown');
+    const navLink = document.querySelector('.navLink');
+
+    if (dropdown && navLink && !navLink.contains(target) && !dropdown.contains(target)) {
+      this.isClassesDropdownOpen = false;
     }
   }
 }
+

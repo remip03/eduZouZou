@@ -20,6 +20,10 @@ export class UserService {
     return this.httpClient.get<User[]>(`${this.apiUrl}/users`)
   }
 
+  getUserByEmail(email: string): Observable<User> {
+    return this.httpClient.get<User>(`${this.apiUrl}/users/email/${email}`);
+}
+
   // Récupérer un users par son ID
   getUser(id: number): Observable<User> {
     return this.httpClient.get<User>(`${this.apiUrl}/users/${id}`)
@@ -32,6 +36,6 @@ export class UserService {
 
   // Supprimer un user par son ID
   deleteUser(id: number): Observable<User> {
-    return this.httpClient.delete<User>(`${this.apiUrl}/users/${id}`)
+    return this.httpClient.delete<User>(`${this.apiUrl}/users/${id}`);
   }
 }

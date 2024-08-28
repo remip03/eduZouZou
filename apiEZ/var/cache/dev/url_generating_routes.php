@@ -51,6 +51,7 @@ return [
     'detailUser' => [['id'], ['_controller' => 'App\\Controller\\UserController::getUserDetails'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/users']], [], [], []],
     'deleteUser' => [['id'], ['_controller' => 'App\\Controller\\UserController::deleteUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/users']], [], [], []],
     'updateUser' => [['id'], ['_controller' => 'App\\Controller\\UserController::updateUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/users']], [], [], []],
+    'getUserByEmail' => [['email'], ['_controller' => 'App\\Controller\\UserController::getUserByEmail'], [], [['variable', '/', '[^/]++', 'email', true], ['text', '/api/users/email']], [], [], []],
     'api_login_check' => [[], [], [], [['text', '/api/login_check']], [], [], []],
     'App\Controller\ActiviteController::getAllActivites' => [[], ['_controller' => 'App\\Controller\\ActiviteController::getAllActivites'], [], [['text', '/api/activites']], [], [], []],
     'App\Controller\ActiviteController::getActiviteDetail' => [['id'], ['_controller' => 'App\\Controller\\ActiviteController::getActiviteDetail'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/activites']], [], [], []],
@@ -97,4 +98,5 @@ return [
     'App\Controller\UserController::getUserDetails' => [['id'], ['_controller' => 'App\\Controller\\UserController::getUserDetails'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/users']], [], [], []],
     'App\Controller\UserController::deleteUser' => [['id'], ['_controller' => 'App\\Controller\\UserController::deleteUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/users']], [], [], []],
     'App\Controller\UserController::updateUser' => [['id'], ['_controller' => 'App\\Controller\\UserController::updateUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/users']], [], [], []],
+    'App\Controller\UserController::getUserByEmail' => [['email'], ['_controller' => 'App\\Controller\\UserController::getUserByEmail'], [], [['variable', '/', '[^/]++', 'email', true], ['text', '/api/users/email']], [], [], []],
 ];
