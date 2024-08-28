@@ -22,15 +22,7 @@
     }
   </div>
 
-  <div class="colonne marge centrecolonne">
 
-    <select name="typeR" id="typeR" formControlName="typeR">
-      <option value="" disabled selected>pour quelle niveau ?</option>
-      @for (item of typeRC; track $index) {
-      <option [value]="item">{{ item }}</option>
-      }
-    </select>
-  </div>
 
   <div class="colonne marge centrecolonne">
 
@@ -40,6 +32,15 @@
       <option [value]="matiere">{{ matiere }}</option>
       }
     </select>
+  </div>
+
+
+  <div class="colonne marge centrecolonne">
+
+    <input id="typeAct" name="typeAct" type="text" size="50" formControlName="typeAct">
+    @if (valid && form['nameR'].invalid) {
+    <span>Nom invalide</span>
+    }
   </div>
 
   <div class="colonne marge centrecolonne">

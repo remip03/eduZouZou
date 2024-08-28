@@ -43,6 +43,7 @@ export class ActivitesDetailComponent {
       descriptionR: ['', Validators.required],
       matiereR: ['', Validators.required],
       typeR: ['', Validators.required],
+      typeAct: ['', Validators.required],
       docC: [''],
       videoC: [''],
       imageFile: [''],

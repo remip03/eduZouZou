@@ -47,6 +47,7 @@ import { MessagerieComponent } from './pages/messagerie/messagerie.component';
 import { MessagesDetailComponent } from './pages/messagerie/messages-detail/messages-detail.component';
 import { CoursDetailComponent } from './pages/cours/cours-detail/cours-detail.component';
 import { ActivitesDetailComponent } from './pages/activites/activites-detail/activites-detail.component';
+import { ActivitesMenuComponent } from './pages/activites/activites-menu/activites-menu.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -92,6 +93,8 @@ export const routes: Routes = [
 
   // Chemin pour les activités
   { path: 'activites', component: ActivitesComponent },
+
+  { path: 'activitesMenu', component: ActivitesMenuComponent },
 
   { path: 'creerActivites', component: CreateActiviteComponent },
 
