@@ -38,12 +38,6 @@ tbody {
   width: 100%;
 }
 
-th,
-td,
-tr {
-  width: 100%;
-}
-
 @media only screen and (max-width: 390px) {
   #imgProfil {
     height: 3rem;
