@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use OpenApi\Attributes as OA;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -75,6 +76,7 @@ class RessourceController extends AbstractController
     // Définition d'une route pour supprimer une ressource spécifique par son ID. La méthode HTTP autorisée est DELETE.
     #[Route('/api/ressources/{id}', name: 'deleteRessource', methods: ['DELETE'])]
     #[OA\Tag(name: "Ressources")]
+    #[IsGranted('ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour supprimer une ressource.')]
     public function deleteRessource(Ressource $ressource, EntityManagerInterface $em, TagAwareCacheInterface $cachePool): JsonResponse{
         // Invalide le cache associé aux ressources
         $cachePool->invalidateTags(["ressourcesCache"]);
@@ -124,6 +126,7 @@ class RessourceController extends AbstractController
             )
         ]
     )]
+    #[IsGranted('ROLE_PROF, ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour créer une ressource.')]
     #[OA\Tag(name: "Ressources")]
     public function createRessource(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse{
 
@@ -208,6 +211,7 @@ class RessourceController extends AbstractController
             )
         ]
     )]
+    #[IsGranted('ROLE_PROF, ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour modifier une ressource.')]
     #[OA\Tag(name: "Ressources")]
     public function updateRessource(Request $request, SerializerInterface $serializer, Ressource $currentRessource, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse{
         

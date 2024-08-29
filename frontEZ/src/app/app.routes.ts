@@ -45,6 +45,7 @@ import { EcoleActualitesComponent } from './pages/ecoles/ecole-actualites/ecole-
 import { SupportEtAssistanceComponent } from './commons/footer/support-et-assistance/support-et-assistance.component';
 import { MessagerieComponent } from './pages/messagerie/messagerie.component';
 import { MessagesDetailComponent } from './pages/messagerie/messages-detail/messages-detail.component';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -55,19 +56,19 @@ export const routes: Routes = [
 
   { path: 'cgu', component: CguComponent },
 
-  { path: 'accueilCo', component: AccueilCoComponent },
+  { path: 'accueilCo', component: AccueilCoComponent, canActivate: [AuthGuard] },
 
   { path: 'conInsc', component: ConInscComponent },
 
-  { path: 'decoProfil', component: DecoProfilComponent },
+  { path: 'decoProfil', component: DecoProfilComponent, canActivate: [AuthGuard] },
 
-  { path: 'suivis', component: ProfilComponent },
+  { path: 'suivis', component: ProfilComponent, canActivate: [AuthGuard] },
 
-  { path: 'modifProfil', component: ModifierProfilComponent },
+  { path: 'modifProfil', component: ModifierProfilComponent, canActivate: [AuthGuard] },
 
-  { path: 'modifMdp', component: ModifierMdpComponent },
+  { path: 'modifMdp', component: ModifierMdpComponent, canActivate: [AuthGuard] },
 
-  { path: 'suppCompte', component: SuppCompteComponent },
+  { path: 'suppCompte', component: SuppCompteComponent, canActivate: [AuthGuard] },
 
   { path: 'ensavoirplus', component: EnSavoirPlusComponent },
 
@@ -78,13 +79,13 @@ export const routes: Routes = [
 
   { path: 'users/:id', component: UserComponent },
 
-  { path: 'users/:id/edit', component: UpdateUserComponent },
+  { path: 'users/:id/edit', component: UpdateUserComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN' } },
 
   // Chemin pour le register
   { path: 'register', component: RegisterComponent },
 
   // Chemin pour le profil
-  { path: 'profil', component: ProfilComponent },
+  { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
 
   { path: 'modifierProfil', component: ModifierProfilComponent },
 
@@ -109,7 +110,7 @@ export const routes: Routes = [
 
   { path: 'ecoles/:id/edit', component: UpdateEcoleComponent },
 
-  { path: 'newEcole', component: AddEcoleComponent },
+  { path: 'newEcole', component: AddEcoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN' } },
 
   { path: 'ecoleActualites/:id', component: EcoleActualitesComponent },
 
