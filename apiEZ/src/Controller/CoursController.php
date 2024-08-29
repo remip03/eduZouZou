@@ -167,7 +167,7 @@ class CoursController extends AbstractController
     // Définition d'une route pour mettre à jour un cours spécifique par son ID. La méthode HTTP autorisée est PUT.
     #[Route('/api/cours/{id}', name: 'updateCours', methods: ['PUT'])]
     #[OA\Put(
-        path: "/api/courss/{id}",
+        path: "/api/cours/{id}",
         summary: "Met à jour un cours existant",
         tags: ["Cours"],
         requestBody: new OA\RequestBody(
@@ -201,6 +201,7 @@ class CoursController extends AbstractController
                         new OA\Property(property: "docC", type: "string"),
                         new OA\Property(property: "videoC", type: "string"),
                         new OA\Property(property: "ressourceSupC", type: "string"),
+                        new OA\Property(property: "imageFile", type: "File"),
                     ]
                 )
             ),
