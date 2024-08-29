@@ -28,7 +28,7 @@ export class UpdateCoursComponent implements OnInit {
   typeRC!: string[];
   upload!: File;
   uploadName!: string;
-  public uploadedAt = new Date('yyyy-MM-dd HH:mm:ss');
+
 
   constructor(
     private formbuild: FormBuilder,
@@ -47,7 +47,6 @@ export class UpdateCoursComponent implements OnInit {
       docC: [''],
       videoC: [''],
       ressourceSupC: [''],
-      updatedAt: [''],
       imageFile: [''],
       dtype: ['cours'],
     });
@@ -63,7 +62,6 @@ export class UpdateCoursComponent implements OnInit {
       const formParams = new FormData();
       formParams.append('upload', this.coursUpdate.get('imageFile')?.value);
       formParams.append('uploadName', this.coursUpdate.get('ressourceSupC')?.value);
-      formParams.append('uploadedAt', this.coursUpdate.get('updatedAt')?.value);
 
       const updatedCours = { ...this.coursUpdate.value, id: this.coursID };
 
@@ -91,9 +89,7 @@ export class UpdateCoursComponent implements OnInit {
 
     this.coursUpdate.get('imageFile')?.setValue(this.upload);
     this.coursUpdate.get('ressourceSupC')?.setValue(this.uploadName);
-    this.coursUpdate.get('updatedAt')?.setValue(this.uploadedAt);
-    console.log(this.uploadedAt);
-    
+
     console.log(this.upload);
   }
 

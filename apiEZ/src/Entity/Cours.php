@@ -103,7 +103,7 @@ class Cours extends Ressource
         return $this;
     }
 
-    public function getUpadatedAt(): ?string
+    public function getupdatedAt(): ?string
     {
         return $this->updatedAt;
     }
