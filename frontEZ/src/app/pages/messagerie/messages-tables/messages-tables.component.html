@@ -2,30 +2,41 @@
 
 <app-return-btn></app-return-btn>
 
+
+
+
+
 <div class="centre color">
   <button class=" bordure m-5" routerLink="/messagesCreate">Nouveau message</button>
 </div>
 
-<table class="bordure textColor table mt-1">
-  <thead class="textColor">
-    <tr>
+<table class="bordure textColor table mt-1 hidden">
+  <!-- <thead class="textColor">
+      <tr>
 
-      <th scope="col">icone</th>
-      <th scope="col">expéditeur</th>
-      <th scope="col">destinataire</th>
-      <th scope="col">contenu du message</th>
-      <th scope="col">date et heure</th>
-    </tr>
-  </thead>
+        <th scope="col"></th>
+        <th scope="col">expéditeur</th>
+        <th scope="col">contenu du message</th>
+        <th scope="col">date et heure</th>
+      </tr>
+    </thead> -->
   <tbody class="textColor">
     @for (item of messages; track $index ;){
     <tr routerLink="/messageDetail/{{ item.id }}" class="textColor">
+      <div class="imgProfil centre">
+        <img id="imgProfil" src="img/touriste 1.png" alt="homme touriste">
+      </div>
 
-      <img id="imgProfil" src="img/touriste 1.png" alt="homme touriste">
       <td>{{ item.expediteur }}</td>
-      <td>{{ item.destinataire }}</td>
       <td>{{ truncate(item.content,10)}}</td>
       <td>{{ item.msgDate }}</td>
+
+
+      <!-- <td class="hidden2">{{ item.expediteur }} <br>
+        {{ truncate(item.content,10)}}</td>
+      <td class="hidden2">{{ item.msgDate }}</td> -->
+
+
 
       <button (click)="deleteMessage(item.id)" class="btn m-2">
         <img id="iconSupp" src="icon/poubelle.png" alt="poubelle supprimer">
@@ -33,4 +44,36 @@
     </tr>
     }
   </tbody>
+
+
+</table>
+
+<table class="bordure textColor table mt-1 hidden2">
+
+  <tbody class="textColor">
+    @for (item of messages; track $index ;){
+    <tr routerLink="/messageDetail/{{ item.id }}" class="textColor">
+      <div class="imgProfil centre">
+        <img id="imgProfil" src="img/touriste 1.png" alt="homme touriste">
+      </div>
+
+      <!-- <td>{{ item.expediteur }}</td>
+      <td>{{ truncate(item.content,10)}}</td>
+      <td>{{ item.msgDate }}</td> -->
+
+
+      <td>{{ item.expediteur }} <br>
+        {{ truncate(item.content,10)}}</td>
+      <td>{{ item.msgDate }}</td>
+
+
+
+      <button (click)="deleteMessage(item.id)" class="btn m-2">
+        <img id="iconSupp" src="icon/poubelle.png" alt="poubelle supprimer">
+      </button>
+    </tr>
+    }
+  </tbody>
+
+
 </table>

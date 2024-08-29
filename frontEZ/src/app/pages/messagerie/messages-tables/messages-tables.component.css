@@ -1,7 +1,7 @@
 #imgProfil {
-  height: 5rem;
-  width: auto;
+  height: 100px;
 }
+
 #btn1 {
   text-align: center;
 }
@@ -20,5 +20,42 @@ a {
 }
 
 tr {
+  height: 3em;
   cursor: pointer;
+}
+.hidden {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.hidden2 {
+  display: none;
+}
+table {
+  width: 100%;
+}
+tbody {
+  width: 100%;
+}
+
+th,
+td,
+tr {
+  width: 100%;
+}
+
+@media only screen and (max-width: 390px) {
+  #imgProfil {
+    height: 3rem;
+    width: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hidden {
+    display: none;
+  }
+  .hidden2 {
+    display: block;
+  }
 }

@@ -1,16 +1,17 @@
 <app-return-btn></app-return-btn>
 
 <div class="card text-center textColor  mt-5">
-  <div class="centre p-10">
-    <h5 class="card-title bordure">message</h5>
+  <div class="centre  p-10">
+    <h5 class="card-title bordure ">message</h5>
   </div>
-  <div class="card-body">
-    <h5 class="card-title  bordure ">destinataire : {{ msgDetail.destinataire }}</h5>
-    <label for="text">message</label>
-    <textarea name="text" id="text" class="card-text bordure">{{ msgDetail.content }}</textarea>
-    <h5 class="card-title bordure">expéditeur : {{ msgDetail.expediteur }}</h5>
-    <h5 class="card-title bordure">date : {{ msgDetail.msgDate }}</h5>
+  <div class="card-body ">
+    <div class="bodyText colonne centrecolonne">
+      <h5 class="card-title centre  ">destinataire : {{ msgDetail.destinataire }}</h5>
 
+      <textarea name="text" id="text" class="card-text bordure">{{ msgDetail.content }}</textarea>
+      <h5 class="card-title bordure">expéditeur : {{ msgDetail.expediteur }}</h5>
+      <h5 class="card-title bordure">date : {{ msgDetail.msgDate }}</h5>
+    </div>
     <button routerLink="/messagesCreate" class="button m-5">répondre</button>
     <button (click)="deleteMessage(msgDetail.id)" class=" button  m-5">
       supprimer
