@@ -17,6 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Cache\TagAwareCacheInterface;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
@@ -212,5 +213,35 @@ class UserController extends AbstractController
 
         // Retourne les détails de l'utilisateur en JSON
         return new JsonResponse($jsonUser, Response::HTTP_OK, [], true);
+    }
+
+
+    /**
+     * Cette méthode permet à un utilisateur de modifier son mot de passe
+     */
+    #[Route('/api/users/{id}/changePassword', name: 'changePassword', methods: ['GET', 'POST'])]
+    #[OA\Tag(name: "Users")]
+    public function changePassword(User $user, Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): JsonResponse
+    {
+        // Récupération du mot de passe actuel de l'utilisateur
+        $currentPassword = $request->get('currentPassword');
+
+        // Vérification si le mot de passe actuel est correct
+        if (!$hasher->isPasswordValid($user, $currentPassword)) {
+            return new JsonResponse(['message' => 'Mot de passe incorrect'], Response::HTTP_BAD_REQUEST);
+        }
+
+        // Récupération du nouveau mot de passes
+        $newPassword = $request->get('newPassword');
+
+        // Mise à jour du mot de passe de l'utilisateur
+        $user->setPassword($hasher->hashPassword($user, $newPassword));
+
+        // Persister les modifications dans la base de données
+        $em->persist($user);
+        $em->flush();
+
+        // Retourne une réponse de succès
+        return new JsonResponse(['message' => 'Mot de passe mis à jour avec succès'], Response::HTTP_OK);
     }
 }

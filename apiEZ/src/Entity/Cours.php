@@ -33,6 +33,7 @@ class Cours extends Ressource
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+
     // #[ORM\Column(nullable: true)]
     // private ?\DateTimeImmutable $createdAt = null;
 
@@ -102,7 +103,7 @@ class Cours extends Ressource
         return $this;
     }
 
-    public function getUpadatedAt(): ?string
+    public function getupdatedAt(): ?string
     {
         return $this->updatedAt;
     }

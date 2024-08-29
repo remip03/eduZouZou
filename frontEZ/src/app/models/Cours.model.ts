@@ -1,3 +1,5 @@
+import { DatePipe } from "@angular/common";
+
 export default interface Cours{
     id: number
     typeR: string;
@@ -7,5 +9,7 @@ export default interface Cours{
     docC: string;
     videoC: string;
     imageFile: File;
+    ressourceSupC: string;
+    // updatedAt: Date;
     dtype: string;
 }
