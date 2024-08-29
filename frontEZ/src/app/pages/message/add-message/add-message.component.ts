@@ -53,8 +53,8 @@ export class AddMessageComponent {
     console.log(this.formattedDate);
 
     // crée le message
-    this.messageService.addMessage(this.createMsg.value).subscribe();
     this.createMsg.patchValue({ msgDate: this.formattedDate });
+    this.messageService.addMessage(this.createMsg.value).subscribe();
     console.log(this.createMsg.value.msgDate); // to test the value in console
     // Actualise la liste des messages
     this.messageService
@@ -67,12 +67,12 @@ export class AddMessageComponent {
     // Affiche une notification si le message est créé avec succès
     alert('Message créé avec succès!');
   }
-  dateAuto() {
-    this.date = new Date();
-    this.formattedDate = this.date.toLocaleDateString();
-    this.createMsg.patchValue({ msgDate: this.formattedDate });
-    //console.log(this.createMsg.value.msgDate); // to test the value in console
-  }
+  // dateAuto() {
+  //   this.date = new Date();
+  //   this.formattedDate = this.date.toLocaleDateString();
+  //   this.createMsg.patchValue({ msgDate: this.formattedDate });
+  //   //console.log(this.createMsg.value.msgDate); // to test the value in console
+  // }
   //
   get form() {
     return this.createMsg.controls;

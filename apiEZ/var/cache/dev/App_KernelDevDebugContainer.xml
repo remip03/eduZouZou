@@ -295,13 +295,13 @@
           <parameter key="service">Vich\UploaderBundle\Naming\SmartUniqueNamer.cours_images</parameter>
           <parameter key="options" type="collection"/>
         </parameter>
+        <parameter key="inject_on_load">true</parameter>
+        <parameter key="delete_on_remove">true</parameter>
         <parameter key="directory_namer" type="collection">
           <parameter key="service">null</parameter>
           <parameter key="options">null</parameter>
         </parameter>
-        <parameter key="delete_on_remove">true</parameter>
         <parameter key="delete_on_update">true</parameter>
-        <parameter key="inject_on_load">false</parameter>
         <parameter key="db_driver">orm</parameter>
       </parameter>
     </parameter>
@@ -3096,7 +3096,7 @@
       </call>
     </service>
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager">
-      <argument type="service" id=".service_locator.iuDVyJd"/>
+      <argument type="service" id=".service_locator.BC.WZSP"/>
       <argument type="collection">
         <argument type="collection">
           <argument type="collection">
@@ -3133,6 +3133,12 @@
             <argument>loadClassMetadata</argument>
           </argument>
           <argument>doctrine.orm.default_listeners.attach_entity_listeners</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>postLoad</argument>
+          </argument>
+          <argument>vich_uploader.listener.inject.cours_images</argument>
         </argument>
         <argument type="collection">
           <argument type="collection">
@@ -6765,6 +6771,13 @@
       <argument type="service" id="Vich\UploaderBundle\Templating\Helper\UploaderHelper"/>
     </service>
     <service id="vich_uploader.metadata.reader" class="Vich\UploaderBundle\Metadata\Driver\AttributeReader"/>
+    <service id="vich_uploader.listener.inject.cours_images" class="Vich\UploaderBundle\EventListener\Doctrine\InjectListener">
+      <tag name="doctrine.event_listener" event="postLoad" priority="0"/>
+      <argument>cours_images</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
     <service id="vich_uploader.listener.clean.cours_images" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
       <tag name="doctrine.event_listener" event="preUpdate" priority="50"/>
       <argument>cours_images</argument>
@@ -7818,7 +7831,7 @@
         <argument key="Vich\UploaderBundle\Form\Type\VichImageType" type="service_closure" id="vich_uploader.form.type.image"/>
       </argument>
     </service>
-    <service id=".service_locator.iuDVyJd" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.BC.WZSP" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service_closure" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
@@ -7827,6 +7840,7 @@
         <argument key="doctrine.orm.listeners.lock_store_schema_listener" type="service_closure" id="doctrine.orm.listeners.lock_store_schema_listener"/>
         <argument key="doctrine.orm.listeners.pdo_session_handler_schema_listener" type="service_closure" id="doctrine.orm.listeners.pdo_session_handler_schema_listener"/>
         <argument key="vich_uploader.listener.clean.cours_images" type="service_closure" id="vich_uploader.listener.clean.cours_images"/>
+        <argument key="vich_uploader.listener.inject.cours_images" type="service_closure" id="vich_uploader.listener.inject.cours_images"/>
         <argument key="vich_uploader.listener.remove.cours_images" type="service_closure" id="vich_uploader.listener.remove.cours_images"/>
         <argument key="vich_uploader.listener.upload.cours_images" type="service_closure" id="vich_uploader.listener.upload.cours_images"/>
       </argument>
@@ -9480,7 +9494,7 @@
     <service id=".service_locator.KLXmMWT" alias=".service_locator.R_rRy9o"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.q_2.uuB" alias=".service_locator.QPBj.MP"/>
-    <service id=".service_locator.vlAZH6c" alias=".service_locator.iuDVyJd"/>
+    <service id=".service_locator.jqWkZz2" alias=".service_locator.BC.WZSP"/>
     <service id=".service_locator.jUv.zyj" alias=".service_locator.O2p6Lk7"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>
     <service id="controller_resolver" alias="debug.controller_resolver"/>
