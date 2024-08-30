@@ -12,13 +12,13 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
   private tokenKey = 'token'; // Clé pour stocker le token dans le localStorage
 
-  // private apiUrl = 'https://localhost:8000/api';
+  // URL de l'API (à adapter selon l'environnement)
   private apiUrl = 'http://localhost:8000/api';
 
   private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn()); // BehaviorSubject pour suivre l'état de connexion
 
   // Injection des services HttpClient et Router dans le constructeur
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   // Méthode pour vérifier si l'utilisateur est connecté
   isLoggedIn(): boolean {
@@ -73,15 +73,15 @@ export class AuthService {
     return null; // Retourne null si aucun token n'est trouvé
   }
 
-  //méthode pour enregistrer le token dans local storage
+  // Méthode pour enregistrer le token dans le localStorage
   saveToken(token: string): void {
-    localStorage.setItem('storageToken', token);
-    this.router.navigate(['accueil']);
+    localStorage.setItem('storageToken', token); // Stocke le token dans le localStorage
+    this.router.navigate(['accueil']); // Redirige vers la page d'accueil
   }
-  // Méthode pour recupérer le token dans le local storage
-  getToken(): any {
-    const token = localStorage.getItem('storageToken');
 
+  // Méthode pour récupérer le token dans le localStorage
+  getToken(): any {
+    const token = localStorage.getItem('storageToken'); // Récupère le token depuis le localStorage
     return token;
   }
 
@@ -89,10 +89,19 @@ export class AuthService {
   decodeToken(): any {
     const Token = this.getToken();
     if (Token) {
-      const decodedToken = jwtDecode(Token);
-      return decodedToken;
+      const decodedToken = jwtDecode(Token); // Décode le token
+      return decodedToken; // Retourne le token décodé
     }
+    return null; // Retourne null si aucun token n'est trouvé
+  }
 
-    return null;
+  // Méthode pour changer le mot de passe
+  changePassword(email: string, currentPassword: string, newPassword: string, confirmPassword: string): Observable<any> {
+    const payload = { currentPassword, newPassword, confirmPassword }; // Prépare le payload
+    return this.httpClient.put(`${this.apiUrl}/users/changepassword/${email}`, payload, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
   }
 }

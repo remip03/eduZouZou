@@ -221,27 +221,55 @@ class UserController extends AbstractController
      */
     #[Route('/api/users/changepassword/{email}', name: 'changePassword', methods: ['PUT'])]
     #[OA\Tag(name: "Users")]
-    public function changePassword(User $user, Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): JsonResponse
+    public function changePassword(ValidatorInterface $validator, Request $request, UserRepository $userRepository, UserPasswordHasherInterface $hasher, EntityManagerInterface $em, SerializerInterface $serializer): JsonResponse
     {
-        // Récupération du mot de passe actuel de l'utilisateur
-        $currentPassword = $request->get('currentPassword');
+        // Récupérer le contenu JSON de la requête
+        $data = json_decode($request->getContent(), true);
 
-        // Vérification si le mot de passe actuel est correct
-        if (!$hasher->isPasswordValid($user, $currentPassword)) {
-            return new JsonResponse(['message' => 'Mot de passe incorrect'], Response::HTTP_BAD_REQUEST);
+        // Récupérer l'email de l'utilisateur
+        $email = $request->attributes->get('email');
+
+        // Vérifier que les champs nécessaires sont présents
+        if (!isset($data['currentPassword'], $data['newPassword'], $data['confirmPassword'])) {
+            return new JsonResponse(['message' => 'Tous les champs sont requis'], JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        // Récupération du nouveau mot de passes
-        $newPassword = $request->get('newPassword');
+        $currentPassword = $data['currentPassword'];
+        $newPassword = $data['newPassword'];
+        $confirmPassword = $data['confirmPassword'];
 
-        // Mise à jour du mot de passe de l'utilisateur
+        // Récupérer l'utilisateur par son email
+        $user = $userRepository->findOneBy(['email' => $email]);
+
+        // Vérifier si l'utilisateur existe
+        if (!$user) {
+            return new JsonResponse(['message' => 'Utilisateur non trouvé'], JsonResponse::HTTP_NOT_FOUND);
+        }
+
+        // Vérifier si le mot de passe actuel est correct
+        if (!$hasher->isPasswordValid($user, $currentPassword)) {
+            return new JsonResponse(['message' => 'Mot de passe actuel incorrect'], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        // Vérifier que le nouveau mot de passe et sa confirmation correspondent
+        if ($newPassword !== $confirmPassword) {
+            return new JsonResponse(['message' => 'Le nouveau mot de passe et la confirmation ne correspondent pas'], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        // Mettre à jour le mot de passe de l'utilisateur
         $user->setPassword($hasher->hashPassword($user, $newPassword));
+
+        // Valider les nouvelles données de l'utilisateur
+        $errors = $validator->validate($user);
+        if (count($errors) > 0) {
+            return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
+        }
 
         // Persister les modifications dans la base de données
         $em->persist($user);
         $em->flush();
 
-        // Retourne une réponse de succès
-        return new JsonResponse(['message' => 'Mot de passe mis à jour avec succès'], Response::HTTP_OK);
+        // Retourner une réponse de succès
+        return new JsonResponse(['message' => 'Mot de passe mis à jour avec succès'], JsonResponse::HTTP_OK);
     }
 }
