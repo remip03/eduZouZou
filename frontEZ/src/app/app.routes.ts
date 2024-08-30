@@ -48,6 +48,7 @@ import { MessagesDetailComponent } from './pages/messagerie/messages-detail/mess
 import { CoursDetailComponent } from './pages/cours/cours-detail/cours-detail.component';
 import { ActivitesDetailComponent } from './pages/activites/activites-detail/activites-detail.component';
 import { ActivitesMenuComponent } from './pages/activites/activites-menu/activites-menu.component';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
@@ -70,13 +71,13 @@ export const routes: Routes = [
 
   { path: 'users/:id', component: UserComponent },
 
-  { path: 'users/:id/edit', component: UpdateUserComponent },
+  { path: 'users/:id/edit', component: UpdateUserComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN' } },
 
   // Chemin pour le register
   { path: 'register', component: RegisterComponent },
 
   // Chemin pour le profil
-  { path: 'profil', component: ProfilComponent },
+  { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
 
   { path: 'modifierProfil', component: ModifierProfilComponent },
 
@@ -107,7 +108,7 @@ export const routes: Routes = [
 
   { path: 'ecoles/:id/edit', component: UpdateEcoleComponent },
 
-  { path: 'newEcole', component: AddEcoleComponent },
+  { path: 'newEcole', component: AddEcoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN' } },
 
   { path: 'ecoleActualites/:id', component: EcoleActualitesComponent },
 

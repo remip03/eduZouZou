@@ -85,7 +85,7 @@ return [
                             .'|(*:303)'
                         .')'
                         .'|email/([^/]++)(*:326)'
-                        .'|([^/]++)/changePassword(*:357)'
+                        .'|changepassword/([^/]++)(*:357)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -139,7 +139,7 @@ return [
         ],
         326 => [[['_route' => 'getUserByEmail', '_controller' => 'App\\Controller\\UserController::getUserByEmail'], ['email'], ['GET' => 0], null, false, true, null]],
         357 => [
-            [['_route' => 'changePassword', '_controller' => 'App\\Controller\\UserController::changePassword'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null],
+            [['_route' => 'changePassword', '_controller' => 'App\\Controller\\UserController::changePassword'], ['email'], ['PUT' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

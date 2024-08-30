@@ -219,7 +219,7 @@ class UserController extends AbstractController
     /**
      * Cette méthode permet à un utilisateur de modifier son mot de passe
      */
-    #[Route('/api/users/{id}/changePassword', name: 'changePassword', methods: ['GET', 'POST'])]
+    #[Route('/api/users/changepassword/{email}', name: 'changePassword', methods: ['PUT'])]
     #[OA\Tag(name: "Users")]
     public function changePassword(User $user, Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): JsonResponse
     {
