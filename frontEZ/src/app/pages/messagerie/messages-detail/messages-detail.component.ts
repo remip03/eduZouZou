@@ -10,6 +10,7 @@ import Message from '../../../models/message.models';
 import { MessageService } from '../../../services/message.service';
 import { AuthService } from '../../../services/auth.service';
 import { ReturnBtnComponent } from '../../../commons/return-btn/return-btn.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-messages-detail',
@@ -24,9 +25,17 @@ export class MessagesDetailComponent {
   role: string | null = null; // Propriété pour stocker le rôle de l'utilisateur
   msgId?: number;
 
+  // datetime pour message
+  public date = new Date();
+  public formattedDate = this.datePipe.transform(
+    this.date,
+    "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+  );
+
   msg: any;
 
   constructor(
+    private datePipe: DatePipe,
     private messageService: MessageService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -37,7 +46,7 @@ export class MessagesDetailComponent {
       content: ['', Validators.required],
       expediteur: ['', Validators.required],
       destinataire: ['', Validators.required],
-      // msgDate:  [''],
+      msgDate: ['', [Validators.required]],
     });
   }
 
@@ -81,6 +90,7 @@ export class MessagesDetailComponent {
   editMessage(): void {
     this.msgId = Number(this.route.snapshot.paramMap.get('id'));
     if (this.msg.valid) {
+      this.msg.patchValue({ msgDate: this.formattedDate });
       this.messageService
         .updateMessage(this.msgId, this.msg.value)
         .subscribe(() => this.router.navigate(['/messages']));
@@ -92,6 +102,24 @@ export class MessagesDetailComponent {
     // Affiche une notification si le message est créé avec succès
     alert('Message modifié avec succès!');
   }
+
+  sendMessage(): void {
+    // crée le message
+    this.msg.patchValue({ msgDate: this.formattedDate });
+    this.msg.patchValue({ expediteur: this.msgDetail.destinataire });
+    this.msg.patchValue({ destinataire: this.msgDetail.expediteur });
+    this.messageService.addMessage(this.msg.value).subscribe();
+    console.log(this.msg.value.msgDate); // to test the value in console
+
+    // Réinitialise le formulaire
+    this.msg.reset();
+    // Récupère le rôle de l'utilisateur
+    this.role = this.authService.getRole();
+    // Affiche une notification si le message est créé avec succès
+    alert('Message envoyé avec succès!');
+  }
+
+  //
 
   get form() {
     return this.msg.controls;

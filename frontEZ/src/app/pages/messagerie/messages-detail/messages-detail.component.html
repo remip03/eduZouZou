@@ -16,14 +16,16 @@
       <h5 class="card-title ">date : {{ msgDetail.msgDate }}</h5>
     </div>
 
-    <div class="reponse ">
-      <img src="icon/ajouter.png" alt="ajouter">
-      <img src="icon/image 1.png" alt="ajouter">
-      <input type="text" placeholder="répondre">
+    <form [formGroup]="msg" (ngSubmit)="sendMessage()">
+      <div class="reponse ">
+        <img src="icon/ajouter.png" alt="ajouter">
+        <img src="icon/image 1.png" alt="ajouter">
+        <input type="text" placeholder="répondre" onsubmit="sendMessage()" formControlName="content">
 
-    </div>
+      </div>
 
-    <button routerLink="/messagesCreate" class="button m-5">envoyer</button>
-    <!-- <button routerLink="/messagesUpdate/{{ msgDetail.id }}" class=" button m-5">modifier</button> -->
+      <button type="submit" class="button m-5">envoyer</button>
+      <!-- <button routerLink="/messagesUpdate/{{ msgDetail.id }}" class=" button m-5">modifier</button> -->
+    </form>
   </div>
 </div>
