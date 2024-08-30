@@ -54,25 +54,15 @@ export const routes: Routes = [
 
   { path: 'Accueil', component: AccueilComponent },
 
-  { path: 'rgpd', component: RgpdComponent },
-
-  { path: 'cgu', component: CguComponent },
-
-  { path: 'accueilCo', component: AccueilCoComponent },
+  { path: 'ensavoirplus', component: EnSavoirPlusComponent },
 
   { path: 'conInsc', component: ConInscComponent },
 
-  { path: 'decoProfil', component: DecoProfilComponent },
+  // Chemin page Informations
 
-  { path: 'suivis', component: ProfilComponent },
+  { path: 'rgpd', component: RgpdComponent },
 
-  { path: 'modifProfil', component: ModifierProfilComponent },
-
-  { path: 'modifMdp', component: ModifierMdpComponent },
-
-  { path: 'suppCompte', component: SuppCompteComponent },
-
-  { path: 'ensavoirplus', component: EnSavoirPlusComponent },
+  { path: 'cgu', component: CguComponent },
 
   { path: 'supportassistance', component: SupportEtAssistanceComponent },
 
@@ -148,6 +138,8 @@ export const routes: Routes = [
   // Chemin pour le login
   { path: 'login', component: LoginComponent },
 
+  { path: 'accueilCo', component: AccueilCoComponent },
+
   // Chemin pour la messagerie
   { path: 'messagerie', component: MessagerieComponent },
 
@@ -160,4 +152,15 @@ export const routes: Routes = [
   { path: 'messagesUpdate/:id', component: UpdateMsgComponent },
 
   { path: '**', component: NotFoundComponent },
+
+  // Chemin pour le profil
+  { path: 'decoProfil', component: DecoProfilComponent },
+
+  { path: 'suivis', component: ProfilComponent },
+
+  { path: 'modifProfil', component: ModifierProfilComponent },
+
+  { path: 'modifMdp', component: ModifierMdpComponent },
+
+  { path: 'suppCompte', component: SuppCompteComponent },
 ];
