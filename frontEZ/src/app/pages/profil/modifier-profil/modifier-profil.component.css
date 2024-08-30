@@ -1,25 +1,14 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .bulle {
-  width: 90%;
+  width: 92%;
   height: auto;
   margin: 4%;
   background-color: white;
   color: #294f7f;
   border-radius: 2rem;
-  margin-bottom: 1rem;
 }
 
-h3 {
-  margin: 1.5rem 0;
-}
 button {
   margin: 5%;
-  background-color: #294F7F;
-  width: 90%;
 }
 
 .bgcouleur {
@@ -31,24 +20,25 @@ button {
 }
 
 input {
-  width: 90%;
-  height: 3rem;
-  margin: 1rem;
-}
-
-input::placeholder {
-  color: #294f7f;
-  padding-left: 1.5rem;
+  width: 157%;
+  height: auto;
+  margin: 5%;
 }
 
 @media screen and (min-width: 768px) {
   .bulle {
-    width: 85%;
+    width: 70%;
     height: auto;
     margin: 4%;
     background-color: white;
     color: #294f7f;
     border-radius: 2rem;
+  }
+
+  input {
+    width: 220%;
+    height: auto;
+    margin: 5%;
   }
 }
 
@@ -64,6 +54,12 @@ input::placeholder {
     background-color: white;
     color: #294f7f;
     border-radius: 2rem;
+  }
+
+  input {
+    width: 320%;
+    height: auto;
+    margin: 5%;
   }
 
   app-slider-profil {

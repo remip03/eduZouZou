@@ -22,7 +22,7 @@ h2 {
   background-color: #ffffff;
   color: #ff5e5e;
   width: 60%;
-  height: 2rem;
+  height: 2.5rem;
   margin: 1.5rem 0;
   font-weight: 500;
 }
@@ -32,8 +32,7 @@ h2 {
   color: #ffffff;
   border: none;
   width: 60%;
-  height: 2rem;
-  font-size: 15px;
+  height: 2.5rem;
 }
 
 @media only screen and (min-width: 600px) {
@@ -47,10 +46,11 @@ h2 {
   }
 
   .deco {
-    width: 40%;
-    background-color: #514BDB;
+    width: 30%;
+    background-color: #514bdb;
     border: none;
-    color: #FFFFFF;
+    color: #ffffff;
+    margin: 3rem;
   }
 
   .delete {
@@ -67,7 +67,7 @@ h2 {
   }
 
   .deco {
-    width: 30%;
+    width: 20%;
     margin-top: 4rem;
   }
 
@@ -75,4 +75,3 @@ h2 {
     width: 20%;
   }
 }
-
