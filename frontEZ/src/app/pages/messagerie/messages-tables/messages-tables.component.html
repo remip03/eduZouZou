@@ -1,29 +1,26 @@
-<h2 class="centre">liste des messages</h2>
-
 <app-return-btn></app-return-btn>
 
 
+<h2 class="centre mb-5">MESSAGERIE</h2>
 
 
 
-<div class="centre color">
-  <button class=" bordure m-5" routerLink="/messagesCreate">Nouveau message</button>
-</div>
 
-<table class="textColor table mt-1 hidden">
-  <!-- <thead class="textColor">
-      <tr>
+<table class="textColor  mt-1 hidden">
+  <!-- <thead class="textColor ">
+    <tr>
 
-        <th scope="col"></th>
-        <th scope="col">expéditeur</th>
-        <th scope="col">contenu du message</th>
-        <th scope="col">date et heure</th>
-      </tr>
-    </thead> -->
-  <tbody class="  textColor">
-    @for (item of messages; track $index ;){
-    <tr routerLink="/messageDetail/{{ item.id }}" class="textColor">
-      <div class="imgProfil centre">
+      <th scope="col"></th>
+      <th scope="col">expéditeur</th>
+      <th scope="col">contenu du message</th>
+      <th scope="col">date et heure</th>
+    </tr>
+  </thead> -->
+
+  @for (item of messages; track $index ;){
+  <tr routerLink="/messageDetail/{{ item.id }}" class=" bordure">
+    <div class="msg ligne between centrecolonne">
+      <div class="imgProfil centrecolonne ">
         <img id="imgProfil" src="img/touriste 1.png" alt="homme touriste">
       </div>
 
@@ -33,27 +30,30 @@
 
 
       <!-- <td class="hidden2">{{ item.expediteur }} <br>
-        {{ truncate(item.content,10)}}</td>
-      <td class="hidden2">{{ item.msgDate }}</td> -->
+          {{ truncate(item.content,10)}}</td>
+          <td class="hidden2">{{ item.msgDate }}</td> -->
 
 
 
       <button (click)="deleteMessage(item.id)" class="btn m-2">
         <img id="iconSupp" src="icon/poubelle.png" alt="poubelle supprimer">
       </button>
-    </tr>
-    }
-  </tbody>
-
+    </div>
+  </tr>
+  }
 
 </table>
 
-<table class="bordure textColor table mt-1 hidden2">
 
-  <tbody class="textColor">
-    @for (item of messages; track $index ;){
-    <tr routerLink="/messageDetail/{{ item.id }}" class="textColor">
-      <div class="imgProfil centre">
+
+
+<table class="textColor table mt-1 hidden2">
+
+
+  @for (item of messages; track $index ;){
+  <tr routerLink="/messageDetail/{{ item.id }}" class="bordure textColor">
+    <div class="msg ligne between centrecolonne ">
+      <div class="imgProfil ">
         <img id="imgProfil" src="img/touriste 1.png" alt="homme touriste">
       </div>
 
@@ -68,12 +68,15 @@
 
 
 
-      <button (click)="deleteMessage(item.id)" class="btn m-2">
+      <button (click)="deleteMessage(item.id)" class="btn m-2 ">
         <img id="iconSupp" src="icon/poubelle.png" alt="poubelle supprimer">
       </button>
-    </tr>
-    }
-  </tbody>
-
+    </div>
+  </tr>
+  }
 
 </table>
+
+<div class=" addIcon centre color">
+  <img id="addIcon" src="icon/ajouter.png" alt="ajouter icon" routerLink="/messagesCreate">
+</div>
