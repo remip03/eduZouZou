@@ -10,7 +10,7 @@
   <button class=" bordure m-5" routerLink="/messagesCreate">Nouveau message</button>
 </div>
 
-<table class="bordure textColor table mt-1 hidden">
+<table class="textColor table mt-1 hidden">
   <!-- <thead class="textColor">
       <tr>
 
@@ -20,7 +20,7 @@
         <th scope="col">date et heure</th>
       </tr>
     </thead> -->
-  <tbody class="textColor">
+  <tbody class="  textColor">
     @for (item of messages; track $index ;){
     <tr routerLink="/messageDetail/{{ item.id }}" class="textColor">
       <div class="imgProfil centre">

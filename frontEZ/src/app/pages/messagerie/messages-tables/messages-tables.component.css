@@ -50,6 +50,6 @@ tbody {
     display: none;
   }
   .hidden2 {
-    display: block;
+    display: flex;
   }
 }
