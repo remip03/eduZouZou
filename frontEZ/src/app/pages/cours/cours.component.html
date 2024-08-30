@@ -65,8 +65,10 @@
     <span>classe : {{ item.typeR }}</span>
     <span>matière : {{ item.matiereR }}</span>
     <span>description : {{ item.descriptionR }}</span>
-    <button routerLink="/cours/{{ item.id }}">Modifier</button>
-    <button routerLink="/coursDetail/{{ item.id }}">accéder au cours</button>
+    <div class="colonneResp" style="width: 100%;">
+      <button class="boutonMenu" routerLink="/cours/{{ item.id }}">Modifier</button>
+      <button class="boutonMenu" routerLink="/coursDetail/{{ item.id }}">accéder au cours</button>
+    </div>
 
   </div>
   }
