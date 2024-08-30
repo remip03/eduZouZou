@@ -81,4 +81,9 @@ tr {
     justify-content: center;
     align-items: center;
   }
+
+  .table > :not(caption) > * > * {
+    background-color: transparent !important;
+    border-bottom-width: 0 !important;
+  }
 }
