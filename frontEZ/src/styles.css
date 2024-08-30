@@ -68,6 +68,11 @@ p {
   justify-content: space-around;
 }
 
+.between {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* commons */
 h2 {
   color: rgba(41, 79, 127, 0.9);
@@ -156,13 +161,32 @@ footer {
   color: white;
 }
 
-.BGgeneral {
-  background-color: #eaeff5;
+.BGgeneral{
+  background: no-repeat url(../public/img/fond-page-5.jpg);
+  background-size: cover;
+  background-position-x: 30%;
   height: 100%;
   width: auto;
 }
 
+@media screen and (min-width: 1440px) {
+
+  .BGgeneral{
+    background: no-repeat url(../public/img/fond-page-5.jpg);
+    background-size: cover;
+    background-position-x: 30%;
+    height: 100%;
+    width: auto;
+  }
+
+}
+
+
 /* BOUTON RETOUR */
 app-return-btn {
   width: 100%;
+}
+
+.boutonMenu{
+  width: 40%;
 }
