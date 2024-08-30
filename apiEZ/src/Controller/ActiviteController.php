@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use OpenApi\Attributes as OA;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -74,6 +75,7 @@ class ActiviteController extends AbstractController
      */
     // Définition d'une route pour supprimer une activite spécifique par son ID. La méthode HTTP autorisée est DELETE.
     #[Route('/api/activites/{id}', name: 'deleteActivite', methods: ['DELETE'])]
+    #[IsGranted('ROLE_PROF, ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour supprimer une activité.')]
     #[OA\Tag(name: "Activites")]
     public function deleteActivite(Activite $activite, EntityManagerInterface $em, TagAwareCacheInterface $cachePool): JsonResponse{
         // Invalide le cache associé aux activites
@@ -125,6 +127,7 @@ class ActiviteController extends AbstractController
             )
         ]
     )]
+    #[IsGranted('ROLE_PROF, ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour créer une activité.')]
     #[OA\Tag(name: "Activites")]
     public function createActivite(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse{
 
@@ -210,6 +213,7 @@ class ActiviteController extends AbstractController
             )
         ]
     )]
+    #[IsGranted('ROLE_PROF, ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour modifier une activité.')]
     #[OA\Tag(name: "Activites")]
     public function updateActivite(Request $request, SerializerInterface $serializer, Activite $currentActivite, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse{
         

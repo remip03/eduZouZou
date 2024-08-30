@@ -68,6 +68,11 @@ p {
   justify-content: space-around;
 }
 
+.between {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* commons */
 h2 {
   color: rgba(41, 79, 127, 0.9);

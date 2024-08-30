@@ -19,6 +19,7 @@ use JMS\Serializer\SerializerInterface;
 use JMS\Serializer\SerializationContext;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ClasseController extends AbstractController
 {
@@ -76,6 +77,7 @@ class ClasseController extends AbstractController
      */
     // Définition d'une route pour supprimer une classe spécifique par son ID. La méthode HTTP autorisée est DELETE.
     #[Route('/api/classes/{id}', name: 'deleteClasse', methods: ['DELETE'])]
+    #[IsGranted('ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour supprimer une classe.')]
     #[OA\Tag(name: "Classes")]
     public function deleteClasse(Classe $classe, EntityManagerInterface $em, TagAwareCacheInterface $cachePool): JsonResponse
     {
@@ -127,6 +129,7 @@ class ClasseController extends AbstractController
             )
         ]
     )]
+    #[IsGranted('ROLE_PROF, ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour créer une classe.')]
     #[OA\Tag(name: "Classes")]
     public function createClasse(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator, TagAwareCacheInterface $cachePool, EcoleRepository $ecoleRepository): JsonResponse
     {
@@ -229,6 +232,7 @@ class ClasseController extends AbstractController
             )
         ]
     )]
+    #[IsGranted('ROLE_PROF, ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour modifier une classe.')]
     #[OA\Tag(name: "Classes")]
     public function updateClasse(Request $request, SerializerInterface $serializer, Classe $currentClasse, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cachePool, EcoleRepository $ecoleRepository): JsonResponse
     {

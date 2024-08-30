@@ -67,9 +67,9 @@ export const routes: Routes = [
   { path: 'supportassistance', component: SupportEtAssistanceComponent },
 
   // Chemin pour les utilisateurs
-  { path: 'users', component: UsersComponent },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
 
-  { path: 'users/:id', component: UserComponent },
+  { path: 'users/:id', component: UserComponent, canActivate: [AuthGuard] },
 
   { path: 'users/:id/edit', component: UpdateUserComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN' } },
 
@@ -79,34 +79,34 @@ export const routes: Routes = [
   // Chemin pour le profil
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
 
-  { path: 'modifierProfil', component: ModifierProfilComponent },
+  { path: 'modifierProfil', component: ModifierProfilComponent, canActivate: [AuthGuard] },
 
   // Chemin pour les activités
-  { path: 'activites', component: ActivitesComponent },
+  { path: 'activites', component: ActivitesComponent, canActivate: [AuthGuard] },
 
-  { path: 'activitesMenu', component: ActivitesMenuComponent },
+  { path: 'activitesMenu', component: ActivitesMenuComponent, canActivate: [AuthGuard] },
 
-  { path: 'creerActivites', component: CreateActiviteComponent },
+  { path: 'creerActivites', component: CreateActiviteComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN, ROLE_PROF' } },
 
-  { path: 'activites/:id', component: UpdateActiviteComponent },
+  { path: 'activites/:id', component: UpdateActiviteComponent, canActivate: [AuthGuard] },
 
-  { path: 'activitesDetail/:id', component: ActivitesDetailComponent },
+  { path: 'activitesDetail/:id', component: ActivitesDetailComponent, canActivate: [AuthGuard] },
 
   // Chemin pour les cours
-  { path: 'cours', component: CoursComponent },
+  { path: 'cours', component: CoursComponent, canActivate: [AuthGuard] },
 
-  { path: 'creerCours', component: CreateCoursComponent },
+  { path: 'creerCours', component: CreateCoursComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN, ROLE_PROF' } },
 
-  { path: 'cours/:id', component: UpdateCoursComponent },
+  { path: 'cours/:id', component: UpdateCoursComponent, canActivate: [AuthGuard] },
 
-  { path: 'coursDetail/:id', component: CoursDetailComponent },
+  { path: 'coursDetail/:id', component: CoursDetailComponent, canActivate: [AuthGuard] },
 
   // Chemin pour les écoles
-  { path: 'ecoles', component: EcolesComponent },
+  { path: 'ecoles', component: EcolesComponent, canActivate: [AuthGuard] },
 
-  { path: 'ecoles/:id', component: EcoleComponent },
+  { path: 'ecoles/:id', component: EcoleComponent, canActivate: [AuthGuard] },
 
-  { path: 'ecoles/:id/edit', component: UpdateEcoleComponent },
+  { path: 'ecoles/:id/edit', component: UpdateEcoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN' } },
 
   { path: 'newEcole', component: AddEcoleComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN' } },
 
@@ -115,52 +115,52 @@ export const routes: Routes = [
   { path: 'ecoleEtablissement/:id', component: EcoleEtablissementComponent },
 
   // Chemin pour les classes
-  { path: 'classes', component: ClassesComponent },
+  { path: 'classes', component: ClassesComponent, canActivate: [AuthGuard] },
 
-  { path: 'classes/:id', component: ClasseComponent },
+  { path: 'classes/:id', component: ClasseComponent, canActivate: [AuthGuard] },
 
-  { path: 'classes/:id/edit', component: UpdateClasseComponent },
+  { path: 'classes/:id/edit', component: UpdateClasseComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN, ROLE_PROF' } },
 
-  { path: 'newClasse', component: AddClasseComponent },
+  { path: 'newClasse', component: AddClasseComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN, ROLE_PROF' } },
 
   // Chemin pour les enfants
-  { path: 'enfants', component: EnfantsComponent },
+  { path: 'enfants', component: EnfantsComponent, canActivate: [AuthGuard] },
 
-  { path: 'enfants/:id', component: EnfantComponent },
+  { path: 'enfants/:id', component: EnfantComponent, canActivate: [AuthGuard] },
 
-  { path: 'enfants/:id/edit', component: UpdateEnfantComponent },
+  { path: 'enfants/:id/edit', component: UpdateEnfantComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN' } },
 
-  { path: 'newEnfant', component: AddEnfantComponent },
+  { path: 'newEnfant', component: AddEnfantComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN, ROLE_SUPERADMIN' } },
 
   // Chemin pour le forum
-  { path: 'forum', component: ForumComponent },
+  { path: 'forum', component: ForumComponent, canActivate: [AuthGuard] },
 
   // Chemin pour le login
   { path: 'login', component: LoginComponent },
 
-  { path: 'accueilCo', component: AccueilCoComponent },
+  { path: 'accueilCo', component: AccueilCoComponent},
 
   // Chemin pour la messagerie
-  { path: 'messagerie', component: MessagerieComponent },
+  { path: 'messagerie', component: MessagerieComponent, canActivate: [AuthGuard] },
 
-  { path: 'messages', component: MessageComponent },
+  { path: 'messages', component: MessageComponent, canActivate: [AuthGuard] },
 
-  { path: 'messageDetail/:id', component: MessagesDetailComponent },
+  { path: 'messageDetail/:id', component: MessagesDetailComponent, canActivate: [AuthGuard] },
 
-  { path: 'messagesCreate', component: AddMessageComponent },
+  { path: 'messagesCreate', component: AddMessageComponent, canActivate: [AuthGuard] },
 
-  { path: 'messagesUpdate/:id', component: UpdateMsgComponent },
+  { path: 'messagesUpdate/:id', component: UpdateMsgComponent, canActivate: [AuthGuard] },
 
   // Chemin pour le profil
-  { path: 'decoProfil', component: DecoProfilComponent },
+  { path: 'decoProfil', component: DecoProfilComponent, canActivate: [AuthGuard] },
 
-  { path: 'suivis', component: ProfilComponent },
+  { path: 'suivis', component: ProfilComponent, canActivate: [AuthGuard] },
 
-  { path: 'modifProfil', component: ModifierProfilComponent },
+  { path: 'modifProfil', component: ModifierProfilComponent, canActivate: [AuthGuard] },
 
-  { path: 'modifMdp', component: ModifierMdpComponent },
+  { path: 'modifMdp', component: ModifierMdpComponent, canActivate: [AuthGuard] },
 
-  { path: 'suppCompte', component: SuppCompteComponent },
+  { path: 'suppCompte', component: SuppCompteComponent, canActivate: [AuthGuard] },
 
   { path: '**', component: NotFoundComponent },
 

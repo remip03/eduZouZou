@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use OpenApi\Attributes as OA;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -74,6 +75,7 @@ class CoursController extends AbstractController
      */
     // Définition d'une route pour supprimer un cours spécifique par son ID. La méthode HTTP autorisée est DELETE.
     #[Route('/api/cours/{id}', name: 'deleteCours', methods: ['DELETE'])]
+    #[IsGranted('ROLE_PROF, ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour supprimer un cours.')]
     #[OA\Tag(name: "Cours")]
     public function deleteCours(Cours $cours, EntityManagerInterface $em, TagAwareCacheInterface $cachePool): JsonResponse{
         // Invalide le cache associé aux cours
@@ -127,6 +129,7 @@ class CoursController extends AbstractController
             )
         ]
     )]
+    #[IsGranted('ROLE_PROF, ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour créer un cours.')]
     #[OA\Tag(name: "Cours")]
     public function createCours(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse{
 
@@ -215,6 +218,7 @@ class CoursController extends AbstractController
             )
         ]
     )]
+    #[IsGranted('ROLE_PROF, ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour modifier un cours.')]
     #[OA\Tag(name: "Cours")]
     public function updateCours(Request $request, SerializerInterface $serializer, Cours $currentCours, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse{
         
