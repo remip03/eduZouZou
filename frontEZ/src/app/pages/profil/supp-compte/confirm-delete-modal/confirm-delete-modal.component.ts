@@ -67,7 +67,10 @@ export class ConfirmDeleteModalComponent {
             // Déconnecter l'utilisateur
             localStorage.removeItem('token');
             // Rediriger vers la page d'accueil
-            this.router.navigate(['/']);
+            this.router.navigate(['/']).then(() => {
+              // Rafraîchir la page pour appliquer les changements;
+              window.location.reload();
+            });
           },
           error: (err) => {
             console.error('Erreur lors de la suppression de l\'utilisateur:', err);

@@ -1,15 +1,13 @@
-<div>
+<div class="container">
   <app-return-btn />
   <app-slider-profil />
-  <div class="container">
-    <div class="content">
-      <h2><span>Déconnexion </span>/<span> Désinscription</span></h2>
-    </div>
-
-    <button class="deco" alt="deconnexion" (click)="confirmLogout()">
-      Déconnexion
-    </button>
-    <button class="delete" (click)="openModal()">Supprimer mon compte</button>
-    <app-confirm-delete-modal (close)="closeModal()" />
+  <div class="content">
+    <h2><span>Déconnexion </span>/<span> Désinscription</span></h2>
   </div>
+
+  <button class="deco" alt="deconnexion" (click)="confirmLogout()">
+    Déconnexion
+  </button>
+  <button class="delete" (click)="openModal()">Supprimer mon compte</button>
+  <app-confirm-delete-modal (close)="closeModal()" />
 </div>

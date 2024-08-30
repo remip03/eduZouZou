@@ -295,13 +295,13 @@
           <parameter key="service">Vich\UploaderBundle\Naming\SmartUniqueNamer.cours_images</parameter>
           <parameter key="options" type="collection"/>
         </parameter>
+        <parameter key="inject_on_load">true</parameter>
+        <parameter key="delete_on_remove">true</parameter>
         <parameter key="directory_namer" type="collection">
           <parameter key="service">null</parameter>
           <parameter key="options">null</parameter>
         </parameter>
-        <parameter key="delete_on_remove">true</parameter>
         <parameter key="delete_on_update">true</parameter>
-        <parameter key="inject_on_load">false</parameter>
         <parameter key="db_driver">orm</parameter>
       </parameter>
     </parameter>
@@ -463,7 +463,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.R_rRy9o"/>
+      <argument type="service" id=".service_locator.acR_IxN"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1866,7 +1866,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.R_rRy9o"/>
+      <argument type="service" id=".service_locator.acR_IxN"/>
     </service>
     <service id="routing.resolver" class="Symfony\Component\Config\Loader\LoaderResolver">
       <call method="addLoader">
@@ -3096,7 +3096,7 @@
       </call>
     </service>
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager">
-      <argument type="service" id=".service_locator.iuDVyJd"/>
+      <argument type="service" id=".service_locator.BC.WZSP"/>
       <argument type="collection">
         <argument type="collection">
           <argument type="collection">
@@ -3133,6 +3133,12 @@
             <argument>loadClassMetadata</argument>
           </argument>
           <argument>doctrine.orm.default_listeners.attach_entity_listeners</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>postLoad</argument>
+          </argument>
+          <argument>vich_uploader.listener.inject.cours_images</argument>
         </argument>
         <argument type="collection">
           <argument type="collection">
@@ -6794,6 +6800,13 @@
       <argument type="service" id="Vich\UploaderBundle\Templating\Helper\UploaderHelper"/>
     </service>
     <service id="vich_uploader.metadata.reader" class="Vich\UploaderBundle\Metadata\Driver\AttributeReader"/>
+    <service id="vich_uploader.listener.inject.cours_images" class="Vich\UploaderBundle\EventListener\Doctrine\InjectListener">
+      <tag name="doctrine.event_listener" event="postLoad" priority="0"/>
+      <argument>cours_images</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
     <service id="vich_uploader.listener.clean.cours_images" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
       <tag name="doctrine.event_listener" event="preUpdate" priority="50"/>
       <argument>cours_images</argument>
@@ -7655,7 +7668,15 @@
         <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.R_rRy9o" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator._JMvEs9" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="hasher" type="service_closure" id="security.user_password_hasher"/>
+        <argument key="user" type="service_closure" id=".errored..service_locator._JMvEs9.App\Entity\User"/>
+      </argument>
+    </service>
+    <service id=".service_locator.acR_IxN" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ActiviteController::createActivite" type="service_closure" id=".service_locator.vuDI7p1"/>
@@ -7699,6 +7720,7 @@
         <argument key="App\Controller\RessourceController::getAllRessources" type="service_closure" id=".service_locator.BusvBbb"/>
         <argument key="App\Controller\RessourceController::getRessourceDetail" type="service_closure" id=".service_locator..7w_.z1"/>
         <argument key="App\Controller\RessourceController::updateRessource" type="service_closure" id=".service_locator.ObwKpVJ"/>
+        <argument key="App\Controller\UserController::changePassword" type="service_closure" id=".service_locator._JMvEs9"/>
         <argument key="App\Controller\UserController::deleteUser" type="service_closure" id=".service_locator.6XZeNbw"/>
         <argument key="App\Controller\UserController::getAllUsers" type="service_closure" id=".service_locator.oGNHoCO"/>
         <argument key="App\Controller\UserController::getUserByEmail" type="service_closure" id=".service_locator.YT2Bk2H"/>
@@ -7749,6 +7771,7 @@
         <argument key="App\Controller\RessourceController:getAllRessources" type="service_closure" id=".service_locator.BusvBbb"/>
         <argument key="App\Controller\RessourceController:getRessourceDetail" type="service_closure" id=".service_locator..7w_.z1"/>
         <argument key="App\Controller\RessourceController:updateRessource" type="service_closure" id=".service_locator.ObwKpVJ"/>
+        <argument key="App\Controller\UserController:changePassword" type="service_closure" id=".service_locator._JMvEs9"/>
         <argument key="App\Controller\UserController:deleteUser" type="service_closure" id=".service_locator.6XZeNbw"/>
         <argument key="App\Controller\UserController:getAllUsers" type="service_closure" id=".service_locator.oGNHoCO"/>
         <argument key="App\Controller\UserController:getUserByEmail" type="service_closure" id=".service_locator.YT2Bk2H"/>
@@ -7847,7 +7870,7 @@
         <argument key="Vich\UploaderBundle\Form\Type\VichImageType" type="service_closure" id="vich_uploader.form.type.image"/>
       </argument>
     </service>
-    <service id=".service_locator.iuDVyJd" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.BC.WZSP" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service_closure" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
@@ -7856,6 +7879,7 @@
         <argument key="doctrine.orm.listeners.lock_store_schema_listener" type="service_closure" id="doctrine.orm.listeners.lock_store_schema_listener"/>
         <argument key="doctrine.orm.listeners.pdo_session_handler_schema_listener" type="service_closure" id="doctrine.orm.listeners.pdo_session_handler_schema_listener"/>
         <argument key="vich_uploader.listener.clean.cours_images" type="service_closure" id="vich_uploader.listener.clean.cours_images"/>
+        <argument key="vich_uploader.listener.inject.cours_images" type="service_closure" id="vich_uploader.listener.inject.cours_images"/>
         <argument key="vich_uploader.listener.remove.cours_images" type="service_closure" id="vich_uploader.listener.remove.cours_images"/>
         <argument key="vich_uploader.listener.upload.cours_images" type="service_closure" id="vich_uploader.listener.upload.cours_images"/>
       </argument>
@@ -8465,6 +8489,9 @@
     </service>
     <service id=".errored..service_locator.LGtp.6w.App\Entity\User" class="App\Entity\User">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.LGtp.6w&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator._JMvEs9.App\Entity\User" class="App\Entity\User">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator._JMvEs9&quot;: it needs an instance of &quot;App\Entity\User&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
@@ -9479,7 +9506,7 @@
     <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.R_rRy9o"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.acR_IxN"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="jms_serializer.authorization_checker" alias="security.authorization_checker" public="true"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
@@ -9524,10 +9551,11 @@
     <service id=".service_locator.g3yF05c" alias=".service_locator.6XZeNbw"/>
     <service id=".service_locator.y18qpGC" alias=".service_locator.LGtp.6w"/>
     <service id=".service_locator.Aw3Oc35" alias=".service_locator.YT2Bk2H"/>
-    <service id=".service_locator.KLXmMWT" alias=".service_locator.R_rRy9o"/>
+    <service id=".service_locator.GuJbp1X" alias=".service_locator._JMvEs9"/>
+    <service id=".service_locator.b2aOk8g" alias=".service_locator.acR_IxN"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.q_2.uuB" alias=".service_locator.QPBj.MP"/>
-    <service id=".service_locator.vlAZH6c" alias=".service_locator.iuDVyJd"/>
+    <service id=".service_locator.jqWkZz2" alias=".service_locator.BC.WZSP"/>
     <service id=".service_locator.jUv.zyj" alias=".service_locator.O2p6Lk7"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>
     <service id="controller_resolver" alias="debug.controller_resolver"/>
@@ -9590,6 +9618,7 @@
     <service id=".service_locator.kJiSCLO" alias=".service_locator.6XZeNbw"/>
     <service id=".service_locator.VtCJrJc" alias=".service_locator.LGtp.6w"/>
     <service id=".service_locator.zMvBPEr" alias=".service_locator.YT2Bk2H"/>
+    <service id=".service_locator.ZsrMScE" alias=".service_locator._JMvEs9"/>
     <service id=".service_locator.Cj5mqT." alias=".service_locator.O2p6Lk7"/>
     <service id=".service_locator.dGUCsbe" alias=".service_locator.oR77BOj"/>
     <service id=".service_locator.Wt0f4Zb" alias=".service_locator.fLdGxkR"/>

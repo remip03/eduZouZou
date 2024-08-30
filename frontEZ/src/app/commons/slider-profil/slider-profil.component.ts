@@ -130,4 +130,8 @@ export class SliderProfilComponent {
       iconInactiveDelete: !isActive && this.selectedMenu === 'menu4'
     };
   }
+
+  isNotSelected(menu: string): boolean {
+    return this.selectedMenu !== menu && this.selectedMenu !== '';
+  }
 }
