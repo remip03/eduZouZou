@@ -12,10 +12,47 @@ h5 {
   font-size: 1.5rem;
   font-weight: bold;
   padding: 0 10px;
+  display: flex;
+  justify-content: left;
 }
 
 label {
   display: block;
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
+}
+
+#addIcon {
+  height: 2rem;
+  width: auto;
+  filter: brightness(0) saturate(100%) invert(70%) sepia(39%) saturate(945%)
+    hue-rotate(184deg) brightness(100%) contrast(91%);
+}
+
+.supp {
+  width: 70%;
+}
+
+.reponse {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.reponse img {
+  height: 3rem;
+  margin-right: 10px;
+}
+
+.reponse input {
+  width: 50%;
+}
+
+@media only screen and (max-width: 390px) {
+  h5 {
+    font-size: 1rem;
+    display: flex;
+    justify-content: left;
+  }
 }
