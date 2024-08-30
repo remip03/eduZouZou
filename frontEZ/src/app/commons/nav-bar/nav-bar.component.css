@@ -139,7 +139,7 @@ img {
   .navLinks {
     display: flex;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: flex-end;
   }
 
   .navLink {
@@ -149,6 +149,7 @@ img {
     text-decoration: none;
     color: rgba(41, 79, 127, 0.9);
     font-size: large;
+    margin: 0 2rem;
   }
 
   .burger {
