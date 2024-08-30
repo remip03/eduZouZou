@@ -115,32 +115,32 @@ class AppFixtures extends Fixture
         // Création des users
         $baseEmails = [
             'user@api.com',
+            'admin@api.com',
+            'prof@api.com',
+            'superadmin@api.com'
         ];
 
         $usedEmails = [];
 
-        foreach ($baseEmails as $index => $baseEmail) {
-            $email = $baseEmail;
-            $counter = 1;
-            while (in_array($email, $usedEmails)) {
-                $email = str_replace('@', $counter . '@', $baseEmail);
-                $counter++;
-            }
+        for ($i = 0; $i < 4; $i++) {
+            $email = $baseEmails;
+            $roles = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_PROF', 'ROLE_SUPERADMIN'];
+
+            $email = str_replace('@', $i . '@', $baseEmails);
             $usedEmails[] = $email;
 
             $user = new User();
-            $user->setEmail($email);
-            $roles = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_PROF', 'ROLE_SUPERADMIN'];
-            $user->setRoles([$roles[$index]]);
+            $user->setEmail($email[$i]);
+            $user->setRoles([$roles[$i]]);
             $user->setPassword($this->userPasswordHasher->hashPassword($user, 'password'));
-            $user->setFirstName('FirstName' . $index);
-            $user->setLastName('LastName' . $index);
+            $user->setFirstName('FirstName' . $i);
+            $user->setLastName('LastName' . $i);
             $user->setTel('0123456789');
             $user->setAdresse('adresse user');
             $user->setMessagerie($listMessagerie[array_rand($listMessagerie)]);
             $user->setEcole($listEcole[array_rand($listEcole)]);
             $manager->persist($user);
-            echo "Insère utilisateur avec l'email : " . $email . "\n";
+            echo "Insère utilisateur avec l'email : " . $email[$i] . "\n";
         }
         $manager->flush();
     }
