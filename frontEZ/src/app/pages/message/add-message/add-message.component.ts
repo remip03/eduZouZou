@@ -27,7 +27,7 @@ export class AddMessageComponent {
   public date = new Date();
   public formattedDate = this.datePipe.transform(
     this.date,
-    'yyyy-MM-dd HH:mm:ss'
+    "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
   );
 
   // variable pour créer un message
@@ -50,8 +50,6 @@ export class AddMessageComponent {
   ) {}
 
   createMessage(): void {
-    console.log(this.formattedDate);
-
     // crée le message
     this.createMsg.patchValue({ msgDate: this.formattedDate });
     this.messageService.addMessage(this.createMsg.value).subscribe();
@@ -67,12 +65,7 @@ export class AddMessageComponent {
     // Affiche une notification si le message est créé avec succès
     alert('Message créé avec succès!');
   }
-  // dateAuto() {
-  //   this.date = new Date();
-  //   this.formattedDate = this.date.toLocaleDateString();
-  //   this.createMsg.patchValue({ msgDate: this.formattedDate });
-  //   //console.log(this.createMsg.value.msgDate); // to test the value in console
-  // }
+
   //
   get form() {
     return this.createMsg.controls;
