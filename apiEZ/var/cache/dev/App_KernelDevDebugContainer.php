@@ -16,7 +16,7 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerNTqvDDR\App_KernelDevDebugContainer([
     'container.build_hash' => 'NTqvDDR',
-    'container.build_id' => 'fadef9b4',
-    'container.build_time' => 1725018709,
+    'container.build_id' => 'bc989358',
+    'container.build_time' => 1725019005,
     'container.runtime_mode' => \in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? 'web=0' : 'web=1',
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerNTqvDDR');

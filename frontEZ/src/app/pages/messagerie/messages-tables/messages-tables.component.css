@@ -46,6 +46,10 @@ tr {
   cursor: pointer;
 }
 
+.espace {
+  width: 100%;
+}
+
 .hidden {
   display: flex;
   flex-direction: column;
