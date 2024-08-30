@@ -53,24 +53,27 @@
 
 
   @for (item of messages; track $index ;){
-  <tr routerLink="/messageDetail/{{ item.id }}" class="bordure textColor">
-    <div class="msg ligne between centrecolonne ">
-      <div class="imgProfil ">
-        <img id="imgProfil" src="img/touriste 1.png" alt="homme touriste">
+  <tr class=" bordure">
+    <div class="msg ligne between centrecolonne">
+      <div class="espace" routerLink="/messageDetail/{{ item.id }}">
+
+        <div class="imgProfil centrecolonne ">
+          <img id="imgProfil" src="img/touriste 1.png" alt="homme touriste">
+        </div>
+
+        <!-- <td>{{ item.expediteur }}</td>
+          <td>{{ truncate(item.content,10)}}</td>
+          <td>{{ item.msgDate }}</td> -->
+
+
+        <td>{{ item.expediteur }} <br>
+          {{ truncate(item.content,10)}}</td>
+        <td>{{ item.msgDate }}</td>
+
+
+
       </div>
-
-      <!-- <td>{{ item.expediteur }}</td>
-      <td>{{ truncate(item.content,10)}}</td>
-      <td>{{ item.msgDate }}</td> -->
-
-
-      <td>{{ item.expediteur }} <br>
-        {{ truncate(item.content,10)}}</td>
-      <td>{{ item.msgDate }}</td>
-
-
-
-      <button (click)="deleteMessage(item.id)" class="btn m-2 ">
+      <button (click)="deleteMessage(item.id)" class="btn m-2">
         <img id="iconSupp" src="icon/poubelle.png" alt="poubelle supprimer">
       </button>
     </div>
