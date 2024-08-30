@@ -16,7 +16,7 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerGxMVA2V\App_KernelDevDebugContainer([
     'container.build_hash' => 'GxMVA2V',
-    'container.build_id' => '6b008f8b',
-    'container.build_time' => 1725007180,
+    'container.build_id' => '18de0bdb',
+    'container.build_time' => 1725010680,
     'container.runtime_mode' => \in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? 'web=0' : 'web=1',
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerGxMVA2V');

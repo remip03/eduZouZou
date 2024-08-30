@@ -1,5 +1,52 @@
+<app-return-btn />
+<app-slider-profil />
 <div class="container">
-  <app-return-btn />
-  <app-slider-profil />
-  <h2>Page Modification du mot de passe</h2>
+  <div class="content">
+    <h2>
+      Changer le mot <span><br /></span>de passe
+    </h2>
+    <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
+      <input
+        type="password"
+        id="currentPassword"
+        formControlName="currentPassword"
+        placeholder="Mot de passe actuel"
+        required
+      />
+      <div
+        *ngIf="submitted && passwordForm.controls['currentPassword'].invalid"
+      >
+        <small>Mot de passe actuel requis</small>
+      </div>
+      <input
+        type="password"
+        id="newPassword"
+        formControlName="newPassword"
+        placeholder="Nouveau mot de passe"
+        required
+      />
+      <div *ngIf="submitted && passwordForm.controls['newPassword'].invalid">
+        <small
+          >Nouveau mot de passe requis et doit contenir au moins une majuscule,
+          une minuscule, un chiffre et un caractère spécial</small
+        >
+      </div>
+      <input
+        type="password"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        placeholder="Confirmation du mot de passe"
+        required
+      />
+      <div
+        *ngIf="submitted && passwordForm.controls['confirmPassword'].invalid"
+      >
+        <small>Confirmation du mot de passe requise</small>
+      </div>
+      <div *ngIf="submitted && passwordForm.errors?.['mustMatch']">
+        <small>Les mots de passe ne correspondent pas</small>
+      </div>
+      <button type="submit">Enregistrer</button>
+    </form>
+  </div>
 </div>
