@@ -21,7 +21,8 @@ h2 {
   border: 2px solid #ff5e5e;
   background-color: #ffffff;
   color: #ff5e5e;
-  width: 85%;
+  width: 60%;
+  height: 2rem;
   margin: 1.5rem 0;
   font-weight: 500;
 }

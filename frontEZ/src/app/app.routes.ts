@@ -138,7 +138,7 @@ export const routes: Routes = [
   // Chemin pour le login
   { path: 'login', component: LoginComponent },
 
-  { path: 'accueilCo', component: AccueilCoComponent },
+  { path: 'accueilCo', component: AccueilCoComponent},
 
   // Chemin pour la messagerie
   { path: 'messagerie', component: MessagerieComponent },
