@@ -1,0 +1,23 @@
+.bulle{
+  background-color: white;
+  color: #294F7F;
+  width: 94%;
+  height: auto;
+  margin: 3%;
+  border-radius: 2rem;
+  font-size: 150%;
+}
+
+p{
+  margin: 1% 10%;
+}
+
+@media screen and (min-width: 1440px) {
+
+  .bulle{
+    width: 50%;
+    height: auto;
+    margin: 3%;
+  }
+
+}

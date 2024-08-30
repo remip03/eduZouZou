@@ -1,17 +1,73 @@
+<app-return-btn></app-return-btn>
+
 <h2>Liste des Cours</h2>
 
-<div>
+<div class="centre">
   <button routerLink="/creerCours">Créer un cours</button>
 </div>
+<div class="search carte">
+  <input type="text" placeholder="Rechercher..." [(ngModel)]="valueSearch" />
+  <a class="btnSearch m-2" (click)="showResultSearch(valueSearch)"><img id="iconSearch" src="icon/chercher.png"
+      alt="icon recherche"></a>
+</div>
 
-<div class="listecarte">
-  @for (item of cours; track $index) {
-    <div class="card carte" style="width: 18rem;">
-      <p><b>{{ item.nameR }}</b></p>
-      <p>type : {{ item.typeR }}</p>
-      <p>matière : {{ item.matiereR }}</p>
-      <p>description : {{ item.descriptionR }}</p>
-      <button routerLink="/cours/{{item.id}}">Modifier</button>
-    </div>
+<div class="btn2">
+  <button (click)="toogleFilter()">filtrer</button>
+
+
+</div>
+
+<div class="filterMenu">
+
+  @if (isFilterVisible) {
+
+  <select name="selectType" id="selectType">
+    <option value="">filtrer par</option>
+    @for (item of filterValue ; track $index){
+    <option (click)="filterSelect(item)" [value]="item">{{ item }}</option>
+    }
+  </select>
+
+  @if (valueChange === filterValue[0]) {
+  <select name="matiereSelect" id="matiereSelect">
+    <option value="">Toutes les matières</option>
+    @for (item of matiere ; track $index) {
+    <option (click)="selectFilter(item)" [value]="item">{{ item }}</option>
+
+    }
+  </select>
+
+  }
+
+  @if(valueChange === filterValue[1]){
+  <select name="classeSelect" id="classeSelect">
+    <option value="">Toutes les classes</option>
+    @for (item of classe ; track $index) {
+    <option (click)="selectFilter(item)" [value]="item">{{ item}}</option>
+    }
+  </select>
+
+  }
+
+  }
+
+</div>
+
+
+<div class="webVersion">
+  @if(hidden){
+  <div class="container carte marge centre" *ngFor="let item of cours; let i = index"
+    [style.background-color]="colors[i % colors.length]">
+    <p>
+      <b>{{ item.nameR }}</b>
+    </p>
+
+    <span>classe : {{ item.typeR }}</span>
+    <span>matière : {{ item.matiereR }}</span>
+    <span>description : {{ item.descriptionR }}</span>
+    <button routerLink="/cours/{{ item.id }}">Modifier</button>
+    <button routerLink="/coursDetail/{{ item.id }}">accéder au cours</button>
+
+  </div>
   }
 </div>

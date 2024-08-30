@@ -3,79 +3,108 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Hateoas\Configuration\Annotation as Hateoas;
+
+/**
+ * @Hateoas\Relation(
+ *     "self",
+ *     href = @Hateoas\Route(
+ *         "detailUser",
+ *         parameters = { "id" = "expr(object.getId())" },
+ *     ),
+ *     exclusion = @Hateoas\Exclusion(groups = "getClasses"),
+ * )
+ *
+ * @Hateoas\Relation(
+ *    "delete",
+ *   href = @Hateoas\Route(
+ *      "deleteUser",
+ *     parameters = { "id" = "expr(object.getId())" },
+ *     ),
+ *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
+ * )
+ *
+ * @Hateoas\Relation(
+ *    "update",
+ *   href = @Hateoas\Route(
+ *      "updateUser",
+ *     parameters = { "id" = "expr(object.getId())" },
+ *     ),
+ *     exclusion = @Hateoas\Exclusion(groups = "getClasses", excludeIf = "expr(not is_granted('ROLE_ADMIN'))"),
+ * )
+ *
+ */
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups(['getClasses'])]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
+    #[Groups(['getClasses'])]
+    #[ORM\Column(length: 100)]
     private ?string $email = null;
 
     /**
-     * @var list<string> The user roles
+     * @var array<string> The user roles
      */
-    #[ORM\Column]
+    #[Groups(['getClasses'])]
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
+
+    private ?string $plainPassword = null;
 
     /**
      * @var string The hashed password
      */
-    #[ORM\Column]
+    #[Groups(['getClasses'])]
+    #[ORM\Column(length: 60)]
     private ?string $password = null;
 
+    #[Groups(['getClasses'])]
     #[ORM\Column(length: 50)]
     private ?string $firstName = null;
 
+    #[Groups(['getClasses'])]
     #[ORM\Column(length: 50)]
     private ?string $lastName = null;
 
+    #[Groups(['getClasses'])]
     #[ORM\Column(length: 20)]
     private ?string $tel = null;
 
+    #[Groups(['getClasses'])]
     #[ORM\Column(length: 100)]
     private ?string $adresse = null;
 
-    #[ORM\ManyToOne(inversedBy: 'users')]
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Messagerie $messagerie = null;
 
-    #[ORM\ManyToOne(inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'user')]
+    #[Groups(['getClasses'])]
     private ?Ecole $ecole = null;
-
-    /**
-     * @var Collection<int, Classe>
-     */
-    #[ORM\ManyToMany(targetEntity: Classe::class, mappedBy: 'users')]
-    private Collection $classes;
-
-    /**
-     * @var Collection<int, Ressource>
-     */
-    #[ORM\ManyToMany(targetEntity: Ressource::class, mappedBy: 'users')]
-    private Collection $ressources;
-
-    public function __construct()
-    {
-        $this->classes = new ArrayCollection();
-        $this->ressources = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -89,7 +118,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
     /**
      * A visual identifier that represents this user.
      *
@@ -196,16 +224,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getUsername(): string {
-        return $this->getUserIdentifier();
-    }
-
     public function getMessagerie(): ?Messagerie
     {
         return $this->messagerie;
     }
 
-    public function setMessagerie(?Messagerie $messagerie): static
+    public function setMessagerie(Messagerie $messagerie): static
     {
         $this->messagerie = $messagerie;
 
@@ -225,55 +249,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Classe>
+     * Get the value of plainPassword
      */
-    public function getClasses(): Collection
+    public function getPlainPassword()
     {
-        return $this->classes;
-    }
-
-    public function addClass(Classe $class): static
-    {
-        if (!$this->classes->contains($class)) {
-            $this->classes->add($class);
-            // $class->addUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClass(Classe $class): static
-    {
-        if ($this->classes->removeElement($class)) {
-            // $class->removeUser($this);
-        }
-
-        return $this;
+        return $this->plainPassword;
     }
 
     /**
-     * @return Collection<int, Ressource>
+     * Set the value of plainPassword
+     * 
+     * @return self
      */
-    public function getRessources(): Collection
-    {
-        return $this->ressources;
-    }
 
-    public function addRessource(Ressource $ressource): static
+    public function setPlainPassword($plainPassword)
     {
-        if (!$this->ressources->contains($ressource)) {
-            $this->ressources->add($ressource);
-            $ressource->addUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRessource(Ressource $ressource): static
-    {
-        if ($this->ressources->removeElement($ressource)) {
-            $ressource->removeUser($this);
-        }
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }

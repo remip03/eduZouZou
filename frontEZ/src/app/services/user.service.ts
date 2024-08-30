@@ -8,28 +8,34 @@ import User from '../models/user.models';
 })
 export class UserService {
 
-  private ezURL = 'http://localhost:8000/api'
+  // URL de base de l'API
+  private apiUrl = 'http://localhost:8000/api';
+  // private apiUrl = 'https://localhost:8000/api';
 
+  // Injection du service HttpClient
   constructor(private httpClient: HttpClient) { }
 
-  getUsers() : Observable<User[]>{
-    return this.httpClient.get<User[]>(`${this.ezURL}/user`)
+  // Récupération de la liste des users
+  getUsers(): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.apiUrl}/users`)
   }
 
-  getUser(id: number) : Observable<User>{
-    return this.httpClient.get<User>(`${this.ezURL}/user/${id}`)
+  getUserByEmail(email: string): Observable<User> {
+    return this.httpClient.get<User>(`${this.apiUrl}/users/email/${email}`);
+}
+
+  // Récupérer un users par son ID
+  getUser(id: number): Observable<User> {
+    return this.httpClient.get<User>(`${this.apiUrl}/users/${id}`)
   }
 
-  addUser(user: User): Observable<User>{
-    return this.httpClient.post<User>(`${this.ezURL}/user`, user)
+  // Mettre à jour un user existant
+  updateUser(user: User): Observable<User> {
+    return this.httpClient.put<User>(`${this.apiUrl}/users/${user.id}`, user)
   }
 
-  updateUser(user: User): Observable<User>{
-    return this.httpClient.put<User>(`${this.ezURL}/user/${user.id}`, user)
+  // Supprimer un user par son ID
+  deleteUser(id: number): Observable<User> {
+    return this.httpClient.delete<User>(`${this.apiUrl}/users/${id}`);
   }
-
-  deleteUser (id: number): Observable<User>{
-    return this.httpClient.delete<User>(`${this.ezURL}/user/${id}`)
-  }
-
 }

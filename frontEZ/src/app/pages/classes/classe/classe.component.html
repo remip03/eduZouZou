@@ -1,10 +1,17 @@
-<p><span class="fw-bold">Id :</span> {{ detail.id }}</p>
-<p><span class="fw-bold">Nom :</span> {{ detail.nameCl }}</p>
-<p><span class="fw-bold">Niveau :</span> {{ detail.niveauCl }}</p>
-<p><span class="fw-bold">Année :</span> {{ detail.anneeCl | date: 'yyyy' }}</p>
-<p><span class="fw-bold">Ecole :</span> {{ detail.ecole.nameEc }}</p>
 
-<button class="btn btn-danger" (click)="confirmDelete()">
-  Supprimer la classe
-</button>
-<a routerLink="/classes" class="btn btn-secondary">Retour</a>
+<app-return-btn></app-return-btn>
+
+<section class="centre">
+
+  <div class="bulle colonne">
+
+    <p>Id : {{ detail.id }}</p>
+    <p>Nom : {{ detail.nameCl }}</p>
+    <p>Niveau : {{ detail.niveauCl }}</p>
+    <p>Année : {{ detail.anneeCl | date: 'yyyy' }}</p>
+    <p>Ecole : {{ detail.ecole.nameEc }}</p>
+
+  </div>
+
+</section>
+

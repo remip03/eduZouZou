@@ -2,18 +2,25 @@
 
 namespace App\Controller;
 
+use App\Entity\Ecole;
+use App\Entity\Messagerie;
 use App\Entity\User;
+use App\Repository\EcoleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\SerializerInterface as SerializerSerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RegisterController extends AbstractController
 {
+    // Définition de la route pour l'inscription d'un nouvel utilisateur
     #[Route('/api/register', name: 'register', methods: ['POST'])]
     #[OA\Post(
         path: "/api/register",
@@ -34,11 +41,12 @@ class RegisterController extends AbstractController
                     type: "object",
                     properties: [
                         new OA\Property(property: "email", type: "string"),
-                        new OA\Property(property: "password", type: "string"),                        
+                        new OA\Property(property: "password", type: "string"),
                         new OA\Property(property: "firstName", type: "string"),
                         new OA\Property(property: "lastName", type: "string"),
                         new OA\Property(property: "tel", type: "string"),
-                        new OA\Property(property: "adresse", type: "string")
+                        new OA\Property(property: "adresse", type: "string"),
+                        new OA\Property(property: "ecoleId", type: "integer"),
                     ]
                 )
             ),
@@ -48,36 +56,49 @@ class RegisterController extends AbstractController
             )
         ]
     )]
-    #[Groups(["getUsers"])]
-    public function register(Request $request, EntityManagerInterface $manager): Response
+    #[Groups(["getClasses"])]
+    public function register(Request $request, EntityManagerInterface $manager, SerializerSerializerInterface $serializer, ValidatorInterface $validator, EcoleRepository $ecoleRepository): Response
     {
+        // Décoder le contenu JSON de la requête
         $data = json_decode($request->getContent(), true);
-        if (empty($data['email']) || empty($data['password']) || empty($data['firstName']) || empty($data['lastName']) || empty($data['tel']) || empty($data['adresse'])  ){
-            return $this->json(['error' => 'Invalid data'], Response::HTTP_BAD_REQUEST);
+
+        // Vérifiez que l'ID de l'école est présent
+        if (!isset($data['ecoleId'])) {
+            return new JsonResponse(['message' => "L'id de l'Ecole est requis"], Response::HTTP_BAD_REQUEST);
         }
+    
+        $ecole = $ecoleRepository->find($data['ecoleId']);
+        if (!$ecole) {
+            return new JsonResponse(['message' => 'Ecole non trouvée'], Response::HTTP_NOT_FOUND);
+        }
+
+        // Créer un nouvel utilisateur et définir ses propriétés
         $user = new User();
         $user->setEmail($data['email']);
-        $user->setPassword(password_hash($data['password'], PASSWORD_BCRYPT));
         $user->setRoles(['ROLE_USER']);
+        $user->setPassword(password_hash($data['password'], PASSWORD_BCRYPT));
         $user->setFirstName($data['firstName']);
         $user->setLastName($data['lastName']);
         $user->setTel($data['tel']);
         $user->setAdresse($data['adresse']);
+        $user->setEcole($ecole);
 
-        
-        
+        // Créer une nouvelle instance de Messagerie et l'associer à l'utilisateur
+        $messagerie = new Messagerie();
+        $manager->persist($messagerie);
+        $user->setMessagerie($messagerie);
 
+        // Valider l'utilisateur
+        $errors = $validator->validate($user);
+        if (count($errors) > 0) {
+            return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
+        }
 
+        // Persister l'utilisateur dans la base de données
         $manager->persist($user);
         $manager->flush();
-        return $this->json([
-            'id' => $user->getId(),
-            'email' => $user->getEmail(),
-            'roles' => $user->getRoles(),
-            'firstName' => $user->getFirstName(),
-            'lastName' => $user->getLastName(),
-            'tel' => $user->getTel(),
-            'adresse' => $user->getAdresse(),
-        ], Response::HTTP_CREATED);
+
+        // Retourner une réponse de succès
+        return new JsonResponse(['message' => 'Utilisateur enregistré avec succès'], JsonResponse::HTTP_CREATED);
     }
 }

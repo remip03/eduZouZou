@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content {
+  background-color: #ffffff;
+  border-radius: 30px;
+  width: 85%;
+  padding: 1rem 0;
+}
+
+h2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deco {
+  border: 2px solid #ff5e5e;
+  background-color: #ffffff;
+  color: #ff5e5e;
+  width: 60%;
+  height: 2.5rem;
+  margin: 1.5rem 0;
+  font-weight: 500;
+}
+
+.delete {
+  background-color: #ff5e5e;
+  color: #ffffff;
+  border: none;
+  width: 60%;
+  height: 2.5rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .content {
+    width: 60%;
+  }
+
+  h2 {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .deco {
+    width: 30%;
+    background-color: #514bdb;
+    border: none;
+    color: #ffffff;
+    margin: 3rem;
+  }
+
+  .delete {
+    width: 30%;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  app-slider-profil {
+    width: 100%;
+  }
+  .content {
+    width: 40%;
+  }
+
+  .deco {
+    width: 20%;
+    margin-top: 4rem;
+  }
+
+  .delete {
+    width: 20%;
+  }
+}

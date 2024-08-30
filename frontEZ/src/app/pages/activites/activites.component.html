@@ -1,17 +1,82 @@
+<app-return-btn></app-return-btn>
+
 <h2>Liste des activités</h2>
 
-<div>
-  <button routerLink="/creerActivites">Créer une activité</button>
+<div class="centre">
+  <button routerLink="/creerCours">Créer une activité</button>
 </div>
 
-<div class="listecarte">
-  @for (item of activites; track $index) {
-    <div class="card carte" style="width: 18rem;">
-      <p><b>{{ item.nameR }}</b></p>
-      <p>type : {{ item.typeAct }}</p>
-      <p>matière : {{ item.matiereR }}</p>
-      <p>description : {{ item.descriptionR }}</p>
-      <button routerLink="/activites/{{item.id}}">Modifier</button>
+<div class="search carte">
+  <input type="text" placeholder="Rechercher..." [(ngModel)]="valueSearch" />
+  <a class="btnSearch m-2" (click)="showResultSearch(valueSearch)"><img id="iconSearch" src="icon/chercher.png"
+      alt="icon recherche"></a>
+</div>
+
+<div class="btn2">
+  <button (click)="toogleFilter()">filtrer</button>
+</div>
+
+<div class="filterMenu">
+
+  @if (isFilterVisible) {
+
+  <select name="selectType" id="selectType">
+    <option value="">filtrer par</option>
+    @for (item of filterValue ; track $index){
+    <option (click)="filterSelect(item)" [value]="item">{{ item }}</option>
+    }
+  </select>
+
+  @if (valueChange === filterValue[0]) {
+  <select name="matiereSelect" id="matiereSelect">
+    <option value="">Toutes les matières</option>
+    @for (item of matiere ; track $index) {
+    <option (click)="selectFilter(item)" [value]="item">{{ item }}</option>
+
+    }
+  </select>
+
+  }
+
+  @if(valueChange === filterValue[1]){
+  <select name="classeSelect" id="classeSelect">
+    <option value="">Toutes les classes</option>
+    @for (item of classe ; track $index) {
+    <option (click)="selectFilter(item)" [value]="item">{{ item}}</option>
+    }
+  </select>
+
+  }
+
+  }
+
+</div>
+
+<!-- <div class="searchMenu">
+    @if (isSearchable){
+    <input type="text" placeholder="Rechercher..." [(ngModel)]="valueSearch" />
+    <button (click)="showResultSearch(valueSearch)">valider</button>
+
+    }
+
+  </div> -->
+
+<div class="webVersion">
+  @if(hidden){
+  <div class="container carte marge centre" *ngFor="let item of activites; let i = index"
+    [style.background-color]="colors[i % colors.length]">
+    <p>
+      <b>{{ item.nameR }}</b>
+    </p>
+
+    <span>classe : {{ item.typeR }}</span>
+    <span>matière : {{ item.matiereR }}</span>
+    <span>type d'activités : {{ item.typeAct }}</span>
+    <span>description : {{ item.descriptionR }}</span>
+    <div class="ligne espace" style="width: 100%;">
+      <button class="boutonMenu" routerLink="/activites/{{ item.id }}">Modifier</button>
+      <button class="boutonMenu" routerLink="/activitesDetail/{{ item.id }}">accéder à l'activité</button>
     </div>
+  </div>
   }
 </div>

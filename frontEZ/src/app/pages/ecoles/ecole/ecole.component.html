@@ -1,7 +1,17 @@
-<p><span class="fw-bold">Id :</span> {{ detail.id }}</p>
-<p><span class="fw-bold">Nom :</span> {{ detail.nameEc }}</p>
-<p><span class="fw-bold">Adresse :</span> {{ detail.adresseEc }}</p>
-<p><span class="fw-bold">Téléphone :</span> {{ detail.telEc }}</p>
-<p><span class="fw-bold">Email :</span> {{ detail.mailEc }}</p>
-<button class="btn btn-danger" (click)="confirmDelete()">Supprimer le livre</button>
-<a routerLink="/ecoles" class="btn btn-secondary">Retour</a>
+<app-return-btn></app-return-btn>
+
+<section class="centre">
+
+  <div class="bulle colonne">
+
+    <p>Nom : {{ detail.nameEc }}</p>
+    <p>Adresse : {{ detail.adresseEc }}</p>
+    <p>Téléphone : {{ detail.telEc }}</p>
+    <p>Email : {{ detail.mailEc }}</p>
+  <div class="centre">
+    <button routerLink="/ecoleActualites/{{ detail.id }}">accéder à l'école</button>
+  </div>
+
+  </div>
+
+</section>

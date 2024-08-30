@@ -43,6 +43,7 @@ return [
             [['_route' => 'app_ressource', '_controller' => 'App\\Controller\\RessourceController::getAllRessources'], null, ['GET' => 0], null, false, false, null],
             [['_route' => 'createRessource', '_controller' => 'App\\Controller\\RessourceController::createRessource'], null, ['POST' => 0], null, false, false, null],
         ],
+        '/api/users' => [[['_route' => 'users', '_controller' => 'App\\Controller\\UserController::getAllUsers'], null, ['GET' => 0], null, false, false, null]],
         '/api/login_check' => [[['_route' => 'api_login_check'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
@@ -78,6 +79,13 @@ return [
                     .')'
                     .'|ressources/([^/]++)(?'
                         .'|(*:274)'
+                    .')'
+                    .'|users/(?'
+                        .'|([^/]++)(?'
+                            .'|(*:303)'
+                        .')'
+                        .'|email/([^/]++)(*:326)'
+                        .'|changepassword/([^/]++)(*:357)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -123,6 +131,15 @@ return [
             [['_route' => 'detailRessource', '_controller' => 'App\\Controller\\RessourceController::getRessourceDetail'], ['id'], ['GET' => 0], null, false, true, null],
             [['_route' => 'deleteRessource', '_controller' => 'App\\Controller\\RessourceController::deleteRessource'], ['id'], ['DELETE' => 0], null, false, true, null],
             [['_route' => 'updateRessource', '_controller' => 'App\\Controller\\RessourceController::updateRessource'], ['id'], ['PUT' => 0], null, false, true, null],
+        ],
+        303 => [
+            [['_route' => 'detailUser', '_controller' => 'App\\Controller\\UserController::getUserDetails'], ['id'], ['GET' => 0], null, false, true, null],
+            [['_route' => 'deleteUser', '_controller' => 'App\\Controller\\UserController::deleteUser'], ['id'], ['DELETE' => 0], null, false, true, null],
+            [['_route' => 'updateUser', '_controller' => 'App\\Controller\\UserController::updateUser'], ['id'], ['PUT' => 0], null, false, true, null],
+        ],
+        326 => [[['_route' => 'getUserByEmail', '_controller' => 'App\\Controller\\UserController::getUserByEmail'], ['email'], ['GET' => 0], null, false, true, null]],
+        357 => [
+            [['_route' => 'changePassword', '_controller' => 'App\\Controller\\UserController::changePassword'], ['email'], ['PUT' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

@@ -1,0 +1,29 @@
+<app-return-btn></app-return-btn>
+
+<div class="card text-center textColor  mt-5">
+  <div class="centre  p-10">
+    <h4 class="card-title  ">message</h4>
+  </div>
+  <div class="card-body ">
+    <div class="bodyText colonne centrecolonne">
+
+      <div class="supp ligne espace centrecolonne between">
+        <h5 class="card-title ">destinataire : {{ msgDetail.destinataire }}</h5>
+        <img id="addIcon" src="icon/poubelle.png" alt="icon supprimer">
+      </div>
+      <textarea name="text" id="text" class="card-text bordure">{{ msgDetail.content }}</textarea>
+      <h5 class="card-title ">expéditeur : {{ msgDetail.expediteur }}</h5>
+      <h5 class="card-title ">date : {{ msgDetail.msgDate }}</h5>
+    </div>
+
+    <div class="reponse ">
+      <img src="icon/ajouter.png" alt="ajouter">
+      <img src="icon/image 1.png" alt="ajouter">
+      <input type="text" placeholder="répondre">
+
+    </div>
+
+    <button routerLink="/messagesCreate" class="button m-5">envoyer</button>
+    <!-- <button routerLink="/messagesUpdate/{{ msgDetail.id }}" class=" button m-5">modifier</button> -->
+  </div>
+</div>

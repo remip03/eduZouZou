@@ -1,6 +1,10 @@
-export default interface User{
+import Ecole from "./ecole.modelt";
+
+export default interface User {
   id: number;
-  role: string;
+  ecole: Ecole;
+  email: string;
+  roles: string;
   password: string;
   firstName: string;
   lastName: string;

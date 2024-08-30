@@ -1,0 +1,18 @@
+.cardinfo{
+  width: 90%;
+  height: auto;
+  font-size: 120%;
+  border: solid 2px #85B4F2;
+  border-radius: 2rem;
+  background-color: white;
+  margin-top: 5%;
+}
+
+p{
+  margin: 2%;
+}
+
+.gauche{
+  display: flex;
+  justify-content: baseline;
+}

@@ -1,10 +1,192 @@
 /* You can add global styles to this file, and also import other style files */
 
-.colonne{
-    display: flex;
-    flex-direction: column;
+/* police d'écriture */
+@font-face {
+  font-family: "Playwrite AR";
+  src: url("../font/PlaywriteAR-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
-.marge{
-    margin: 1%;
+@font-face {
+  font-family: "nunito";
+  src: url(../font/Nunito-Regular.ttf) format(truetype);
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: none;
+  padding: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+p {
+  font-family: "nunito";
+}
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+/* disposition */
+.colonne {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ligne {
+  display: flex;
+  flex-direction: row;
+}
+
+.homer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.carte {
+  text-align: center;
+}
+
+.centre {
+  display: flex;
+  justify-content: center;
+}
+
+.centrecolonne {
+  display: flex;
+  align-items: center;
+}
+
+.espace {
+  display: flex;
+  justify-content: space-around;
+}
+
+.between {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* commons */
+h2 {
+  color: rgba(41, 79, 127, 0.9);
+  font-size: 130%;
+  margin: 1%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.textColor {
+  color: rgba(41, 79, 127, 0.9);
+}
+
+.marge {
+  margin: 1%;
+}
+
+.logonavbar {
+  width: 5rem;
+  height: auto;
+  background-color: white;
+}
+
+button {
+  background-color: rgba(42, 82, 129, 0.9);
+  color: white;
+  border-radius: 2rem;
+  height: 3rem;
+  width: auto;
+  font-size: 1.2rem;
+}
+
+input {
+  border: solid 2px #85b4f2;
+  border-radius: 2rem;
+}
+
+select {
+  border: solid 1px #85b4f2;
+  border-radius: 2rem;
+}
+
+.bordure {
+  border: solid 2px #85b4f2;
+  border-radius: 2rem;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* couleurs */
+
+.colorClasse {
+  background-color: #ff8c9d;
+  color: white;
+}
+
+.colorEcole {
+  background-color: #ffd27b;
+  color: #412945;
+}
+
+.colorForum {
+  background-color: #f8bdff;
+  color: #412945;
+}
+
+.colorProfil {
+  background-color: #7182ff;
+  color: white;
+}
+
+.colorCo {
+  background-color: #facc99;
+  color: white;
+}
+
+.colorIns {
+  background-color: #f9d5cf;
+  color: white;
+}
+
+.BGgeneral{
+  background: no-repeat url(../public/img/fond-page-5.jpg);
+  background-size: cover;
+  background-position-x: 30%;
+  height: 100%;
+  width: auto;
+}
+
+@media screen and (min-width: 1440px) {
+
+  .BGgeneral{
+    background: no-repeat url(../public/img/fond-page-5.jpg);
+    background-size: cover;
+    background-position-x: 30%;
+    height: 100%;
+    width: auto;
+  }
+
+}
+
+
+/* BOUTON RETOUR */
+app-return-btn {
+  width: 100%;
+}
+
+.boutonMenu{
+  width: 40%;
 }

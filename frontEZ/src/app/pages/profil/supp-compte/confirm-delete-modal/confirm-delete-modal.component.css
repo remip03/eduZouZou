@@ -1,0 +1,88 @@
+.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgb(255, 175, 180);
+}
+
+.modalContent {
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.modal span {
+  font-size: 24px;
+}
+
+.hidden {
+  display: none;
+}
+
+.imgModal {
+  width: 350px;
+  height: 350px;
+  margin-bottom: 1rem;
+}
+
+.groupBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.change {
+  border: none;
+  background-color: #ffffff;
+  color: #294f7f;
+  width: 90%;
+  margin: 1rem 0;
+}
+
+.ouiSur {
+  border: 2px solid #ff5e5e;
+  background-color: #ffffff;
+  color: #ff5e5e;
+  width: 50%;
+  height: 2rem;
+  font-size: 17px;
+  margin: 1rem 0;
+}
+
+@media only screen and (min-width: 600px) {
+  .modalContent {
+    width: 100%;
+  }
+
+  .imgModal {
+    width: 500px;
+    height: 500px;
+    margin-bottom: 1rem;
+  }
+
+  .modal span {
+    font-size: 24px;
+    width: 40%;
+  }
+
+  .change {
+    width: 30%;
+  }
+
+  .ouiSur {
+    width: 20%;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+}

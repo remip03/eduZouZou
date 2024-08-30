@@ -1,39 +1,46 @@
-<form [formGroup]="classe" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="nameCl">Nom Classe</label>
-    <input
-      type="text"
-      class="form-control"
-      id="nameCl"
-      formControlName="nameCl"
-    />
+
+<app-return-btn></app-return-btn>
+
+<section class="centre">
+
+  <div class="bulle colonne">
+
+    <form [formGroup]="classe" (ngSubmit)="onSubmit()">
+
+      <label for="nameCl">Nom Classe</label>
+      <input
+        type="text"
+        id="nameCl"
+        formControlName="nameCl"/>
+
+      <label for="niveauCl">Niveau</label>
+      <select class="" name="niveauCl" id="niveauCl" formControlName="niveauCl">
+        <option value="" disabled selected>Choisissez le niveau</option>
+        @for (item of niveauCl; track $index) {
+        <option [value]="item">{{ item }}</option>
+        }
+      </select>
+
+      <label for="anneeCl">Année</label>
+      <input
+        type="date"
+        id="anneeCl"
+        formControlName="anneeCl"/>
+
+      <label for="ecoleId">Ecole</label>
+      <select class="" id="ecoleId" formControlName="ecoleId">
+        <option *ngFor="let ecole of ecoles" [value]="ecole.id">
+          {{ ecole.nameEc }}
+        </option>
+      </select>
+
+      <div class="colonneResp centrecolonne">
+        <button type="submit">Ajouter</button>
+        <button routerLink="/classes">Retour</button>
+      </div>
+
+    </form>
+
   </div>
-  <div class="form-group">
-    <label for="niveauCl">Niveau</label>
-    <select class="form-control" name="niveauCl" id="niveauCl" formControlName="niveauCl">
-      <option value="" disabled selected>Choisissez le niveau</option>
-      @for (item of niveauCl; track $index) {
-      <option [value]="item">{{ item }}</option>
-      }
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="anneeCl">Année</label>
-    <input
-      type="date"
-      class="form-control"
-      id="anneeCl"
-      formControlName="anneeCl"
-    />
-  </div>
-  <div class="form-group">
-    <label for="ecoleId">Ecole</label>
-    <select class="form-control" id="ecoleId" formControlName="ecoleId">
-      <option *ngFor="let ecole of ecoles" [value]="ecole.id">
-        {{ ecole.nameEc }}
-      </option>
-    </select>
-  </div>
-  <button type="submit" class="btn btn-primary">Ajouter</button>
-  <a routerLink="/classes" class="btn btn-secondary">Retour</a>
-</form>
+
+</section>

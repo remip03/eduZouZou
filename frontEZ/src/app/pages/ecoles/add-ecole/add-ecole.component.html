@@ -1,44 +1,46 @@
-<form [formGroup]="ecole" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="nameEc">Nom École</label>
-    <input
-      type="text"
-      class="form-control"
-      id="nameEc"
-      formControlName="nameEc"
-      required
-    />
+
+<app-return-btn></app-return-btn>
+
+<section class="centre">
+
+  <div class="bulle colonne">
+
+    <form [formGroup]="ecole" (ngSubmit)="onSubmit()">
+        <label for="nameEc">Nom École</label>
+        <input
+          type="text"
+          id="nameEc"
+          formControlName="nameEc"
+          required/>
+
+        <label for="adresseEc">Adresse</label>
+        <input
+          type="text"
+          id="adresseEc"
+          formControlName="adresseEc"
+          required/>
+
+        <label for="telEc">Téléphone</label>
+        <input
+          type="text"
+          id="telEc"
+          formControlName="telEc"
+          required/>
+
+        <label for="mailEc">Email</label>
+        <input
+          type="email"
+          id="mailEc"
+          formControlName="mailEc"
+          required/>
+
+      <div class="colonneResp centrecolonne">
+        <button type="submit">Ajouter</button>
+        <button routerLink="/ecoles">Retour</button>
+      </div>
+
+    </form>
+
   </div>
-  <div class="form-group">
-    <label for="adresseEc">Adresse</label>
-    <input
-      type="text"
-      class="form-control"
-      id="adresseEc"
-      formControlName="adresseEc"
-      required
-    />
-  </div>
-  <div class="form-group">
-    <label for="telEc">Téléphone</label>
-    <input
-      type="text"
-      class="form-control"
-      id="telEc"
-      formControlName="telEc"
-      required
-    />
-  </div>
-  <div class="form-group">
-    <label for="mailEc">Email</label>
-    <input
-      type="email"
-      class="form-control"
-      id="mailEc"
-      formControlName="mailEc"
-      required
-    />
-  </div>
-  <button type="submit" class="btn btn-primary">Ajouter</button>
-  <a routerLink="/ecoles" class="btn btn-secondary">Retour</a>
-</form>
+
+</section>

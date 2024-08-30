@@ -1,0 +1,26 @@
+.bulle{
+  background-color: white;
+  color: #294F7F;
+  width: 94%;
+  height: auto;
+  margin: 3%;
+  border-radius: 2rem;
+  font-family: 'nunito';
+  font-size: 150%;
+}
+
+@media screen and (min-width: 1440px) {
+  .bulle{
+    width: 70%;
+    height: auto;
+    margin: 2%;
+  }
+}
+
+input{
+  padding: 0% 1%;
+}
+
+select{
+  padding: 0% 1%;
+}

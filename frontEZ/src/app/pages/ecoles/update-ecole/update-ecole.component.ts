@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EcoleService } from '../../../services/ecole.service';
 import Ecole from '../../../models/ecole.modelt';
+import { ReturnBtnComponent } from "../../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-update-ecole',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, ReturnBtnComponent],
   templateUrl: './update-ecole.component.html',
   styleUrl: './update-ecole.component.css'
 })

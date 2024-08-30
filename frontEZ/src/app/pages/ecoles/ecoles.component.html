@@ -1,32 +1,27 @@
-<a routerLink="/newEcole" class="btn btn-warning">Ajouter une nouvelle école</a>
 
-<div class="row g-1">
+<app-return-btn></app-return-btn>
+
+<section>
+
+<button routerLink="/newEcole" class="boutonAjout">Ajouter une nouvelle école</button>
+
+<div class="colonneResp">
   <div
-    class="col-md-4 d-flex justify-content-center"
+    class="bulle"
     *ngFor="let item of ecoles; let i = index"
-  >
-    <div class="card">
-      <div class="card-body">
+    [style.background-color]="couleurs[i % couleurs.length]">
+
         <h2>Ecole n°{{ item.id }}</h2>
-        <p class="card-text">
-          <span class="bold">Nom : </span>{{ item.nameEc }}
-        </p>
-        <p class="card-text">
-          <span class="bold">Adresse : </span>{{ item.adresseEc }}
-        </p>
-        <p class="card-text">
-          <span class="bold">Téléphone : </span>{{ item.telEc }}
-        </p>
-        <p class="card-text">
-          <span class="bold">Email : </span>{{ item.mailEc }}
-        </p>
-        <a routerLink="/ecoles/{{ item.id }}" class="btn btn-primary"
-          >Voir l'école</a
-        >
-        <a routerLink="/ecoles/{{ item.id }}/edit" class="btn btn-success"
-          >Modifier</a
-        >
-      </div>
+
+        <p>Nom : {{ item.nameEc }}</p>
+        <p>Adresse : {{ item.adresseEc }}</p>
+        <p>Téléphone : {{ item.telEc }}</p>
+        <p>Email : {{ item.mailEc }}</p>
+
+        <button routerLink="/ecoles/{{ item.id }}" class="boutonMod">Voir l'école</button>
+        <button routerLink="/ecoles/{{ item.id }}/edit" class="boutonMod">Modifier</button>
+
     </div>
-  </div>
 </div>
+
+</section>

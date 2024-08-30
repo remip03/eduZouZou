@@ -7,11 +7,12 @@ import { ClasseService } from '../../../services/classe.service';
 import { EcoleService } from '../../../services/ecole.service';
 import Classe from '../../../models/classe.model';
 import { VariablesGlobales } from '../../../commons/variablesGlobales';
+import { ReturnBtnComponent } from "../../../commons/return-btn/return-btn.component";
 
 @Component({
   selector: 'app-update-classe',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, ReturnBtnComponent],
   templateUrl: './update-classe.component.html',
   styleUrl: './update-classe.component.css'
 })

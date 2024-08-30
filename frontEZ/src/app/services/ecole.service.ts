@@ -9,7 +9,8 @@ import Ecole from '../models/ecole.modelt';
 export class EcoleService {
 
   // URL de base de l'API
-  private apiUrl = 'http://127.0.0.1:8000/api';
+  // private apiUrl = 'https://localhost:8000/api';
+  private apiUrl = 'http://localhost:8000/api';
 
   // Injection du service HttpClient
   constructor(private httpClient: HttpClient) { }

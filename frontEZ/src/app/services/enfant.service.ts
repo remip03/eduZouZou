@@ -8,28 +8,29 @@ import Enfant from '../models/enfant.model';
 })
 export class EnfantService {
 
-  private ezURL = 'http://localhost:8000/api'
+  // private apiUrl = 'https://localhost:8000/api';
+  private apiUrl = 'http://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) { }
 
   getEnfants() : Observable<Enfant[]>{
-    return this.httpClient.get<Enfant[]>(`${this.ezURL}/enfants`)
+    return this.httpClient.get<Enfant[]>(`${this.apiUrl}/enfants`)
   }
 
   getEnfant(id: number) : Observable<Enfant>{
-    return this.httpClient.get<Enfant>(`${this.ezURL}/enfants/${id}`)
+    return this.httpClient.get<Enfant>(`${this.apiUrl}/enfants/${id}`)
   }
 
   createEnfant(enfant: Enfant): Observable<Enfant>{
-    return this.httpClient.post<Enfant>(`${this.ezURL}/enfants`, enfant)
+    return this.httpClient.post<Enfant>(`${this.apiUrl}/enfants`, enfant)
   }
 
   updateEnfant(enfant: Enfant): Observable<Enfant>{
-    return this.httpClient.put<Enfant>(`${this.ezURL}/enfants/${enfant.id}`, enfant)
+    return this.httpClient.put<Enfant>(`${this.apiUrl}/enfants/${enfant.id}`, enfant)
   }
 
   deleteEnfant(id: number): Observable<Enfant>{
-    return this.httpClient.delete<Enfant>(`${this.ezURL}/enfants/${id}`)
+    return this.httpClient.delete<Enfant>(`${this.apiUrl}/enfants/${id}`)
   }
 
 }

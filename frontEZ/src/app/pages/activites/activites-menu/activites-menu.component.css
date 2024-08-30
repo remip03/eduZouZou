@@ -1,0 +1,19 @@
+.imgMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.imgMenu img {
+  margin: 1%;
+}
+
+@media screen and (min-width: 768px) {
+
+  .imgMenu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+}

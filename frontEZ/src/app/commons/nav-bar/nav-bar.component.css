@@ -1,3 +1,161 @@
-.deco {
+.navbar {
+  background-color: #ffffff;
+  height: 6rem;
+}
+
+.logo {
+  width: 120px;
+  height: 50px;
+}
+
+.navbarMenu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.burgerIcon {
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+}
+
+.closeBurger {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+hr {
+  width: 100%;
+}
+
+.navLinks {
+  display: none;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+.modal.hiddenMenu {
+  display: none;
+}
+
+.modalContent {
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+.modalContent a {
+  text-decoration: none;
+  color: rgba(41, 79, 127, 0.9);
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
+
+.btnBurger {
+  padding: 1rem 3rem 0 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 80%;
+}
+
+.burgerLink {
+  width: 100%;
+}
+
+.burgerLink a {
+  padding: 1rem 3rem 1rem 1rem;
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.burgerLink img {
+  margin-right: 1rem;
+}
+
+.dropdown {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background-color: white;
+  z-index: 1;
+  top: 100%;
+  border-bottom: 1px solid rgba(41, 79, 127, 0.9);
+  border-left: 1px solid rgba(41, 79, 127, 0.9);
+  border-right: 1px solid rgba(41, 79, 127, 0.9);
+}
+
+.dropdown li {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background-color: #f1f1f1;
+}
+
+@media only screen and (min-width: 600px) {
+}
+
+@media only screen and (min-width: 769px) {
+  .navbarMenu {
+    padding: 0 2rem;
+  }
+  .navLinks {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  .navLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: rgba(41, 79, 127, 0.9);
+    font-size: large;
+  }
+
+  .burger {
+    display: none;
+  }
+
+  .burgerIcon {
+    display: none;
+  }
 }

@@ -28,7 +28,6 @@ class AppFixtures extends Fixture
     {
 
         // Créations des écoles
-        $listEcole = [];
         for ($i = 0; $i < 5; $i++) {
             $ecole = new Ecole();
             $ecole->setNameEc('Ecole ' . $i);
@@ -65,95 +64,84 @@ class AppFixtures extends Fixture
         // Création des activités.
         for ($i = 0; $i < 10; $i++) {
             $activite = new Activite();
-            $activite->setTypeR('type ' . $i);
+            $activite->setTypeR('CP');
             $activite->setNameR('activite n°' . $i);
             $activite->setDescriptionR('Voici l\'activite n°' . $i);
-            $activite->setMatiereR('Mathématiques' . $i);
+            $activite->setMatiereR('mathématiques' . $i);
             $activite->setTypeAct('quizz n°' . $i);
             $manager->persist($activite);
-        }
-
-        // Créations des enfants
-        for ($i = 0; $i < 100; $i++) {
-            $enfant = new Enfant();
-            $enfant->setLastNameE('Enfant ' . $i);
-            $enfant->setFirstNameE('Prénom ' . $i);
-            $enfant->setBirthDateE(new \DateTimeImmutable());
-            $enfant->setClasse($listClasse[array_rand($listClasse)]);
-            $manager->persist($enfant);
-        }
-        // Créations des enfants
-        for ($i = 0; $i < 100; $i++) {
-            $enfant = new Enfant();
-            $enfant->setLastNameE('Enfant ' . $i);
-            $enfant->setFirstNameE('Prénom ' . $i);
-            $enfant->setBirthDateE(new \DateTimeImmutable());
-            $enfant->setClasse($listClasse[array_rand($listClasse)]);
-            $manager->persist($enfant);
         }
 
         // Création des cours.
         for ($i = 0; $i < 10; $i++) {
             $cours = new Cours();
-            $cours->setTypeR('type ' . $i);
+            $cours->setTypeR('CM1');
             $cours->setNameR('cours n° ' . $i);
             $cours->setDescriptionR('Voici le cours n° ' . $i);
-            $cours->setMatiereR('Mathématiques ' . $i);
+            $cours->setMatiereR('mathématiques ' . $i);
             $cours->setDocC('doc n° ' . $i);
             $cours->setVideoC('video n° ' . $i);
             $cours->setRessourceSupC('ressource supplémentaire n° ' . $i);
             $manager->persist($cours);
         }
 
+        // Création des messages.
+        for ($i = 0; $i < 10; $i++) {
+            $message = new Message;
+            $message->setContent('hello world' . $i);
+            $message->setDestinataire('john doe' . $i);
+            $message->setExpediteur('bob marley' . $i);
+            $message->setMsgDate(new \DateTimeImmutable());
+            $manager->persist($message);
 
-
-        //creation user admin
-        $user = new User();
-        $listUser[] = $user;
-        $message = new Message;
-        $listMessages[] = $message;
-        $messagerie = new Messagerie();
-        $listMessagerie[] = $message;
-        $activite = new Activite();
-        $listActivite[] = $activite;
-        $cours = new Cours();
-        $listCours[] = $cours;
-
-        $listMessages = [];
-        for ($i = 0; $i <10; $i++) {
-        $message = new Message;
-        $message->setContent('hello world'.$i);
-        $message->setDestinataire('john doe'.$i);
-        $message->setExpediteur('bob marley'.$i);
-        $message->setMsgDate(new \DateTimeImmutable());
-
-        $manager->persist($message);
+            $listMessages[] = $message;
         }
-        $listMessages[] = $message;
 
-        $listMessagerie = [];
-for ($i = 0; $i < 10; $i++) {
-        $messagerie = new Messagerie();
-        $messagerie->setMessages(($listMessages[array_rand($listMessages)]));
-        $manager->persist($messagerie);
-}
+        // Création des messageries.
+        for ($i = 0; $i < 10; $i++) {
+            $messagerie = new Messagerie();
+            $manager->persist($messagerie);
+            $listMessagerie[] = $messagerie;
+        }
 
-        $manager->persist($messagerie);
-        $listMessagerie[] = $messagerie;
+        // Création des users
+        // Création des messageries.
+        for ($i = 0; $i < 10; $i++) {
+            $messagerie = new Messagerie();
+            $manager->persist($messagerie);
+            $listMessagerie[] = $messagerie;
+        }
 
-        $user->setEmail('user@api.com');
-        $user->setRoles(['ROLE_ADMIN']);
-        $user->setPassword($this->userPasswordHasher->hashPassword($user, 'password'));
-        $user->setFirstName('jean');
-        $user->setLastName('dupont');
-        $user->setTel('0123456789');
-        $user->setAdresse('adresse user');
-        $user->setMessagerie($listMessagerie[array_rand($listMessagerie)]);
-        $user->setEcole($listEcole[array_rand($listEcole)]);
+        // Création des users
+        $baseEmails = [
+            'user@api.com',
+            'admin@api.com',
+            'prof@api.com',
+            'superadmin@api.com'
+        ];
 
+        $usedEmails = [];
 
-        $manager->persist($user);
+        for ($i = 0; $i < 4; $i++) {
+            $email = $baseEmails;
+            $roles = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_PROF', 'ROLE_SUPERADMIN'];
 
+            $email = str_replace('@', $i . '@', $baseEmails);
+            $usedEmails[] = $email;
+
+            $user = new User();
+            $user->setEmail($email[$i]);
+            $user->setRoles([$roles[$i]]);
+            $user->setPassword($this->userPasswordHasher->hashPassword($user, 'password'));
+            $user->setFirstName('FirstName' . $i);
+            $user->setLastName('LastName' . $i);
+            $user->setTel('0123456789');
+            $user->setAdresse('adresse user');
+            $user->setMessagerie($listMessagerie[array_rand($listMessagerie)]);
+            $user->setEcole($listEcole[array_rand($listEcole)]);
+            $manager->persist($user);
+            echo "Insère utilisateur avec l'email : " . $email[$i] . "\n";
+        }
         $manager->flush();
     }
 }
