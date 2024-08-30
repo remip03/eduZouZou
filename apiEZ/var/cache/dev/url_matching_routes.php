@@ -85,6 +85,7 @@ return [
                             .'|(*:303)'
                         .')'
                         .'|email/([^/]++)(*:326)'
+                        .'|([^/]++)/changePassword(*:357)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -136,8 +137,9 @@ return [
             [['_route' => 'deleteUser', '_controller' => 'App\\Controller\\UserController::deleteUser'], ['id'], ['DELETE' => 0], null, false, true, null],
             [['_route' => 'updateUser', '_controller' => 'App\\Controller\\UserController::updateUser'], ['id'], ['PUT' => 0], null, false, true, null],
         ],
-        326 => [
-            [['_route' => 'getUserByEmail', '_controller' => 'App\\Controller\\UserController::getUserByEmail'], ['email'], ['GET' => 0], null, false, true, null],
+        326 => [[['_route' => 'getUserByEmail', '_controller' => 'App\\Controller\\UserController::getUserByEmail'], ['email'], ['GET' => 0], null, false, true, null]],
+        357 => [
+            [['_route' => 'changePassword', '_controller' => 'App\\Controller\\UserController::changePassword'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
