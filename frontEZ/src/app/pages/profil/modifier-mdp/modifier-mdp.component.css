@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  width: 90%;
+  border-radius: 30px;
+  padding: 1rem 0;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  height: 3rem;
+  width: 80%;
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+input::placeholder {
+  color: #294f7f;
+}
+
+button {
+  background-color: #294f7f;
+  width: 80%;
+  margin: 1rem 0;
+}
+
+@media only screen and (min-width: 600px) {
+  .content {
+    width: 70%;
+  }
+
+  button {
+    width: 40%;
+  }
+
+  span {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+}

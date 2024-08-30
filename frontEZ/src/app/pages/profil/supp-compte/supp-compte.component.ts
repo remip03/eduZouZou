@@ -29,23 +29,25 @@ export class SuppCompteComponent {
 
   // Méthode pour confirmer la déconnexion
   confirmLogout(): void {
-    const confirmed = window.confirm('Êtes-vous sûr de vouloir vous déconnecter ?');
+    const confirmed = window.confirm('Êtes-vous sûr de vouloir vous déconnecter ?'); // Affiche une fenêtre de confirmation
     if (confirmed) {
-      this.logout();
+      this.logout(); // Déconnecte l'utilisateur si la confirmation est positive
     }
   }
 
+  // Méthode pour ouvrir la modal de confirmation de suppression
   openModal() {
     const modal = document.getElementById('modalDelete');
     if (modal) {
-      modal.classList.remove('hidden');
+      modal.classList.remove('hidden'); // Affiche la modal en supprimant la classe 'hidden'
     }
   }
 
+  // Méthode pour fermer la modal de confirmation de suppression
   closeModal() {
     const modal = document.getElementById('modalDelete');
     if (modal) {
-      modal.classList.add('hidden');
+      modal.classList.add('hidden'); // Cache la modal en ajoutant la classe 'hidden'
     }
   }
 }
