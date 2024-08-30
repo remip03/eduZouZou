@@ -59,7 +59,6 @@ export const routes: Routes = [
   { path: 'conInsc', component: ConInscComponent },
 
   // Chemin page Informations
-
   { path: 'rgpd', component: RgpdComponent },
 
   { path: 'cgu', component: CguComponent },
@@ -151,8 +150,6 @@ export const routes: Routes = [
 
   { path: 'messagesUpdate/:id', component: UpdateMsgComponent },
 
-  { path: '**', component: NotFoundComponent },
-
   // Chemin pour le profil
   { path: 'decoProfil', component: DecoProfilComponent },
 
@@ -163,4 +160,7 @@ export const routes: Routes = [
   { path: 'modifMdp', component: ModifierMdpComponent },
 
   { path: 'suppCompte', component: SuppCompteComponent },
+
+  { path: '**', component: NotFoundComponent },
+
 ];
