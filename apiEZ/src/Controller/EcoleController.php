@@ -19,6 +19,7 @@ use JMS\Serializer\SerializerInterface;
 use JMS\Serializer\SerializationContext;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 // Déclaration de la classe EcoleController qui étend AbstractController de Symfony
 class EcoleController extends AbstractController
@@ -75,6 +76,7 @@ class EcoleController extends AbstractController
      */
     // Définition d'une route pour supprimer une école spécifique via une requête DELETE
     #[Route('/api/ecoles/{id}', name: 'deleteEcole', methods: ['DELETE'])]
+    #[IsGranted('ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour supprimer une école.')]
     #[OA\Tag(name: "Ecoles")]
     public function deleteEcole(Ecole $ecole, EntityManagerInterface $entityManager, ClasseRepository $classeRepository, TagAwareCacheInterface $cachePool): JsonResponse
     {
@@ -134,6 +136,7 @@ class EcoleController extends AbstractController
             )
         ]
     )]
+    #[IsGranted('ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour créer une école.')]
     #[OA\Tag(name: "Ecoles")]
     public function createEcole(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse
     {
@@ -209,6 +212,7 @@ class EcoleController extends AbstractController
             )
         ]
     )]
+    #[IsGranted('ROLE_ADMIN, ROLE_SUPERADMIN', message: 'Vous n\avez pas les droits suffisants pour modifier une école.')]
     #[OA\Tag(name: "Ecoles")]
     public function updateEcole(Request $request, SerializerInterface $serializer, Ecole $currentEcole, EntityManagerInterface $em, ValidatorInterface $validator, TagAwareCacheInterface $cachePool): JsonResponse
     {
